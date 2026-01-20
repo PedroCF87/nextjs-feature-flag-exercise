@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import type { FeatureFlag, CreateFlagInput, Environment, FlagType } from '@shared/types'
 import {
   Dialog,
@@ -71,23 +71,12 @@ export function FlagFormModal({
   const [formData, setFormData] = useState<CreateFlagInput>(initialData)
   const [tagsInput, setTagsInput] = useState(initialTags)
 
-  // Reset form when flag changes
-  if (formData !== initialData && (flag?.id !== undefined || (!flag && formData.name !== ''))) {
-    // Only reset if we're switching to a different flag or from edit to create
-    const shouldReset = flag
-      ? formData.name !== flag.name
-      : formData.name !== '' && open
-    if (!shouldReset) {
-      // Check if modal just opened with different data
-      if (flag && formData.name !== flag.name) {
-        setFormData(initialData)
-        setTagsInput(initialTags)
-      } else if (!flag && formData.name !== '' && !open) {
-        setFormData(initialData)
-        setTagsInput(initialTags)
-      }
+  useEffect(() => {
+    if (open) {
+      setFormData(initialData)
+      setTagsInput(initialTags)
     }
-  }
+  }, [open, initialData, initialTags])
 
   const handleOpenChange = (newOpen: boolean) => {
     if (!newOpen) {

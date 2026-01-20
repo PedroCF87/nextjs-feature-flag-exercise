@@ -1,4 +1,4 @@
-import type { FeatureFlag } from '@shared/types'
+import type { FeatureFlag, Environment, FlagType } from '@shared/types'
 import {
   Table,
   TableBody,
@@ -17,13 +17,13 @@ interface FlagsTableProps {
   onDelete: (flag: FeatureFlag) => void
 }
 
-const environmentColors: Record<string, string> = {
+const environmentColors: Record<Environment, string> = {
   development: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
   staging: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
   production: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
 }
 
-const typeColors: Record<string, string> = {
+const typeColors: Record<FlagType, string> = {
   release: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
   experiment: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300',
   operational: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',

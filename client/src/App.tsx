@@ -28,6 +28,10 @@ function FlagsApp() {
       setIsFormOpen(false)
       setSelectedFlag(null)
     },
+    onError: (error: Error) => {
+      console.error('Failed to create flag:', error.message)
+      // Modal stays open so user can retry
+    },
   })
 
   const updateMutation = useMutation({
@@ -37,6 +41,10 @@ function FlagsApp() {
       setIsFormOpen(false)
       setSelectedFlag(null)
     },
+    onError: (error: Error) => {
+      console.error('Failed to update flag:', error.message)
+      // Modal stays open so user can retry
+    },
   })
 
   const deleteMutation = useMutation({
@@ -45,6 +53,10 @@ function FlagsApp() {
       qc.invalidateQueries({ queryKey: ['flags'] })
       setIsDeleteOpen(false)
       setSelectedFlag(null)
+    },
+    onError: (error: Error) => {
+      console.error('Failed to delete flag:', error.message)
+      // Dialog stays open so user can retry
     },
   })
 
@@ -78,11 +90,12 @@ function FlagsApp() {
   }
 
   if (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Failed to load flags'
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-destructive mb-2">Error</h1>
-          <p className="text-muted-foreground">Failed to load flags. Make sure the server is running.</p>
+          <p className="text-muted-foreground">{errorMessage}</p>
         </div>
       </div>
     )
@@ -97,13 +110,6 @@ function FlagsApp() {
             <Plus className="mr-2 h-4 w-4" />
             Create Flag
           </Button>
-        </div>
-
-        {/* TODO (Workshop): Add filter controls here */}
-        <div className="mb-6 p-4 border border-dashed rounded-lg">
-          <p className="text-muted-foreground text-sm">
-            Filter controls will go here (Workshop Exercise)
-          </p>
         </div>
 
         {isLoading ? (
