@@ -1,214 +1,28 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import initSqlJs, { Database } from 'sql.js'
-import { v4 as uuidv4 } from 'uuid'
+import { createTables } from '../db/schema.js'
+import { _resetDbForTesting } from '../db/client.js'
+import {
+  getAllFlags,
+  getFlagById,
+  getFlagByName,
+  createFlag,
+  updateFlag,
+  deleteFlag,
+} from '../services/flags.js'
+import type { CreateFlagInput } from '../../../shared/types.js'
 
-// We'll test the service functions with a fresh in-memory database for each test
 let db: Database
 
-const createTables = (db: Database) => {
-  db.run(`
-    CREATE TABLE IF NOT EXISTS flags (
-      id TEXT PRIMARY KEY,
-      name TEXT NOT NULL UNIQUE,
-      description TEXT NOT NULL,
-      enabled INTEGER NOT NULL DEFAULT 0,
-      environment TEXT NOT NULL,
-      type TEXT NOT NULL,
-      rollout_percentage INTEGER NOT NULL DEFAULT 100,
-      owner TEXT NOT NULL,
-      tags TEXT NOT NULL DEFAULT '[]',
-      created_at TEXT NOT NULL,
-      updated_at TEXT NOT NULL,
-      expires_at TEXT,
-      last_evaluated_at TEXT
-    )
-  `)
-}
-
-interface DbRow {
-  id: string
-  name: string
-  description: string
-  enabled: number
-  environment: string
-  type: string
-  rollout_percentage: number
-  owner: string
-  tags: string
-  created_at: string
-  updated_at: string
-  expires_at: string | null
-  last_evaluated_at: string | null
-}
-
-interface FeatureFlag {
-  id: string
-  name: string
-  description: string
-  enabled: boolean
-  environment: string
-  type: string
-  rolloutPercentage: number
-  owner: string
-  tags: string[]
-  createdAt: string
-  updatedAt: string
-  expiresAt: string | null
-  lastEvaluatedAt: string | null
-}
-
-function rowToFlag(row: DbRow): FeatureFlag {
-  return {
-    id: row.id,
-    name: row.name,
-    description: row.description,
-    enabled: row.enabled === 1,
-    environment: row.environment,
-    type: row.type,
-    rolloutPercentage: row.rollout_percentage,
-    owner: row.owner,
-    tags: JSON.parse(row.tags) as string[],
-    createdAt: row.created_at,
-    updatedAt: row.updated_at,
-    expiresAt: row.expires_at,
-    lastEvaluatedAt: row.last_evaluated_at,
-  }
-}
-
-function getAllFlags(db: Database): FeatureFlag[] {
-  const result = db.exec('SELECT * FROM flags ORDER BY created_at DESC')
-  if (result.length === 0) return []
-  const columns = result[0].columns
-  return result[0].values.map(row => {
-    const obj: Record<string, unknown> = {}
-    columns.forEach((col, i) => {
-      obj[col] = row[i]
-    })
-    return rowToFlag(obj as unknown as DbRow)
-  })
-}
-
-function getFlagById(db: Database, id: string): FeatureFlag | null {
-  const stmt = db.prepare('SELECT * FROM flags WHERE id = ?')
-  stmt.bind([id])
-  if (stmt.step()) {
-    const row = stmt.getAsObject() as unknown as DbRow
-    stmt.free()
-    return rowToFlag(row)
-  }
-  stmt.free()
-  return null
-}
-
-function getFlagByName(db: Database, name: string): FeatureFlag | null {
-  const stmt = db.prepare('SELECT * FROM flags WHERE name = ?')
-  stmt.bind([name])
-  if (stmt.step()) {
-    const row = stmt.getAsObject() as unknown as DbRow
-    stmt.free()
-    return rowToFlag(row)
-  }
-  stmt.free()
-  return null
-}
-
-interface CreateFlagInput {
-  name: string
-  description: string
-  enabled: boolean
-  environment: string
-  type: string
-  rolloutPercentage: number
-  owner: string
-  tags: string[]
-  expiresAt?: string | null
-}
-
-function createFlag(db: Database, input: CreateFlagInput): FeatureFlag {
-  const existing = getFlagByName(db, input.name)
-  if (existing) {
-    throw new Error(`CONFLICT: Flag with name '${input.name}' already exists`)
-  }
-
-  const id = uuidv4()
-  const now = new Date().toISOString()
-
-  const stmt = db.prepare(`
-    INSERT INTO flags (id, name, description, enabled, environment, type, rollout_percentage, owner, tags, created_at, updated_at, expires_at, last_evaluated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `)
-
-  stmt.run([
-    id,
-    input.name,
-    input.description,
-    input.enabled ? 1 : 0,
-    input.environment,
-    input.type,
-    input.rolloutPercentage,
-    input.owner,
-    JSON.stringify(input.tags),
-    now,
-    now,
-    input.expiresAt ?? null,
-    null,
-  ])
-  stmt.free()
-
-  const flag = getFlagById(db, id)
-  if (!flag) throw new Error('Failed to create flag')
-  return flag
-}
-
-function updateFlag(db: Database, id: string, input: Partial<CreateFlagInput>): FeatureFlag {
-  const existing = getFlagById(db, id)
-  if (!existing) {
-    throw new Error(`NOT_FOUND: Flag with id '${id}' not found`)
-  }
-
-  if (input.name && input.name !== existing.name) {
-    const nameConflict = getFlagByName(db, input.name)
-    if (nameConflict) {
-      throw new Error(`CONFLICT: Flag with name '${input.name}' already exists`)
-    }
-  }
-
-  const now = new Date().toISOString()
-  const updates: string[] = []
-  const values: (string | number | null)[] = []
-
-  if (input.name !== undefined) { updates.push('name = ?'); values.push(input.name) }
-  if (input.description !== undefined) { updates.push('description = ?'); values.push(input.description) }
-  if (input.enabled !== undefined) { updates.push('enabled = ?'); values.push(input.enabled ? 1 : 0) }
-  if (input.environment !== undefined) { updates.push('environment = ?'); values.push(input.environment) }
-  if (input.type !== undefined) { updates.push('type = ?'); values.push(input.type) }
-  if (input.rolloutPercentage !== undefined) { updates.push('rollout_percentage = ?'); values.push(input.rolloutPercentage) }
-  if (input.owner !== undefined) { updates.push('owner = ?'); values.push(input.owner) }
-  if (input.tags !== undefined) { updates.push('tags = ?'); values.push(JSON.stringify(input.tags)) }
-  if (input.expiresAt !== undefined) { updates.push('expires_at = ?'); values.push(input.expiresAt) }
-
-  updates.push('updated_at = ?')
-  values.push(now)
-  values.push(id)
-
-  const stmt = db.prepare(`UPDATE flags SET ${updates.join(', ')} WHERE id = ?`)
-  stmt.run(values)
-  stmt.free()
-
-  const flag = getFlagById(db, id)
-  if (!flag) throw new Error('Failed to update flag')
-  return flag
-}
-
-function deleteFlag(db: Database, id: string): void {
-  const existing = getFlagById(db, id)
-  if (!existing) {
-    throw new Error(`NOT_FOUND: Flag with id '${id}' not found`)
-  }
-
-  const stmt = db.prepare('DELETE FROM flags WHERE id = ?')
-  stmt.run([id])
-  stmt.free()
+const validFlagInput: CreateFlagInput = {
+  name: 'test-flag',
+  description: 'Test flag description',
+  enabled: true,
+  environment: 'development',
+  type: 'release',
+  rolloutPercentage: 100,
+  owner: 'team-test',
+  tags: ['test'],
 }
 
 describe('Flag Service', () => {
@@ -216,39 +30,32 @@ describe('Flag Service', () => {
     const SQL = await initSqlJs()
     db = new SQL.Database()
     createTables(db)
+    _resetDbForTesting(db)
   })
 
   afterEach(() => {
+    _resetDbForTesting(null)
     db.close()
   })
 
   describe('getAllFlags', () => {
-    it('returns empty array when no flags exist', () => {
-      const flags = getAllFlags(db)
+    it('returns empty array when no flags exist', async () => {
+      const flags = await getAllFlags()
       expect(flags).toEqual([])
     })
 
-    it('returns all flags', () => {
-      createFlag(db, {
-        name: 'test-flag',
-        description: 'Test flag',
-        enabled: true,
-        environment: 'development',
-        type: 'release',
-        rolloutPercentage: 100,
-        owner: 'team-test',
-        tags: ['test'],
-      })
+    it('returns all flags', async () => {
+      await createFlag(validFlagInput)
 
-      const flags = getAllFlags(db)
+      const flags = await getAllFlags()
       expect(flags).toHaveLength(1)
       expect(flags[0].name).toBe('test-flag')
     })
   })
 
   describe('createFlag', () => {
-    it('creates a flag with correct data', () => {
-      const flag = createFlag(db, {
+    it('creates a flag with correct data', async () => {
+      const flag = await createFlag({
         name: 'new-feature',
         description: 'A new feature',
         enabled: true,
@@ -269,8 +76,8 @@ describe('Flag Service', () => {
       expect(flag.tags).toEqual(['frontend', 'ux'])
     })
 
-    it('generates a UUID for the flag', () => {
-      const flag = createFlag(db, {
+    it('generates a UUID for the flag', async () => {
+      const flag = await createFlag({
         name: 'uuid-test',
         description: 'Test UUID',
         enabled: false,
@@ -284,9 +91,9 @@ describe('Flag Service', () => {
       expect(flag.id).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i)
     })
 
-    it('sets timestamps', () => {
+    it('sets timestamps', async () => {
       const before = new Date().toISOString()
-      const flag = createFlag(db, {
+      const flag = await createFlag({
         name: 'timestamp-test',
         description: 'Test timestamps',
         enabled: true,
@@ -304,8 +111,8 @@ describe('Flag Service', () => {
       expect(flag.updatedAt <= after).toBe(true)
     })
 
-    it('rejects duplicate names', () => {
-      createFlag(db, {
+    it('rejects duplicate names', async () => {
+      await createFlag({
         name: 'duplicate-name',
         description: 'First flag',
         enabled: true,
@@ -316,7 +123,7 @@ describe('Flag Service', () => {
         tags: [],
       })
 
-      expect(() => createFlag(db, {
+      await expect(createFlag({
         name: 'duplicate-name',
         description: 'Second flag',
         enabled: false,
@@ -325,13 +132,13 @@ describe('Flag Service', () => {
         rolloutPercentage: 50,
         owner: 'team-b',
         tags: [],
-      })).toThrow('CONFLICT')
+      })).rejects.toThrow('already exists')
     })
   })
 
   describe('getFlagById', () => {
-    it('returns the correct flag', () => {
-      const created = createFlag(db, {
+    it('returns the correct flag', async () => {
+      const created = await createFlag({
         name: 'find-me',
         description: 'Find this flag',
         enabled: true,
@@ -342,21 +149,45 @@ describe('Flag Service', () => {
         tags: ['findable'],
       })
 
-      const found = getFlagById(db, created.id)
+      const found = await getFlagById(created.id)
       expect(found).not.toBeNull()
       expect(found?.name).toBe('find-me')
       expect(found?.tags).toEqual(['findable'])
     })
 
-    it('returns null for unknown ID', () => {
-      const found = getFlagById(db, 'non-existent-id')
+    it('returns null for unknown ID', async () => {
+      const found = await getFlagById('non-existent-id')
+      expect(found).toBeNull()
+    })
+  })
+
+  describe('getFlagByName', () => {
+    it('returns the correct flag', async () => {
+      await createFlag({
+        name: 'search-by-name',
+        description: 'Find by name',
+        enabled: true,
+        environment: 'production',
+        type: 'release',
+        rolloutPercentage: 100,
+        owner: 'team-a',
+        tags: [],
+      })
+
+      const found = await getFlagByName('search-by-name')
+      expect(found).not.toBeNull()
+      expect(found?.name).toBe('search-by-name')
+    })
+
+    it('returns null for unknown name', async () => {
+      const found = await getFlagByName('non-existent')
       expect(found).toBeNull()
     })
   })
 
   describe('updateFlag', () => {
-    it('modifies specified fields', () => {
-      const created = createFlag(db, {
+    it('modifies specified fields', async () => {
+      const created = await createFlag({
         name: 'update-me',
         description: 'Original description',
         enabled: false,
@@ -367,7 +198,7 @@ describe('Flag Service', () => {
         tags: ['original'],
       })
 
-      const updated = updateFlag(db, created.id, {
+      const updated = await updateFlag(created.id, {
         description: 'Updated description',
         enabled: true,
         rolloutPercentage: 50,
@@ -381,7 +212,7 @@ describe('Flag Service', () => {
     })
 
     it('updates the updatedAt timestamp', async () => {
-      const created = createFlag(db, {
+      const created = await createFlag({
         name: 'timestamp-update',
         description: 'Test timestamp update',
         enabled: true,
@@ -395,19 +226,46 @@ describe('Flag Service', () => {
       // Small delay to ensure timestamp difference
       await new Promise(resolve => setTimeout(resolve, 10))
 
-      const updated = updateFlag(db, created.id, { description: 'Updated' })
+      const updated = await updateFlag(created.id, { description: 'Updated' })
       expect(updated.updatedAt > created.updatedAt).toBe(true)
     })
 
-    it('throws error for unknown ID', () => {
-      expect(() => updateFlag(db, 'non-existent-id', { description: 'Update' }))
-        .toThrow('NOT_FOUND')
+    it('throws error for unknown ID', async () => {
+      await expect(updateFlag('non-existent-id', { description: 'Update' }))
+        .rejects.toThrow('not found')
+    })
+
+    it('throws error when updating name to existing name', async () => {
+      await createFlag({
+        name: 'existing-flag',
+        description: 'First flag',
+        enabled: true,
+        environment: 'production',
+        type: 'release',
+        rolloutPercentage: 100,
+        owner: 'team-a',
+        tags: [],
+      })
+
+      const second = await createFlag({
+        name: 'different-flag',
+        description: 'Second flag',
+        enabled: true,
+        environment: 'production',
+        type: 'release',
+        rolloutPercentage: 100,
+        owner: 'team-b',
+        tags: [],
+      })
+
+      await expect(updateFlag(second.id, { name: 'existing-flag' }))
+        .rejects.toThrow('already exists')
     })
   })
 
   describe('deleteFlag', () => {
-    it('removes the flag', () => {
-      const created = createFlag(db, {
+    it('removes the flag', async () => {
+      const created = await createFlag({
         name: 'delete-me',
         description: 'To be deleted',
         enabled: true,
@@ -418,15 +276,15 @@ describe('Flag Service', () => {
         tags: [],
       })
 
-      deleteFlag(db, created.id)
+      await deleteFlag(created.id)
 
-      const found = getFlagById(db, created.id)
+      const found = await getFlagById(created.id)
       expect(found).toBeNull()
     })
 
-    it('throws error for unknown ID', () => {
-      expect(() => deleteFlag(db, 'non-existent-id'))
-        .toThrow('NOT_FOUND')
+    it('throws error for unknown ID', async () => {
+      await expect(deleteFlag('non-existent-id'))
+        .rejects.toThrow('not found')
     })
   })
 })

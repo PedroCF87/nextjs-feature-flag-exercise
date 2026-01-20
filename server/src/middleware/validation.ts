@@ -9,10 +9,7 @@ export const createFlagSchema = z.object({
   rolloutPercentage: z.number().min(0).max(100),
   owner: z.string().min(1, 'Owner is required'),
   tags: z.array(z.string()),
-  expiresAt: z.string().nullable().optional(),
+  expiresAt: z.string().datetime().nullable().optional(),
 })
 
 export const updateFlagSchema = createFlagSchema.partial()
-
-export type CreateFlagSchemaType = z.infer<typeof createFlagSchema>
-export type UpdateFlagSchemaType = z.infer<typeof updateFlagSchema>

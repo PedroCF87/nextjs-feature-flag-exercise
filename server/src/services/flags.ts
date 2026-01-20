@@ -1,7 +1,18 @@
 import { v4 as uuidv4 } from 'uuid'
 import { getDb, saveDb } from '../db/client.js'
 import { NotFoundError, ConflictError } from '../middleware/error.js'
-import type { FeatureFlag, CreateFlagInput, UpdateFlagInput } from '../../../shared/types.js'
+import type { FeatureFlag, CreateFlagInput, UpdateFlagInput, Environment, FlagType } from '../../../shared/types.js'
+
+const VALID_ENVIRONMENTS: Environment[] = ['development', 'staging', 'production']
+const VALID_FLAG_TYPES: FlagType[] = ['release', 'experiment', 'operational', 'permission']
+
+function isEnvironment(value: unknown): value is Environment {
+  return typeof value === 'string' && VALID_ENVIRONMENTS.includes(value as Environment)
+}
+
+function isFlagType(value: unknown): value is FlagType {
+  return typeof value === 'string' && VALID_FLAG_TYPES.includes(value as FlagType)
+}
 
 interface DbRow {
   id: string
@@ -20,16 +31,39 @@ interface DbRow {
 }
 
 function rowToFlag(row: DbRow): FeatureFlag {
+  // Validate environment enum
+  if (!isEnvironment(row.environment)) {
+    throw new Error(`Invalid environment value in database: ${row.environment}`)
+  }
+
+  // Validate flag type enum
+  if (!isFlagType(row.type)) {
+    throw new Error(`Invalid flag type value in database: ${row.type}`)
+  }
+
+  // Parse tags with error handling
+  let tags: string[]
+  try {
+    const parsed = JSON.parse(row.tags)
+    if (!Array.isArray(parsed)) {
+      throw new Error('Tags must be an array')
+    }
+    tags = parsed
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'unknown error'
+    throw new Error(`Invalid tags JSON in database for flag '${row.name}': ${message}`)
+  }
+
   return {
     id: row.id,
     name: row.name,
     description: row.description,
     enabled: row.enabled === 1,
-    environment: row.environment as FeatureFlag['environment'],
-    type: row.type as FeatureFlag['type'],
+    environment: row.environment,
+    type: row.type,
     rolloutPercentage: row.rollout_percentage,
     owner: row.owner,
-    tags: JSON.parse(row.tags) as string[],
+    tags,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
     expiresAt: row.expires_at,
@@ -58,31 +92,37 @@ export async function getAllFlags(): Promise<FeatureFlag[]> {
 export async function getFlagById(id: string): Promise<FeatureFlag | null> {
   const db = await getDb()
   const stmt = db.prepare('SELECT * FROM flags WHERE id = ?')
-  stmt.bind([id])
 
-  if (stmt.step()) {
-    const row = stmt.getAsObject() as unknown as DbRow
+  try {
+    stmt.bind([id])
+
+    if (stmt.step()) {
+      const row = stmt.getAsObject() as unknown as DbRow
+      return rowToFlag(row)
+    }
+
+    return null
+  } finally {
     stmt.free()
-    return rowToFlag(row)
   }
-
-  stmt.free()
-  return null
 }
 
 export async function getFlagByName(name: string): Promise<FeatureFlag | null> {
   const db = await getDb()
   const stmt = db.prepare('SELECT * FROM flags WHERE name = ?')
-  stmt.bind([name])
 
-  if (stmt.step()) {
-    const row = stmt.getAsObject() as unknown as DbRow
+  try {
+    stmt.bind([name])
+
+    if (stmt.step()) {
+      const row = stmt.getAsObject() as unknown as DbRow
+      return rowToFlag(row)
+    }
+
+    return null
+  } finally {
     stmt.free()
-    return rowToFlag(row)
   }
-
-  stmt.free()
-  return null
 }
 
 export async function createFlag(input: CreateFlagInput): Promise<FeatureFlag> {
@@ -100,23 +140,26 @@ export async function createFlag(input: CreateFlagInput): Promise<FeatureFlag> {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `)
 
-  stmt.run([
-    id,
-    input.name,
-    input.description,
-    input.enabled ? 1 : 0,
-    input.environment,
-    input.type,
-    input.rolloutPercentage,
-    input.owner,
-    JSON.stringify(input.tags),
-    now,
-    now,
-    input.expiresAt ?? null,
-    null,
-  ])
+  try {
+    stmt.run([
+      id,
+      input.name,
+      input.description,
+      input.enabled ? 1 : 0,
+      input.environment,
+      input.type,
+      input.rolloutPercentage,
+      input.owner,
+      JSON.stringify(input.tags),
+      now,
+      now,
+      input.expiresAt ?? null,
+      null,
+    ])
+  } finally {
+    stmt.free()
+  }
 
-  stmt.free()
   saveDb()
 
   const flag = await getFlagById(id)
@@ -189,8 +232,13 @@ export async function updateFlag(id: string, input: UpdateFlagInput): Promise<Fe
   values.push(id)
 
   const stmt = db.prepare(`UPDATE flags SET ${updates.join(', ')} WHERE id = ?`)
-  stmt.run(values)
-  stmt.free()
+
+  try {
+    stmt.run(values)
+  } finally {
+    stmt.free()
+  }
+
   saveDb()
 
   const flag = await getFlagById(id)
@@ -209,7 +257,12 @@ export async function deleteFlag(id: string): Promise<void> {
 
   const db = await getDb()
   const stmt = db.prepare('DELETE FROM flags WHERE id = ?')
-  stmt.run([id])
-  stmt.free()
+
+  try {
+    stmt.run([id])
+  } finally {
+    stmt.free()
+  }
+
   saveDb()
 }

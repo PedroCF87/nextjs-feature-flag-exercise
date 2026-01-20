@@ -2,7 +2,7 @@ export type Environment = 'development' | 'staging' | 'production'
 export type FlagType = 'release' | 'experiment' | 'operational' | 'permission'
 
 export interface FeatureFlag {
-  id: string
+  readonly id: string
   name: string
   description: string
   enabled: boolean
@@ -11,7 +11,7 @@ export interface FeatureFlag {
   rolloutPercentage: number
   owner: string
   tags: string[]
-  createdAt: string
+  readonly createdAt: string
   updatedAt: string
   expiresAt: string | null
   lastEvaluatedAt: string | null
