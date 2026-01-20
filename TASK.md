@@ -19,6 +19,7 @@ Currently, the dashboard displays all flags in a single table with no way to fil
 - [ ] Users can filter flags by type (release, experiment, operational, permission)
 - [ ] Users can filter flags by owner
 - [ ] Users can search flags by name (partial match)
+- [ ] Filtering should happen in the backend
 - [ ] Multiple filters can be applied simultaneously (e.g., "all enabled release flags in production")
 - [ ] Filters persist while using other features (creating, editing, deleting flags)
 - [ ] There is a way to clear all filters and return to the full list
