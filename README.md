@@ -7,12 +7,25 @@ This is a workshop exercise directory. See [task.md](./task.md) for the exercise
 ## Quick Start
 
 ```bash
-# Install dependencies
+# Install server dependencies
+cd server
 pnpm install
 
-# Start the server (port 3001)
-cd server && pnpm dev
+# Install client dependencies
+cd ../client
+pnpm install
+```
 
-# In another terminal, start the client (port 3000)
-cd client && pnpm dev
+Then in two separate terminals:
+
+```bash
+# Terminal 1: Start the server (port 3001)
+cd server
+pnpm dev
+```
+
+```bash
+# Terminal 2: Start the client (port 3000)
+cd client
+pnpm dev
 ```
