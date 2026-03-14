@@ -92,9 +92,6 @@ client/                 # React frontend (port 3000)
 .agents/                # AI context
   PRDs/                 # Product Requirements Documents
   reference/            # On-demand context docs
-.claude/
-  commands/             # Slash commands (/prime, /plan, /implement, etc.)
-  skills/               # Agent skills
 ```
 
 ### Data Flow
