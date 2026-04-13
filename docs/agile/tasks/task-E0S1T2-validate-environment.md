@@ -212,6 +212,7 @@ Open a Pull Request against `exercise-1` in the personal fork. Wait for it to be
 
 **Date:** 2026-04-13 18:28:55 +00
 **Branch:** copilot/e0-s1-t2-validate-local-execution-environment @ 0638867
+**Required baseline branch reference (`exercise-1`):** origin/exercise-1 @ 77c8d73
 **Node.js:** v24.14.1
 **pnpm:** 10.33.0
 
