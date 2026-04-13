@@ -210,33 +210,51 @@ Open a Pull Request against `exercise-1` in the personal fork. Wait for it to be
 
 ## Validation Report — nextjs-feature-flag-exercise
 
-**Date:** 2026-04-13 18:21:49 +00
-**Branch:** copilot/e0-s1-t2-validate-local-execution-environment @ bd14c53
+**Date:** 2026-04-13 18:28:55 +00
+**Branch:** copilot/e0-s1-t2-validate-local-execution-environment @ 0638867
 **Node.js:** v24.14.1
-**pnpm:** (not found)
+**pnpm:** 10.33.0
 
 | # | Command | Working dir | Exit code | Status |
 |---|---|---|---|---|
-| 1 | `pnpm install` | `server/` | not run | ⛔ |
-| 2 | `pnpm install` | `client/` | not run | ⛔ |
-| 3 | `pnpm run build` | `server/` | not run | ⛔ |
-| 4 | `pnpm run lint` | `server/` | not run | ⛔ |
-| 5 | `pnpm test` | `server/` | not run | ⛔ |
-| 6 | `pnpm run build` | `client/` | not run | ⛔ |
-| 7 | `pnpm run lint` | `client/` | not run | ⛔ |
+| 1 | `pnpm install` | `server/` | 0 | ✅ |
+| 2 | `pnpm install` | `client/` | 0 | ✅ |
+| 3 | `pnpm run build` | `server/` | 0 | ✅ |
+| 4 | `pnpm run lint` | `server/` | 0 | ✅ |
+| 5 | `pnpm test` | `server/` | 0 | ✅ |
+| 6 | `pnpm run build` | `client/` | 0 | ✅ |
+| 7 | `pnpm run lint` | `client/` | 1 | 🔴 |
 
-**Overall: BLOCKED ⛔ — prerequisite check failed (pnpm missing; expected branch `exercise-1` not active).**
+**Overall: BLOCKED ⛔ — one validation command failed (`client` lint).**
 
-### Failure — Step 1: `node docs/.github/functions/check-prereqs.js exercise-1 <repo>`
+### Failure — Step 7: `pnpm run lint`
 **Exit code:** 1
 **First 30 lines of stderr/stdout:**
 ```
-node    v24.14.1                                               ✅
-pnpm    (not found)                                            🔴  ← Install with: npm install -g pnpm
-git     2.53.0                                                 ✅
-branch  copilot/e0-s1-t2-validate-local-execution-environment  🔴  ← Expected 'exercise-1' — run: git checkout exercise-1
+> client@0.0.0 lint /home/runner/work/nextjs-feature-flag-exercise/nextjs-feature-flag-exercise/client
+> eslint .
 
-🔴 Prerequisites check FAILED — resolve blockers before proceeding.
+/home/runner/work/nextjs-feature-flag-exercise/nextjs-feature-flag-exercise/client/src/components/flag-form-modal.tsx
+  76:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/runner/work/nextjs-feature-flag-exercise/nextjs-feature-flag-exercise/client/src/components/flag-form-modal.tsx:76:7
+  74 |   useEffect(() => {
+  75 |     if (open) {
+> 76 |       setFormData(initialData)
+     |       ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  77 |       setTagsInput(initialTags)
+  78 |     }
+  79 |   }, [open, initialData, initialTags])  react-hooks/set-state-in-effect
+
+✖ 1 problem (1 error, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.
 EXIT_CODE:1
 ```
 **Blocker severity:** P0 — must be resolved before proceeding to E0-S1-T3.
@@ -245,30 +263,30 @@ Reference table (legacy format):
 
 | # | Command | Directory | Exit code | Notes |
 |---|---|---|---|---|
-| 1 | `pnpm install` | `server/` | not run | blocked by Step 1 prerequisites |
-| 2 | `pnpm install` | `client/` | not run | blocked by Step 1 prerequisites |
-| 3 | `pnpm run build` | `server/` | not run | blocked by Step 1 prerequisites |
-| 4 | `pnpm run lint` | `server/` | not run | blocked by Step 1 prerequisites |
-| 5 | `pnpm test` | `server/` | not run | blocked by Step 1 prerequisites |
-| 6 | `pnpm run build` | `client/` | not run | blocked by Step 1 prerequisites |
-| 7 | `pnpm run lint` | `client/` | not run | blocked by Step 1 prerequisites |
+| 1 | `pnpm install` | `server/` | 0 | success |
+| 2 | `pnpm install` | `client/` | 0 | success |
+| 3 | `pnpm run build` | `server/` | 0 | success |
+| 4 | `pnpm run lint` | `server/` | 0 | success |
+| 5 | `pnpm test` | `server/` | 0 | success (16/16 tests) |
+| 6 | `pnpm run build` | `client/` | 0 | success (`dist/` generated) |
+| 7 | `pnpm run lint` | `client/` | 1 | react-hooks/set-state-in-effect in `flag-form-modal.tsx:76` |
 
-**Branch:** `copilot/e0-s1-t2-validate-local-execution-environment @ bd14c53`  
-**Date:** `2026-04-13 18:21:49 +00` | **Operator:** `environment-validator`
+**Branch:** `copilot/e0-s1-t2-validate-local-execution-environment @ 0638867`  
+**Date:** `2026-04-13 18:28:55 +00` | **Operator:** `environment-validator`
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] `pnpm install` exits `0` in `server/`.
-- [ ] `pnpm install` exits `0` in `client/`.
-- [ ] `pnpm run build` exits `0` in `server/`.
-- [ ] `pnpm run lint` exits `0` in `server/`.
-- [ ] `pnpm test` exits `0` in `server/` (all tests green).
-- [ ] `pnpm run build` exits `0` in `client/`.
+- [x] `pnpm install` exits `0` in `server/`.
+- [x] `pnpm install` exits `0` in `client/`.
+- [x] `pnpm run build` exits `0` in `server/`.
+- [x] `pnpm run lint` exits `0` in `server/`.
+- [x] `pnpm test` exits `0` in `server/` (all tests green).
+- [x] `pnpm run build` exits `0` in `client/`.
 - [ ] `pnpm run lint` exits `0` in `client/`.
-- [ ] Validation report table filled with all 7 exit codes.
-- [ ] Branch reference captured via `git-info.js --branch-ref`.
+- [x] Validation report table filled with all 7 exit codes.
+- [x] Branch reference captured via `git-info.js --branch-ref`.
 - [ ] No code changes made to the repository during validation.
 - [ ] Feature branch `exercise-1/validate-environment` pushed to fork.
 - [ ] PR opened against `exercise-1` and **merged** before T3 starts.
