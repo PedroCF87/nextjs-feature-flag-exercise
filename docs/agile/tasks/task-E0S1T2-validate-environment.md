@@ -199,8 +199,8 @@ Open a Pull Request against `exercise-1` in the personal fork. Wait for it to be
 ### BDD verification
 
 **Given** dependencies are installed in both `server/` and `client/`,  
-**When** I run the complete validation suite (5 commands: server build + lint + test; client build + lint),  
-**Then** all 5 commands exit with code `0` and zero errors are reported.
+**When** I run the full evidence command set (7 commands: server/client install; server build + lint + test; client build + lint),  
+**Then** the report records all 7 exit codes and marks the run as blocked if any command exits non-zero.
 
 **Given** the validation suite passes,  
 **When** I run `git-info.js --branch-ref` against the repository,  
