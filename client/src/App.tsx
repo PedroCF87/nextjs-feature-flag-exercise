@@ -119,6 +119,7 @@ function FlagsApp() {
         )}
 
         <FlagFormModal
+          key={`${selectedFlag?.id ?? 'new'}-${isFormOpen ? 'open' : 'closed'}`}
           open={isFormOpen}
           onOpenChange={setIsFormOpen}
           flag={selectedFlag}
