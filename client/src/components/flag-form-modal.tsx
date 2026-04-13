@@ -72,6 +72,7 @@ export function FlagFormModal({
   const [tagsInput, setTagsInput] = useState(initialTags)
 
   useEffect(() => {
+    // async wrapper avoids synchronous setState directly in effect body (react-hooks/set-state-in-effect)
     const syncFormState = async () => {
       setFormData(initialData)
       setTagsInput(initialTags)
