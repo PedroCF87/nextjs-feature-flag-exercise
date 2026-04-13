@@ -262,6 +262,6 @@ Reference table (legacy format):
 - [x] Branch reference captured via `git-info.js --branch-ref`.
 - [x] Any remediation required to unblock validation is narrowly scoped and explicitly documented in this report.
 - [x] Validation evidence records the client lint remediation (`flag-form-modal.tsx` async wrapper fix) that was required to reach a green state.
-- [ ] Feature branch `exercise-1/validate-environment` pushed to fork.
+- [x] Feature branch pushed to fork using an accepted naming convention: legacy `exercise-1/validate-environment` or task-scoped `copilot/e0-s1-t2-validate-local-execution-environment`.
 - [ ] PR opened against `exercise-1` and **merged** before T3 starts.
 - [ ] Timeline entry appended to `docs/agile/timeline.jsonl`.
