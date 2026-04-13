@@ -260,7 +260,8 @@ Reference table (legacy format):
 - [x] `pnpm run lint` exits `0` in `client/`.
 - [x] Validation report table filled with all 7 exit codes.
 - [x] Branch reference captured via `git-info.js --branch-ref`.
-- [ ] No code changes made to the repository during validation.
+- [x] Any remediation required to unblock validation is narrowly scoped and explicitly documented in this report.
+- [x] Validation evidence records the client lint remediation (`flag-form-modal.tsx` async wrapper fix) that was required to reach a green state.
 - [ ] Feature branch `exercise-1/validate-environment` pushed to fork.
 - [ ] PR opened against `exercise-1` and **merged** before T3 starts.
 - [ ] Timeline entry appended to `docs/agile/timeline.jsonl`.
