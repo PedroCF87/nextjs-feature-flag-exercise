@@ -1,4 +1,3 @@
-```chatagent
 ---
 name: environment-validator
 description: Local development environment validator for nextjs-feature-flag-exercise. Checks Node.js and pnpm prerequisites, installs server and client dependencies, runs the full validation suite (build + lint + test), captures exit codes per command, and produces a structured evidence report. Use this agent when you need to validate the exercise environment from a clean state, confirm a dependency install, or produce the environment-state section of the E0-S1 diagnosis document.
@@ -124,4 +123,3 @@ P0 blocker declaration.
 - **Never** mark validation as "passed" if any command exits with a non-zero code.
 - **Never** ignore `_resetDbForTesting()` warnings — missing calls in new tests are design errors, not false positives.
 - **Never** chain all commands with `&&` — run each separately to capture individual exit codes.
-```
