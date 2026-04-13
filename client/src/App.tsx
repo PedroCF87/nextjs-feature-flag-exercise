@@ -15,6 +15,7 @@ function FlagsApp() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const [selectedFlag, setSelectedFlag] = useState<FeatureFlag | null>(null)
+  const [formSession, setFormSession] = useState(0)
 
   const { data: flags = [], isLoading, error } = useQuery({
     queryKey: ['flags'],
@@ -62,11 +63,13 @@ function FlagsApp() {
 
   const handleCreate = () => {
     setSelectedFlag(null)
+    setFormSession((session) => session + 1)
     setIsFormOpen(true)
   }
 
   const handleEdit = (flag: FeatureFlag) => {
     setSelectedFlag(flag)
+    setFormSession((session) => session + 1)
     setIsFormOpen(true)
   }
 
@@ -119,7 +122,7 @@ function FlagsApp() {
         )}
 
         <FlagFormModal
-          key={`${selectedFlag?.id ?? 'new'}-${isFormOpen ? 'open' : 'closed'}`}
+          key={`${selectedFlag?.id ?? 'new'}-${formSession}`}
           open={isFormOpen}
           onOpenChange={setIsFormOpen}
           flag={selectedFlag}
