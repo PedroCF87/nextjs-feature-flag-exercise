@@ -208,7 +208,7 @@ Open a Pull Request against `exercise-1` in the personal fork. Wait for it to be
 
 ### Validation report table
 
-## Validation Report — nextjs-feature-flag-exercise
+#### Validation Report — nextjs-feature-flag-exercise
 
 **Date:** 2026-04-13 18:28:55 +00
 **Branch:** copilot/e0-s1-t2-validate-local-execution-environment @ 0638867
