@@ -1,0 +1,639 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-04-13 14:02:56 -03",
+  "items": [
+    {
+      "id": "E0-S1",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst",
+        "git-ops",
+        "environment-validator"
+      ],
+      "depends_on": [],
+      "blocks": [
+        "E0-S2",
+        "E0-S3",
+        "E0-S4",
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-09 18:08:58 -03",
+      "last_updated": "2026-04-10 17:45:54 -03",
+      "story_file": "Docs/agile/stories/story-E0S1-repository-diagnosis.md"
+    },
+    {
+      "id": "E0-S2",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-config-refactor",
+        "rules-bootstrap",
+        "copilot-env-specialist",
+        "git-ops"
+      ],
+      "depends_on": [
+        "E0-S1"
+      ],
+      "blocks": [
+        "E0-S3",
+        "E0-S4",
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-09 18:56:38 -03",
+      "last_updated": "2026-04-12 16:19:17 -03",
+      "story_file": "Docs/agile/stories/story-E0S2-minimum-ai-layer.md"
+    },
+    {
+      "id": "E0-S3",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S2"
+      ],
+      "blocks": [
+        "E0-S4",
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-09 22:24:08 -03",
+      "last_updated": "2026-04-11 16:44:05 -03",
+      "story_file": "Docs/agile/stories/story-E0S3-measurement-baseline.md"
+    },
+    {
+      "id": "E0-S4",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S3"
+      ],
+      "blocks": [
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-10 12:08:50 -03",
+      "last_updated": "2026-04-12 15:27:35 -03",
+      "story_file": "Docs/agile/stories/story-E0S4-preparation-closure.md"
+    },
+    {
+      "id": "E0-S5",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer",
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S2"
+      ],
+      "blocks": [
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-12 21:52:11 -03",
+      "last_updated": "2026-04-12 21:52:11 -03",
+      "story_file": "Docs/agile/stories/story-E0S5-execution-automation.md"
+    },
+    {
+      "id": "E0-S1-T0",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "In Progress",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [
+        "E0-S1-T1"
+      ],
+      "created_at": "2026-04-10 17:45:54 -03",
+      "last_updated": "2026-04-12 14:03:39 -03",
+      "task_file": "Docs/agile/tasks/task-E0S1T0-bootstrap-ai-layer.md"
+    },
+    {
+      "id": "E0-S1-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "git-ops"
+      ],
+      "depends_on": [
+        "E0-S1-T0"
+      ],
+      "blocks": [
+        "E0-S1-T2"
+      ],
+      "created_at": "2026-04-10 17:45:54 -03",
+      "last_updated": "2026-04-12 14:15:15 -03",
+      "task_file": "Docs/agile/tasks/task-E0S1T1-fork-configure-remotes.md"
+    },
+    {
+      "id": "E0-S1-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "environment-validator"
+      ],
+      "depends_on": [
+        "E0-S1-T1"
+      ],
+      "blocks": [
+        "E0-S1-T3"
+      ],
+      "created_at": "2026-04-10 17:45:54 -03",
+      "last_updated": "2026-04-12 14:15:15 -03",
+      "task_file": "Docs/agile/tasks/task-E0S1T2-validate-environment.md"
+    },
+    {
+      "id": "E0-S1-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S1-T2"
+      ],
+      "blocks": [
+        "E0-S1-T4"
+      ],
+      "created_at": "2026-04-10 17:45:54 -03",
+      "last_updated": "2026-04-12 14:20:54 -03",
+      "task_file": "Docs/agile/tasks/task-E0S1T3-codebase-audit.md"
+    },
+    {
+      "id": "E0-S1-T4",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S1-T3"
+      ],
+      "blocks": [
+        "E0-S2",
+        "E0-S4",
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-10 17:45:54 -03",
+      "last_updated": "2026-04-12 14:24:20 -03",
+      "task_file": "Docs/agile/tasks/task-E0S1T4-diagnosis-document.md"
+    },
+    {
+      "id": "E0-S2-T0",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner",
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E0-S1"
+      ],
+      "blocks": [
+        "E0-S2-T1",
+        "E0-S2-T2",
+        "E0-S2-T3",
+        "E0-S2-T4"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-12 16:19:17 -03",
+      "task_file": "Docs/agile/tasks/task-E0S2T0-bootstrap-ai-layer-management-artifacts.md"
+    },
+    {
+      "id": "E0-S2-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "rules-bootstrap"
+      ],
+      "depends_on": [
+        "E0-S2-T0"
+      ],
+      "blocks": [
+        "E0-S2-T5"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-11 16:09:01 -03",
+      "task_file": "Docs/agile/tasks/task-E0S2T1-adapt-and-deploy-global-rules-to-fork.md"
+    },
+    {
+      "id": "E0-S2-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-config-refactor"
+      ],
+      "depends_on": [
+        "E0-S2-T0"
+      ],
+      "blocks": [
+        "E0-S2-T5"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-11 16:14:20 -03",
+      "task_file": "Docs/agile/tasks/task-E0S2T2-adapt-and-deploy-instructions-to-fork.md"
+    },
+    {
+      "id": "E0-S2-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-config-refactor"
+      ],
+      "depends_on": [
+        "E0-S2-T0"
+      ],
+      "blocks": [
+        "E0-S2-T5"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-11 16:18:38 -03",
+      "task_file": "Docs/agile/tasks/task-E0S2T3-adapt-and-deploy-agents-and-skills-to-fork.md"
+    },
+    {
+      "id": "E0-S2-T4",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S2-T0"
+      ],
+      "blocks": [
+        "E0-S2-T5"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-11 16:25:13 -03",
+      "task_file": "Docs/agile/tasks/task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md"
+    },
+    {
+      "id": "E0-S2-T5",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "git-ops"
+      ],
+      "depends_on": [
+        "E0-S2-T1",
+        "E0-S2-T2",
+        "E0-S2-T3",
+        "E0-S2-T4"
+      ],
+      "blocks": [
+        "E0-S3",
+        "E0-S4",
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-11 16:31:09 -03",
+      "task_file": "Docs/agile/tasks/task-E0S2T5-validate-commit-and-sign-readiness-checklist.md"
+    },
+    {
+      "id": "E0-S3-T0",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S2"
+      ],
+      "blocks": [
+        "E0-S3-T1",
+        "E0-S3-T2",
+        "E0-S3-T3"
+      ],
+      "created_at": "2026-04-11 16:43:15 -03",
+      "last_updated": "2026-04-11 16:49:00 -03",
+      "task_file": "Docs/agile/tasks/task-E0S3T0-bootstrap-ai-layer-artifacts-for-this-story.md"
+    },
+    {
+      "id": "E0-S3-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S2",
+        "E0-S3-T0"
+      ],
+      "blocks": [
+        "E0-S3-T2",
+        "E0-S3-T3"
+      ],
+      "created_at": "2026-04-11 16:43:15 -03",
+      "last_updated": "2026-04-11 16:53:40 -03",
+      "task_file": "Docs/agile/tasks/task-E0S3T1-define-measurement-dimensions-and-capture-method.md"
+    },
+    {
+      "id": "E0-S3-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S3-T1",
+        "E0-S3-T0"
+      ],
+      "blocks": [
+        "E0-S3-T3"
+      ],
+      "created_at": "2026-04-11 16:43:15 -03",
+      "last_updated": "2026-04-11 17:09:31 -03",
+      "task_file": "Docs/agile/tasks/task-E0S3T2-create-measurement-capture-template.md"
+    },
+    {
+      "id": "E0-S3-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S3-T2",
+        "E0-S1",
+        "E0-S2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-11 16:43:15 -03",
+      "last_updated": "2026-04-11 17:32:15 -03",
+      "task_file": "Docs/agile/tasks/task-E0S3T3-record-time-zero-snapshot-and-sign-go-no-go-checklist.md"
+    },
+    {
+      "id": "E0-S4-T0",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S3"
+      ],
+      "blocks": [
+        "E0-S4-T1",
+        "E0-S4-T2",
+        "E0-S4-T3",
+        "E0-S4-T5"
+      ],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-12 15:13:58 -03",
+      "task_file": "Docs/agile/tasks/task-E0S4T0-bootstrap-ai-layer-artifacts.md"
+    },
+    {
+      "id": "E0-S4-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S4-T0"
+      ],
+      "blocks": [
+        "E0-S4-T2",
+        "E0-S4-T3"
+      ],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-12 15:13:58 -03",
+      "task_file": "Docs/agile/tasks/task-E0S4T1-verify-epic-0-dod-evidence.md"
+    },
+    {
+      "id": "E0-S4-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S4-T1",
+        "E0-S4-T0"
+      ],
+      "blocks": [
+        "E0-S4-T4"
+      ],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-12 15:13:58 -03",
+      "task_file": "Docs/agile/tasks/task-E0S4T2-produce-epic0-closure-report-md.md"
+    },
+    {
+      "id": "E0-S4-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S4-T0",
+        "E0-S4-T1",
+        "E0-S4-T2"
+      ],
+      "blocks": [
+        "E0-S4-T4"
+      ],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-12 15:13:58 -03",
+      "task_file": "Docs/agile/tasks/task-E0S4T3-produce-epic1-handoff-md.md"
+    },
+    {
+      "id": "E0-S4-T4",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S4-T2",
+        "E0-S4-T3"
+      ],
+      "blocks": [
+        "E0-S4-T5"
+      ],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-12 15:13:58 -03",
+      "task_file": "Docs/agile/tasks/task-E0S4T4-commit-and-push-closure-artifacts.md"
+    },
+    {
+      "id": "E0-S4-T5",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S4-T0",
+        "E0-S4-T4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-12 15:13:58 -03",
+      "task_file": "Docs/agile/tasks/task-E0S4T5-close-story-and-append-timeline-entry.md"
+    },
+    {
+      "id": "E0-S5-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer",
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 13:23:32 -03",
+      "task_file": "Docs/agile/tasks/task-E0S5T1-create-story-task-reviewer-agent.md"
+    },
+    {
+      "id": "E0-S5-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer",
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S5-T1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 13:23:32 -03",
+      "task_file": "Docs/agile/tasks/task-E0S5T2-create-scaffold-stories-from-epic-skill.md"
+    },
+    {
+      "id": "E0-S5-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer",
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S5-T2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 13:23:32 -03",
+      "task_file": "Docs/agile/tasks/task-E0S5T3-create-create-github-issue-from-task-function.md"
+    },
+    {
+      "id": "E0-S5-T4",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer",
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S5-T3"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 13:23:32 -03",
+      "task_file": "Docs/agile/tasks/task-E0S5T4-create-execute-task-from-issue-skill.md"
+    },
+    {
+      "id": "E0-S5-T5",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer",
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S5-T4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 13:23:32 -03",
+      "task_file": "Docs/agile/tasks/task-E0S5T5-validate-automation-with-dry-run.md"
+    },
+    {
+      "id": "E0-S5-T6",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer",
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S5-T5"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 13:23:32 -03",
+      "task_file": "Docs/agile/tasks/task-E0S5T6-commit-and-sign-readiness.md"
+    }
+  ]
+}
