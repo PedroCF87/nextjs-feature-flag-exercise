@@ -233,7 +233,7 @@
 
 ---
 
-### ✅ [Task E0-S1-T2 — Validate local execution environment](../tasks/task-E0S1T2-validate-environment.md)
+### [Task E0-S1-T2 — Validate local execution environment](../tasks/task-E0S1T2-validate-environment.md)
 
 **Goal:** confirm all validation commands pass from a clean dependency state.
 
@@ -278,7 +278,7 @@
 
 ---
 
-### ✅ [Task E0-S1-T3 — Conduct codebase audit](../tasks/task-E0S1T3-codebase-audit.md)
+### [Task E0-S1-T3 — Conduct codebase audit](../tasks/task-E0S1T3-codebase-audit.md)
 
 **Goal:** produce a concrete architectural map and identify all integration points for the filtering task.
 
@@ -331,7 +331,7 @@
 
 ---
 
-### ✅ [Task E0-S1-T4 — Record diagnosis findings document](../tasks/task-E0S1T4-diagnosis-document.md)
+### [Task E0-S1-T4 — Record diagnosis findings document](../tasks/task-E0S1T4-diagnosis-document.md)
 
 **Goal:** produce a concise, structured evidence artifact that can be referenced by E0-S2, E0-S4, and EPIC-1.
 
