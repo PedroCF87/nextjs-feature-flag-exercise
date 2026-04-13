@@ -98,7 +98,7 @@
         "agile-exercise-planner"
       ],
       "depends_on": [
-        "E0-S2"
+        "E0-S1-T2"
       ],
       "blocks": [
         "EPIC-1"
@@ -538,7 +538,7 @@
         "agile-exercise-planner"
       ],
       "depends_on": [
-        "E0-S2"
+        "E0-S1-T2"
       ],
       "blocks": [],
       "created_at": "2026-04-13 13:23:32 -03",

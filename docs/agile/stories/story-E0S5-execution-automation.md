@@ -11,10 +11,11 @@
 | **Responsible agent** | `prompt-engineer`, `agile-exercise-planner` |
 | **Skills** | `create-specialist-agent`, `create-story-task-pack`, `audit-agile-artifacts` |
 | **Instructions** | `agile-planning.instructions.md`, `coding-agent.instructions.md` |
-| **Depends on** | [E0-S2 — Minimum AI Layer Configuration](story-E0S2-minimum-ai-layer.md) |
+| **Depends on** | [E0-S1-T2 — Validate local execution environment](../tasks/task-E0S1T2-validate-environment.md) |
 | **Blocks** | EPIC-1 planning automation |
 | Created at | 2026-04-12 21:52:11 -03 |
-| Last updated | 2026-04-12 21:52:11 -03 |
+| Last updated | 2026-04-13 18:00:00 -03 |
+| **Reorder note** | Moved ahead of E0-S1-T3. Original dependency on E0-S2 was administrative, not technical — all S5 artifacts target `Docs/.github/` and require no fork AI Layer or codebase audit. Reorder saves ~100+ min of manual Issue/PR overhead across ~16 remaining tasks. |
 
 ---
 
@@ -156,7 +157,7 @@
 
 **Acceptance:** agent file exists with review methodology, validation gates, inline suggestion format, and anti-patterns.
 
-**depends_on:** E0-S2 completed
+**depends_on:** E0-S1-T2 completed
 
 ---
 

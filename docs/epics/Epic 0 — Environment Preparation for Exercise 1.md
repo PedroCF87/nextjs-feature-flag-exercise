@@ -167,7 +167,7 @@ This epic is considered complete when **all** items below are true:
 
 ### [Story E0-S5 — Execution automation for Epic 1](../agile/stories/story-E0S5-execution-automation.md)
 
-**Priority:** P0 | **Depends on:** E0-S2
+**Priority:** P0 | **Depends on:** E0-S1-T2 _(reordered from E0-S2 — see story file for justification)_
 
 **Description:** create the automation artifacts that enable the GitHub Issue-driven execution workflow for Epic 1:
 - `story-task-reviewer` agent: reviews story/task MDs and creates inline suggestions via PR comments.

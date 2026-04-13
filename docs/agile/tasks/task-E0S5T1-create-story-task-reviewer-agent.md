@@ -10,7 +10,7 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `prompt-engineer`, `agile-exercise-planner` |
-| **Depends on** | E0-S2 |
+| **Depends on** | E0-S1-T2 |
 | **Blocks** | — |
 | Created at | 2026-04-13 13:23:32 -03 |
 | Last updated | 2026-04-13 13:23:32 -03 |

@@ -233,7 +233,7 @@
 
 ---
 
-### [Task E0-S1-T2 — Validate local execution environment](../tasks/task-E0S1T2-validate-environment.md)
+### ✅ [Task E0-S1-T2 — Validate local execution environment](../tasks/task-E0S1T2-validate-environment.md)
 
 **Goal:** confirm all validation commands pass from a clean dependency state.
 
