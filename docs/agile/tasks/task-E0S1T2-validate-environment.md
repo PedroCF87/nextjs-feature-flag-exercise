@@ -208,20 +208,53 @@ Open a Pull Request against `exercise-1` in the personal fork. Wait for it to be
 
 ### Validation report table
 
-Fill this table after running all commands:
+## Validation Report — nextjs-feature-flag-exercise
+
+**Date:** 2026-04-13 18:21:49 +00
+**Branch:** copilot/e0-s1-t2-validate-local-execution-environment @ bd14c53
+**Node.js:** v24.14.1
+**pnpm:** (not found)
+
+| # | Command | Working dir | Exit code | Status |
+|---|---|---|---|---|
+| 1 | `pnpm install` | `server/` | not run | ⛔ |
+| 2 | `pnpm install` | `client/` | not run | ⛔ |
+| 3 | `pnpm run build` | `server/` | not run | ⛔ |
+| 4 | `pnpm run lint` | `server/` | not run | ⛔ |
+| 5 | `pnpm test` | `server/` | not run | ⛔ |
+| 6 | `pnpm run build` | `client/` | not run | ⛔ |
+| 7 | `pnpm run lint` | `client/` | not run | ⛔ |
+
+**Overall: BLOCKED ⛔ — prerequisite check failed (pnpm missing; expected branch `exercise-1` not active).**
+
+### Failure — Step 1: `node docs/.github/functions/check-prereqs.js exercise-1 <repo>`
+**Exit code:** 1
+**First 30 lines of stderr/stdout:**
+```
+node    v24.14.1                                               ✅
+pnpm    (not found)                                            🔴  ← Install with: npm install -g pnpm
+git     2.53.0                                                 ✅
+branch  copilot/e0-s1-t2-validate-local-execution-environment  🔴  ← Expected 'exercise-1' — run: git checkout exercise-1
+
+🔴 Prerequisites check FAILED — resolve blockers before proceeding.
+EXIT_CODE:1
+```
+**Blocker severity:** P0 — must be resolved before proceeding to E0-S1-T3.
+
+Reference table (legacy format):
 
 | # | Command | Directory | Exit code | Notes |
 |---|---|---|---|---|
-| 1 | `pnpm install` | `server/` | __ | |
-| 2 | `pnpm install` | `client/` | __ | |
-| 3 | `pnpm run build` | `server/` | __ | |
-| 4 | `pnpm run lint` | `server/` | __ | |
-| 5 | `pnpm test` | `server/` | __ | |
-| 6 | `pnpm run build` | `client/` | __ | |
-| 7 | `pnpm run lint` | `client/` | __ | |
+| 1 | `pnpm install` | `server/` | not run | blocked by Step 1 prerequisites |
+| 2 | `pnpm install` | `client/` | not run | blocked by Step 1 prerequisites |
+| 3 | `pnpm run build` | `server/` | not run | blocked by Step 1 prerequisites |
+| 4 | `pnpm run lint` | `server/` | not run | blocked by Step 1 prerequisites |
+| 5 | `pnpm test` | `server/` | not run | blocked by Step 1 prerequisites |
+| 6 | `pnpm run build` | `client/` | not run | blocked by Step 1 prerequisites |
+| 7 | `pnpm run lint` | `client/` | not run | blocked by Step 1 prerequisites |
 
-**Branch:** `exercise-1 @ ________` ← fill after running git-info.js  
-**Date:** `________` ← fill with current timestamp (`node "$REPO_ROOT/docs/.github/functions/datetime.js"`) | **Operator:** `environment-validator`
+**Branch:** `copilot/e0-s1-t2-validate-local-execution-environment @ bd14c53`  
+**Date:** `2026-04-13 18:21:49 +00` | **Operator:** `environment-validator`
 
 ---
 
