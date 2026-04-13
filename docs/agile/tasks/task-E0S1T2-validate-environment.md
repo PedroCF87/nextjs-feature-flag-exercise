@@ -225,7 +225,8 @@ Open a Pull Request against `exercise-1` in the personal fork. Wait for it to be
 | 6 | `pnpm run build` | `client/` | 0 | ✅ |
 | 7 | `pnpm run lint` | `client/` | 1 | 🔴 |
 
-**Overall: BLOCKED ⛔ — one validation command failed (`client` lint).**
+**Overall: BLOCKED ⛔ — the validation suite did not pass because `client` lint failed with exit code `1`.**
+**BDD verification status:** Blocked; this run is **not** a passing baseline for downstream tasks until the client lint failure is resolved.
 
 ### Failure — Step 7: `pnpm run lint`
 **Exit code:** 1
