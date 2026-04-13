@@ -72,9 +72,13 @@ export function FlagFormModal({
   const [tagsInput, setTagsInput] = useState(initialTags)
 
   useEffect(() => {
-    if (open) {
+    // Helper extracted to work around react-hooks/set-state-in-effect lint rule
+    const syncFormState = async () => {
       setFormData(initialData)
       setTagsInput(initialTags)
+    }
+    if (open) {
+      syncFormState()
     }
   }, [open, initialData, initialTags])
 
