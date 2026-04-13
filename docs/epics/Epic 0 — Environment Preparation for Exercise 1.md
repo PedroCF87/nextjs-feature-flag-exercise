@@ -149,23 +149,23 @@ This epic is considered complete when **all** items below are true:
 
 ## 7) Candidate stories for the epic
 
-### ✅✅ [Story E0-S1 — Repository diagnosis and readiness](../agile/stories/story-E0S1-repository-diagnosis.md)
+### [Story E0-S1 — Repository diagnosis and readiness](../agile/stories/story-E0S1-repository-diagnosis.md)
 
 **Description:** create fork strategy, validate base branch, project structure, remotes, and essential execution commands. Conduct codebase audit of `nextjs-feature-flag-exercise` (architecture, patterns, tests, integration points, risks).
 
-### ✅✅ [Story E0-S2 — Minimum AI Layer configuration](../agile/stories/story-E0S2-minimum-ai-layer.md)
+### [Story E0-S2 — Minimum AI Layer configuration](../agile/stories/story-E0S2-minimum-ai-layer.md)
 
 **Description:** adapt and apply existing AI Layer artifacts from `Docs/.github/` (instructions, agents, skills) to the fork repository. Configure fork governance (Actions, environments, secrets, MCP).
 
-### ✅✅ [Story E0-S3 — Definition of measurement baseline](../agile/stories/story-E0S3-measurement-baseline.md)
+### [Story E0-S3 — Definition of measurement baseline](../agile/stories/story-E0S3-measurement-baseline.md)
 
 **Description:** formalize method and template for collecting time, prompts, rework, and confidence.
 
-### ✅✅ [Story E0-S4 — Preparation closure and handoff to EPIC-1](../agile/stories/story-E0S4-preparation-closure.md)
+### [Story E0-S4 — Preparation closure and handoff to EPIC-1](../agile/stories/story-E0S4-preparation-closure.md)
 
 **Description:** consolidate final checklist, residual risks, and Baseline execution plan.
 
-### ✅✅ [Story E0-S5 — Execution automation for Epic 1](../agile/stories/story-E0S5-execution-automation.md)
+### [Story E0-S5 — Execution automation for Epic 1](../agile/stories/story-E0S5-execution-automation.md)
 
 **Priority:** P0 | **Depends on:** E0-S2
 
