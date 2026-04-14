@@ -178,7 +178,7 @@ This epic is considered complete when **all** items below are true:
 
 ### Story E1-S0 — Planning automation
 
-**Priority:** P0 | **Depends on:** EPIC-0 (specifically E0-S5 — Execution automation)
+**Priority:** P0 | **Depends on:** EPIC-0 (specifically E0-S5 — Execution automation + E0-S6 — CI/CD pipeline)
 
 **Description:** generate all detailed story MDs and task files for Epic 1 using the automation artifacts created in E0-S5, then create GitHub Issues for automated execution.
 

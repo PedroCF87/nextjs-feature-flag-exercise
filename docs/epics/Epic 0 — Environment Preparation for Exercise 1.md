@@ -9,7 +9,7 @@
 - **Target repository (local clone):** `/delfos/Projetos/ITBC - Desafio RDH/nextjs-feature-flag-exercise`
 - **Status:** Draft
 - **Created at:** 2026-04-09 16:39:34 -03
-- **Last updated:** 2026-04-12 21:52:11 -03
+- **Last updated:** 2026-04-13 21:49:02 -03
 
 ---
 
@@ -50,6 +50,13 @@ Expected value:
 	- `scaffold-stories-from-epic` skill to generate story MDs from epic section 7;
 	- `create-github-issue-from-task` function to create Issues from task MDs;
 	- `execute-task-from-issue` skill for the full Issue → PR → merge workflow.
+14. **Create CI/CD pipeline for Issue-driven execution:**
+	- 5 GitHub Actions workflows (`copilot-push-signal`, `auto-ready-for-review`, `auto-copilot-fix`, `auto-validate-copilot-fix`, `auto-merge-on-clean-review`);
+	- Issue index infrastructure (`.github/issue-index.json` + generator function);
+	- PR comment tag system (`[EX:...]`) documentation;
+	- Workflow-specific secrets (`COPILOT_CLASSIC_PAT`, `COPILOT_TRIGGER_TOKEN`);
+	- Self-hosted runner setup and validation;
+	- MCP server configuration (`.github/copilot-mcp.json`).
 
 ### Out of Scope
 
@@ -83,6 +90,13 @@ This epic is considered complete when **all** items below are true:
 	- `scaffold-stories-from-epic` skill generates story MDs from epic outlines.
 	- `create-github-issue-from-task` function creates Issues from task files.
 	- `execute-task-from-issue` skill enables the full Issue → agent → PR → merge workflow.
+15. **CI/CD pipeline operational:**
+	- 5 automation workflows created and YAML-valid.
+	- Self-hosted runner registered, online, and processing jobs.
+	- `COPILOT_CLASSIC_PAT` and `COPILOT_TRIGGER_TOKEN` configured in fork secrets and `copilot` environment.
+	- `.github/issue-index.json` created and generator function validated.
+	- `.github/copilot-mcp.json` deployed.
+	- PR tag system documented as instruction file.
 
 ---
 
@@ -181,6 +195,20 @@ This epic is considered complete when **all** items below are true:
 - Function file: `Docs/.github/functions/create-github-issue-from-task.js`
 - Validation: dry-run of story generation from Epic 1 section 7 produces valid story MD drafts.
 
+### [Story E0-S6 — CI/CD pipeline for Issue-driven execution](../agile/stories/story-E0S6-ci-cd-pipeline-automation.md)
+
+**Priority:** P0 | **Depends on:** E0-S5, E0-S2-T4
+
+**Description:** create the GitHub Actions workflows that automate the full PR lifecycle — from Copilot's draft push through code review, fix cycle, merge, Issue close, and next-task trigger.
+
+**Key outputs:**
+- 5 workflow files: `copilot-push-signal.yml`, `auto-ready-for-review.yml`, `auto-copilot-fix.yml`, `auto-validate-copilot-fix.yml`, `auto-merge-on-clean-review.yml`.
+- Issue index: `.github/issue-index.json` + `generate-issue-index.js` function.
+- PR tag instructions: `pr-comment-tags.instructions.md`.
+- MCP config: `.github/copilot-mcp.json`.
+- Self-hosted runner operational.
+- Secrets configured: `COPILOT_CLASSIC_PAT`, `COPILOT_TRIGGER_TOKEN`.
+
 ---
 
 ## 8) AI Layer execution map
@@ -194,6 +222,7 @@ Which catalog agents and skills are responsible for executing each story in this
 | E0-S3 — Measurement baseline | `agile-exercise-planner` | `create-exercise-backlog`, `file-timestamps`, `timeline-tracker` | `agile-planning.instructions.md`, `timeline-tracking.instructions.md` |
 | E0-S4 — Closure and handoff | `project-adaptation-analyst` | `config-migration-plan` | `documentation.instructions.md` |
 | E0-S5 — Execution automation | `prompt-engineer`, `agile-exercise-planner` | `create-specialist-agent`, `scaffold-stories-from-epic`, `execute-task-from-issue` | `agile-planning.instructions.md`, `coding-agent.instructions.md` |
+| E0-S6 — CI/CD pipeline | `copilot-env-specialist`, `prompt-engineer` | `create-specialist-agent`, `copilot-env-setup` | `coding-agent.instructions.md`, `git-operations.instructions.md`, `pr-comment-tags.instructions.md` |
 
 ---
 
@@ -215,6 +244,14 @@ Which catalog agents and skills are responsible for executing each story in this
 	- `create-github-issue-from-task.js` function with CLI usage.
 	- `execute-task-from-issue/SKILL.md` with full workflow steps.
 12. **Dry-run evidence:** at least one story MD generated from Epic 1 section 7 via the automation skill.
+13. **CI/CD pipeline artifacts:**
+	- 5 workflow `.yml` files in `.github/workflows/`.
+	- `.github/issue-index.json` and `generate-issue-index.js` function.
+	- `pr-comment-tags.instructions.md` instruction file.
+	- `.github/copilot-mcp.json` MCP configuration.
+	- Workflow secrets checklist signed.
+	- Self-hosted runner health-check evidence.
+14. **Pipeline structural validation:** `copilot-push-signal.yml` completed via `workflow_dispatch` on self-hosted runner.
 
 ---
 

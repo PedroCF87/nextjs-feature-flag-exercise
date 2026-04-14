@@ -127,7 +127,7 @@
 
 ## 4) Tasks
 
-### [Task E0-S5-T1 — Create `story-task-reviewer` agent](../tasks/task-E0S5T1-create-story-task-reviewer-agent.md)
+### ✅ [Task E0-S5-T1 — Create `story-task-reviewer` agent](../tasks/task-E0S5T1-create-story-task-reviewer-agent.md)
 
 **Goal:** create an agent specialized in reviewing agile documents (stories and tasks) and producing inline suggestions via PR review comments.
 
@@ -161,7 +161,7 @@
 
 ---
 
-### [Task E0-S5-T2 — Create `scaffold-stories-from-epic` skill](../tasks/task-E0S5T2-create-scaffold-stories-from-epic-skill.md)
+### ✅ [Task E0-S5-T2 — Create `scaffold-stories-from-epic` skill](../tasks/task-E0S5T2-create-scaffold-stories-from-epic-skill.md)
 
 **Goal:** create a skill that parses an epic's section 7 and generates detailed story MD files.
 
@@ -202,7 +202,7 @@
 
 ---
 
-### [Task E0-S5-T3 — Create `create-github-issue-from-task` function](../tasks/task-E0S5T3-create-create-github-issue-from-task-function.md)
+### ✅ [Task E0-S5-T3 — Create `create-github-issue-from-task` function](../tasks/task-E0S5T3-create-create-github-issue-from-task-function.md)
 
 **Goal:** create a Node.js function that creates a GitHub Issue from a task MD file.
 
@@ -375,7 +375,7 @@ module.exports = { parseTaskFile, buildIssueBody, createIssue };
 
 ---
 
-### [Task E0-S5-T4 — Create `execute-task-from-issue` skill](../tasks/task-E0S5T4-create-execute-task-from-issue-skill.md)
+### ✅ [Task E0-S5-T4 — Create `execute-task-from-issue` skill](../tasks/task-E0S5T4-create-execute-task-from-issue-skill.md)
 
 **Goal:** create a skill that orchestrates the full Issue → agent execution → PR → merge workflow.
 
@@ -503,7 +503,7 @@ For tasks that are the last in a story (e.g., E1-S1-T5 if the story has 5 tasks)
 
 ---
 
-### [Task E0-S5-T5 — Validate automation with dry-run](../tasks/task-E0S5T5-validate-automation-with-dry-run.md)
+### ✅ [Task E0-S5-T5 — Validate automation with dry-run](../tasks/task-E0S5T5-validate-automation-with-dry-run.md)
 
 **Goal:** test the automation artifacts by generating one story from Epic 1 and one Issue from a task.
 
