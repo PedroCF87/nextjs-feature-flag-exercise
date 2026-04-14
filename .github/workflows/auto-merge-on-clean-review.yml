@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   auto-merge:
+    if: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.actor.type == 'Bot' && github.event.workflow_run.actor.login == 'Copilot' && github.event.workflow_run.repository.full_name == github.repository) || (github.event_name == 'pull_request_review' && github.event.action == 'submitted') }}
     runs-on: self-hosted
     steps:
       - name: Checkout repository
