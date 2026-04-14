@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-14 20:01:09 -03",
+  "generated_at": "2026-04-14 20:11:18 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -451,7 +451,7 @@
       "type": "task",
       "epic": "EPIC-0",
       "priority": "P1",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "project-adaptation-analyst"
       ],
@@ -465,7 +465,7 @@
         "E0-S4-T5"
       ],
       "created_at": "2026-04-11 20:50:15 -03",
-      "last_updated": "2026-04-12 15:13:58 -03",
+      "last_updated": "2026-04-14 20:09:58 -03",
       "task_file": "docs/agile/tasks/task-E0S4T0-bootstrap-ai-layer-artifacts.md"
     },
     {

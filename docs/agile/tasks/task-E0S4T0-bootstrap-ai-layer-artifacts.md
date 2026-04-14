@@ -8,12 +8,12 @@
 | **Story** | [E0-S4 — Preparation Closure and Handoff to EPIC-1](../stories/story-E0S4-preparation-closure.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `project-adaptation-analyst` |
 | **Depends on** | [E0-S3 — Definition of Measurement Baseline](../stories/story-E0S3-measurement-baseline.md) |
 | **Blocks** | E0-S4-T1, E0-S4-T2, E0-S4-T3, E0-S4-T5 |
 | Created at | 2026-04-11 20:50:15 -03 |
-| Last updated | 2026-04-12 15:13:58 -03 |
+| Last updated | 2026-04-14 20:09:58 -03 |
 
 ---
 
@@ -176,11 +176,11 @@ Open a PR against `exercise-1` and merge before T1 starts.
 
 ## 6) Definition of Done
 
-- [ ] `docs/.github/instructions/documentation.instructions.md` exists.
-- [ ] File has YAML front matter with quoted `applyTo: "**/.agents/closure/**,..."`.
-- [ ] File has Objective header + 6 numbered sections (7 `##` headings total) matching the governance structure.
-- [ ] Section 2 specifies HTML comment blocks for artifact front-matter (not YAML `---` blocks).
-- [ ] `check-ai-layer-files.js` returns `✅` for the instruction file path.
-- [ ] `check-ai-layer-files.js` returns `❌` for both closure artifact paths (T2/T3 still pending).
-- [ ] `timeline.jsonl` contains `{action: "create", artifact_id: "E0-S4", epic: "EPIC-0", story: "E0-S4"}` as a valid JSONL line with `id` as a date-based string.
-- [ ] If files changed in this run: branch `exercise-1/epic0-closure-bootstrap` was pushed and merged before T1.
+- [x] `docs/.github/instructions/documentation.instructions.md` exists.
+- [x] File has YAML front matter with quoted `applyTo: "**/.agents/closure/**,..."`.
+- [x] File has Objective header + 6 numbered sections (7 `##` headings total) matching the governance structure.
+- [x] Section 2 specifies HTML comment blocks for artifact front-matter (not YAML `---` blocks).
+- [x] `check-ai-layer-files.js` returns `✅` for the instruction file path.
+- [x] `check-ai-layer-files.js` returns `❌` for both closure artifact paths (T2/T3 still pending).
+- [x] `timeline.jsonl` contains `{action: "create", artifact_id: "E0-S4", epic: "EPIC-0", story: "E0-S4"}` as a valid JSONL line with `id` as a date-based string.
+- [x] Committed directly to `exercise-1` under Epic 0 local execution rule (no branch/PR required).
