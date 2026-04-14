@@ -17,17 +17,15 @@ tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'askQuest
 
 Before writing anything, complete these steps in order:
 
-1. **Read existing configuration** — search for `copilot-setup-steps.yml` and `copilot-mcp.json` in the repository to understand what already exists:
-   - `delfos-bot/.github/workflows/copilot-setup-steps.yml`
-   - `delfos-bot/.github/copilot-mcp.json`
-   - `.github/workflows/copilot-setup-steps.yml` (root, if present)
+1. **Read existing configuration** — search for `copilot-setup-steps.yml` in the repository to understand what already exists:
+   - `.github/workflows/copilot-setup-steps.yml` (root-level, if present)
 
-2. **Read the companion skill** — Read `.github/skills/copilot-env-setup/SKILL.md` and follow its process exactly for the requested task type (new setup, new MCP server, debugging, firewall, etc.).
+2. **Read the companion skill** — Read `docs/.github/skills/copilot-env-setup/SKILL.md` and follow its process exactly for the requested task type (new setup, new MCP server, debugging, firewall, etc.).
 
 3. **Identify the sub-project scope** — Determine which sub-project needs the change:
-   - `delfos-connect/` — Next.js 16+, Node.js 20, Vitest, Directus 11.15+, Redis
-   - `delfos-bot/` — Express/Node.js 24, whatsapp-web.js, Puppeteer/Chromium deps
-   - Root — applies to the entire monorepo
+   - `server/` — Express v5, Node.js ESM, SQL.js (SQLite/WASM), Vitest
+   - `client/` — React 19, Vite, TanStack Query v5, Tailwind v4
+   - root (`shared/`, `.github/`) — shared types and GitHub workflows
 
 4. **Produce artifacts** — Create or edit the workflow file and/or MCP JSON, then generate the companion secret checklist.
 
@@ -35,20 +33,21 @@ Before writing anything, complete these steps in order:
 
 ## Project Context
 
-This repository is the **Delfos Connect monorepo**. Key environment facts:
+This repository is the **nextjs-feature-flag-exercise** — a full-stack feature flag manager used as interview exercise material. Key environment facts:
 
-| Service | Port | Notes |
+| Layer | Technology | Notes |
 |---|---|---|
-| Directus CMS | 8055 | PostgreSQL 16 backend, Admin token in `DIRECTUS_ADMIN_TOKEN` |
-| Redis | 6379 | ioredis — idempotency, rate limiting, AI counters |
-| Delfos Bot | 3001 | Separate Express service; not available in CI unless started |
-| Next.js dev | 3000 | `delfos-connect/` — Vitest for tests |
+| Runtime | Node.js ESM | Backend only |
+| Framework | Express | Route handlers delegate to services; `next(error)` for errors |
+| Database | SQL.js (SQLite/WASM) | In-memory with file persistence; booleans stored as INTEGER |
+| Package manager | pnpm | Both `server/` and `client/` sub-projects |
+| Testing | Vitest | `server/src/__tests__/`; reset DB with `_resetDbForTesting()` |
+| Frontend | React + Vite | `client/` sub-project; TanStack Query for server state |
 
-**Existing setup files:**
-- `delfos-bot/.github/workflows/copilot-setup-steps.yml` — Node 24, Chromium deps, Puppeteer skip-download, `npm ci`, `npm test`
-- `delfos-bot/.github/copilot-mcp.json` — GitHub MCP server only (local config, NOT the cloud agent format)
+**Workflow placement:**
+- Repository root: `.github/workflows/copilot-setup-steps.yml`
 
-> Note: `copilot-mcp.json` in the delfos-bot is a VS Code local MCP config. The cloud agent MCP configuration is entered directly in the repository Settings → Copilot → Cloud agent page (not stored as a file). Always clarify which context the user means.
+> The cloud agent MCP configuration is entered directly in the repository Settings → Copilot → Cloud agent page (not stored as a file). Always clarify which context the user means.
 
 ## Output Standards
 
