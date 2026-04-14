@@ -8,12 +8,12 @@
 | **Story** | [E0-S4 — Preparation Closure and Handoff to EPIC-1](../stories/story-E0S4-preparation-closure.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `project-adaptation-analyst` |
 | **Depends on** | [E0-S4-T0 — Bootstrap AI Layer artifacts](../tasks/task-E0S4T0-bootstrap-ai-layer-artifacts.md), [E0-S4-T1 — Verify EPIC-0 DoD evidence](../tasks/task-E0S4T1-verify-epic-0-dod-evidence.md), [E0-S4-T2 — Produce epic0-closure-report.md](../tasks/task-E0S4T2-produce-epic0-closure-report-md.md) |
 | **Blocks** | E0-S4-T4 |
 | Created at | 2026-04-11 20:50:15 -03 |
-| Last updated | 2026-04-12 15:13:58 -03 |
+| Last updated | 2026-04-14 20:29:04 -03 |
 
 ---
 
@@ -211,12 +211,12 @@ Open a PR against `exercise-1` and merge before T4 starts.
 
 ## 6) Definition of Done
 
-- [ ] `nextjs-feature-flag-exercise/.agents/closure/epic1-handoff.md` exists.
-- [ ] File has HTML comment front-matter (`<!-- artifact_id: epic1-handoff -->`), not YAML `---` blocks.
-- [ ] Exactly 6 `## N —` headings are present (`grep -c "^## [0-9]"` → `6`).
-- [ ] Section 1 is a Field/Value table with branch + SHA matching live `git-info.js --branch-ref` output.
-- [ ] Section 2 shows AI Layer coverage table from `check-ai-layer-files.js --table`.
-- [ ] Section 3 contains verbatim acceptance criteria from `TASK.md`.
-- [ ] Section 6 contains `> **READY — EPIC-1 may begin.**` blockquote with backtick-wrapped agent name and timestamp.
-- [ ] No `<placeholder>` text remains in the file.
-- [ ] Branch `exercise-1/epic1-handoff` pushed and PR merged into `exercise-1`.
+- [x] `nextjs-feature-flag-exercise/.agents/closure/epic1-handoff.md` exists.
+- [x] File has HTML comment front-matter (`<!-- artifact_id: epic1-handoff -->`), not YAML `---` blocks.
+- [x] Exactly 6 `## N —` headings are present (`grep -c "^## [0-9]"` → `6`).
+- [x] Section 1 is a Field/Value table with branch + SHA matching live `git-info.js --branch-ref` output (`exercise-1 @ 02d8b6c`).
+- [x] Section 2 shows AI Layer coverage table from `check-ai-layer-files.js --table` (10/10 ✅).
+- [x] Section 3 contains verbatim acceptance criteria from `TASK.md` (11 items).
+- [x] Section 6 contains `> **READY — EPIC-1 may begin.**` blockquote with backtick-wrapped agent name and timestamp.
+- [x] No `<placeholder>` text remains in the file (`grep -c` → `0`).
+- [x] Committed directly to `exercise-1` under Epic 0 local execution rule (no branch/PR required).
