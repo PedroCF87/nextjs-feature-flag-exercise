@@ -18,15 +18,14 @@ tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'askQuest
 Before writing anything, complete these steps in order:
 
 1. **Read existing configuration** — search for `copilot-setup-steps.yml` in the repository to understand what already exists:
-   - `nextjs-feature-flag-exercise/.github/workflows/copilot-setup-steps.yml`
-   - `.github/workflows/copilot-setup-steps.yml` (root or sub-project, if present)
+   - `.github/workflows/copilot-setup-steps.yml` (root-level, if present)
 
 2. **Read the companion skill** — Read `docs/.github/skills/copilot-env-setup/SKILL.md` and follow its process exactly for the requested task type (new setup, new MCP server, debugging, firewall, etc.).
 
 3. **Identify the sub-project scope** — Determine which sub-project needs the change:
-   - `nextjs-feature-flag-exercise/server/` — Express v5, Node.js ESM, SQL.js (SQLite/WASM), Vitest
-   - `nextjs-feature-flag-exercise/client/` — React 19, Vite, TanStack Query v5, Tailwind v4
-   - `nextjs-feature-flag-exercise/` — root (shared types, GitHub workflows)
+   - `server/` — Express v5, Node.js ESM, SQL.js (SQLite/WASM), Vitest
+   - `client/` — React 19, Vite, TanStack Query v5, Tailwind v4
+   - root (`shared/`, `.github/`) — shared types and GitHub workflows
 
 4. **Produce artifacts** — Create or edit the workflow file and/or MCP JSON, then generate the companion secret checklist.
 
@@ -38,15 +37,15 @@ This repository is the **nextjs-feature-flag-exercise** — a full-stack feature
 
 | Layer | Technology | Notes |
 |---|---|---|
-| Runtime | Node.js v22 ESM | Backend only |
-| Framework | Express v5 | Route handlers delegate to services; `next(error)` for errors |
+| Runtime | Node.js ESM | Backend only |
+| Framework | Express | Route handlers delegate to services; `next(error)` for errors |
 | Database | SQL.js (SQLite/WASM) | In-memory with file persistence; booleans stored as INTEGER |
-| Package manager | pnpm 10 | Both `server/` and `client/` sub-projects |
+| Package manager | pnpm | Both `server/` and `client/` sub-projects |
 | Testing | Vitest | `server/src/__tests__/`; reset DB with `_resetDbForTesting()` |
-| Frontend | React 19 + Vite | `client/` sub-project; TanStack Query v5 for server state |
+| Frontend | React + Vite | `client/` sub-project; TanStack Query for server state |
 
 **Workflow placement:**
-- Fork: `nextjs-feature-flag-exercise/.github/workflows/copilot-setup-steps.yml`
+- Repository root: `.github/workflows/copilot-setup-steps.yml`
 
 > The cloud agent MCP configuration is entered directly in the repository Settings → Copilot → Cloud agent page (not stored as a file). Always clarify which context the user means.
 

@@ -14,7 +14,7 @@ Produce an ordered, dependency-aware migration plan that an executing agent can 
 
 2. **Determine dependency order** — apply these ordering rules:
    - `copilot-instructions.md` (global rules) must be written **first** — it provides context referenced by instructions.
-   - `*.instructions.md` files must be written **before** the agents that reference them in their `applyTo` rules.
+   - `*.instructions.md` files must be written **before** any agent files that rely on those instructions being present and applicable in the target repository.
    - `SKILL.md` files must be written **before** the agents that reference them.
    - `.agent.md` files come **after** all their referenced skills and instructions.
    - `copilot-setup-steps.yml` is independent and can be placed last.
@@ -34,7 +34,12 @@ Produce an ordered, dependency-aware migration plan that an executing agent can 
 
 5. **Produce the rollback strategy** — append after the migration plan table (see template below).
 
-6. **Pre-flight checkpoint** — recommend running `git stash` in the target repository before starting any writes, so a single `git stash pop` can revert the entire batch if post-deploy validation fails.
+6. **Pre-flight checkpoint** — recommend creating a checkpoint branch in the target repository before starting any writes:
+   ```bash
+   git checkout -b migration-checkpoint
+   git checkout -  # return to working branch
+   ```
+   If post-deploy validation fails, the entire batch can be reverted with `git checkout migration-checkpoint -- .` or `git reset --hard migration-checkpoint`.
 
 ## Migration plan table format
 
@@ -49,7 +54,7 @@ The table **must** include all columns. Rows must be ordered by execution sequen
 |---|---|
 | Single file write fails mid-batch | `git checkout -- <file>` in target to restore the pre-write state of that file |
 | Post-deploy validation fails (e.g., `check-ai-layer-files.js` exits non-zero) | `git reset HEAD <files>` to unstage; review errors; re-apply only the failing artifacts |
-| Full batch must be reverted | `git stash pop` to restore the pre-migration state (requires `git stash` checkpoint before writes) |
+| Full batch must be reverted | `git reset --hard migration-checkpoint` to restore the pre-migration state (requires the checkpoint branch created in step 6) |
 | Agent file references broken skill | Append the correct skill reference to the agent file; re-run cross-reference validation |
 ```
 

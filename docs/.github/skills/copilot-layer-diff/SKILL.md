@@ -20,13 +20,19 @@ Follow these steps in order:
 
 2. **Enumerate target artifacts** — repeat the same listing for the target directory. Record absent directories as empty.
 
-3. **Compare each source artifact to target** — apply these rules per artifact:
+3. **Compare each source artifact to target** — apply these rules per artifact type:
 
-   | Condition | Status |
-   |---|---|
-   | File absent in target | `missing` |
-   | File present in target AND `applyTo` (instructions) or `description` (agents/skills) matches source scope | `current` |
-   | File present in target BUT `applyTo` mismatched, or `description` references a different repository scope | `outdated` |
+   | Artifact type | Condition | Status |
+   |---|---|---|
+   | any | File absent in target | `missing` |
+   | `instruction` | File present AND `applyTo` pattern matches source scope | `current` |
+   | `instruction` | File present BUT `applyTo` pattern mismatched or references a different repository scope | `outdated` |
+   | `agent` / `skill` | File present AND `description` front-matter matches source scope | `current` |
+   | `agent` / `skill` | File present BUT `description` references a different repository scope | `outdated` |
+   | `workflow` | File present AND job names, trigger events, and `environment:` value match source | `current` |
+   | `workflow` | File present BUT any job name, trigger, or `environment:` value differs from source | `outdated` |
+   | `global-rules` (`copilot-instructions.md`) | File present AND the technology stack section matches source | `current` |
+   | `global-rules` (`copilot-instructions.md`) | File present BUT technology stack section differs or references a different project | `outdated` |
 
 4. **Produce the diff table** — output one row per source artifact:
 
@@ -45,7 +51,7 @@ Follow these steps in order:
 
 - Do not modify any files — this skill is read-only.
 - Do not assume a file is absent without actually listing the directory.
-- Scope comparison is based on `applyTo` for instructions and on the `description` field for agents/skills — check literal content, not filename alone.
+- Scope comparison rules differ by artifact type — see the per-type table in step 3. Never apply a single rule to all types.
 - If the target directory does not exist yet, all source artifacts are `missing`.
 - This skill does not produce the migration plan — that is the responsibility of `config-migration-plan`.
 

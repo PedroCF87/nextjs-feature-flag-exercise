@@ -22,9 +22,9 @@ Before writing anything, complete these steps in order:
 
 3. **Load the `config-migration-plan` skill** — read `docs/.github/skills/config-migration-plan/SKILL.md` and produce the ordered migration plan table. Identify all adaptation notes before starting writes.
 
-4. **Apply changes per the migration plan** — for each row in the migration plan:
-   a. If `Status = missing`: read the source file, adapt scope using the `adapt-artifact-to-fork-scope` skill, then create the target file.
-   b. If `Status = outdated`: read both files, compute delta, apply only the differing fields using `replace_string_in_file`.
+4. **Apply changes per the diff table** — for each row in the diff table produced in step 2:
+   a. If `Status = missing`: read the source file, adapt scope using the `adapt-artifact-to-fork-scope` skill, then create the target file using the `edit` tool.
+   b. If `Status = outdated`: read both source and target files, compute the delta, apply only the differing fields using the `edit` tool (minimal targeted edits — never full rewrites).
    c. If `Status = current`: skip.
 
 5. **Validate cross-references** — after all writes are complete:
@@ -57,7 +57,7 @@ After all writes, produce a checklist confirming:
 
 ## Anti-Patterns to Avoid
 
-- **Never** overwrite a target file without first reading its current content — use `read_file` before any `replace_string_in_file` or `create_file`.
+- **Never** overwrite a target file without first reading its current content — use `read` before any `edit`.
 - **Never** deploy a source artifact verbatim to the target without scope adaptation — use the `adapt-artifact-to-fork-scope` skill to strip workspace-specific context.
 - **Never** skip the cross-reference validation step — a deployed agent that references a non-existent skill is broken silently.
 - **Never** run `git` commands directly — always delegate to `git-ops`.
