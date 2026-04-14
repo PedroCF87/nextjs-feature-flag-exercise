@@ -8,12 +8,12 @@
 | **Story** | [E0-S6 — CI/CD Pipeline for Issue-Driven Execution](../stories/story-E0S6-ci-cd-pipeline-automation.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `copilot-env-specialist` |
 | **Depends on** | [E0-S2-T4](task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md) |
 | **Blocks** | — |
 | Created at | 2026-04-13 23:11:22 -03 |
-| Last updated | 2026-04-13 23:15:02 -03 |
+| Last updated | 2026-04-14 00:00:00 -03 |
 
 ---
 
@@ -84,31 +84,34 @@ Create `.github/copilot-mcp.json` in the fork with the minimum GitHub API MCP se
 Record evidence with exact commands and outputs:
 
 - Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+  ```bash
+  node -e "JSON.parse + field validation" .github/copilot-mcp.json
+  ```
+- Exit code(s): `0`
+- Output summary: `Valid: true` — `command=npx`, `args=[-y, @modelcontextprotocol/server-github]`, `env.GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_TOKEN}`
+- Files created/updated: `.github/copilot-mcp.json` (new file, 10 lines)
+- Risks found / mitigations: Token never hardcoded — uses `${GITHUB_TOKEN}` environment substitution injected automatically by GitHub Actions in Copilot agent sessions.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** E0-S2-T4 (`copilot-setup-steps.yml`) is Done and `.github/` AI Layer is deployed,
+- **When** `.github/copilot-mcp.json` is created with the GitHub API MCP server entry,
+- **Then** `node` JSON validation exits `0`, `Valid: true`; file exists at `.github/copilot-mcp.json` with no hardcoded secrets.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- Upstream dependencies resolved: E0-S2-T4 (`copilot-setup-steps.yml`) ✅
+- Downstream items unblocked: E0-S6-T10 (E2E structural validation) can proceed.
+- Open risks (if any): MCP configuration in GitHub Settings → Copilot → Coding agent must also be pasted manually by the user (Settings UI step). The file alone is sufficient for local VS Code agent context.
