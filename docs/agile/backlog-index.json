@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-14 20:15:58 -03",
+  "generated_at": "2026-04-14 20:23:46 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -493,7 +493,7 @@
       "type": "task",
       "epic": "EPIC-0",
       "priority": "P1",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "project-adaptation-analyst"
       ],
@@ -505,7 +505,7 @@
         "E0-S4-T4"
       ],
       "created_at": "2026-04-11 20:50:15 -03",
-      "last_updated": "2026-04-12 15:13:58 -03",
+      "last_updated": "2026-04-14 20:19:40 -03",
       "task_file": "docs/agile/tasks/task-E0S4T2-produce-epic0-closure-report-md.md"
     },
     {
