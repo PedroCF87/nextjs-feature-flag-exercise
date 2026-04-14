@@ -7,13 +7,13 @@
 | **ID** | E0-S2-T2 |
 | **Story** | [E0-S2 — Minimum AI Layer Configuration](../stories/story-E0S2-minimum-ai-layer.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `copilot-config-refactor` |
 | **Skill** | `adapt-artifact-to-fork-scope` |
 | **Depends on** | [E0-S2-T0 — Bootstrap AI Layer management artifacts](task-E0S2T0-bootstrap-ai-layer-management-artifacts.md) |
 | **Blocks** | E0-S2-T5 |
 | Created at | 2026-04-11 15:14:45 -03 |
-| Last updated | 2026-04-11 16:14:20 -03 |
+| Last updated | 2026-04-14 17:30:00 -03 |
 
 ---
 
@@ -208,10 +208,10 @@ grep "applyTo" "/delfos/Projetos/ITBC - Desafio RDH/nextjs-feature-flag-exercise
 
 ## 6) Definition of Done
 
-- [ ] Both files exist in `nextjs-feature-flag-exercise/.github/instructions/`.
-- [ ] Both files have a valid YAML `applyTo` front matter header.
-- [ ] `feature-flag-exercise.instructions.md` `applyTo` does not contain `../` traversal.
-- [ ] No workspace-relative path strings remain in either file.
-- [ ] SQL.js constraints section is present in `feature-flag-exercise.instructions.md`.
-- [ ] Feature branch `exercise-1/deploy-instructions` pushed to fork.
-- [ ] PR opened against `exercise-1` and **merged** before T5 starts.
+- [x] Both files exist in `nextjs-feature-flag-exercise/.github/instructions/`.
+- [x] Both files have a valid YAML `applyTo` front matter header.
+- [x] `feature-flag-exercise.instructions.md` `applyTo` does not contain `../` traversal.
+- [x] No workspace-relative path strings remain in either file.
+- [x] SQL.js constraints section is present in `feature-flag-exercise.instructions.md`.
+- [x] Committed directly to `exercise-1` (Epic 0 local execution rule — no PR required).
+- [x] Pushed to `origin exercise-1`.

@@ -7,13 +7,13 @@
 | **ID** | E0-S2-T3 |
 | **Story** | [E0-S2 — Minimum AI Layer Configuration](../stories/story-E0S2-minimum-ai-layer.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `copilot-config-refactor` |
 | **Skill** | `adapt-artifact-to-fork-scope` |
 | **Depends on** | [E0-S2-T0 — Bootstrap AI Layer management artifacts](task-E0S2T0-bootstrap-ai-layer-management-artifacts.md) |
 | **Blocks** | E0-S2-T5 |
 | Created at | 2026-04-11 15:14:45 -03 |
-| Last updated | 2026-04-11 16:18:38 -03 |
+| Last updated | 2026-04-14 17:30:00 -03 |
 
 ---
 
@@ -264,9 +264,9 @@ node "docs/.github/functions/check-ai-layer-files.js" \
 
 ## 6) Definition of Done
 
-- [ ] `check-ai-layer-files.js` with all 7 fork paths exits `0` and shows `✅` for every path.
-- [ ] All 3 agent files reference `nextjs-feature-flag-exercise` or the exercise stack context.
-- [ ] No workspace-relative paths remain in any adapted agent (`docs/agile/`, local `resident-health-workshop-resources/` paths).
-- [ ] All 4 skill SKILL.md files are identical to their source counterparts (no accidental modifications).
-- [ ] Feature branch `exercise-1/deploy-agents-and-skills` pushed to fork.
-- [ ] PR opened against `exercise-1` and **merged** before T5 starts.
+- [x] `check-ai-layer-files.js` with all 7 fork paths exits `0` and shows `✅` for every path.
+- [x] All 3 agent files reference `nextjs-feature-flag-exercise` or the exercise stack context.
+- [x] No workspace-relative paths remain in any adapted agent (`docs/agile/`, local `resident-health-workshop-resources/` paths).
+- [x] All 4 skill SKILL.md files are identical to their source counterparts (no accidental modifications).
+- [x] Committed directly to `exercise-1` (Epic 0 local execution rule — no PR required).
+- [x] Pushed to `origin exercise-1`.

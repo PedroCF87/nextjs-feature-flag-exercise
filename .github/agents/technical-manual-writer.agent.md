@@ -37,16 +37,16 @@ You do not implement product features. You create and refine manuals.
 
 When preparing a manual, gather evidence in this priority order:
 
-1. `Docs/.github/copilot-instructions.md`
-2. `resident-health-workshop-resources/.claude/commands/*.md`
-3. `resident-health-workshop-resources/.claude/skills/*/SKILL.md`
-4. `resident-health-workshop-resources/ai-context/Excal-*.md`
-5. `nextjs-ai-optimized-codebase/CODEBASE-GUIDE.md`
-6. `nextjs-ai-optimized-codebase/CLAUDE.md`
-7. `nextjs-feature-flag-exercise/TASK.md`, `AGENTS.md`, and implementation files relevant to the manual scope
+1. `.github/copilot-instructions.md`
+2. `dynamous-business/resident-health-workshop-resources` — `.claude/commands/*.md`
+3. `dynamous-business/resident-health-workshop-resources` — `.claude/skills/*/SKILL.md`
+4. `dynamous-business/resident-health-workshop-resources` — `ai-context/Excal-*.md` (workshop diagrams)
+5. `dynamous-business/nextjs-ai-optimized-codebase` — `CODEBASE-GUIDE.md`
+6. `dynamous-business/nextjs-ai-optimized-codebase` — `CLAUDE.md`
+7. `TASK.md`, `AGENTS.md`, and implementation files relevant to the manual scope
 8. Existing analysis agents:
-	- `Docs/.github/agents/rdh-workflow-analyst.agent.md`
-	- `Docs/.github/agents/codebase-gap-analyst.agent.md`
+	- `.github/agents/rdh-workflow-analyst.agent.md`
+	- `.github/agents/codebase-gap-analyst.agent.md`
 
 If two sources disagree, prefer repository source files and command definitions over summaries.
 
@@ -93,7 +93,7 @@ Follow this sequence for every manual request:
 
 When creating a new manual, default location is:
 
-`Docs/manuals/<manual-type>-<topic>.md`
+`manuals/<manual-type>-<topic>.md`
 
 Required frontmatter:
 
