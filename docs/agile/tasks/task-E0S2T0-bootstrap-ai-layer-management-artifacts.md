@@ -8,11 +8,11 @@
 | **Story** | [E0-S2 — Minimum AI Layer Configuration](../stories/story-E0S2-minimum-ai-layer.md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `agile-exercise-planner`, `prompt-engineer` |
+| **Responsible agent** | `prompt-engineer` |
 | **Depends on** | [E0-S1 — Repository Diagnosis and Readiness](../stories/story-E0S1-repository-diagnosis.md) |
 | **Blocks** | E0-S2-T1, E0-S2-T2, E0-S2-T3, E0-S2-T4 |
 | Created at | 2026-04-11 15:14:45 -03 |
-| Last updated | 2026-04-12 16:19:17 -03 |
+| Last updated | 2026-04-14 13:30:00 -03 |
 
 ---
 

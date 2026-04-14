@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-14 13:12:49 -03",
+  "generated_at": "2026-04-14 13:38:16 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -250,7 +250,6 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "agile-exercise-planner",
         "prompt-engineer"
       ],
       "depends_on": [
@@ -263,7 +262,7 @@
         "E0-S2-T4"
       ],
       "created_at": "2026-04-11 15:14:45 -03",
-      "last_updated": "2026-04-12 16:19:17 -03",
+      "last_updated": "2026-04-14 13:30:00 -03",
       "task_file": "docs/agile/tasks/task-E0S2T0-bootstrap-ai-layer-management-artifacts.md"
     },
     {
