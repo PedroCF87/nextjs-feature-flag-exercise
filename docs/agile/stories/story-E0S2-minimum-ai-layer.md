@@ -304,7 +304,7 @@
 
 ---
 
-### [Task E0-S2-T4 — Create `copilot-setup-steps.yml` and configure governance](../tasks/task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md)
+### ✅ [Task E0-S2-T4 — Create `copilot-setup-steps.yml` and configure governance](../tasks/task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md)
 
 **Goal:** enable the Copilot cloud agent environment in the fork and document the governance checklist.
 

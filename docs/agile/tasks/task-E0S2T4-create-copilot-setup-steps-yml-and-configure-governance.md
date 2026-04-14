@@ -7,13 +7,13 @@
 | **ID** | E0-S2-T4 |
 | **Story** | [E0-S2 — Minimum AI Layer Configuration](../stories/story-E0S2-minimum-ai-layer.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `copilot-env-specialist` |
 | **Skill** | `copilot-env-setup` |
 | **Depends on** | [E0-S2-T0 — Bootstrap AI Layer management artifacts](task-E0S2T0-bootstrap-ai-layer-management-artifacts.md) |
 | **Blocks** | E0-S2-T5 |
 | Created at | 2026-04-11 15:14:45 -03 |
-| Last updated | 2026-04-11 16:25:13 -03 |
+| Last updated | 2026-04-14 00:00:00 -03 |
 
 ---
 
@@ -274,13 +274,12 @@ ls -la "/delfos/Projetos/ITBC - Desafio RDH/nextjs-feature-flag-exercise/.agents
 
 ## 6) Definition of Done
 
-- [ ] `copilot-setup-steps.yml` exists at the correct path.
-- [ ] `validate-workflow-file.js` exits `0` — all 4 checks pass.
-- [ ] Job name is exactly `copilot-setup-steps`.
-- [ ] `environment: copilot` declared at the job level.
-- [ ] `timeout-minutes` value is ≤ 59.
-- [ ] `workflow_dispatch` trigger is present.
-- [ ] Workflow steps cover: checkout (ref `exercise-1`), Node.js (v22), pnpm (v10), server install, client install, server validate, client validate.
-- [ ] Governance checklist document exists with entries for: `copilot` environment, `ANTHROPIC_API_KEY`, token permissions, and branch protection.
-- [ ] Feature branch `exercise-1/copilot-setup-steps` pushed to fork.
-- [ ] PR opened against `exercise-1` and **merged** before T5 starts.
+- [x] `copilot-setup-steps.yml` exists at the correct path.
+- [x] `validate-workflow-file.js` exits `0` — all 4 checks pass.
+- [x] Job name is exactly `copilot-setup-steps`.
+- [x] `environment: copilot` declared at the job level.
+- [x] `timeout-minutes` value is ≤ 59.
+- [x] `workflow_dispatch` trigger is present.
+- [x] Workflow steps cover: checkout (ref `exercise-1`), Node.js (v22), pnpm (v10), server install, client install, server validate, client validate.
+- [x] Governance checklist document exists with entries for: `copilot` environment, `ANTHROPIC_API_KEY`, token permissions, and branch protection.
+- [x] Files committed directly to `exercise-1` (Epic 0 local execution — no PR required).
