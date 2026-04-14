@@ -347,7 +347,7 @@
 
 ---
 
-### [Task E0-S6-T6 — Create issue index infrastructure](../tasks/task-E0S6T6-create-issue-index-infrastructure.md)
+### ✅ [Task E0-S6-T6 — Create issue index infrastructure](../tasks/task-E0S6T6-create-issue-index-infrastructure.md)
 
 **Goal:** create the `.github/issue-index.json` schema, the generator function, and update `create-github-issue-from-task.js` to maintain the index.
 

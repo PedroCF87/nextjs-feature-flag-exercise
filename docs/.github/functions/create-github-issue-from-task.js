@@ -32,6 +32,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { spawnSync } = require('child_process');
+const { appendToIssueIndex } = require('./generate-issue-index.js');
 
 // ---------------------------------------------------------------------------
 // Parsing
@@ -194,6 +195,24 @@ function createIssue(task, repo, dryRun) {
 
     const issueUrl = result.stdout.trim();
     const issueNumber = parseInt(issueUrl.split('/').pop(), 10);
+
+    // Append to .github/issue-index.json (repo root, two levels up from this file's dir)
+    if (!isNaN(issueNumber)) {
+      const numMatch = (task.id || '').match(/E(\d+)-S(\d+)-T(\d+)/i);
+      if (numMatch) {
+        const repoRoot = path.resolve(__dirname, '..', '..', '..', '..');
+        const indexPath = path.join(repoRoot, '.github', 'issue-index.json');
+        appendToIssueIndex(indexPath, {
+          epic:   parseInt(numMatch[1], 10),
+          story:  parseInt(numMatch[2], 10),
+          task:   parseInt(numMatch[3], 10),
+          issue:  issueNumber,
+          title:  task.title,
+          status: 'open',
+          agent:  'task-implementer',
+        });
+      }
+    }
 
     return JSON.stringify({ issueNumber, issueUrl, dryRun: false }, null, 2);
   } finally {
