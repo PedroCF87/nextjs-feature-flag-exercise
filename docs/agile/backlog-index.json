@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-14 18:47:27 -03",
+  "generated_at": "2026-04-14 18:50:54 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -29,7 +29,7 @@
       "type": "story",
       "epic": "EPIC-0",
       "priority": "P0",
-      "status": "In Progress",
+      "status": "Done",
       "responsible_agent": [
         "copilot-config-refactor",
         "rules-bootstrap",
@@ -45,7 +45,7 @@
         "EPIC-1"
       ],
       "created_at": "2026-04-09 18:56:38 -03",
-      "last_updated": "2026-04-14 00:00:00 -03",
+      "last_updated": "2026-04-14 12:00:00 -03",
       "story_file": "docs/agile/stories/story-E0S2-minimum-ai-layer.md"
     },
     {
@@ -346,7 +346,7 @@
       "type": "task",
       "epic": "EPIC-0",
       "priority": "P0",
-      "status": "In Progress",
+      "status": "Done",
       "responsible_agent": [
         "git-ops"
       ],
@@ -362,7 +362,7 @@
         "EPIC-1"
       ],
       "created_at": "2026-04-11 15:14:45 -03",
-      "last_updated": "2026-04-14 00:00:00 -03",
+      "last_updated": "2026-04-14 12:00:00 -03",
       "task_file": "docs/agile/tasks/task-E0S2T5-validate-commit-and-sign-readiness-checklist.md"
     },
     {

@@ -87,24 +87,17 @@ git remote get-url origin
 | 5 | All AI Layer artifacts committed with traceability | `git log --oneline` — T1+T2/T3+T4 commits present | ✅ (commits 88b212a, 10a5a4e, ba50e0b) | PASS |
 | 6 | Coverage report produced and saved | `.agents/validation/ai-layer-coverage-report.md` | ✅ (this file) | PASS |
 
-**Overall status:** ⏳ PENDING DRY-RUN (5 of 6 items PASS — item 4 requires manual GitHub Actions trigger)
+**Overall status:** ✅ READY — all 6 items PASS
 
 ---
 
 ## 6) Dry-Run Evidence (Item 4)
 
-> **Manual action required:**
->
-> 1. Go to: `https://github.com/PedroCF87/nextjs-feature-flag-exercise/actions/workflows/copilot-setup-steps.yml`
-> 2. Click **Run workflow** → branch: `exercise-1` → **Run workflow**.
-> 3. Wait for all 7 steps to pass.
-> 4. Record the run ID from the URL (`/runs/<run-id>`).
-> 5. Update the line below with the actual run ID.
-> 6. Change item 4 status to ✅ and Overall status to **READY**.
-
-**GitHub Actions run ID:** `<PENDING — update after workflow_dispatch trigger>`
-**Run URL:** `https://github.com/PedroCF87/nextjs-feature-flag-exercise/actions/runs/<run-id>`
-**All 7 steps passed:** ⏳ pending
+**GitHub Actions run ID:** `24424611417`
+**Job ID:** `71355526021`
+**Run URL:** `https://github.com/PedroCF87/nextjs-feature-flag-exercise/actions/runs/24424611417/job/71355526021`
+**Triggered:** `workflow_dispatch` on branch `exercise-1`
+**All 7 steps passed:** ✅
 
 ---
 

@@ -57,7 +57,7 @@ E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target
 | ✅ 18 | E0-S2-T2 | E0-S2 | T0 done | Deploy instructions to fork |
 | ✅ 19 | E0-S2-T3 | E0-S2 | T0 done | Deploy agents and skills to fork |
 | ✅ 20 | E0-S2-T4 | E0-S2 | T0 done | **Create `copilot-setup-steps.yml`** — unblocks E0-S6 T8–T10 |
-| ⏳ 21 | E0-S2-T5 | E0-S2 | T1–T4 done | Validate, commit, sign readiness — coverage report committed (`c580537`); dry-run pending manual trigger |
+| ✅ 21 | E0-S2-T5 | E0-S2 | T1–T4 done | Validate, commit, sign readiness — coverage report committed (`c580537`); dry-run run ID `24424611417` ✅ |
 
 ### Phase 4 — CI/CD pipeline finalisation (E0-S6 T8–T10)
 
