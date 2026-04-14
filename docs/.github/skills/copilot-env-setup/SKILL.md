@@ -10,7 +10,9 @@ Produce a compliant `copilot-setup-steps.yml` workflow file and the accompanying
 
 ## Mandatory rules (validate before and after writing)
 
-These rules are enforced by `validate-workflow-file.js`. A workflow that violates any of them will be silently ignored by the GitHub Copilot cloud agent:
+### Rules enforced by `validate-workflow-file.js`
+
+A workflow that violates any of the checks below will fail the required validator step, and a misconfigured setup job may be silently ignored by the GitHub Copilot cloud agent:
 
 | Rule | Required value | Why |
 |---|---|---|
@@ -18,6 +20,13 @@ These rules are enforced by `validate-workflow-file.js`. A workflow that violate
 | `environment:` | `copilot` (at job level, when secrets are used) | Environment-scoped secrets resolve to empty string without this |
 | `timeout-minutes` | ≤ 59 | GitHub Actions enforces a hard cap for setup steps |
 | Trigger | Must include `workflow_dispatch` | Required for dry-run testing without a Copilot session |
+
+### Additional MCP governance rules (not currently validated by the script)
+
+These rules are still mandatory for a working and secure setup, but they must be checked manually when reviewing the workflow and companion checklist:
+
+| Rule | Required value | Why |
+|---|---|---|
 | MCP secret names | Must start with `COPILOT_MCP_` | Naming convention for Copilot MCP injection |
 | MCP secrets scope | Must be in `copilot` environment, not repository secrets | Repository secrets are not injected into the agent context |
 
