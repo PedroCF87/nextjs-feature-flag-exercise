@@ -217,7 +217,7 @@
 
 ---
 
-### [Task E0-S2-T1 — Adapt and deploy global rules to fork](../tasks/task-E0S2T1-adapt-and-deploy-global-rules-to-fork.md)
+### ✅ [Task E0-S2-T1 — Adapt and deploy global rules to fork](../tasks/task-E0S2T1-adapt-and-deploy-global-rules-to-fork.md)
 
 **Goal:** produce a fork-scoped `copilot-instructions.md` and commit it to the fork, replacing the workspace-level multi-repo context with exercise-specific context.
 
@@ -243,7 +243,7 @@
 
 ---
 
-### [Task E0-S2-T2 — Adapt and deploy instructions to fork](../tasks/task-E0S2T2-adapt-and-deploy-instructions-to-fork.md)
+### ✅ [Task E0-S2-T2 — Adapt and deploy instructions to fork](../tasks/task-E0S2T2-adapt-and-deploy-instructions-to-fork.md)
 
 **Goal:** create `nextjs-feature-flag-exercise/.github/instructions/` and deploy adapted instruction files.
 
@@ -267,7 +267,7 @@
 
 ---
 
-### [Task E0-S2-T3 — Adapt and deploy agents and skills to fork](../tasks/task-E0S2T3-adapt-and-deploy-agents-and-skills-to-fork.md)
+### ✅ [Task E0-S2-T3 — Adapt and deploy agents and skills to fork](../tasks/task-E0S2T3-adapt-and-deploy-agents-and-skills-to-fork.md)
 
 **Goal:** create `.github/agents/` and `.github/skills/` in the fork and deploy adapted artifacts.
 
