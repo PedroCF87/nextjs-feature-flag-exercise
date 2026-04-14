@@ -51,6 +51,19 @@ Secret names **must** start with `COPILOT_MCP_`.
 
 ---
 
+## Active Workflows in Exercise 1
+
+| File | Status | Notes |
+|---|---|---|
+| `.github/workflows/copilot-setup-steps.yml` | ✅ Active | Copilot cloud agent environment setup |
+| `exercise-2-docs/claude.yml` | ⏸ Inactive | RDH Claude AI workflow — moved out of `.github/workflows/` intentionally |
+
+> `claude.yml` was moved to `exercise-2-docs/` to prevent the RDH workflow from triggering
+> during Exercise 1. It will be restored to `.github/workflows/` when Exercise 2 begins.
+> Do not move it back prematurely.
+
+---
+
 ## Reference
 
 - Workflow file: `.github/workflows/copilot-setup-steps.yml`

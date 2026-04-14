@@ -138,6 +138,22 @@ chore(deps): install pnpm dependencies for server and client
 
 ---
 
+## Active Workflows
+
+Only one workflow is active during Exercise 1:
+
+| File | Purpose | Status |
+|---|---|---|
+| `.github/workflows/copilot-setup-steps.yml` | Installs dependencies and validates build + tests for the Copilot cloud agent | ✅ Active |
+
+> **Note — `claude.yml` intentionally absent from `.github/workflows/`:**
+> The `claude.yml` workflow (RDH-provided Claude AI flow) was moved to `exercise-2-docs/`
+> to prevent it from running during Exercise 1. Exercise 1 uses the personal Copilot AI
+> workflow exclusively. Do **not** move `claude.yml` back to `.github/workflows/` until
+> Exercise 2 starts. Do not reference it as an active workflow file.
+
+---
+
 ## Key File Reference
 
 | Purpose | File |
