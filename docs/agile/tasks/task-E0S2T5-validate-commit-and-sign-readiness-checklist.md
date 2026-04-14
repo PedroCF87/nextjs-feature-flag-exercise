@@ -7,13 +7,13 @@
 | **ID** | E0-S2-T5 |
 | **Story** | [E0-S2 — Minimum AI Layer Configuration](../stories/story-E0S2-minimum-ai-layer.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Responsible agent** | `git-ops` |
 | **Skills** | `validate-ai-layer-coverage`, `copilot-env-setup` |
 | **Depends on** | [E0-S2-T1](task-E0S2T1-adapt-and-deploy-global-rules-to-fork.md), [E0-S2-T2](task-E0S2T2-adapt-and-deploy-instructions-to-fork.md), [E0-S2-T3](task-E0S2T3-adapt-and-deploy-agents-and-skills-to-fork.md), [E0-S2-T4](task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md) |
 | **Blocks** | E0-S3, E0-S4, EPIC-1 |
 | Created at | 2026-04-11 15:14:45 -03 |
-| Last updated | 2026-04-11 16:31:09 -03 |
+| Last updated | 2026-04-14 00:00:00 -03 |
 
 ---
 
@@ -290,11 +290,11 @@ ls -la "$REPO_ROOT/.agents/validation/ai-layer-coverage-report.md"
 
 ## 6) Definition of Done
 
-- [ ] `check-ai-layer-files.js` with all 11 paths exits `0` — all lines `✅`.
-- [ ] `validate-workflow-file.js` exits `0` — all 4 structural checks `✅`.
-- [ ] T1–T4 individual commit messages are present in `git log --oneline -10` output.
-- [ ] `copilot-setup-steps.yml` dry-run triggered and all 7 steps passed.
-- [ ] GitHub Actions run ID documented in the coverage report.
-- [ ] Coverage report exists at `.agents/validation/ai-layer-coverage-report.md` with all 6 items `✅`.
-- [ ] Coverage report committed directly to `exercise-1`.
-- [ ] Story E0-S2 status updated to `Done`.
+- [x] `check-ai-layer-files.js` with all 11 paths exits `0` — all lines `✅`.
+- [x] `validate-workflow-file.js` exits `0` — all 4 structural checks `✅`.
+- [x] T1–T4 individual commit messages are present in `git log --oneline -10` output.
+- [ ] `copilot-setup-steps.yml` dry-run triggered and all 7 steps passed. ⏳ PENDING — manual GitHub Actions trigger required.
+- [ ] GitHub Actions run ID documented in the coverage report. ⏳ PENDING — update after dry-run.
+- [x] Coverage report exists at `.agents/validation/ai-layer-coverage-report.md` (with item 4 pending dry-run run ID).
+- [x] Coverage report committed directly to `exercise-1` (commit `c580537`).
+- [ ] Story E0-S2 status updated to `Done`. ⏳ PENDING — after dry-run completes.

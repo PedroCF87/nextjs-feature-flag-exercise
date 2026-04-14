@@ -7,14 +7,14 @@
 | **ID** | E0-S2 |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Responsible agent** | `copilot-config-refactor`, `rules-bootstrap`, `copilot-env-specialist`, `git-ops` |
 | **Skills** | `copilot-layer-diff`, `config-migration-plan`, `global-rules-bootstrap`, `copilot-env-setup`, `adapt-artifact-to-fork-scope`, `validate-ai-layer-coverage` |
 | **Instructions** | `copilot-config-governance.instructions.md`, `coding-agent.instructions.md`, `git-operations.instructions.md` |
 | **Depends on** | [E0-S1 — Repository Diagnosis and Readiness](story-E0S1-repository-diagnosis.md) |
 | **Blocks** | E0-S3, E0-S4, EPIC-1 |
 | Created at | 2026-04-09 18:56:38 -03 |
-| Last updated | 2026-04-12 16:19:17 -03 |
+| Last updated | 2026-04-14 00:00:00 -03 |
 
 ---
 
@@ -397,9 +397,9 @@ jobs:
 **Sub-tasks:**
 
 1. Verify all T1–T4 AI Layer artifacts are committed in the fork using `check-ai-layer-files.js`:
-   - [ ] Codebase audit completed for the exercise repository (E0-S1).
-   - [ ] Migration plan produced (via `config-migration-plan` skill output).
-   - [ ] Responsible agent and skill files exist for all macro phases — verify with:
+   - [x] Codebase audit completed for the exercise repository (E0-S1) — `codebase-audit.md` (14,928 bytes) ✅
+   - [x] Migration plan produced (via `config-migration-plan` skill output) — `copilot-environment-checklist.md` ✅
+   - [x] Responsible agent and skill files exist for all macro phases — verify with:
      ```bash
      node "Docs/.github/functions/check-ai-layer-files.js" \
        /path/to/nextjs-feature-flag-exercise \
@@ -416,17 +416,17 @@ jobs:
        .github/workflows/copilot-setup-steps.yml
      ```
      🔴 All 11 items must show ✅. Any ❌ is a blocker — return to the relevant task.
-   - [ ] Copilot setup validated by `copilot-setup-steps.yml` dry-run (see sub-task 4).
-2. Confirm the workflow file is structurally valid before triggering:
+   - [ ] Copilot setup validated by `copilot-setup-steps.yml` dry-run (see sub-task 4). ⏳ PENDING — manual GitHub Actions trigger required.
+2. Confirm the workflow file is structurally valid before triggering (DONE ✅ — all 4 checks passed):
    ```bash
    node "Docs/.github/functions/validate-workflow-file.js" \
      /path/to/nextjs-feature-flag-exercise/.github/workflows/copilot-setup-steps.yml
    ```
    Only proceed to the dry-run if all 4 checks pass ✅. Then go to fork → Actions → `Copilot Setup Steps` → Run workflow → confirm all 7 steps pass.
-3. Record the run ID and pass/fail status in the preparation friction log.
-4. Produce the AI Layer coverage report at `nextjs-feature-flag-exercise/.agents/validation/ai-layer-coverage-report.md` using `validate-ai-layer-coverage` skill.
-5. Commit and push the coverage report: `git commit -m "chore(ai-layer): add AI Layer coverage report"`.
-6. Confirm all 6 items in the minimum readiness checklist are satisfied.
+3. Record the run ID and pass/fail status in the preparation friction log. ⏳ PENDING — after dry-run completes.
+4. Produce the AI Layer coverage report at `nextjs-feature-flag-exercise/.agents/validation/ai-layer-coverage-report.md` using `validate-ai-layer-coverage` skill. ✅ DONE (commit `c580537`) — item 4 (run ID) pending update after dry-run.
+5. Commit and push the coverage report: `git commit -m "chore(ai-layer): add AI Layer coverage report"`. ✅ DONE (commit `c580537`).
+6. Confirm all 6 items in the minimum readiness checklist are satisfied. ⏳ PENDING — items 4+5 depend on dry-run.
 
 **Acceptance:** all 11 AI Layer paths confirmed present in the fork (each committed by T1–T4); dry-run workflow run ID documented; AI Layer coverage report committed; all 6 checklist items marked complete.
 
