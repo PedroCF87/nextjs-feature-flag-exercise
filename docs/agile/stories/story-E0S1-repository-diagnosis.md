@@ -278,7 +278,7 @@
 
 ---
 
-### [Task E0-S1-T3 — Conduct codebase audit](../tasks/task-E0S1T3-codebase-audit.md)
+### ✅ [Task E0-S1-T3 — Conduct codebase audit](../tasks/task-E0S1T3-codebase-audit.md)
 
 **Goal:** produce a concrete architectural map and identify all integration points for the filtering task.
 
