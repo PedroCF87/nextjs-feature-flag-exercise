@@ -49,9 +49,9 @@ Stop if all 4 files are absent. At minimum, `AGENTS.md` or `CLAUDE.md` must be p
 
 ## Tech Stack
 
-| Layer | Technology | Notes |
-|---|---|---|
-| <layer> | <technology> | <notes> |
+| Layer | Technology | Version | Purpose |
+|---|---|---|---|
+| <layer> | <technology> | <version> | <purpose> |
 
 ## Architecture
 
