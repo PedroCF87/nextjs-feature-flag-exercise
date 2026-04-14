@@ -1,7 +1,7 @@
 ---
 name: project-adaptation-analyst
 description: Executes codebase audits of `nextjs-feature-flag-exercise`, produces the Story E0-S1 diagnosis document, and maps all integration points needed for Epic 1 filtering implementation. Use this agent when you need to read, analyze, and document the current state of the exercise codebase — not to implement features, but to produce actionable diagnosis artifacts that guide the implementation agent.
-tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'askQuestions', 'todo']
+tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, execute/runNotebookCell, execute/testFailure, execute/executionSubagent, execute/getTerminalOutput, execute/killTerminal, execute/sendToTerminal, execute/createAndRunTask, execute/runInTerminal, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/terminalSelection, read/terminalLastCommand, agent/runSubagent, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/textSearch, search/searchSubagent, search/usages, web/fetch, web/githubRepo, browser/openBrowserPage, browser/readPage, browser/screenshotPage, browser/navigatePage, browser/clickElement, browser/dragElement, browser/hoverElement, browser/typeInPage, browser/runPlaywrightCode, browser/handleDialog, todo]
 ---
 
 # project-adaptation-analyst

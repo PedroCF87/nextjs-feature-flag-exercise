@@ -163,7 +163,7 @@ This epic is considered complete when **all** items below are true:
 
 ## 7) Candidate stories for the epic
 
-### [Story E0-S1 — Repository diagnosis and readiness](../agile/stories/story-E0S1-repository-diagnosis.md)
+### ✅ [Story E0-S1 — Repository diagnosis and readiness](../agile/stories/story-E0S1-repository-diagnosis.md)
 
 **Description:** create fork strategy, validate base branch, project structure, remotes, and essential execution commands. Conduct codebase audit of `nextjs-feature-flag-exercise` (architecture, patterns, tests, integration points, risks).
 

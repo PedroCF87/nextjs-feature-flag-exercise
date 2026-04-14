@@ -140,7 +140,7 @@
 
 ## 4) Tasks
 
-### ✅ [Task E0-S2-T0 — Bootstrap AI Layer management artifacts](../tasks/task-E0S2T0-bootstrap-ai-layer-management-artifacts.md)
+### [Task E0-S2-T0 — Bootstrap AI Layer management artifacts](../tasks/task-E0S2T0-bootstrap-ai-layer-management-artifacts.md)
 
 **Goal:** create the management agents, skills, and instructions referenced in this story's metadata that do not yet exist in `Docs/.github/`. These artifacts are the tools used to *execute* E0-S2 itself.
 
@@ -217,7 +217,7 @@
 
 ---
 
-### ✅ [Task E0-S2-T1 — Adapt and deploy global rules to fork](../tasks/task-E0S2T1-adapt-and-deploy-global-rules-to-fork.md)
+### [Task E0-S2-T1 — Adapt and deploy global rules to fork](../tasks/task-E0S2T1-adapt-and-deploy-global-rules-to-fork.md)
 
 **Goal:** produce a fork-scoped `copilot-instructions.md` and commit it to the fork, replacing the workspace-level multi-repo context with exercise-specific context.
 
@@ -243,7 +243,7 @@
 
 ---
 
-### ✅ [Task E0-S2-T2 — Adapt and deploy instructions to fork](../tasks/task-E0S2T2-adapt-and-deploy-instructions-to-fork.md)
+### [Task E0-S2-T2 — Adapt and deploy instructions to fork](../tasks/task-E0S2T2-adapt-and-deploy-instructions-to-fork.md)
 
 **Goal:** create `nextjs-feature-flag-exercise/.github/instructions/` and deploy adapted instruction files.
 
@@ -267,7 +267,7 @@
 
 ---
 
-### ✅ [Task E0-S2-T3 — Adapt and deploy agents and skills to fork](../tasks/task-E0S2T3-adapt-and-deploy-agents-and-skills-to-fork.md)
+### [Task E0-S2-T3 — Adapt and deploy agents and skills to fork](../tasks/task-E0S2T3-adapt-and-deploy-agents-and-skills-to-fork.md)
 
 **Goal:** create `.github/agents/` and `.github/skills/` in the fork and deploy adapted artifacts.
 
@@ -304,7 +304,7 @@
 
 ---
 
-### ✅ [Task E0-S2-T4 — Create `copilot-setup-steps.yml` and configure governance](../tasks/task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md)
+### [Task E0-S2-T4 — Create `copilot-setup-steps.yml` and configure governance](../tasks/task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md)
 
 **Goal:** enable the Copilot cloud agent environment in the fork and document the governance checklist.
 
@@ -388,7 +388,7 @@ jobs:
 
 ---
 
-### ✅ [Task E0-S2-T5 — Validate, commit, and sign readiness checklist](../tasks/task-E0S2T5-validate-commit-and-sign-readiness-checklist.md)
+### [Task E0-S2-T5 — Validate, commit, and sign readiness checklist](../tasks/task-E0S2T5-validate-commit-and-sign-readiness-checklist.md)
 
 **Goal:** verify all T1–T4 AI Layer artifacts are committed in the fork, trigger the `copilot-setup-steps.yml` dry-run, and produce and commit the AI Layer coverage report.
 
@@ -433,6 +433,13 @@ jobs:
 **depends_on:** T1, T2, T3, T4 (all individual PRs must be merged before T5 starts)
 
 ---
+
+
+
+
+
+
+
 
 ## 5) Dependencies
 
