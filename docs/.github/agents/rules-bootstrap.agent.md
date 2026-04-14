@@ -36,7 +36,7 @@ Complete these steps in order before writing the output file:
    - [ ] Commit convention
    - [ ] Key file reference table
 
-5. **Write the file** — write to `.github/copilot-instructions.md` in the target repository. This task does not commit — the commit is bundled with other artifacts in the T5 git-ops step.
+5. **Write the file** — write to `.github/copilot-instructions.md` in the target repository. This agent does not commit — committing is the responsibility of the caller or the designated git-ops step.
 
 ## Output Standards
 
