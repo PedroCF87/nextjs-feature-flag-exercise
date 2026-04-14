@@ -25,7 +25,7 @@ E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target
 | ✅ 3 | E0-S5-T3 | E0-S5 | T2 done | Create `create-github-issue-from-task.js` function |
 | ✅ 4 | E0-S5-T4 | E0-S5 | T3 done | Create `execute-task-from-issue` skill |
 | ✅ 5 | E0-S5-T5 | E0-S5 | T4 done | Dry-run validation (generate story from Epic 1) |
-| 6 | E0-S5-T6 | E0-S5 | T5 done | Commit & sign readiness |
+| ✅ 6 | E0-S5-T6 | E0-S5 | T5 done | Commit & sign readiness |
 | 7 | E0-S6-T1 | E0-S6 | E0-S5 done | Create `copilot-push-signal.yml` |
 | 8 | E0-S6-T2 | E0-S6 | T7 done | Create `auto-ready-for-review.yml` |
 | 9 | E0-S6-T3 | E0-S6 | T8 done | Create `auto-copilot-fix.yml` |

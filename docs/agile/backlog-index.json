@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-13 22:44:25 -03",
+  "generated_at": "2026-04-13 23:05:06 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -92,7 +92,7 @@
       "type": "story",
       "epic": "EPIC-0",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "prompt-engineer",
         "agile-exercise-planner"
@@ -658,7 +658,7 @@
       "type": "task",
       "epic": "EPIC-0",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "git-ops"
       ],
@@ -667,7 +667,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-13 13:23:32 -03",
-      "last_updated": "2026-04-13 20:59:09 -03",
+      "last_updated": "2026-04-13 23:02:23 -03",
       "task_file": "docs/agile/tasks/task-E0S5T6-commit-and-sign-readiness.md"
     },
     {

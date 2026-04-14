@@ -7,7 +7,7 @@
 | **ID** | E0-S5 |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `prompt-engineer`, `agile-exercise-planner` |
 | **Skills** | `create-specialist-agent`, `create-story-task-pack`, `audit-agile-artifacts` |
 | **Instructions** | `agile-planning.instructions.md`, `coding-agent.instructions.md` |
@@ -532,7 +532,7 @@ For tasks that are the last in a story (e.g., E1-S1-T5 if the story has 5 tasks)
 
 ---
 
-### [Task E0-S5-T6 — Commit and sign readiness](../tasks/task-E0S5T6-commit-and-sign-readiness.md)
+### ✅ [Task E0-S5-T6 — Commit and sign readiness](../tasks/task-E0S5T6-commit-and-sign-readiness.md)
 
 **Goal:** commit all E0-S5 artifacts and sign the automation readiness checklist.
 
