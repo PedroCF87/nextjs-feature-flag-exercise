@@ -193,7 +193,7 @@
 
 ---
 
-### [Task E0-S3-T3 — Record time-zero snapshot and sign go/no-go checklist](../tasks/task-E0S3T3-record-time-zero-snapshot-and-sign-go-no-go-checklist.md)
+### ✅ [Task E0-S3-T3 — Record time-zero snapshot and sign go/no-go checklist](../tasks/task-E0S3T3-record-time-zero-snapshot-and-sign-go-no-go-checklist.md)
 
 **Goal:** fill in the pre-implementation snapshot (AC-4) and sign the go/no-go checklist (AC-5) in the template.
 

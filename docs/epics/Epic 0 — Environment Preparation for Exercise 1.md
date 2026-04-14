@@ -171,7 +171,7 @@ This epic is considered complete when **all** items below are true:
 
 **Description:** adapt and apply existing AI Layer artifacts from `Docs/.github/` (instructions, agents, skills) to the fork repository. Configure fork governance (Actions, environments, secrets, MCP).
 
-### [Story E0-S3 — Definition of measurement baseline](../agile/stories/story-E0S3-measurement-baseline.md)
+### ✅ [Story E0-S3 — Definition of measurement baseline](../agile/stories/story-E0S3-measurement-baseline.md)
 
 **Description:** formalize method and template for collecting time, prompts, rework, and confidence.
 
@@ -195,7 +195,7 @@ This epic is considered complete when **all** items below are true:
 - Function file: `Docs/.github/functions/create-github-issue-from-task.js`
 - Validation: dry-run of story generation from Epic 1 section 7 produces valid story MD drafts.
 
-### [Story E0-S6 — CI/CD pipeline for Issue-driven execution](../agile/stories/story-E0S6-ci-cd-pipeline-automation.md)
+### ✅ [Story E0-S6 — CI/CD pipeline for Issue-driven execution](../agile/stories/story-E0S6-ci-cd-pipeline-automation.md)
 
 **Priority:** P0 | **Depends on:** E0-S5, E0-S2-T4
 

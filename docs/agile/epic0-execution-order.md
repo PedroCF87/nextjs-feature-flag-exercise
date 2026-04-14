@@ -64,17 +64,17 @@ E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target
 | Step | Task | Story | Blocker? | Notes |
 |---|---|---|---|---|
 | ✅ 22 | E0-S6-T8 | E0-S6 | E0-S2-T4 done | Secrets + self-hosted runner — `rdh-exercise-runner` Idle, dry-run `24425988694` ✅ |
-| 23 | E0-S6-T9 | E0-S6 | T22 done | Create `.github/copilot-mcp.json` |
-| 24 | E0-S6-T10 | E0-S6 | T22–T23 done | E2E structural validation + sign checklist |
+| ✅ 23 | E0-S6-T9 | E0-S6 | T22 done | Create `.github/copilot-mcp.json` |
+| ✅ 24 | E0-S6-T10 | E0-S6 | T22–T23 done | E2E structural validation + sign checklist |
 
 ### Phase 5 — Measurement baseline + closure
 
 | Step | Task | Story | Blocker? | Notes |
 |---|---|---|---|---|
-| 25 | E0-S3-T0 | E0-S3 | E0-S2 done | Bootstrap E0-S3 AI Layer artifacts |
-| 26 | E0-S3-T1 | E0-S3 | T25 done | Define measurement dimensions |
-| 27 | E0-S3-T2 | E0-S3 | T26 done | Create capture template |
-| 28 | E0-S3-T3 | E0-S3 | T27 done | Record time-zero snapshot + sign go/no-go |
+| ✅ 25 | E0-S3-T0 | E0-S3 | E0-S2 done | Bootstrap E0-S3 AI Layer artifacts |
+| ✅ 26 | E0-S3-T1 | E0-S3 | T25 done | Define measurement dimensions |
+| ✅ 27 | E0-S3-T2 | E0-S3 | T26 done | Create capture template |
+| ✅ 28 | E0-S3-T3 | E0-S3 | T27 done | Record time-zero snapshot + sign go/no-go |
 | 29 | E0-S4-T0 | E0-S4 | E0-S3 done | Bootstrap E0-S4 artifacts |
 | 30 | E0-S4-T1 | E0-S4 | T29 done | Verify EPIC-0 DoD evidence |
 | 31 | E0-S4-T2 | E0-S4 | T30 done | Produce `epic0-closure-report.md` |

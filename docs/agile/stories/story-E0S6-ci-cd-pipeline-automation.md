@@ -445,7 +445,7 @@
 
 ---
 
-### [Task E0-S6-T9 — Create MCP configuration](../tasks/task-E0S6T9-create-mcp-configuration.md)
+### ✅ [Task E0-S6-T9 — Create MCP configuration](../tasks/task-E0S6T9-create-mcp-configuration.md)
 
 **Goal:** deploy the GitHub API MCP server configuration to the fork.
 
@@ -479,7 +479,7 @@
 
 ---
 
-### [Task E0-S6-T10 — End-to-end structural validation and readiness](../tasks/task-E0S6T10-end-to-end-structural-validation-and-readiness.md)
+### ✅ [Task E0-S6-T10 — End-to-end structural validation and readiness](../tasks/task-E0S6T10-end-to-end-structural-validation-and-readiness.md)
 
 **Goal:** validate the full pipeline structurally and sign the CI/CD readiness checklist.
 
