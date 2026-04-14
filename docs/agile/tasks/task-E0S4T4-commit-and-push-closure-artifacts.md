@@ -8,12 +8,12 @@
 | **Story** | [E0-S4 — Preparation Closure and Handoff to EPIC-1](../stories/story-E0S4-preparation-closure.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `project-adaptation-analyst` |
 | **Depends on** | [E0-S4-T2 — Produce epic0-closure-report.md](../tasks/task-E0S4T2-produce-epic0-closure-report-md.md), [E0-S4-T3 — Produce epic1-handoff.md](../tasks/task-E0S4T3-produce-epic1-handoff-md.md) |
 | **Blocks** | E0-S4-T5 |
 | Created at | 2026-04-11 20:50:15 -03 |
-| Last updated | 2026-04-12 15:13:58 -03 |
+| Last updated | 2026-04-14 20:34:00 -03 |
 
 ---
 
@@ -101,6 +101,6 @@ Record output (e.g. `exercise-1 @ def5678`) as evidence for this task's DoD.
 
 ## 6) Definition of Done
 
-- [ ] Step 0 remote safety gate passed (origin = personal fork, not upstream).
-- [ ] Both `✅` from `check-ai-layer-files.js` for the two closure files.
-- [ ] Final SHA recorded via `git-info.js --branch-ref` as T4 evidence.
+- [x] Step 0 remote safety gate passed (`origin` = `https://github.com/PedroCF87/nextjs-feature-flag-exercise.git` — personal fork confirmed).
+- [x] Both `✅` from `check-ai-layer-files.js` for the two closure files (`2 / 2 present — 0 missing`).
+- [x] Final SHA recorded via `git-info.js --branch-ref`: `exercise-1 @ 87dd690`.
