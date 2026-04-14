@@ -179,7 +179,7 @@ This epic is considered complete when **all** items below are true:
 
 **Description:** consolidate final checklist, residual risks, and Baseline execution plan.
 
-### [Story E0-S5 — Execution automation for Epic 1](../agile/stories/story-E0S5-execution-automation.md)
+### ✅ [Story E0-S5 — Execution automation for Epic 1](../agile/stories/story-E0S5-execution-automation.md)
 
 **Priority:** P0 | **Depends on:** E0-S1-T2 _(reordered from E0-S2 — see story file for justification)_
 

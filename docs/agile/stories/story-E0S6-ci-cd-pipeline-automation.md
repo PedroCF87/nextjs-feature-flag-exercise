@@ -14,7 +14,7 @@
 | **Depends on** | [E0-S5 — Execution Automation for Epic 1](story-E0S5-execution-automation.md), [E0-S2-T4 — Create copilot-setup-steps.yml](../tasks/task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md) |
 | **Blocks** | EPIC-1 execution (full automation loop) |
 | Created at | 2026-04-13 21:49:02 -03 |
-| Last updated | 2026-04-13 21:49:02 -03 |
+| Last updated | 2026-04-13 23:15:02 -03 |
 
 ---
 
@@ -195,7 +195,7 @@
 
 ## 4) Tasks
 
-### Task E0-S6-T1 — Create `copilot-push-signal.yml`
+### [Task E0-S6-T1 — Create `copilot-push-signal.yml`](../tasks/task-E0S6T1-create-copilot-push-signal-yml.md)
 
 **Goal:** create the anchor workflow that fires on Copilot's pushes and provides a `workflow_run` trigger source for downstream workflows.
 
@@ -222,7 +222,7 @@
 
 ---
 
-### Task E0-S6-T2 — Create `auto-ready-for-review.yml`
+### [Task E0-S6-T2 — Create `auto-ready-for-review.yml`](../tasks/task-E0S6T2-create-auto-ready-for-review-yml.md)
 
 **Goal:** create the workflow that converts Copilot's draft PRs to ready-for-review.
 
@@ -251,7 +251,7 @@
 
 ---
 
-### Task E0-S6-T3 — Create `auto-copilot-fix.yml`
+### [Task E0-S6-T3 — Create `auto-copilot-fix.yml`](../tasks/task-E0S6T3-create-auto-copilot-fix-yml.md)
 
 **Goal:** create the workflow that posts `@copilot` fix requests after code reviews with suggestions.
 
@@ -279,7 +279,7 @@
 
 ---
 
-### Task E0-S6-T4 — Create `auto-validate-copilot-fix.yml`
+### [Task E0-S6-T4 — Create `auto-validate-copilot-fix.yml`](../tasks/task-E0S6T4-create-auto-validate-copilot-fix-yml.md)
 
 **Goal:** create the workflow that evaluates whether Copilot applied all requested fixes.
 
@@ -314,7 +314,7 @@
 
 ---
 
-### Task E0-S6-T5 — Create `auto-merge-on-clean-review.yml`
+### [Task E0-S6-T5 — Create `auto-merge-on-clean-review.yml`](../tasks/task-E0S6T5-create-auto-merge-on-clean-review-yml.md)
 
 **Goal:** create the workflow that merges clean PRs, closes Issues, and triggers the next task.
 
@@ -347,7 +347,7 @@
 
 ---
 
-### Task E0-S6-T6 — Create issue index infrastructure
+### [Task E0-S6-T6 — Create issue index infrastructure](../tasks/task-E0S6T6-create-issue-index-infrastructure.md)
 
 **Goal:** create the `.github/issue-index.json` schema, the generator function, and update `create-github-issue-from-task.js` to maintain the index.
 
@@ -384,7 +384,7 @@
 
 ---
 
-### Task E0-S6-T7 — Create PR tag system documentation
+### [Task E0-S6-T7 — Create PR tag system documentation](../tasks/task-E0S6T7-create-pr-tag-system-documentation.md)
 
 **Goal:** document the `[EX:...]` PR comment tag system as an instruction file.
 
@@ -409,7 +409,7 @@
 
 ---
 
-### Task E0-S6-T8 — Configure secrets and self-hosted runner
+### [Task E0-S6-T8 — Configure secrets and self-hosted runner](../tasks/task-E0S6T8-configure-secrets-and-self-hosted-runner.md)
 
 **Goal:** configure the two workflow-specific PATs in the fork and set up the self-hosted runner.
 
@@ -445,7 +445,7 @@
 
 ---
 
-### Task E0-S6-T9 — Create MCP configuration
+### [Task E0-S6-T9 — Create MCP configuration](../tasks/task-E0S6T9-create-mcp-configuration.md)
 
 **Goal:** deploy the GitHub API MCP server configuration to the fork.
 
@@ -479,7 +479,7 @@
 
 ---
 
-### Task E0-S6-T10 — End-to-end structural validation and readiness
+### [Task E0-S6-T10 — End-to-end structural validation and readiness](../tasks/task-E0S6T10-end-to-end-structural-validation-and-readiness.md)
 
 **Goal:** validate the full pipeline structurally and sign the CI/CD readiness checklist.
 

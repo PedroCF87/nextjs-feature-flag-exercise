@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-13 23:05:06 -03",
+  "generated_at": "2026-04-13 23:25:19 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -125,7 +125,7 @@
         "EPIC-1"
       ],
       "created_at": "2026-04-13 21:49:02 -03",
-      "last_updated": "2026-04-13 21:49:02 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
       "story_file": "docs/agile/stories/story-E0S6-ci-cd-pipeline-automation.md"
     },
     {
@@ -669,6 +669,182 @@
       "created_at": "2026-04-13 13:23:32 -03",
       "last_updated": "2026-04-13 23:02:23 -03",
       "task_file": "docs/agile/tasks/task-E0S5T6-commit-and-sign-readiness.md"
+    },
+    {
+      "id": "E0-S6-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S2-T4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T1-create-copilot-push-signal-yml.md"
+    },
+    {
+      "id": "E0-S6-T10",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist",
+        "git-ops"
+      ],
+      "depends_on": [
+        "E0-S6-T6",
+        "E0-S6-T7",
+        "E0-S6-T8",
+        "E0-S6-T9"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T10-end-to-end-structural-validation-and-readiness.md"
+    },
+    {
+      "id": "E0-S6-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S6-T1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T2-create-auto-ready-for-review-yml.md"
+    },
+    {
+      "id": "E0-S6-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S6-T2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T3-create-auto-copilot-fix-yml.md"
+    },
+    {
+      "id": "E0-S6-T4",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S6-T3"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T4-create-auto-validate-copilot-fix-yml.md"
+    },
+    {
+      "id": "E0-S6-T5",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S6-T4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T5-create-auto-merge-on-clean-review-yml.md"
+    },
+    {
+      "id": "E0-S6-T6",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S5-T3",
+        "E0-S6-T5"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T6-create-issue-index-infrastructure.md"
+    },
+    {
+      "id": "E0-S6-T7",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E0-S6-T1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T7-create-pr-tag-system-documentation.md"
+    },
+    {
+      "id": "E0-S6-T8",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist",
+        "git-ops"
+      ],
+      "depends_on": [
+        "E0-S6-T5"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T8-configure-secrets-and-self-hosted-runner.md"
+    },
+    {
+      "id": "E0-S6-T9",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S2-T4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T9-create-mcp-configuration.md"
     },
     {
       "id": "E1-S0-T1",
