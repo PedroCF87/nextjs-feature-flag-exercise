@@ -8,12 +8,12 @@
 | **Story** | [E0-S3 — Definition of Measurement Baseline](../stories/story-E0S3-measurement-baseline.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | [E0-S2 — Minimum AI Layer Configuration](../stories/story-E0S2-minimum-ai-layer.md) |
 | **Blocks** | E0-S3-T1, E0-S3-T2, E0-S3-T3 |
 | Created at | 2026-04-11 16:43:15 -03 |
-| Last updated | 2026-04-11 16:49:00 -03 |
+| Last updated | 2026-04-14 20:00:00 -03 |
 
 ---
 
@@ -167,13 +167,14 @@ grep -n "elapsed-time.js" "$REPO_ROOT/docs/.github/copilot-instructions.md"
 
 Expected: at least one line in Shared Functions table.
 
-### Output summary template
+### Output summary
 
-- Command 1 result: PASS/FAIL
-- Command 2 result: PASS/FAIL
-- Command 3 result: PASS/FAIL
-- Files updated (if any):
-- Residual risks:
+- Command 1 result: **PASS** — `story-E0S2-minimum-ai-layer.md` status = `Done`
+- Command 2 result: **PASS** — `4 / 4 present — 0 missing` (exit 0)
+- Command 3 result: **PASS** — both skills at lines 165–166, E0-S3 coverage row at line 185 (exit 0)
+- Command 4 result: **PASS** — `elapsed-time.js` registered at line 287 (exit 0)
+- Files updated (if any): none — all registrations were already present
+- Residual risks: none
 
 ### Given / When / Then checks
 
@@ -185,10 +186,10 @@ Expected: at least one line in Shared Functions table.
 
 ## 6) Definition of Done
 
-- [ ] Step 1 command confirms all 4 required artifacts exist (`4 / 4 present`).
-- [ ] Step 2 command confirms both E0-S3 skills and the E0-S3 coverage row in catalog.
-- [ ] Step 3 command confirms `elapsed-time.js` row in shared functions table.
-- [ ] Section 5 contains executable command evidence and pass/fail outcomes.
-- [ ] Any missing registration found during the task has been patched and re-verified.
-- [ ] If patches were applied: patched files are committed and pushed to the fork.
-- [ ] E0-S3-T1, E0-S3-T2, and E0-S3-T3 are explicitly unblocked.
+- [x] Step 1 command confirms all 4 required artifacts exist (`4 / 4 present`).
+- [x] Step 2 command confirms both E0-S3 skills and the E0-S3 coverage row in catalog.
+- [x] Step 3 command confirms `elapsed-time.js` row in shared functions table.
+- [x] Section 5 contains executable command evidence and pass/fail outcomes.
+- [x] Any missing registration found during the task has been patched and re-verified.
+- [x] If patches were applied: patched files are committed and pushed to the fork. (no patches needed)
+- [x] E0-S3-T1, E0-S3-T2, and E0-S3-T3 are explicitly unblocked.

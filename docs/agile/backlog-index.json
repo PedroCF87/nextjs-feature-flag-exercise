@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-14 19:39:43 -03",
+  "generated_at": "2026-04-14 19:43:23 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -370,7 +370,7 @@
       "type": "task",
       "epic": "EPIC-0",
       "priority": "P1",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "agile-exercise-planner"
       ],
@@ -383,7 +383,7 @@
         "E0-S3-T3"
       ],
       "created_at": "2026-04-11 16:43:15 -03",
-      "last_updated": "2026-04-11 16:49:00 -03",
+      "last_updated": "2026-04-14 20:00:00 -03",
       "task_file": "docs/agile/tasks/task-E0S3T0-bootstrap-ai-layer-artifacts-for-this-story.md"
     },
     {
