@@ -8,12 +8,12 @@
 | **Story** | [E0-S6 — CI/CD Pipeline for Issue-Driven Execution](../stories/story-E0S6-ci-cd-pipeline-automation.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
-| **Responsible agent** | `copilot-env-specialist`, `git-ops` |
+| **Status** | Done |
+| **Responsible agent** | `copilot-env-specialist` |
 | **Depends on** | [E0-S6-T5](task-E0S6T5-create-auto-merge-on-clean-review-yml.md) |
 | **Blocks** | — |
 | Created at | 2026-04-13 23:11:22 -03 |
-| Last updated | 2026-04-13 23:15:02 -03 |
+| Last updated | 2026-04-14 22:30:00 -03 |
 
 ---
 
@@ -83,13 +83,11 @@ Document and execute the manual setup for workflow PAT secrets and self-hosted r
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Commands executed:** `docker compose up -d --build`, `docker logs rdh-exercise-runner`, `gh auth status`, `workflow_dispatch` trigger
+- **Exit codes:** all 0
+- **Output summary:** runner `rdh-exercise-runner` `Up`, `Listening for Jobs`, processed `auto-merge` job; `copilot-push-signal.yml` dry-run run ID `24425988694` ✅
+- **Files created/updated:** `.agents/governance/workflow-secrets-checklist.md`, `~/exercise-runner/docker-compose.yml`, `~/exercise-runner/Dockerfile`, `~/exercise-runner/runner-entrypoint.sh`
+- **Risks found / mitigations:** initial `~/actions-runner` bind-mount was incorrect (directory deleted) — corrected to `/home/pedro-delfos/exercise-runner` absolute path
 
 ### Given / When / Then checks
 
@@ -101,16 +99,16 @@ Record evidence with exact commands and outputs:
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] `.agents/governance/workflow-secrets-checklist.md` exists with secrets table, PAT type rationale, and all 10 sign-off items ✅.
+- [x] `COPILOT_CLASSIC_PAT` (Classic PAT, `repo`) and `COPILOT_TRIGGER_TOKEN` (Fine-Grained PAT, `Issues: R/W`) created and added to Repository Secrets + `copilot` environment.
+- [x] Self-hosted runner `rdh-exercise-runner` running in Docker — `Listening for Jobs`.
+- [x] `copilot-push-signal.yml` dry-run completed on `rdh-exercise-runner` — run ID `24425988694` ✅.
+- [x] Security check: no secrets hardcoded in any committed file.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** E0-S6-T5 (all CI/CD workflow YMLs deployed)
+- **Downstream items unblocked:** E0-S6-T9 (`.github/copilot-mcp.json`), E0-S6-T10 (E2E validation)
+- **Open risks:** runner registration token expires — if runner goes offline, re-register with a new token from Settings → Actions → Runners → New self-hosted runner.

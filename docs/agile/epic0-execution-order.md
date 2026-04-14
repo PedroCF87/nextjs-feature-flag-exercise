@@ -63,7 +63,7 @@ E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target
 
 | Step | Task | Story | Blocker? | Notes |
 |---|---|---|---|---|
-| 22 | E0-S6-T8 | E0-S6 | E0-S2-T4 done | Secrets + self-hosted runner (manual steps required) |
+| ✅ 22 | E0-S6-T8 | E0-S6 | E0-S2-T4 done | Secrets + self-hosted runner — `rdh-exercise-runner` Idle, dry-run `24425988694` ✅ |
 | 23 | E0-S6-T9 | E0-S6 | T22 done | Create `.github/copilot-mcp.json` |
 | 24 | E0-S6-T10 | E0-S6 | T22–T23 done | E2E structural validation + sign checklist |
 
