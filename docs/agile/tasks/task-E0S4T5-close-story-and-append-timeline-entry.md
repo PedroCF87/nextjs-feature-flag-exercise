@@ -21,8 +21,7 @@
 
 As a delivery agent, I want to update the story's `Last updated` metadata field, compute E0-S4 elapsed time, and append the closure entry to `timeline.jsonl` so that the session record is finalized and EPIC-0 is officially closed.
 
-> **Execution context:** T5 runs as a GitHub Issue task in the fork repository and must end with
-> a feature-branch PR merged into `exercise-1`.
+> **Execution context:** T5 runs **locally in VS Code** under the Epic 0 local execution rule — no GitHub Issue, no PR, no feature branch. All commits go directly to `exercise-1`.
 > Define `REPO_ROOT="$(git rev-parse --show-toplevel)"` before running commands.
 
 ---

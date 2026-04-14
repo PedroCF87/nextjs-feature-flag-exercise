@@ -21,7 +21,7 @@
 
 As a delivery agent, I want to create the `documentation.instructions.md` instruction file and register the story's opening in the timeline so that downstream tasks T1–T5 have a governance-compliant AI Layer in place before producing any closure artifacts.
 
-> **Execution context:** T0 runs as a GitHub Issue task in the fork (`nextjs-feature-flag-exercise`).
+> **Execution context:** T0 runs **locally in VS Code** under the Epic 0 local execution rule — no GitHub Issue, no PR, no feature branch. All commits go directly to `exercise-1`.
 > The `docs/` folder is inside the fork root. For command consistency, define `REPO_ROOT` first:
 > `REPO_ROOT="$(git rev-parse --show-toplevel)"`.
 > This task writes only docs-side artifacts. If no file content changes are needed, no commit is required.

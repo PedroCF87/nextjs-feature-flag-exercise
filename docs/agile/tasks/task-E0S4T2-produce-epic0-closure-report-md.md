@@ -21,10 +21,10 @@
 
 As a delivery agent, I want to produce `epic0-closure-report.md` using the DoD evidence map from T1 and the EPIC-0 elapsed time from `timeline-query.js` so that EPIC-0 is formally closed with a traceable, auditable document before EPIC-1 begins.
 
-> **Execution context:** T2 runs as a GitHub Issue task in the fork repository.
+> **Execution context:** T2 runs **locally in VS Code** under the Epic 0 local execution rule — no GitHub Issue, no PR, no feature branch. All commits go directly to `exercise-1`.
 > Define `REPO_ROOT="$(git rev-parse --show-toplevel)"` before running commands.
 > T2 writes one artifact (`.agents/closure/epic0-closure-report.md`) and must finish with a
-> feature-branch PR merged into `exercise-1` before T3 starts.
+> commit to `exercise-1` before T3 starts.
 
 ---
 

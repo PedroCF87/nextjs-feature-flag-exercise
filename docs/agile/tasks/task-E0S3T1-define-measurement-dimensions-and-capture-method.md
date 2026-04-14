@@ -23,7 +23,7 @@ Define the measurement model and capture method for Exercise 1, producing an una
 
 This task defines *what to measure* and *how to measure* before any baseline implementation work starts.
 
-> **Execution context:** T1 runs as a cloud agent via GitHub Issue in the exercise fork. `REPO_ROOT` is derived from `git rev-parse --show-toplevel` at runtime. Hard dependency: E0-S3-T0 must be complete before T1 starts. The definition package in §5 is pre-authored during story authoring; T1 reads source inputs to validate correctness and then commits the confirmed task file via a feature branch PR so T2 can verify T1 was executed.
+> **Execution context:** T1 runs **locally in VS Code** under the Epic 0 local execution rule — no GitHub Issue, no PR, no feature branch. All commits go directly to `exercise-1`. `REPO_ROOT` is derived from `git rev-parse --show-toplevel` at runtime. Hard dependency: E0-S3-T0 must be complete on `exercise-1` before T1 starts. The definition package in §5 is pre-authored during story authoring; T1 reads source inputs to validate correctness and commits the confirmed task file directly to `exercise-1`.
 
 ---
 

@@ -21,7 +21,7 @@
 
 As a delivery agent, I want to confirm that the two closure documents produced by T2 and T3 are committed and pushed to the fork (via their individual merged PRs) and record the final branch + SHA, so that T5 can proceed knowing the EPIC-0 evidence is permanently recorded.
 
-> **Execution context:** T4 runs as a GitHub Issue task in the fork repository and is
+> **Execution context:** T4 runs **locally in VS Code** under the Epic 0 local execution rule — no GitHub Issue, no PR, no feature branch. All commits go directly to `exercise-1`. T4 is
 > verification-only. Define `REPO_ROOT="$(git rev-parse --show-toplevel)"` first.
 
 ---

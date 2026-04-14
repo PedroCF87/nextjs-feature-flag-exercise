@@ -21,7 +21,7 @@
 
 As a delivery agent, I want to systematically verify all 13 EPIC-0 DoD items against evidence from E0-S1, E0-S2, and E0-S3 so that the closure report in T2 is grounded in objective, traceable evidence rather than assumptions.
 
-> **Execution context:** T1 runs as a GitHub Issue task in the fork repository. Define
+> **Execution context:** T1 runs **locally in VS Code** under the Epic 0 local execution rule — no GitHub Issue, no PR, no feature branch. All commits go directly to `exercise-1`. Define
 > `REPO_ROOT="$(git rev-parse --show-toplevel)"` once and use it for all commands.
 > This task writes exactly one file: `.agents/closure/dod-status-draft.md`.
 

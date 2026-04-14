@@ -21,7 +21,7 @@
 
 Execute the time-zero snapshot for Exercise 1 by filling the baseline template with real environment/validation evidence, evaluating all go/no-go checklist items, and signing readiness only when all items are green.
 
-> **Execution context:** T3 runs as a cloud agent via GitHub Issue in the exercise fork. `REPO_ROOT` is derived from `git rev-parse --show-toplevel` at runtime. Hard dependency: E0-S3-T2 PR must be merged into `exercise-1` before T3 starts. Commit only when origin is confirmed to be the personal fork (not `dynamous-business`).
+> **Execution context:** T3 runs **locally in VS Code** under the Epic 0 local execution rule — no GitHub Issue, no PR, no feature branch. All commits go directly to `exercise-1`. `REPO_ROOT` is derived from `git rev-parse --show-toplevel` at runtime. Hard dependency: E0-S3-T2 must be complete on `exercise-1` before T3 starts. Commit only when origin is confirmed to be the personal fork (not `dynamous-business`).
 
 ---
 

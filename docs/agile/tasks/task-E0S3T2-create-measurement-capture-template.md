@@ -21,7 +21,7 @@
 
 Generate the baseline capture template file at `nextjs-feature-flag-exercise/.agents/baseline/measurement-baseline.md`, using the E0-S3-T1 definition package as source of truth and producing a ready-to-fill artifact for T3 (time-zero snapshot).
 
-> **Execution context:** T2 runs as a cloud agent via GitHub Issue in the exercise fork (Codespace or cloud runner). `REPO_ROOT` is derived from `git rev-parse --show-toplevel` at runtime. Hard dependency: E0-S3-T1 PR must be merged into `exercise-1` before T2 starts.
+> **Execution context:** T2 runs **locally in VS Code** under the Epic 0 local execution rule — no GitHub Issue, no PR, no feature branch. All commits go directly to `exercise-1`. `REPO_ROOT` is derived from `git rev-parse --show-toplevel` at runtime. Hard dependency: E0-S3-T1 must be complete on `exercise-1` before T2 starts.
 
 ---
 

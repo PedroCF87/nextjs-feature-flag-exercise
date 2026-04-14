@@ -21,10 +21,10 @@
 
 As a delivery agent, I want to produce `epic1-handoff.md` with live branch state, AI Layer coverage, TASK.md key criteria, known risks, and a signed Go/No-Go statement so that the EPIC-1 implementation agent can begin immediately with zero preparation research.
 
-> **Execution context:** T3 runs as a GitHub Issue task in the fork repository.
+> **Execution context:** T3 runs **locally in VS Code** under the Epic 0 local execution rule — no GitHub Issue, no PR, no feature branch. All commits go directly to `exercise-1`.
 > Define `REPO_ROOT="$(git rev-parse --show-toplevel)"` first and use it for all commands.
 > T3 writes one artifact (`.agents/closure/epic1-handoff.md`) and must finish with a
-> feature-branch PR merged into `exercise-1` before T4 starts.
+> commit to `exercise-1` before T4 starts.
 
 ---
 
