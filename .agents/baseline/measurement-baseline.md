@@ -3,13 +3,13 @@
 | Field | Value |
 |---|---|
 | **Exercise** | Exercise 1 — Baseline |
-| **Date** | [FILL IN — YYYY-MM-DD] |
-| **Executor** | [FILL IN — your name] |
+| **Date** | 2026-04-14 |
+| **Executor** | PedroCF87 |
 | **Repository** | nextjs-feature-flag-exercise (personal fork) |
-| **Branch** | [FILL IN — output of: git branch --show-current] |
-| **Last commit SHA** | [FILL IN — output of: git log --oneline -1] |
-| **Node.js version** | [FILL IN — output of: node --version] |
-| **pnpm version** | [FILL IN — output of: pnpm --version] |
+| **Branch** | exercise-1 |
+| **Last commit SHA** | fd22d00 chore(baseline): add measurement baseline template — E0-S3-T2 Done |
+| **Node.js version** | v22.18.0 |
+| **pnpm version** | 10.28.2 |
 | **Created at** | 2026-04-14 19:49:31 -03 |
 
 ---
@@ -30,29 +30,29 @@
 
 | Command | Exit code | Output snippet | Status |
 |---|---|---|---|
-| `cd server && pnpm run build` | [FILL IN] | [FILL IN] | ✅ / ❌ |
-| `cd server && pnpm run lint` | [FILL IN] | [FILL IN] | ✅ / ❌ |
-| `cd server && pnpm test` | [FILL IN] | [FILL IN] | ✅ / ❌ |
-| `cd client && pnpm run build` | [FILL IN] | [FILL IN] | ✅ / ❌ |
-| `cd client && pnpm run lint` | [FILL IN] | [FILL IN] | ✅ / ❌ |
-| `node --version` | [FILL IN] | [FILL IN] | ✅ / ❌ |
-| `pnpm --version` | [FILL IN] | [FILL IN] | ✅ / ❌ |
+| `cd server && pnpm run build` | 0 | `tsc — compiled successfully` | ✅ |
+| `cd server && pnpm run lint` | 0 | `eslint src — no errors` | ✅ |
+| `cd server && pnpm test` | 0 | `16 tests passed in 138ms` | ✅ |
+| `cd client && pnpm run build` | 0 | `dist/assets/index-C6UQMJAR.js 366.31 kB — built in 2.46s` | ✅ |
+| `cd client && pnpm run lint` | 0 | `eslint . — no errors` | ✅ |
+| `node --version` | 0 | `v22.18.0` | ✅ |
+| `pnpm --version` | 0 | `10.28.2` | ✅ |
 
 ### AI Layer file presence
 
 | Artifact | Expected path | Present |
 |---|---|---|
-| Global rules | `.github/copilot-instructions.md` | ✅ / ❌ |
-| Exercise instructions | `.github/instructions/feature-flag-exercise.instructions.md` | ✅ / ❌ |
-| Coding agent instructions | `.github/instructions/coding-agent.instructions.md` | ✅ / ❌ |
-| RDH workflow analyst agent | `.github/agents/rdh-workflow-analyst.agent.md` | ✅ / ❌ |
-| Codebase gap analyst agent | `.github/agents/codebase-gap-analyst.agent.md` | ✅ / ❌ |
-| Technical manual writer agent | `.github/agents/technical-manual-writer.agent.md` | ✅ / ❌ |
-| Analyze RDH workflow skill | `.github/skills/analyze-rdh-workflow/SKILL.md` | ✅ / ❌ |
-| Gap analysis skill | `.github/skills/gap-analysis/SKILL.md` | ✅ / ❌ |
-| Write technical manual skill | `.github/skills/write-technical-manual/SKILL.md` | ✅ / ❌ |
-| System evolution retro skill | `.github/skills/system-evolution-retro/SKILL.md` | ✅ / ❌ |
-| Copilot setup steps workflow | `.github/workflows/copilot-setup-steps.yml` | ✅ / ❌ |
+| Global rules | `.github/copilot-instructions.md` | ✅ |
+| Exercise instructions | `.github/instructions/feature-flag-exercise.instructions.md` | ✅ |
+| Coding agent instructions | `.github/instructions/coding-agent.instructions.md` | ✅ |
+| RDH workflow analyst agent | `.github/agents/rdh-workflow-analyst.agent.md` | ✅ |
+| Codebase gap analyst agent | `.github/agents/codebase-gap-analyst.agent.md` | ✅ |
+| Technical manual writer agent | `.github/agents/technical-manual-writer.agent.md` | ✅ |
+| Analyze RDH workflow skill | `.github/skills/analyze-rdh-workflow/SKILL.md` | ✅ |
+| Gap analysis skill | `.github/skills/gap-analysis/SKILL.md` | ✅ |
+| Write technical manual skill | `.github/skills/write-technical-manual/SKILL.md` | ✅ |
+| System evolution retro skill | `.github/skills/system-evolution-retro/SKILL.md` | ✅ |
+| Copilot setup steps workflow | `.github/workflows/copilot-setup-steps.yml` | ✅ |
 
 ---
 
@@ -125,15 +125,17 @@ Record blockers, ambiguities, or rework moments observed during implementation.
 
 ## Go/No-Go Checklist for EPIC-1
 
-- [ ] Fork created, cloned, remotes configured (`origin` + `upstream`).
-- [ ] `exercise-1` confirmed as working base branch.
-- [ ] All 7 validation commands pass on `exercise-1`.
-- [ ] Codebase audit completed (E0-S1 evidence).
-- [ ] AI Layer minimum baseline deployed to fork (E0-S2 evidence).
-- [ ] `copilot-setup-steps.yml` dry-run successful (run ID documented).
-- [ ] Measurement capture template filled to "time zero" state.
-- [ ] Capture method understood and documented.
-- [ ] No critical blockers open.
+- [x] Fork created, cloned, remotes configured (`origin` = `PedroCF87/nextjs-feature-flag-exercise`, `upstream` = `dynamous-business/nextjs-feature-flag-exercise`).
+- [x] `exercise-1` confirmed as working base branch.
+- [x] All 7 validation commands pass on `exercise-1` (exit 0 — captured above).
+- [x] Codebase audit completed (`.agents/diagnosis/codebase-audit.md` exists — E0-S1 evidence).
+- [x] AI Layer minimum baseline deployed to fork (E0-S2 Done — 11/11 AI Layer files present).
+- [x] `copilot-setup-steps.yml` dry-run successful (run ID `24424611417` — `.agents/validation/ai-layer-coverage-report.md`).
+- [x] Measurement capture template filled to “time zero” state (Sections 1 + 3 complete).
+- [x] Capture method understood and documented (Section 2 — How to Use This Template).
+- [x] No critical blockers open (all checks green, no ❌ in validation suite or AI Layer).
 
-**Status:** [FILL IN — READY / NOT READY]
-**Signed at:** [FILL IN — node "docs/.github/functions/datetime.js"]
+**Status:** READY
+**Signed at:** 2026-04-14 19:58:49 -03
+
+> READY — Exercise 1 may begin.

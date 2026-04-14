@@ -7,7 +7,7 @@
 | **ID** | E0-S3 |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Supporting agents** | `environment-validator` (T3 — validation suite), `git-ops` (T3 — commit) |
 | **Skills** | `create-exercise-backlog`, `file-timestamps`, `timeline-tracker`, `generate-measurement-template`, `record-time-zero-snapshot`, `validate-exercise-environment`, `validate-ai-layer-coverage` |
@@ -193,7 +193,7 @@
 
 ---
 
-### ✅ [Task E0-S3-T3 — Record time-zero snapshot and sign go/no-go checklist](../tasks/task-E0S3T3-record-time-zero-snapshot-and-sign-go-no-go-checklist.md)
+### [Task E0-S3-T3 — Record time-zero snapshot and sign go/no-go checklist](../tasks/task-E0S3T3-record-time-zero-snapshot-and-sign-go-no-go-checklist.md)
 
 **Goal:** fill in the pre-implementation snapshot (AC-4) and sign the go/no-go checklist (AC-5) in the template.
 
