@@ -19,14 +19,14 @@
 
 ## 1) Task statement
 
-> **Execution context:** T4 runs as a **GitHub Copilot cloud agent**, invoked via a GitHub Issue
-> in the personal fork. The session is stateless — the T0 PR must be merged before this task starts
+> **Execution context:** T4 runs **locally in VS Code** (Epic 0 local execution model — no PR required).
+> T0 artifacts must exist before this task starts
 > (T4 may run in parallel with T1, T2, T3).
 > Define `REPO_ROOT` once at the start of any shell session:
 > ```bash
 > REPO_ROOT="$(git rev-parse --show-toplevel)"
 > ```
-> T4 ends with a feature branch PR against `exercise-1`.
+> T4 ends with a direct commit and push to `exercise-1`.
 
 Enable the GitHub Copilot cloud agent environment in the personal fork of `nextjs-feature-flag-exercise` by:
 1. Creating `nextjs-feature-flag-exercise/.github/workflows/copilot-setup-steps.yml` with the mandatory structure required by GitHub Copilot.
@@ -193,21 +193,18 @@ Expected: file listed with size > 0.
 
 ### Step 7 — Commit and push
 
-Commit and push `copilot-setup-steps.yml` to the fork via a feature branch. The governance
+Commit and push `copilot-setup-steps.yml` directly to `exercise-1`. The governance
 checklist is a local reference document used for GitHub UI manual steps — commit it too so
-it’s preserved in the fork:
+it's preserved in the fork:
 
 ```bash
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
-git checkout -b exercise-1/copilot-setup-steps
 git add .github/workflows/copilot-setup-steps.yml .agents/governance/copilot-environment-checklist.md
 git status  # confirm only these 2 files are staged
 git commit -m "feat(ai-layer): add copilot-setup-steps workflow and governance checklist"
-git push origin exercise-1/copilot-setup-steps
+git push origin exercise-1
 ```
-
-Open a Pull Request against `exercise-1` in the personal fork.
 
 **Stop condition:** push succeeds. If `origin` is `dynamous-business/nextjs-feature-flag-exercise`, block — return to E0-S1-T1.
 

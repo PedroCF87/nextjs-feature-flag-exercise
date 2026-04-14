@@ -24,8 +24,7 @@
 > ```bash
 > REPO_ROOT="$(git -C "/delfos/Projetos/ITBC - Desafio RDH/nextjs-feature-flag-exercise" rev-parse --show-toplevel)"
 > ```
-> T0 ends with a feature branch commit + push so that T1–T4 cloud agents can find the
-> new artifacts committed in the fork.
+> T0 ends with a direct commit and push to `exercise-1` (Epic 0 local execution model — no PR required).
 
 Create the 8 missing AI Layer management artifacts in `docs/.github/` that serve as the execution tooling for Story E0-S2 itself. These artifacts must exist before tasks T1–T4 begin so that the responsible agents (`rules-bootstrap`, `copilot-config-refactor`, `copilot-env-specialist`) have the skills and instructions they need to operate.
 
@@ -251,13 +250,10 @@ git add \
   docs/.github/instructions/copilot-config-governance.instructions.md
 git status  # confirm only these 9 files are staged
 git commit -m "feat(docs): add E0-S2 management agents, skills, and instructions"
-git push origin exercise-1/bootstrap-ai-layer-management
+git push origin exercise-1
 ```
 
-Open a Pull Request against `exercise-1` in the personal fork.
-
-> **Stop condition:** PR merged before T1 starts. T1–T4 cloud agents will `git clone` or
-> `checkout` a fresh state — if T0's artifacts are not merged, the Step 0 pre-check will fail.
+**Stop condition:** push succeeds. If `origin` is `dynamous-business/nextjs-feature-flag-exercise`, block — return to E0-S1-T1.
 
 ---
 
@@ -338,5 +334,4 @@ node "$REPO_ROOT/docs/.github/functions/check-ai-layer-files.js" \
 - [ ] No file contains hardcoded secrets, tokens, or actual credential values.
 - [ ] No file contains unfilled stubs or incomplete content markers.
 - [ ] All 9 files staged and committed: `check-ai-layer-files.js` exits `0`.
-- [ ] Feature branch `exercise-1/bootstrap-ai-layer-management` pushed to fork.
-- [ ] PR opened against `exercise-1` and **merged** before T1 starts.
+- [x] Committed directly to `exercise-1` (Epic 0 local execution rule — no PR required).

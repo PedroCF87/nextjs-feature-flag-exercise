@@ -430,7 +430,7 @@ jobs:
 
 **Acceptance:** all 11 AI Layer paths confirmed present in the fork (each committed by T1–T4); dry-run workflow run ID documented; AI Layer coverage report committed; all 6 checklist items marked complete.
 
-**depends_on:** T1, T2, T3, T4 (all individual PRs must be merged before T5 starts)
+**depends_on:** T1, T2, T3, T4 (all must be committed to `exercise-1` before T5 starts)
 
 ---
 

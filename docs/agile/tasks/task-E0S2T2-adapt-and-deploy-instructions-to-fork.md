@@ -19,14 +19,14 @@
 
 ## 1) Task statement
 
-> **Execution context:** T2 runs as a **GitHub Copilot cloud agent**, invoked via a GitHub Issue
-> in the personal fork. The session is stateless — the T0 PR must be merged before this task starts
+> **Execution context:** T2 runs **locally in VS Code** (Epic 0 local execution model — no PR required).
+> T0 artifacts must exist before this task starts
 > (T2 may run in parallel with T1; it depends only on T0 artifacts).
 > Define `REPO_ROOT` once at the start of any shell session:
 > ```bash
 > REPO_ROOT="$(git rev-parse --show-toplevel)"
 > ```
-> T2 ends with a feature branch PR against `exercise-1`.
+> T2 ends with a direct commit and push to `exercise-1`.
 
 Create the `nextjs-feature-flag-exercise/.github/instructions/` directory and deploy two adapted instruction files into it:
 
@@ -137,19 +137,16 @@ All checks must pass before marking Done.
 
 ### Step 7 — Commit and push
 
-Commit and push both instruction files to the fork via a feature branch:
+Commit and push both instruction files directly to `exercise-1`:
 
 ```bash
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
-git checkout -b exercise-1/deploy-instructions
 git add .github/instructions/feature-flag-exercise.instructions.md .github/instructions/coding-agent.instructions.md
 git status  # confirm only these 2 files are staged
 git commit -m "feat(ai-layer): deploy adapted instructions to fork"
-git push origin exercise-1/deploy-instructions
+git push origin exercise-1
 ```
-
-Open a Pull Request against `exercise-1` in the personal fork.
 
 **Stop condition:** push succeeds. If `origin` is `dynamous-business/nextjs-feature-flag-exercise`, block — return to E0-S1-T1.
 

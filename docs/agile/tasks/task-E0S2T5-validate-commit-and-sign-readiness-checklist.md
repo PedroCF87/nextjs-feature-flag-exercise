@@ -19,18 +19,17 @@
 
 ## 1) Task statement
 
-> **Execution context:** T5 runs as a **GitHub Copilot cloud agent**, invoked via a GitHub Issue.
-> The T1, T2, T3, and T4 PRs must ALL be merged before this task starts.
+> **Execution context:** T5 runs **locally in VS Code** (Epic 0 local execution model — no PR required).
+> T1–T4 must all be committed to `exercise-1` before this task starts.
 > Define `REPO_ROOT` once at the start of any shell session:
 > ```bash
 > REPO_ROOT="$(git rev-parse --show-toplevel)"
 > ```
-> **T5 does NOT make a bundle commit.** T1–T4 each committed their own artifacts via individual
-> PRs. T5 scope: (1) verify all 11 artifacts exist from merged PRs, (2) trigger the dry-run,
-> (3) create the AI Layer coverage report, (4) commit and push the coverage report
-> as its own feature branch PR against `exercise-1`.
+> **T5 does NOT make a bundle commit.** T1–T4 each committed their own artifacts directly to
+> `exercise-1`. T5 scope: (1) verify all 11 artifacts exist, (2) trigger the dry-run,
+> (3) create the AI Layer coverage report, (4) commit the coverage report directly to `exercise-1`.
 
-Verify all T1–T4 AI Layer artifacts exist in the fork (each committed via their individual task PRs), trigger the `copilot-setup-steps.yml` dry-run via GitHub Actions, document the run ID, and produce and commit the AI Layer coverage report.
+Verify all T1–T4 AI Layer artifacts exist in the fork (each committed directly to `exercise-1`), trigger the `copilot-setup-steps.yml` dry-run via GitHub Actions, document the run ID, and produce and commit the AI Layer coverage report.
 
 This task is the Story E0-S2 exit gate — it does not proceed until every prior task's artifacts are confirmed present and the dry-run passes.
 
@@ -117,7 +116,7 @@ node "$REPO_ROOT/docs/.github/functions/validate-workflow-file.js" \
 
 ### Step 3 — Verify T1–T4 artifacts are committed in the fork
 
-Each of T1, T2, T3, T4 committed its own artifacts via individual merged PRs.
+Each of T1, T2, T3, T4 committed its own artifacts directly to `exercise-1`.
 Confirm their commits are visible in the branch history:
 
 ```bash
@@ -131,7 +130,7 @@ Expected: the log shows at minimum these 4 commit messages (order may vary):
 - `feat(ai-layer): deploy adapted agents and skills to fork` (T3)
 - `feat(ai-layer): add copilot-setup-steps workflow and governance checklist` (T4)
 
-**Stop condition:** all 11 paths from Step 1 show `✅`. If any path is `❌`, the responsible PR was not merged — block and return to that task.
+**Stop condition:** all 11 paths from Step 1 show `✅`. If any path is `❌`, the responsible task's commit is missing — block and return to that task.
 
 ### Step 4 — Verify remote is a personal fork
 
@@ -147,7 +146,7 @@ git -C "$REPO_ROOT" remote get-url origin
 Go to the fork on GitHub: `https://github.com/<your-username>/nextjs-feature-flag-exercise/actions/workflows/copilot-setup-steps.yml`
 
 1. Click "Run workflow".
-2. Select branch: `exercise-1` (or the feature branch from Step 3).
+2. Select branch: `exercise-1`.
 3. Click "Run workflow" to confirm.
 4. Wait for the run to complete.
 5. Record the run ID (visible in the URL: `runs/<run-id>`).
@@ -178,22 +177,19 @@ Using the `validate-ai-layer-coverage` skill, produce the coverage report at `ne
 
 Replace `<RECORD_ID>` with the actual GitHub Actions run ID recorded in Step 5.
 
-### Step 7 — Commit coverage report and open PR
+### Step 7 — Commit coverage report
 
 ```bash
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
-git checkout -b exercise-1/ai-layer-coverage-report
 mkdir -p .agents/validation
 git add .agents/validation/ai-layer-coverage-report.md
 git status  # confirm only the coverage report is staged
 git commit -m "docs(ai-layer): add E0-S2 AI Layer coverage report with dry-run evidence"
-git push origin exercise-1/ai-layer-coverage-report
+git push origin exercise-1
 ```
 
-Open a Pull Request against `exercise-1` in the personal fork.
-
-After the PR is merged, update `docs/agile/stories/story-E0S2-minimum-ai-layer.md`:
+After committing, update `docs/agile/stories/story-E0S2-minimum-ai-layer.md`:
 change `**Status**` from `In Progress` to `Done`.
 
 ```bash
@@ -266,12 +262,12 @@ ls -la "$REPO_ROOT/.agents/validation/ai-layer-coverage-report.md"
 
 ### BDD verification signal
 
-**Given** all AI Layer artifacts from T1, T2, T3, T4 are committed in the fork (each via its own merged PR)
+**Given** all AI Layer artifacts from T1, T2, T3, T4 are committed in the fork (each via its own direct commit to `exercise-1`)
 **When** I run `check-ai-layer-files.js` with all 11 paths and all show `✅`, verify the 4 individual commit messages exist in the branch history, and trigger the `copilot-setup-steps.yml` `workflow_dispatch` dry-run
 **Then** the dry-run workflow in GitHub Actions completes with all 7 steps passing
 **And** the coverage report at `.agents/validation/ai-layer-coverage-report.md` exists with all 6 readiness items marked `✅`
 **And** the dry-run GitHub Actions run ID is documented in the coverage report
-**And** the coverage report is committed via feature branch `exercise-1/ai-layer-coverage-report` and its PR is merged
+**And** the coverage report is committed directly to `exercise-1`
 
 **Affected files:**
 
@@ -300,5 +296,5 @@ ls -la "$REPO_ROOT/.agents/validation/ai-layer-coverage-report.md"
 - [ ] `copilot-setup-steps.yml` dry-run triggered and all 7 steps passed.
 - [ ] GitHub Actions run ID documented in the coverage report.
 - [ ] Coverage report exists at `.agents/validation/ai-layer-coverage-report.md` with all 6 items `✅`.
-- [ ] Coverage report committed via feature branch `exercise-1/ai-layer-coverage-report` and PR merged.
-- [ ] Story E0-S2 status updated to `Done` after PR is merged.
+- [ ] Coverage report committed directly to `exercise-1`.
+- [ ] Story E0-S2 status updated to `Done`.

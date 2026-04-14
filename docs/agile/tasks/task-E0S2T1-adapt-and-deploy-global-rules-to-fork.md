@@ -19,13 +19,13 @@
 
 ## 1) Task statement
 
-> **Execution context:** T1 runs as a **GitHub Copilot cloud agent**, invoked via a GitHub Issue
-> in the personal fork. The session is stateless — the T0 PR must be merged before this task starts.
+> **Execution context:** T1 runs **locally in VS Code** (Epic 0 local execution model — no PR required).
+> T0 artifacts must exist before this task starts.
 > Define `REPO_ROOT` once at the start of any shell session:
 > ```bash
 > REPO_ROOT="$(git rev-parse --show-toplevel)"
 > ```
-> All paths in this task use `$REPO_ROOT`. T1 ends with a feature branch PR against `exercise-1`.
+> All paths in this task use `$REPO_ROOT`. T1 ends with a direct commit and push to `exercise-1`.
 
 Produce a fork-scoped `copilot-instructions.md` for the personal fork of `nextjs-feature-flag-exercise` by adapting the workspace-level `docs/.github/copilot-instructions.md`. The fork-scoped version must replace the multi-repo workspace context with exercise-specific content and contain all 7 required sections defined in the `global-rules-bootstrap` skill. The file must be committed in this task — the execution plan ends with a commit and push to the fork.
 
@@ -176,19 +176,16 @@ Read the written file back using `read_file` and confirm:
 
 ### Step 5 — Commit and push
 
-Commit and push the global rules file to the fork via a feature branch:
+Commit and push the global rules file directly to `exercise-1`:
 
 ```bash
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
-git checkout -b exercise-1/deploy-global-rules
 git add .github/copilot-instructions.md
 git status  # confirm only this file is staged
 git commit -m "feat(ai-layer): deploy fork-scoped global copilot rules"
-git push origin exercise-1/deploy-global-rules
+git push origin exercise-1
 ```
-
-Open a Pull Request against `exercise-1` in the personal fork.
 
 **Stop condition:** push succeeds. If `origin` is `dynamous-business/nextjs-feature-flag-exercise`, block — return to E0-S1-T1 and configure a personal fork first.
 

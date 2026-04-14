@@ -19,14 +19,14 @@
 
 ## 1) Task statement
 
-> **Execution context:** T3 runs as a **GitHub Copilot cloud agent**, invoked via a GitHub Issue
-> in the personal fork. The session is stateless — the T0 PR must be merged before this task starts
+> **Execution context:** T3 runs **locally in VS Code** (Epic 0 local execution model — no PR required).
+> T0 artifacts must exist before this task starts
 > (T3 may run in parallel with T1 and T2).
 > Define `REPO_ROOT` once at the start of any shell session:
 > ```bash
 > REPO_ROOT="$(git rev-parse --show-toplevel)"
 > ```
-> T3 ends with a feature branch PR against `exercise-1`.
+> T3 ends with a direct commit and push to `exercise-1`.
 
 Create the `nextjs-feature-flag-exercise/.github/agents/` and `nextjs-feature-flag-exercise/.github/skills/` directories and deploy 3 adapted agents and 4 skills into them. Each agent must be adapted to remove workspace-level multi-repo context and to reference the exercise repository. Skills are methodology-agnostic and can be copied with no adaptation.
 
@@ -182,19 +182,16 @@ All 7 items must show `✅`.
 
 ### Step 8 — Commit and push
 
-Commit and push all 7 deployed artifacts to the fork via a feature branch:
+Commit and push all 7 deployed artifacts directly to `exercise-1`:
 
 ```bash
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
-git checkout -b exercise-1/deploy-agents-and-skills
 git add .github/agents/ .github/skills/
 git status  # confirm only agent/skill files are staged
 git commit -m "feat(ai-layer): deploy adapted agents and skills to fork"
-git push origin exercise-1/deploy-agents-and-skills
+git push origin exercise-1
 ```
-
-Open a Pull Request against `exercise-1` in the personal fork.
 
 **Stop condition:** push succeeds. If `origin` is `dynamous-business/nextjs-feature-flag-exercise`, block — return to E0-S1-T1.
 
