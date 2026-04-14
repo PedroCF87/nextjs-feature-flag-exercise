@@ -384,7 +384,7 @@
 
 ---
 
-### [Task E0-S6-T7 — Create PR tag system documentation](../tasks/task-E0S6T7-create-pr-tag-system-documentation.md)
+### ✅ [Task E0-S6-T7 — Create PR tag system documentation](../tasks/task-E0S6T7-create-pr-tag-system-documentation.md)
 
 **Goal:** document the `[EX:...]` PR comment tag system as an instruction file.
 

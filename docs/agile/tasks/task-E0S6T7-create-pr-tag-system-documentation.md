@@ -8,12 +8,12 @@
 | **Story** | [E0-S6 — CI/CD Pipeline for Issue-Driven Execution](../stories/story-E0S6-ci-cd-pipeline-automation.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `prompt-engineer` |
 | **Depends on** | [E0-S6-T1](task-E0S6T1-create-copilot-push-signal-yml.md) |
 | **Blocks** | — |
 | Created at | 2026-04-13 23:11:22 -03 |
-| Last updated | 2026-04-13 23:15:02 -03 |
+| Last updated | 2026-04-14 12:51:13 -03 |
 
 ---
 
@@ -75,31 +75,39 @@ Create `docs/.github/instructions/pr-comment-tags.instructions.md` documenting t
 Record evidence with exact commands and outputs:
 
 - Command(s) executed:
-- Exit code(s):
+  - `ls -la docs/.github/instructions/pr-comment-tags.instructions.md`
+  - `head -4 docs/.github/instructions/pr-comment-tags.instructions.md`
+  - `grep -c "[EX:TAG]" docs/.github/instructions/pr-comment-tags.instructions.md` (for each of 5 tags)
+- Exit code(s): all `0`
 - Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+  - File exists (5808 bytes).
+  - `applyTo: ".github/workflows/**"` present in front matter.
+  - All 5 mandatory tags present: `[EX:REVIEW-HAS-SUGGESTIONS]` (3), `[EX:REVIEW-CLEAN]` (3), `[EX:FIX-APPLIED]` (3), `[EX:TRIGGER-FIX-REQUEST]` (6), `[EX:FIX-INCOMPLETE]` (3).
+  - Placement rules section present.
+  - 6 example subsections (clean review, review with suggestions, fix request, fix applied, fix incomplete + retry, plus lifecycle flow).
+- Files created/updated: `docs/.github/instructions/pr-comment-tags.instructions.md`
+- Risks found / mitigations: none — documentation-only artifact.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** all task dependencies are available and the `[EX:...]` tag protocol is defined in `docs/references/github-workflow-system.md` §3,
+- **When** `docs/.github/instructions/pr-comment-tags.instructions.md` is created with dictionary, placement rules, and examples,
+- **Then** all 5 mandatory tags are documented, `applyTo` scopes to workflow files, and the file is ready for Copilot agent consumption.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- Upstream dependencies resolved: E0-S6-T1 done (tag context exists in committed workflows).
+- Downstream items unblocked: Phase 1 complete — Phase 2 (E0-S1-T3 codebase audit) can start.
+- Open risks (if any): none — documentation-only artifact.

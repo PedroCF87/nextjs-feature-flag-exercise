@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-14 12:47:40 -03",
+  "generated_at": "2026-04-14 12:52:30 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -799,7 +799,7 @@
       "type": "task",
       "epic": "EPIC-0",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "prompt-engineer"
       ],
@@ -808,7 +808,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-13 23:11:22 -03",
-      "last_updated": "2026-04-13 23:15:02 -03",
+      "last_updated": "2026-04-14 12:51:13 -03",
       "task_file": "docs/agile/tasks/task-E0S6T7-create-pr-tag-system-documentation.md"
     },
     {
