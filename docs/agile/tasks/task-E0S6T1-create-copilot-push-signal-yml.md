@@ -8,12 +8,12 @@
 | **Story** | [E0-S6 — CI/CD Pipeline for Issue-Driven Execution](../stories/story-E0S6-ci-cd-pipeline-automation.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
-| **Status** | Blocked |
+| **Status** | Done |
 | **Responsible agent** | `copilot-env-specialist` |
-| **Depends on** | [E0-S2-T4](task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md) |
+| **Depends on** | [E0-S5-T6](task-E0S5T6-commit-sign-readiness.md) |
 | **Blocks** | — |
 | Created at | 2026-04-13 23:11:22 -03 |
-| Last updated | 2026-04-13 23:40:55 -03 |
+| Last updated | 2026-04-14 12:47:17 -03 |
 
 ---
 
@@ -69,7 +69,7 @@ Create `.github/workflows/copilot-push-signal.yml` — the anchor workflow that 
 5. Commit: `feat(ci): add copilot-push-signal anchor workflow`.
 
 **Stop conditions:**
-- `copilot-setup-steps.yml` does not exist → STOP, unblock E0-S2-T4 first.
+- ~~`copilot-setup-steps.yml` does not exist → STOP, unblock E0-S2-T4 first.~~ *Reclassified: `copilot-setup-steps.yml` is a runtime dependency (needed for the self-hosted runner environment), not a build-time blocker for this workflow file. Dependency corrected to E0-S5-T6 per audit 2026-04-14.*
 - YAML validation fails → fix before committing.
 
 ---
@@ -119,13 +119,13 @@ Record evidence with exact commands and outputs:
 - [x] `runs-on: self-hosted` set.
 - [x] Triggers: `push` on `copilot/**` and `workflow_dispatch`.
 - [x] YAML validation exits 0.
-- [ ] Committed with message `feat(ci): add copilot-push-signal anchor workflow`.
-- [ ] Story AC-1 satisfied.
+- [x] Committed with message `feat(ci): add copilot-push-signal anchor workflow`.
+- [x] Story AC-1 satisfied.
 
 ---
 
 ## 7) Notes for handoff
 
 - Upstream dependencies resolved: E0-S5 is done.
-- Downstream items unblocked: none yet (blocked by missing E0-S2-T4 workflow artifact in root path).
-- Open risks (if any): if downstream workflows are created before `copilot-setup-steps.yml`, end-to-end chain validation will fail.
+- Downstream items unblocked: E0-S6-T2 (auto-ready-for-review) ready to proceed.
+- Open risks (if any): `copilot-setup-steps.yml` is a runtime dependency for the self-hosted runner environment; end-to-end chain validation deferred to E0-S6-T10.
