@@ -8,12 +8,12 @@
 | **Story** | [E0-S3 — Definition of Measurement Baseline](../stories/story-E0S3-measurement-baseline.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | [E0-S3-T1 — Define measurement dimensions and capture method](task-E0S3T1-define-measurement-dimensions-and-capture-method.md), [E0-S3-T0 — Bootstrap AI Layer artifacts for this story](task-E0S3T0-bootstrap-ai-layer-artifacts-for-this-story.md) |
 | **Blocks** | E0-S3-T3 |
 | Created at | 2026-04-11 16:43:15 -03 |
-| Last updated | 2026-04-11 17:09:31 -03 |
+| Last updated | 2026-04-14 19:50:00 -03 |
 
 ---
 
@@ -185,10 +185,10 @@ Expected: includes `birthtime`; template `Created at` matches that value.
 
 ## 6) Definition of Done
 
-- [ ] Dependencies (skill/instruction files) verified via command evidence.
-- [ ] Baseline template file exists at the expected path.
-- [ ] Required structure present, including Friction Log and Go/No-Go blocks.
-- [ ] Placeholder-only policy respected (`[FILL IN]` fields; no real measurements).
-- [ ] `Created at` in template header matches filesystem birthtime.
-- [ ] Feature branch `exercise-1/measurement-template` pushed and PR merged into `exercise-1`.
-- [ ] E0-S3-T3 is unblocked.
+- [x] Dependencies (skill/instruction files) verified via command evidence.
+- [x] Baseline template file exists at the expected path.
+- [x] Required structure present, including Friction Log and Go/No-Go blocks.
+- [x] Placeholder-only policy respected (`[FILL IN]` fields; no real measurements).
+- [x] `Created at` in template header matches filesystem birthtime (`2026-04-14 19:49:31 -03`).
+- [x] Committed directly to `exercise-1` (Epic 0 rule — no PR required).
+- [x] E0-S3-T3 is unblocked.

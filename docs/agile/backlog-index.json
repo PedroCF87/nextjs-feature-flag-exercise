@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-14 19:46:26 -03",
+  "generated_at": "2026-04-14 19:51:21 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -412,7 +412,7 @@
       "type": "task",
       "epic": "EPIC-0",
       "priority": "P1",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "agile-exercise-planner"
       ],
@@ -424,7 +424,7 @@
         "E0-S3-T3"
       ],
       "created_at": "2026-04-11 16:43:15 -03",
-      "last_updated": "2026-04-11 17:09:31 -03",
+      "last_updated": "2026-04-14 19:50:00 -03",
       "task_file": "docs/agile/tasks/task-E0S3T2-create-measurement-capture-template.md"
     },
     {
