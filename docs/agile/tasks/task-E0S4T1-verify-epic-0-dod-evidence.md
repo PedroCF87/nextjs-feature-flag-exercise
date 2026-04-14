@@ -8,12 +8,12 @@
 | **Story** | [E0-S4 — Preparation Closure and Handoff to EPIC-1](../stories/story-E0S4-preparation-closure.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `project-adaptation-analyst` |
 | **Depends on** | [E0-S4-T0 — Bootstrap AI Layer artifacts](../tasks/task-E0S4T0-bootstrap-ai-layer-artifacts.md) |
 | **Blocks** | E0-S4-T2, E0-S4-T3 |
 | Created at | 2026-04-11 20:50:15 -03 |
-| Last updated | 2026-04-12 15:13:58 -03 |
+| Last updated | 2026-04-14 20:13:01 -03 |
 
 ---
 
@@ -231,11 +231,11 @@ Open a PR against `exercise-1` and merge before T2 starts.
 
 ## 6) Definition of Done
 
-- [ ] `check-prereqs.js exercise-1` exits 0.
-- [ ] `check-ai-layer-files.js --table` shows `✅` for all 5 critical artifacts.
-- [ ] `measurement-baseline.md` contains `READY — Exercise 1 may begin.` declaration.
-- [ ] 13-item EPIC-0 DoD status map is built with no empty status cells.
-- [ ] Every ❌ item has a mitigation note.
-- [ ] Top 3 friction points are identified with phase, description, impact, and source reference.
-- [ ] `dod-status-draft.md` exists in `.agents/closure/` and is ready for T2 consumption.
-- [ ] Branch `exercise-1/epic0-dod-status-draft` pushed and PR merged into `exercise-1`.
+- [x] `check-prereqs.js exercise-1` exits 0.
+- [x] `check-ai-layer-files.js --table` shows `✅` for all 5 critical artifacts.
+- [x] `measurement-baseline.md` contains `READY — Exercise 1 may begin.` declaration.
+- [x] 13-item EPIC-0 DoD status map is built with no empty status cells (15 items total: 14 ✅ / 1 ⚠️ / 0 ❌).
+- [x] Every ❌ item has a mitigation note (none ❌; ⚠️ item 9 has mitigation).
+- [x] Top 3 friction points identified with phase, description, impact, and source reference.
+- [x] `dod-status-draft.md` exists in `.agents/closure/` and is ready for T2 consumption.
+- [x] Committed directly to `exercise-1` under Epic 0 local execution rule (no branch/PR required).
