@@ -45,7 +45,7 @@ E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target
 
 | Step | Task | Story | Blocker? | Notes |
 |---|---|---|---|---|
-| 16 | E0-S2-T0 | E0-S2 | E0-S1 done | Bootstrap AI Layer mgmt artifacts |
+| ✅ 16 | E0-S2-T0 | E0-S2 | E0-S1 done | Bootstrap AI Layer mgmt artifacts |
 | 17 | E0-S2-T1 | E0-S2 | T0 done | Deploy global rules to fork |
 | 18 | E0-S2-T2 | E0-S2 | T0 done | Deploy instructions to fork |
 | 19 | E0-S2-T3 | E0-S2 | T0 done | Deploy agents and skills to fork |

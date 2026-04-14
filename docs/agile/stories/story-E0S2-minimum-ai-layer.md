@@ -140,7 +140,7 @@
 
 ## 4) Tasks
 
-### [Task E0-S2-T0 — Bootstrap AI Layer management artifacts](../tasks/task-E0S2T0-bootstrap-ai-layer-management-artifacts.md)
+### ✅ [Task E0-S2-T0 — Bootstrap AI Layer management artifacts](../tasks/task-E0S2T0-bootstrap-ai-layer-management-artifacts.md)
 
 **Goal:** create the management agents, skills, and instructions referenced in this story's metadata that do not yet exist in `Docs/.github/`. These artifacts are the tools used to *execute* E0-S2 itself.
 
