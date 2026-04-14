@@ -9,23 +9,23 @@
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `prompt-engineer`, `agile-exercise-planner` |
+| **Responsible agent** | `prompt-engineer` |
 | **Depends on** | E0-S1-T2 |
 | **Blocks** | — |
 | Created at | 2026-04-13 13:23:32 -03 |
-| Last updated | 2026-04-13 13:23:32 -03 |
+| Last updated | 2026-04-13 20:59:09 -03 |
 
 ---
 
 ## 1) Task statement
 
-Create `Docs/.github/agents/story-task-reviewer.agent.md` — an agent specialized in reviewing agile story and task markdown files, running script-based validation gates, and producing inline PR review suggestions with a verdict of `approve` or `request-changes`.
+Create `docs/.github/agents/story-task-reviewer.agent.md` — an agent specialized in reviewing agile story and task markdown files, running script-based validation gates, and producing inline PR review suggestions with a verdict of `approve` or `request-changes`.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-1. File `Docs/.github/agents/story-task-reviewer.agent.md` exists and is readable.
+1. File `docs/.github/agents/story-task-reviewer.agent.md` exists and is readable.
 2. YAML frontmatter contains: `name: story-task-reviewer`, `description`, `tools: ["read", "search", "execute", "edit"]`.
 3. Markdown body includes all 5 sections: `Core Responsibilities`, `Methodology`, `Conventions to Follow`, `Output Standards`, `Anti-Patterns to Avoid`.
 4. `Output Standards` defines the PR review comment format (verdict `approve`/`request-changes` + inline suggestion structure).
@@ -41,12 +41,12 @@ Create `Docs/.github/agents/story-task-reviewer.agent.md` — an agent specializ
 **Agent:** `prompt-engineer` | **Skill:** `create-specialist-agent`
 
 **Artifacts to create:**
-- `Docs/.github/agents/story-task-reviewer.agent.md`
+- `docs/.github/agents/story-task-reviewer.agent.md`
 
 **Sub-tasks:**
 
-1. Read `Docs/.github/agents/agile-quality-auditor.agent.md` as the reference for review methodology.
-2. Read `Docs/.github/skills/audit-agile-artifacts/SKILL.md` to understand the validation gates.
+1. Read `docs/.github/agents/agile-quality-auditor.agent.md` as the reference for review methodology.
+2. Read `docs/.github/skills/audit-agile-artifacts/SKILL.md` to understand the validation gates.
 3. Create `story-task-reviewer.agent.md` with:
    - **Purpose:** independent review of agile documents with inline suggestions.
    - **Core responsibilities:**
@@ -64,7 +64,7 @@ Create `Docs/.github/agents/story-task-reviewer.agent.md` — an agent specializ
 
 **Acceptance:** agent file exists with review methodology, validation gates, inline suggestion format, and anti-patterns.
 
-**depends_on:** E0-S2 completed
+**depends_on:** E0-S1-T2 completed
 
 ---
 

@@ -9,11 +9,11 @@
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `prompt-engineer`, `agile-exercise-planner` |
+| **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | E0-S5-T4 |
 | **Blocks** | — |
 | Created at | 2026-04-13 13:23:32 -03 |
-| Last updated | 2026-04-13 13:23:32 -03 |
+| Last updated | 2026-04-13 20:59:09 -03 |
 
 ---
 
@@ -25,9 +25,9 @@ Run an end-to-end dry-run validation of the 4 automation artifacts: invoke `scaf
 
 ## 2) Verifiable expected outcome
 
-1. At least one story MD exists under `Docs/agile/stories/story-E1S*.md`.
-2. `node Docs/.github/functions/validate-task-pack.js` confirms the generated story has all required sections.
-3. At least one task MD exists under `Docs/agile/tasks/task-E1S*T*.md`.
+1. At least one story MD exists under `docs/agile/stories/story-E1S*.md`.
+2. `node docs/.github/functions/validate-task-pack.js` confirms the generated story has all required sections.
+3. At least one task MD exists under `docs/agile/tasks/task-E1S*T*.md`.
 4. `node create-github-issue-from-task.js <task-file> <repo> --dry-run` exits 0.
 5. Dry-run output shows Issue title in format `[E1-S*-T*] <title>` with labels `epic:E1`, `story:E1-S*`, `priority:P*`.
 6. Commands, exit codes, and truncated stdout are recorded in section 5 of this file.

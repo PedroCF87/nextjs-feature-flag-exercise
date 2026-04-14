@@ -9,28 +9,28 @@
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `prompt-engineer`, `agile-exercise-planner` |
+| **Responsible agent** | `git-ops` |
 | **Depends on** | E0-S5-T5 |
 | **Blocks** | — |
 | Created at | 2026-04-13 13:23:32 -03 |
-| Last updated | 2026-04-13 13:23:32 -03 |
+| Last updated | 2026-04-13 20:59:09 -03 |
 
 ---
 
 ## 1) Task statement
 
-Commit all E0-S5 artifacts to the Docs repository, push to `origin`, create a PR, and sign the automation readiness checklist with all 6 items checked — marking Story E0-S5 as `Done` and Epic 1 execution as unblocked.
+Commit all E0-S5 artifacts to the repository, push to `origin/exercise-1`, create a PR, and sign the automation readiness checklist with all 6 items checked — marking Story E0-S5 as `Done` and Epic 1 execution as unblocked.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-1. `git diff --name-only origin/main` shows all 4 automation artifacts in the diff.
+1. `git diff --name-only origin/exercise-1` shows all 4 automation artifacts in the diff.
 2. `git push origin` exits 0.
-3. PR exists in `dynamous-business/Docs` with title `feat(automation): add Epic 1 execution automation artifacts`.
+3. PR exists in `PedroCF87/nextjs-feature-flag-exercise` with title `feat(automation): add Epic 1 execution automation artifacts`.
 4. PR body references this task (`E0-S5-T6`) and the parent story (`E0-S5`).
 5. Automation readiness checklist in task section 6 has all 6 items checked (including commit SHA).
-6. `node Docs/.github/functions/sync-backlog-index.js` exits 0 after story E0-S5 status is updated to `Done`.
+6. `node docs/.github/functions/sync-backlog-index.js` exits 0 after story E0-S5 status is updated to `Done`.
 
 ---
 
@@ -43,13 +43,13 @@ Commit all E0-S5 artifacts to the Docs repository, push to `origin`, create a PR
 **Sub-tasks:**
 
 1. Verify all 4 automation artifacts exist:
-   - [ ] `Docs/.github/agents/story-task-reviewer.agent.md`
-   - [ ] `Docs/.github/skills/scaffold-stories-from-epic/SKILL.md`
-   - [ ] `Docs/.github/functions/create-github-issue-from-task.js`
-   - [ ] `Docs/.github/skills/execute-task-from-issue/SKILL.md`
+   - [ ] `docs/.github/agents/story-task-reviewer.agent.md`
+   - [ ] `docs/.github/skills/scaffold-stories-from-epic/SKILL.md`
+   - [ ] `docs/.github/functions/create-github-issue-from-task.js`
+   - [ ] `docs/.github/skills/execute-task-from-issue/SKILL.md`
 2. Verify dry-run evidence exists (from T5).
 3. Commit any uncommitted files with message: `feat(automation): add Epic 1 execution automation artifacts`.
-4. Push to Docs repository.
+4. Push to fork (`git push origin exercise-1`).
 5. Sign the automation readiness checklist:
    ```
    ## E0-S5 Automation Readiness Checklist
@@ -63,7 +63,7 @@ Commit all E0-S5 artifacts to the Docs repository, push to `origin`, create a PR
    | 5 | Dry-run evidence documented | [ ] | `<evidence-path>` |
    | 6 | All artifacts committed | [ ] | Commit SHA: `<sha>` |
    
-   **Signed by:** `agile-exercise-planner`
+   **Signed by:** `git-ops`
    **Date:** `<timestamp>`
    ```
 6. Append timeline entry for story completion.

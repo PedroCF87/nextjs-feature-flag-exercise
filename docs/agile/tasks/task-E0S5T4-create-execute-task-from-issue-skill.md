@@ -9,23 +9,23 @@
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `prompt-engineer`, `agile-exercise-planner` |
+| **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | E0-S5-T3 |
 | **Blocks** | — |
 | Created at | 2026-04-13 13:23:32 -03 |
-| Last updated | 2026-04-13 13:23:32 -03 |
+| Last updated | 2026-04-13 20:59:09 -03 |
 
 ---
 
 ## 1) Task statement
 
-Create `Docs/.github/skills/execute-task-from-issue/SKILL.md` — a skill that defines the 6-phase workflow for executing a single task from a GitHub Issue: read context → prepare branch → execute plan → commit/push → create PR → manual checkpoint.
+Create `docs/.github/skills/execute-task-from-issue/SKILL.md` — a skill that defines the 6-phase workflow for executing a single task from a GitHub Issue: read context → prepare branch → execute plan → commit/push → create PR → manual checkpoint.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-1. File `Docs/.github/skills/execute-task-from-issue/SKILL.md` exists and is readable.
+1. File `docs/.github/skills/execute-task-from-issue/SKILL.md` exists and is readable.
 2. Skill defines exactly 6 numbered phases with ordered steps.
 3. Phase 1 includes a dependency check with an explicit STOP guard (if dependencies are not met, the agent must not proceed).
 4. Phase 2 defines branch naming convention: `task/<task-id-lowercase>`.
@@ -43,11 +43,11 @@ Create `Docs/.github/skills/execute-task-from-issue/SKILL.md` — a skill that d
 **Agent:** `agile-exercise-planner`
 
 **Artifacts to create:**
-- `Docs/.github/skills/execute-task-from-issue/SKILL.md`
+- `docs/.github/skills/execute-task-from-issue/SKILL.md`
 
 **Sub-tasks:**
 
-1. Read `Docs/.github/copilot-instructions.md` section "Task Execution Model" for the one-Issue-per-task workflow.
+1. Read `docs/.github/copilot-instructions.md` section "Task Execution Model" for the one-Issue-per-task workflow.
 2. Create `execute-task-from-issue/SKILL.md`:
 
 ```markdown

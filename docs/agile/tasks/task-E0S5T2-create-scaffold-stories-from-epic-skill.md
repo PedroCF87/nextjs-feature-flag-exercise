@@ -9,23 +9,23 @@
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `prompt-engineer`, `agile-exercise-planner` |
+| **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | E0-S5-T1 |
 | **Blocks** | — |
 | Created at | 2026-04-13 13:23:32 -03 |
-| Last updated | 2026-04-13 13:23:32 -03 |
+| Last updated | 2026-04-13 20:59:09 -03 |
 
 ---
 
 ## 1) Task statement
 
-Create `Docs/.github/skills/scaffold-stories-from-epic/SKILL.md` — a skill that parses an epic's section 7 (Candidate stories) outlines and generates detailed story MD files with all required sections, writing them to `Docs/agile/stories/` and updating the epic file with markdown links.
+Create `docs/.github/skills/scaffold-stories-from-epic/SKILL.md` — a skill that parses an epic's section 7 (Candidate stories) outlines and generates detailed story MD files with all required sections, writing them to `docs/agile/stories/` and updating the epic file with markdown links.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-1. File `Docs/.github/skills/scaffold-stories-from-epic/SKILL.md` exists and is readable.
+1. File `docs/.github/skills/scaffold-stories-from-epic/SKILL.md` exists and is readable.
 2. Skill includes a `## Process` section with ordered phases: Read epic → Parse section 7 → Generate story files → Update epic links → Run `sync-backlog-index.js`.
 3. Skill includes a full story template in a code block (`story-E<epic>S<n>-<slug>.md` format).
 4. Skill defines a `Constraints` section with: never generate without ID, always `Status: Draft`, always include `## 4) Tasks` placeholder.
@@ -41,13 +41,13 @@ Create `Docs/.github/skills/scaffold-stories-from-epic/SKILL.md` — a skill tha
 **Agent:** `agile-exercise-planner` | **Skill:** `create-exercise-backlog`
 
 **Artifacts to create:**
-- `Docs/.github/skills/scaffold-stories-from-epic/SKILL.md`
+- `docs/.github/skills/scaffold-stories-from-epic/SKILL.md`
 
 **Sub-tasks:**
 
-1. Read `Docs/.github/skills/create-exercise-backlog/SKILL.md` for backlog structure patterns.
-2. Read `Docs/.github/skills/create-story-task-pack/SKILL.md` for file naming conventions.
-3. Read `Docs/agile/stories/story-E0S1-repository-diagnosis.md` as the template for generated stories.
+1. Read `docs/.github/skills/create-exercise-backlog/SKILL.md` for backlog structure patterns.
+2. Read `docs/.github/skills/create-story-task-pack/SKILL.md` for file naming conventions.
+3. Read `docs/agile/stories/story-E0S1-repository-diagnosis.md` as the template for generated stories.
 4. Create `scaffold-stories-from-epic/SKILL.md` with:
    - **Purpose:** generate story MD files from epic section 7 outlines.
    - **Inputs:** `EPIC_FILE` (absolute path to epic markdown).
@@ -58,7 +58,7 @@ Create `Docs/.github/skills/scaffold-stories-from-epic/SKILL.md` — a skill tha
         - Generate story ID: `E<epic>-S<n>` (sequential).
         - Generate file name: `story-E<epic>S<n>-<slug>.md` (slug from title).
         - Fill template sections: metadata, user story, scope (derived from description), ACs (placeholder or derived), tasks placeholder.
-        - Write to `Docs/agile/stories/`.
+        - Write to `docs/agile/stories/`.
      4. Update the epic file: convert plain-text story headings to markdown links.
      5. Log all generated files.
    - **Outputs:** story MD files, updated epic file.

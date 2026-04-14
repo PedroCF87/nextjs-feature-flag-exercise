@@ -14,8 +14,8 @@
 | **Depends on** | [E0-S1-T2 — Validate local execution environment](../tasks/task-E0S1T2-validate-environment.md) |
 | **Blocks** | EPIC-1 planning automation |
 | Created at | 2026-04-12 21:52:11 -03 |
-| Last updated | 2026-04-13 18:00:00 -03 |
-| **Reorder note** | Moved ahead of E0-S1-T3. Original dependency on E0-S2 was administrative, not technical — all S5 artifacts target `Docs/.github/` and require no fork AI Layer or codebase audit. Reorder saves ~100+ min of manual Issue/PR overhead across ~16 remaining tasks. |
+| Last updated | 2026-04-13 20:59:09 -03 |
+| **Reorder note** | Moved ahead of E0-S1-T3. Original dependency on E0-S2 was administrative, not technical — all S5 artifacts target `docs/.github/` and require no fork AI Layer or codebase audit. Reorder saves ~100+ min of manual Issue/PR overhead across ~16 remaining tasks. |
 
 ---
 
@@ -40,10 +40,10 @@
 2. Create `scaffold-stories-from-epic` skill that:
    - Parses an epic file's section 7 (Candidate stories) to extract story outlines.
    - Generates detailed story MD files with all required sections (metadata, user story, scope, ACs, tasks placeholder).
-   - Writes files to `Docs/agile/stories/` with proper naming convention (`story-E<n>S<m>-<slug>.md`).
+   - Writes files to `docs/agile/stories/` with proper naming convention (`story-E<n>S<m>-<slug>.md`).
    - Updates the epic file to link to the generated story files.
 
-3. Create `create-github-issue-from-task` function (`Docs/.github/functions/create-github-issue-from-task.js`) that:
+3. Create `create-github-issue-from-task` function (`docs/.github/functions/create-github-issue-from-task.js`) that:
    - Reads a task MD file and extracts title, statement, expected outcome, and execution plan.
    - Creates a GitHub Issue in the target repository via `gh issue create`.
    - Returns the Issue number and URL.
@@ -85,7 +85,7 @@
 - **Given** an epic file with section 7 containing story outlines (titles + descriptions)
 - **When** I invoke the skill with the epic file path
 - **Then** it:
-  - Generates one story MD file per outline in `Docs/agile/stories/`.
+  - Generates one story MD file per outline in `docs/agile/stories/`.
   - Each story file includes: metadata table (ID, Priority, Status, agents, skills, instructions), user story, scope, ACs (placeholder or derived), tasks placeholder.
   - Updates the epic file to convert plain-text story headings into markdown links to the generated files.
   - Logs generated files to stdout.
@@ -134,12 +134,12 @@
 **Agent:** `prompt-engineer` | **Skill:** `create-specialist-agent`
 
 **Artifacts to create:**
-- `Docs/.github/agents/story-task-reviewer.agent.md`
+- `docs/.github/agents/story-task-reviewer.agent.md`
 
 **Sub-tasks:**
 
-1. Read `Docs/.github/agents/agile-quality-auditor.agent.md` as the reference for review methodology.
-2. Read `Docs/.github/skills/audit-agile-artifacts/SKILL.md` to understand the validation gates.
+1. Read `docs/.github/agents/agile-quality-auditor.agent.md` as the reference for review methodology.
+2. Read `docs/.github/skills/audit-agile-artifacts/SKILL.md` to understand the validation gates.
 3. Create `story-task-reviewer.agent.md` with:
    - **Purpose:** independent review of agile documents with inline suggestions.
    - **Core responsibilities:**
@@ -168,13 +168,13 @@
 **Agent:** `agile-exercise-planner` | **Skill:** `create-exercise-backlog`
 
 **Artifacts to create:**
-- `Docs/.github/skills/scaffold-stories-from-epic/SKILL.md`
+- `docs/.github/skills/scaffold-stories-from-epic/SKILL.md`
 
 **Sub-tasks:**
 
-1. Read `Docs/.github/skills/create-exercise-backlog/SKILL.md` for backlog structure patterns.
-2. Read `Docs/.github/skills/create-story-task-pack/SKILL.md` for file naming conventions.
-3. Read `Docs/agile/stories/story-E0S1-repository-diagnosis.md` as the template for generated stories.
+1. Read `docs/.github/skills/create-exercise-backlog/SKILL.md` for backlog structure patterns.
+2. Read `docs/.github/skills/create-story-task-pack/SKILL.md` for file naming conventions.
+3. Read `docs/agile/stories/story-E0S1-repository-diagnosis.md` as the template for generated stories.
 4. Create `scaffold-stories-from-epic/SKILL.md` with:
    - **Purpose:** generate story MD files from epic section 7 outlines.
    - **Inputs:** `EPIC_FILE` (absolute path to epic markdown).
@@ -185,7 +185,7 @@
         - Generate story ID: `E<epic>-S<n>` (sequential).
         - Generate file name: `story-E<epic>S<n>-<slug>.md` (slug from title).
         - Fill template sections: metadata, user story, scope (derived from description), ACs (placeholder or derived), tasks placeholder.
-        - Write to `Docs/agile/stories/`.
+        - Write to `docs/agile/stories/`.
      4. Update the epic file: convert plain-text story headings to markdown links.
      5. Log all generated files.
    - **Outputs:** story MD files, updated epic file.
@@ -209,12 +209,12 @@
 **Agent:** `agile-exercise-planner` | **Skill:** n/a (coding task)
 
 **Artifacts to create:**
-- `Docs/.github/functions/create-github-issue-from-task.js`
+- `docs/.github/functions/create-github-issue-from-task.js`
 
 **Sub-tasks:**
 
-1. Read `Docs/.github/functions/timeline-id.js` as a reference for function file structure.
-2. Read `Docs/agile/tasks/task-E0S1T0-bootstrap-ai-layer.md` to understand task file structure.
+1. Read `docs/.github/functions/timeline-id.js` as a reference for function file structure.
+2. Read `docs/agile/tasks/task-E0S1T0-bootstrap-ai-layer.md` to understand task file structure.
 3. Create `create-github-issue-from-task.js`:
 
 ```javascript
@@ -228,8 +228,8 @@
  *   node create-github-issue-from-task.js <task-file> <owner/repo> [--dry-run]
  * 
  * Example:
- *   node create-github-issue-from-task.js Docs/agile/tasks/task-E1S1T1-foo.md owner/repo
- *   node create-github-issue-from-task.js Docs/agile/tasks/task-E1S1T1-foo.md owner/repo --dry-run
+ *   node create-github-issue-from-task.js docs/agile/tasks/task-E1S1T1-foo.md owner/repo
+ *   node create-github-issue-from-task.js docs/agile/tasks/task-E1S1T1-foo.md owner/repo --dry-run
  * 
  * Returns JSON:
  *   { "issueNumber": 42, "issueUrl": "https://github.com/...", "dryRun": false }
@@ -382,11 +382,11 @@ module.exports = { parseTaskFile, buildIssueBody, createIssue };
 **Agent:** `agile-exercise-planner`
 
 **Artifacts to create:**
-- `Docs/.github/skills/execute-task-from-issue/SKILL.md`
+- `docs/.github/skills/execute-task-from-issue/SKILL.md`
 
 **Sub-tasks:**
 
-1. Read `Docs/.github/copilot-instructions.md` section "Task Execution Model" for the one-Issue-per-task workflow.
+1. Read `docs/.github/copilot-instructions.md` section "Task Execution Model" for the one-Issue-per-task workflow.
 2. Create `execute-task-from-issue/SKILL.md`:
 
 ```markdown
@@ -541,13 +541,13 @@ For tasks that are the last in a story (e.g., E1-S1-T5 if the story has 5 tasks)
 **Sub-tasks:**
 
 1. Verify all 4 automation artifacts exist:
-   - [ ] `Docs/.github/agents/story-task-reviewer.agent.md`
-   - [ ] `Docs/.github/skills/scaffold-stories-from-epic/SKILL.md`
-   - [ ] `Docs/.github/functions/create-github-issue-from-task.js`
-   - [ ] `Docs/.github/skills/execute-task-from-issue/SKILL.md`
+   - [ ] `docs/.github/agents/story-task-reviewer.agent.md`
+   - [ ] `docs/.github/skills/scaffold-stories-from-epic/SKILL.md`
+   - [ ] `docs/.github/functions/create-github-issue-from-task.js`
+   - [ ] `docs/.github/skills/execute-task-from-issue/SKILL.md`
 2. Verify dry-run evidence exists (from T5).
 3. Commit any uncommitted files with message: `feat(automation): add Epic 1 execution automation artifacts`.
-4. Push to Docs repository.
+4. Push to fork (`git push origin exercise-1`).
 5. Sign the automation readiness checklist:
    ```
    ## E0-S5 Automation Readiness Checklist
@@ -594,7 +594,7 @@ The workflow includes explicit manual checkpoints at the end of each story to al
 
 ## 6) References
 
-- [Docs/.github/copilot-instructions.md — Task Execution Model](../../.github/copilot-instructions.md#task-execution-model)
-- [Docs/.github/skills/create-story-task-pack/SKILL.md](../../.github/skills/create-story-task-pack/SKILL.md)
-- [Docs/.github/skills/audit-agile-artifacts/SKILL.md](../../.github/skills/audit-agile-artifacts/SKILL.md)
-- [Docs/.github/agents/agile-quality-auditor.agent.md](../../.github/agents/agile-quality-auditor.agent.md)
+- [docs/.github/copilot-instructions.md — Task Execution Model](../../.github/copilot-instructions.md#task-execution-model)
+- [docs/.github/skills/create-story-task-pack/SKILL.md](../../.github/skills/create-story-task-pack/SKILL.md)
+- [docs/.github/skills/audit-agile-artifacts/SKILL.md](../../.github/skills/audit-agile-artifacts/SKILL.md)
+- [docs/.github/agents/agile-quality-auditor.agent.md](../../.github/agents/agile-quality-auditor.agent.md)

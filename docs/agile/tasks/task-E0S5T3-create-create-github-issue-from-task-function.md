@@ -9,23 +9,23 @@
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `prompt-engineer`, `agile-exercise-planner` |
+| **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | E0-S5-T2 |
 | **Blocks** | — |
 | Created at | 2026-04-13 13:23:32 -03 |
-| Last updated | 2026-04-13 13:23:32 -03 |
+| Last updated | 2026-04-13 20:59:09 -03 |
 
 ---
 
 ## 1) Task statement
 
-Create `Docs/.github/functions/create-github-issue-from-task.js` — a Node.js CLI function that reads a task MD file, extracts its ID, title, statement, outcome, and execution plan, then creates (or dry-runs) a GitHub Issue via `gh issue create` with labels `epic:<id>`, `story:<id>`, `priority:<Pn>`.
+Create `docs/.github/functions/create-github-issue-from-task.js` — a Node.js CLI function that reads a task MD file, extracts its ID, title, statement, outcome, and execution plan, then creates (or dry-runs) a GitHub Issue via `gh issue create` with labels `epic:<id>`, `story:<id>`, `priority:<Pn>`.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-1. File `Docs/.github/functions/create-github-issue-from-task.js` exists and is parseable by Node.js (`node --check` exits 0).
+1. File `docs/.github/functions/create-github-issue-from-task.js` exists and is parseable by Node.js (`node --check` exits 0).
 2. `node create-github-issue-from-task.js <task-file> <repo> --dry-run` exits with code `0`.
 3. Dry-run output contains: Issue title in format `[<task-id>] <title>`, labels list, and body with `## Task Statement`, `## Expected Outcome`, `## Execution Plan (Summary)` sections.
 4. `module.exports` exposes `{ parseTaskFile, buildIssueBody, createIssue }` for programmatic use.
@@ -41,12 +41,12 @@ Create `Docs/.github/functions/create-github-issue-from-task.js` — a Node.js C
 **Agent:** `agile-exercise-planner` | **Skill:** n/a (coding task)
 
 **Artifacts to create:**
-- `Docs/.github/functions/create-github-issue-from-task.js`
+- `docs/.github/functions/create-github-issue-from-task.js`
 
 **Sub-tasks:**
 
-1. Read `Docs/.github/functions/timeline-id.js` as a reference for function file structure.
-2. Read `Docs/agile/tasks/task-E0S1T0-bootstrap-ai-layer.md` to understand task file structure.
+1. Read `docs/.github/functions/timeline-id.js` as a reference for function file structure.
+2. Read `docs/agile/tasks/task-E0S1T0-bootstrap-ai-layer.md` to understand task file structure.
 3. Create `create-github-issue-from-task.js`:
 
 ```javascript
@@ -60,8 +60,8 @@ Create `Docs/.github/functions/create-github-issue-from-task.js` — a Node.js C
  *   node create-github-issue-from-task.js <task-file> <owner/repo> [--dry-run]
  * 
  * Example:
- *   node create-github-issue-from-task.js Docs/agile/tasks/task-E1S1T1-foo.md owner/repo
- *   node create-github-issue-from-task.js Docs/agile/tasks/task-E1S1T1-foo.md owner/repo --dry-run
+ *   node create-github-issue-from-task.js docs/agile/tasks/task-E1S1T1-foo.md owner/repo
+ *   node create-github-issue-from-task.js docs/agile/tasks/task-E1S1T1-foo.md owner/repo --dry-run
  * 
  * Returns JSON:
  *   { "issueNumber": 42, "issueUrl": "https://github.com/...", "dryRun": false }

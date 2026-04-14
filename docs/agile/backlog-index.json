@@ -534,8 +534,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
-        "agile-exercise-planner"
+        "prompt-engineer"
       ],
       "depends_on": [
         "E0-S1-T2"
@@ -552,7 +551,6 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
         "agile-exercise-planner"
       ],
       "depends_on": [
@@ -570,7 +568,6 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
         "agile-exercise-planner"
       ],
       "depends_on": [
@@ -588,7 +585,6 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
         "agile-exercise-planner"
       ],
       "depends_on": [
@@ -606,7 +602,6 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
         "agile-exercise-planner"
       ],
       "depends_on": [
@@ -624,8 +619,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
-        "agile-exercise-planner"
+        "git-ops"
       ],
       "depends_on": [
         "E0-S5-T5"
