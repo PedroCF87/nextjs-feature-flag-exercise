@@ -79,7 +79,7 @@ Stop if all 4 files are absent. At minimum, `AGENTS.md` or `CLAUDE.md` must be p
 ## Branch Rules
 
 - **Working base:** `<branch-name>`
-- **Never push to:** `main`, `upstream`
+- **Never push to:** `<exact branch and/or remote targets from AGENTS.md or CLAUDE.md>`
 
 ## Commit Convention
 
