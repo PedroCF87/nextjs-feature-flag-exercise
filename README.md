@@ -4,6 +4,8 @@ A simple feature flag management application with a React frontend and Express b
 
 This is a workshop exercise directory. See [TASK.md](./TASK.md) for the exercise you need to complete.
 
+For a visual overview of the system architecture and data flow, see [docs/architecture.md](./docs/architecture.md).
+
 ## Quick Start
 
 ```bash
