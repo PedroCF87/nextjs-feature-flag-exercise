@@ -8,12 +8,12 @@
 | **Story** | [E0-S3 — Definition of Measurement Baseline](../stories/story-E0S3-measurement-baseline.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | [E0-S2 — Minimum AI Layer Configuration](../stories/story-E0S2-minimum-ai-layer.md), [E0-S3-T0 — Bootstrap AI Layer artifacts for this story](task-E0S3T0-bootstrap-ai-layer-artifacts-for-this-story.md) |
 | **Blocks** | E0-S3-T2, E0-S3-T3 |
 | Created at | 2026-04-11 16:43:15 -03 |
-| Last updated | 2026-04-11 16:53:40 -03 |
+| Last updated | 2026-04-14 20:15:00 -03 |
 
 ---
 
@@ -165,6 +165,8 @@ ls -la "$REPO_ROOT/docs/manuals/interview-4-exercises-overview.md"
 
 Expected: both commands exit `0`.
 
+**Result: PASS** — `TASK.md` (1 783 B, Apr 8) and `interview-4-exercises-overview.md` (5 216 B, Apr 9) both exist. Exit 0.
+
 2. Definition presence checks in this task file:
 
 ```bash
@@ -175,6 +177,8 @@ grep -n "How to use this template\|start signal\|end signal\|prompt boundary\|re
 ```
 
 Expected: definitions and method boundaries present.
+
+**Result: PASS** — all 4 dimensions found (lines 33–36, 79–89, 185–188). All method boundaries found (lines 42–46, 106–113, 173, 202–223). Exit 0.
 
 ### Definition package for T2
 
@@ -217,10 +221,10 @@ The block below must be copied into `nextjs-feature-flag-exercise/.agents/baseli
 
 ## 6) Definition of Done
 
-- [ ] Source inputs (`TASK.md` and interview overview manual) were read and validated.
-- [ ] All 4 measurement dimensions include explicit start/end boundaries.
-- [ ] Confidence anchors (1, 3, 5) and 3 checkpoints are defined.
-- [ ] "How to use this template" boundaries are complete and deterministic.
-- [ ] Definition package for T2 is present in section 5 and ready to copy.
-- [ ] Feature branch `exercise-1/define-measurement-dimensions` pushed and PR merged into `exercise-1`.
-- [ ] E0-S3-T2 and E0-S3-T3 are unblocked by this definition set.
+- [x] Source inputs (`TASK.md` and interview overview manual) were read and validated.
+- [x] All 4 measurement dimensions include explicit start/end boundaries.
+- [x] Confidence anchors (1, 3, 5) and 3 checkpoints are defined.
+- [x] "How to use this template" boundaries are complete and deterministic.
+- [x] Definition package for T2 is present in section 5 and ready to copy.
+- [x] Committed directly to `exercise-1` (Epic 0 rule — no PR required).
+- [x] E0-S3-T2 and E0-S3-T3 are unblocked by this definition set.
