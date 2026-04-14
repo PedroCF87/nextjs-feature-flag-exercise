@@ -38,9 +38,9 @@ Before writing anything, complete these steps in order:
 
 ### Diff table (produced in step 2)
 
-| Artifact | Source path | Target path | Status | Recommended action |
-|---|---|---|---|---|
-| (row per artifact) | | | `missing` / `outdated` / `current` | (action) |
+| Artifact | Type | Source path | Target path | Status | Recommended action |
+|---|---|---|---|---|---|
+| (row per artifact) | `agent` / `skill` / `instruction` / `workflow` / `global-rules` | | | `missing` / `outdated` / `current` | (action) |
 
 ### Migration plan (produced in step 3)
 

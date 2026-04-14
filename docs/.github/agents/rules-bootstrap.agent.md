@@ -15,7 +15,7 @@ tools: ["read", "search", "edit"]
 
 Complete these steps in order before writing the output file:
 
-1. **Read source documentation** — use `read_file` on each of the following files in the target repository (skip gracefully if absent):
+1. **Read source documentation** — use `read` on each of the following files in the target repository (skip gracefully if absent):
    - `AGENTS.md`
    - `CLAUDE.md`
    - `README.md`

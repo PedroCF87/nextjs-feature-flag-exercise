@@ -1,7 +1,6 @@
 ---
 name: config-migration-plan
 description: Produces an ordered migration plan for deploying AI Layer artifacts from a source directory (e.g., docs/.github/) to a target repository (e.g., fork .github/). Use this skill when you need a step-by-step plan with adaptation notes, dependency ordering, and rollback strategy before executing a batch of file writes.
-allowed-tools: ["read", "search"]
 ---
 
 ## Purpose

@@ -1,7 +1,6 @@
 ---
 name: global-rules-bootstrap
 description: Generates a copilot-instructions.md for a repository from its existing documentation (AGENTS.md, CLAUDE.md, README.md, TASK.md). Use this skill when you need to produce or update a global rules file that accurately reflects a repository's tech stack, architecture, validation commands, branch rules, and commit conventions.
-allowed-tools: ["read"]
 ---
 
 ## Purpose
@@ -56,9 +55,9 @@ Stop if all 4 files are absent. At minimum, `AGENTS.md` or `CLAUDE.md` must be p
 
 ## Architecture
 
-**Data flow:** `shared/types.ts` → Zod validation → Service → Route → Client API → UI
+**Data flow:** `<exact repository-specific flow extracted from AGENTS.md / CLAUDE.md / README.md>`
 
-<Describe each step briefly. Reference key files.>
+<Describe each step briefly and reference key files named in the docs. Derive this line from the documentation. If the docs define an explicit flow, reproduce it verbatim. If they do not, use repository-specific placeholders such as `<source-of-truth types>` → `<validation layer>` → `<business logic>` → `<transport layer>` → `<client data access>` → `<UI>` and replace them with actual terms before finalising. Do not reuse `shared/types.ts` or any other sample path unless it is explicitly documented in the target repository.>
 
 ## Validation Commands
 
