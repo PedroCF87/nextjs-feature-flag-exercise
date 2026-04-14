@@ -7,13 +7,13 @@
 | **ID** | E0-S2-T1 |
 | **Story** | [E0-S2 — Minimum AI Layer Configuration](../stories/story-E0S2-minimum-ai-layer.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `rules-bootstrap` |
 | **Skill** | `global-rules-bootstrap` |
 | **Depends on** | [E0-S2-T0 — Bootstrap AI Layer management artifacts](task-E0S2T0-bootstrap-ai-layer-management-artifacts.md) |
 | **Blocks** | E0-S2-T5 |
 | Created at | 2026-04-11 15:14:45 -03 |
-| Last updated | 2026-04-11 16:09:01 -03 |
+| Last updated | 2026-04-14 17:00:00 -03 |
 
 ---
 
@@ -244,12 +244,12 @@ ls -la "/delfos/Projetos/ITBC - Desafio RDH/nextjs-feature-flag-exercise/.github
 
 ## 6) Definition of Done
 
-- [ ] `nextjs-feature-flag-exercise/.github/copilot-instructions.md` exists and is readable.
-- [ ] File contains all 7 required sections.
-- [ ] No workspace-relative paths (`docs/`, `resident-health-workshop-resources/`, `nextjs-ai-optimized-codebase/`) remain.
-- [ ] Tech stack table includes all 11 technologies from `AGENTS.md`.
-- [ ] Validation commands section has both server and client command blocks.
-- [ ] Key file reference table has the same 7 entries as `AGENTS.md §Key Files Reference`.
-- [ ] Branch rules explicitly name `exercise-1` as base and forbid direct pushes to `main`.
-- [ ] Feature branch `exercise-1/deploy-global-rules` pushed to fork.
-- [ ] PR opened against `exercise-1` and **merged** before T2 starts.
+- [x] `nextjs-feature-flag-exercise/.github/copilot-instructions.md` exists and is readable.
+- [x] File contains all 7 required sections.
+- [x] No workspace-relative paths (`docs/`, `resident-health-workshop-resources/`, `nextjs-ai-optimized-codebase/`) remain.
+- [x] Tech stack table includes all 11 technologies from `AGENTS.md`.
+- [x] Validation commands section has both server and client command blocks.
+- [x] Key file reference table has the same 7 entries as `AGENTS.md §Key Files Reference`.
+- [x] Branch rules explicitly name `exercise-1` as base and forbid direct pushes to `main`.
+- [x] Committed directly to `exercise-1` (Epic 0 local execution rule — no PR required).
+- [x] Pushed to `origin exercise-1`.
