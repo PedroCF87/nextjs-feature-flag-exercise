@@ -1,0 +1,277 @@
+name: Auto Copilot Fix
+
+# Purpose: Automatically posts a @copilot PR comment requesting fixes after a code
+# review that contains suggestions, so Copilot applies the changes without manual
+# intervention.
+#
+# Triggers:
+#   - workflow_run: completed on "Copilot code review" — primary path for Copilot
+#     bot reviews (reliable even for summary-only reviews).
+#   - pull_request_review: submitted — fallback/secondary path for:
+#       * Non-Copilot reviews (Code Review agent, human reviewers) with
+#         [EX:REVIEW-HAS-SUGGESTIONS] in the body.
+#       * Copilot bot reviews where workflow_run did not fire.
+#
+# Idempotency: uses <!-- review-id: {id} --> guard to prevent duplicate comments.
+#
+# Required secrets:
+#   - COPILOT_TRIGGER_TOKEN: Fine-Grained PAT with pull-requests: read and write.
+#     Used to post the @copilot comment. Falls back to GITHUB_TOKEN if absent
+#     (Copilot may not react to bot-token comments in all contexts).
+
+on:
+  workflow_run:
+    workflows: ['Copilot code review']
+    types: [completed]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  # ─── Path A: workflow_run from "Copilot code review" ────────────────────────
+  fix-via-workflow-run:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_run'
+
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Request Copilot fix (workflow_run path)
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.COPILOT_TRIGGER_TOKEN || secrets.GITHUB_TOKEN }}
+          script: |
+            const run = context.payload.workflow_run;
+
+            if (run.conclusion !== 'success' && run.conclusion !== 'neutral') {
+              core.info(`Workflow run conclusion "${run.conclusion}" — skipping.`);
+              return;
+            }
+
+            const branch = run.head_branch;
+            const headSha = run.head_sha;
+
+            // Find open PR for this branch
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${branch}`,
+              state: 'open',
+            });
+
+            if (prs.length === 0) {
+              core.info(`No open PR for branch "${branch}" — skipping.`);
+              return;
+            }
+            const pr = prs[0];
+            core.info(`Found PR #${pr.number}: "${pr.title}"`);
+
+            // Find the latest Copilot code review for this commit SHA
+            const { data: reviews } = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+            });
+
+            const matchingReviews = reviews.filter(r =>
+              r.commit_id === headSha &&
+              (r.user.login === 'Copilot' || r.user.login === 'copilot[bot]' ||
+               (r.body && r.body.includes('[EX:REVIEW-HAS-SUGGESTIONS]')))
+            );
+
+            if (matchingReviews.length === 0) {
+              core.info('No matching Copilot review found for this SHA — skipping.');
+              return;
+            }
+
+            const review = matchingReviews[matchingReviews.length - 1];
+
+            // Skip clean reviews
+            if (review.body && review.body.includes('[EX:REVIEW-CLEAN]')) {
+              core.info('Review is clean ([EX:REVIEW-CLEAN]) — no fix needed.');
+              return;
+            }
+
+            // Idempotency guard: check if we already posted a trigger for this review
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+            });
+            const alreadyPosted = comments.some(c =>
+              c.body && c.body.includes(`<!-- review-id: ${review.id} -->`)
+            );
+            if (alreadyPosted) {
+              core.info(`Already posted fix request for review #${review.id} — skipping.`);
+              return;
+            }
+
+            // Query unresolved review threads via GraphQL
+            const result = await github.graphql(`
+              query($owner: String!, $repo: String!, $prNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  pullRequest(number: $prNumber) {
+                    reviewThreads(first: 100) {
+                      nodes {
+                        id
+                        isResolved
+                        isOutdated
+                        comments(first: 1) {
+                          nodes {
+                            pullRequestReview { databaseId }
+                            path
+                            line
+                            url
+                            body
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              prNumber: pr.number,
+            });
+
+            const allThreads = result.repository.pullRequest.reviewThreads.nodes;
+            const unresolvedThreads = allThreads.filter(t =>
+              !t.isResolved &&
+              !t.isOutdated &&
+              t.comments.nodes.length > 0 &&
+              t.comments.nodes[0].pullRequestReview?.databaseId === review.id
+            );
+
+            let commentBody = `\`[EX:TRIGGER-FIX-REQUEST]\`\n<!-- review-id: ${review.id} -->\n`;
+
+            if (unresolvedThreads.length > 0) {
+              commentBody += `@copilot Please apply fixes for the following unresolved review threads:\n\n`;
+              for (const thread of unresolvedThreads) {
+                const c = thread.comments.nodes[0];
+                const snippet = (c.body || '').split('\n')[0].slice(0, 120);
+                commentBody += `- **\`${c.path}\`** (line ${c.line || '?'}): ${snippet} [→ view](${c.url})\n`;
+              }
+            } else {
+              // Summary-only review — forward the full review body
+              commentBody += `@copilot Please review and apply the following feedback:\n\n${review.body || '(no body)'}`;
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: commentBody,
+            });
+
+            core.info(`Posted fix request for review #${review.id} on PR #${pr.number}`);
+
+  # ─── Path B: pull_request_review submitted ──────────────────────────────────
+  fix-via-pr-review:
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'pull_request_review' &&
+      (
+        contains(github.event.review.body, '[EX:REVIEW-HAS-SUGGESTIONS]') ||
+        github.event.review.user.login == 'Copilot' ||
+        github.event.review.user.login == 'copilot[bot]'
+      ) &&
+      !contains(github.event.review.body, '[EX:REVIEW-CLEAN]')
+
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Request Copilot fix (pull_request_review path)
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.COPILOT_TRIGGER_TOKEN || secrets.GITHUB_TOKEN }}
+          script: |
+            const review = context.payload.review;
+            const pr = context.payload.pull_request;
+
+            core.info(`Processing review #${review.id} on PR #${pr.number}`);
+
+            // Skip clean reviews
+            if (review.body && review.body.includes('[EX:REVIEW-CLEAN]')) {
+              core.info('Review is clean ([EX:REVIEW-CLEAN]) — no fix needed.');
+              return;
+            }
+
+            // Idempotency guard
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+            });
+            const alreadyPosted = comments.some(c =>
+              c.body && c.body.includes(`<!-- review-id: ${review.id} -->`)
+            );
+            if (alreadyPosted) {
+              core.info(`Already posted fix request for review #${review.id} — skipping.`);
+              return;
+            }
+
+            // Query unresolved threads for this review
+            const result = await github.graphql(`
+              query($owner: String!, $repo: String!, $prNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  pullRequest(number: $prNumber) {
+                    reviewThreads(first: 100) {
+                      nodes {
+                        id
+                        isResolved
+                        isOutdated
+                        comments(first: 1) {
+                          nodes {
+                            pullRequestReview { databaseId }
+                            path
+                            line
+                            url
+                            body
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              prNumber: pr.number,
+            });
+
+            const allThreads = result.repository.pullRequest.reviewThreads.nodes;
+            const unresolvedThreads = allThreads.filter(t =>
+              !t.isResolved &&
+              !t.isOutdated &&
+              t.comments.nodes.length > 0 &&
+              t.comments.nodes[0].pullRequestReview?.databaseId === review.id
+            );
+
+            let commentBody = `\`[EX:TRIGGER-FIX-REQUEST]\`\n<!-- review-id: ${review.id} -->\n`;
+
+            if (unresolvedThreads.length > 0) {
+              commentBody += `@copilot Please apply fixes for the following unresolved review threads:\n\n`;
+              for (const thread of unresolvedThreads) {
+                const c = thread.comments.nodes[0];
+                const snippet = (c.body || '').split('\n')[0].slice(0, 120);
+                commentBody += `- **\`${c.path}\`** (line ${c.line || '?'}): ${snippet} [→ view](${c.url})\n`;
+              }
+            } else {
+              // Summary-only review
+              commentBody += `@copilot Please review and apply the following feedback:\n\n${review.body || '(no body)'}`;
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: commentBody,
+            });
+
+            core.info(`Posted fix request for review #${review.id} on PR #${pr.number}`);

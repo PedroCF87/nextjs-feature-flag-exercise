@@ -8,13 +8,13 @@
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `prompt-engineer`, `agile-exercise-planner` |
+| **Responsible agent** | `git-ops`, `prompt-engineer`, `agile-exercise-planner` |
 | **Skills** | `create-specialist-agent`, `create-story-task-pack`, `audit-agile-artifacts` |
 | **Instructions** | `agile-planning.instructions.md`, `coding-agent.instructions.md` |
 | **Depends on** | [E0-S1-T2 — Validate local execution environment](../tasks/task-E0S1T2-validate-environment.md) |
 | **Blocks** | EPIC-1 planning automation |
 | Created at | 2026-04-12 21:52:11 -03 |
-| Last updated | 2026-04-13 20:59:09 -03 |
+| Last updated | 2026-04-14 00:37:39 -03 |
 | **Reorder note** | Moved ahead of E0-S1-T3. Original dependency on E0-S2 was administrative, not technical — all S5 artifacts target `docs/.github/` and require no fork AI Layer or codebase audit. Reorder saves ~100+ min of manual Issue/PR overhead across ~16 remaining tasks. |
 
 ---
@@ -22,7 +22,7 @@
 ## 1) User story
 
 **As a** candidate executing the RDH interview exercises,
-**I want to** have automation artifacts that generate story MDs from epic outlines, create GitHub Issues from task files, execute tasks via agent sessions, and review agile documents with inline suggestions,
+**I want to** have GitHub Actions workflows and automation artifacts that drive the full Copilot SWE coding cycle (code → review → fix → re-review → merge → next task), generate story MDs from epic outlines, create GitHub Issues from task files, execute tasks via agent sessions, and review agile documents with inline suggestions,
 **so that** Epic 1 can be planned and executed in a fully automated, Issue-driven workflow with minimal manual intervention and consistent quality gates.
 
 ---
@@ -30,6 +30,15 @@
 ## 2) Scope
 
 ### In scope
+
+0. Deploy GitHub Workflow Automation System (6 workflows + issue-index):
+   - `copilot-push-signal.yml` — anchor workflow; fires on Copilot pushes to `copilot/**`.
+   - `auto-ready-for-review.yml` — converts Copilot draft PRs to ready for review.
+   - `auto-copilot-fix.yml` — posts `@copilot` fix requests after reviews with suggestions.
+   - `auto-validate-copilot-fix.yml` — evaluates fix completeness; re-requests review or asks for more.
+   - `auto-merge-on-clean-review.yml` — squash-merges on clean review; closes issues; triggers next task.
+   - `copilot-setup-steps.yml` — sets up Node.js + pnpm environment for Copilot coding sessions.
+   - `.github/issue-index.json` — task/issue mapping consumed by the merge and ready-for-review workflows.
 
 1. Create `story-task-reviewer` agent that:
    - Reviews story and task markdown files for structure, metadata, and acceptance criteria completeness.
@@ -69,6 +78,19 @@
 ---
 
 ## 3) Acceptance criteria
+
+### AC-0 — GitHub Workflow Automation System deployed
+
+- **Given** the repository needs a fully automated Copilot SWE coding cycle
+- **When** all 6 workflow files and `issue-index.json` are committed to `.github/`
+- **Then**:
+  - `copilot-push-signal.yml` triggers on push to `copilot/**` and completes with no side effects.
+  - `auto-ready-for-review.yml` converts Copilot draft PRs to ready for review within 3 minutes of the push signal.
+  - `auto-copilot-fix.yml` posts `[EX:TRIGGER-FIX-REQUEST]` comments listing unresolved threads after reviews with suggestions.
+  - `auto-validate-copilot-fix.yml` evaluates fix completeness and either resolves threads + re-requests review, or posts `[EX:FIX-INCOMPLETE]`.
+  - `auto-merge-on-clean-review.yml` squash-merges on clean review, closes linked issues, and assigns `@copilot` to the next task.
+  - `copilot-setup-steps.yml` job is named exactly `copilot-setup-steps` and installs Node.js 22 + pnpm + dependencies.
+  - `.github/issue-index.json` has valid JSON structure with `tasks` array.
 
 ### AC-1 — `story-task-reviewer` agent created
 
@@ -126,6 +148,29 @@
 ---
 
 ## 4) Tasks
+
+### [Task E0-S5-T0 — Deploy GitHub Workflow Automation System](../tasks/task-E0S5T0-deploy-github-workflows.md)
+
+**Goal:** create all 6 GitHub Actions workflow files and `.github/issue-index.json` that form the automated Copilot SWE coding pipeline (code → review → fix → re-review → merge → next task).
+
+**Agent:** `git-ops`
+
+**Artifacts to create:**
+- `.github/workflows/copilot-push-signal.yml`
+- `.github/workflows/auto-ready-for-review.yml`
+- `.github/workflows/auto-copilot-fix.yml`
+- `.github/workflows/auto-validate-copilot-fix.yml`
+- `.github/workflows/auto-merge-on-clean-review.yml`
+- `.github/workflows/copilot-setup-steps.yml`
+- `.github/issue-index.json`
+
+**Reference:** `docs/references/github-workflow-system.md`
+
+**Acceptance:** all 7 files exist; YAML syntax valid; job named `copilot-setup-steps`; all `[DJVR:...]` tags replaced with `[EX:...]`; required secrets documented.
+
+**depends_on:** E0-S1-T2 completed
+
+---
 
 ### [Task E0-S5-T1 — Create `story-task-reviewer` agent](../tasks/task-E0S5T1-create-story-task-reviewer-agent.md)
 

@@ -1,0 +1,69 @@
+name: Copilot Setup Steps
+
+# Purpose: Runs the environment setup before Copilot starts a coding session.
+# The Copilot Coding Agent calls this job automatically before its first step.
+# Also runnable manually via workflow_dispatch for validation.
+#
+# Key constraint: The job MUST be named `copilot-setup-steps` — the Copilot
+# Coding Agent uses this exact name to locate the setup job.
+#
+# Stack: Node.js 22 + pnpm (server and client)
+# Server: Express v5 + SQL.js + Zod + Vitest (port 3001)
+# Client: React 19 + Vite + Tailwind v4 (port 3000)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: copilot
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Install server dependencies
+        working-directory: server
+        run: pnpm install
+
+      - name: Install client dependencies
+        working-directory: client
+        run: pnpm install
+
+      - name: Validate server build
+        working-directory: server
+        run: pnpm run build
+
+      - name: Validate client build
+        working-directory: client
+        run: pnpm run build
+
+      - name: Run server tests
+        working-directory: server
+        run: pnpm test
+
+      - name: Display environment info
+        run: |
+          echo "============================================"
+          echo "Exercise Environment Setup Complete"
+          echo "============================================"
+          echo "Node: $(node --version)"
+          echo "pnpm: $(pnpm --version)"
+          echo "Server port: 3001"
+          echo "Client port: 3000"
+          echo "============================================"

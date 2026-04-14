@@ -1,0 +1,344 @@
+name: Auto Merge on Clean Review
+
+# Purpose: When the Copilot code review is clean (zero unresolved threads), merges
+# the PR, closes linked issues, and triggers Copilot on the next task in sequence.
+#
+# Triggers:
+#   - pull_request_review: submitted — primary path.
+#   - workflow_run: completed on "Copilot code review" — fallback for "no new
+#     comments" reviews that GitHub does not deliver as pull_request_review events
+#     to external workflows.
+#
+# Required secrets:
+#   - GITHUB_TOKEN (auto-provided) — for merge and issue close.
+#   - COPILOT_TRIGGER_TOKEN — Fine-Grained PAT with Issues: Read and write.
+#     Required to assign @copilot. GITHUB_TOKEN (bot token) is silently ignored
+#     for Copilot agent assignment.
+
+on:
+  pull_request_review:
+    types: [submitted]
+  workflow_run:
+    workflows: ['Copilot code review']
+    types: [completed]
+
+jobs:
+  merge-on-clean-review:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Resolve PR number
+        id: resolve-pr
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            let prNumber = null;
+
+            if (context.eventName === 'pull_request_review') {
+              const review = context.payload.review;
+              const pr = context.payload.pull_request;
+
+              // Skip if not a clean review
+              const isClean =
+                (review.body && review.body.includes('[EX:REVIEW-CLEAN]')) ||
+                (
+                  (review.user.login === 'Copilot' || review.user.login === 'copilot[bot]') &&
+                  !(review.body && review.body.includes('[EX:REVIEW-HAS-SUGGESTIONS]'))
+                );
+
+              if (!isClean) {
+                core.info(`Review is not clean — skipping.`);
+                core.setOutput('pr_number', '');
+                return;
+              }
+
+              prNumber = pr.number;
+              core.info(`PR review path: PR #${prNumber}`);
+
+            } else if (context.eventName === 'workflow_run') {
+              const run = context.payload.workflow_run;
+              const branch = run.head_branch;
+
+              const { data: prs } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                head: `${context.repo.owner}:${branch}`,
+                state: 'open',
+              });
+
+              if (prs.length === 0) {
+                core.info(`No open PR for branch "${branch}" — skipping.`);
+                core.setOutput('pr_number', '');
+                return;
+              }
+
+              const pr = prs[0];
+
+              // Check latest Copilot review
+              const { data: reviews } = await github.rest.pulls.listReviews({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+              });
+
+              const latestCopilot = [...reviews].reverse().find(r =>
+                r.user.login === 'Copilot' || r.user.login === 'copilot[bot]'
+              );
+
+              if (!latestCopilot) {
+                core.info('No Copilot review found — skipping.');
+                core.setOutput('pr_number', '');
+                return;
+              }
+
+              if (latestCopilot.body && latestCopilot.body.includes('[EX:REVIEW-HAS-SUGGESTIONS]')) {
+                core.info('Latest Copilot review has suggestions — not merging.');
+                core.setOutput('pr_number', '');
+                return;
+              }
+
+              prNumber = pr.number;
+              core.info(`workflow_run path: PR #${prNumber}`);
+            }
+
+            core.setOutput('pr_number', prNumber ? String(prNumber) : '');
+
+      - name: Check unresolved threads
+        id: check-threads
+        if: steps.resolve-pr.outputs.pr_number != ''
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = parseInt('${{ steps.resolve-pr.outputs.pr_number }}', 10);
+
+            // Verify PR is not a draft and is MERGEABLE
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            if (pr.draft) {
+              core.info(`PR #${prNumber} is still a draft — skipping merge.`);
+              core.setOutput('can_merge', 'false');
+              return;
+            }
+
+            if (pr.mergeable === false) {
+              core.info(`PR #${prNumber} is not mergeable (conflicts?) — skipping.`);
+              core.setOutput('can_merge', 'false');
+              return;
+            }
+
+            // Query all review threads
+            const result = await github.graphql(`
+              query($owner: String!, $repo: String!, $prNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  pullRequest(number: $prNumber) {
+                    reviewThreads(first: 100) {
+                      nodes {
+                        isResolved
+                        isOutdated
+                      }
+                    }
+                  }
+                }
+              }
+            `, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              prNumber,
+            });
+
+            const threads = result.repository.pullRequest.reviewThreads.nodes;
+            const unresolved = threads.filter(t => !t.isResolved && !t.isOutdated);
+
+            if (unresolved.length > 0) {
+              core.info(`${unresolved.length} unresolved thread(s) — not merging.`);
+              core.setOutput('can_merge', 'false');
+              return;
+            }
+
+            core.info('All threads resolved — proceeding with merge.');
+            core.setOutput('can_merge', 'true');
+
+      - name: Squash merge PR
+        id: merge-pr
+        if: steps.check-threads.outputs.can_merge == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = parseInt('${{ steps.resolve-pr.outputs.pr_number }}', 10);
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+              merge_method: 'squash',
+              commit_title: `${pr.title} (#${prNumber})`,
+              commit_message: `Closes #${prNumber}\n\nSquash-merged by auto-merge-on-clean-review workflow.`,
+            });
+
+            core.info(`PR #${prNumber} merged via squash.`);
+
+      - name: Close linked issues and trigger next task
+        if: steps.check-threads.outputs.can_merge == 'true'
+        uses: actions/github-script@v7
+        env:
+          COPILOT_TRIGGER_TOKEN: ${{ secrets.COPILOT_TRIGGER_TOKEN }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const prNumber = parseInt('${{ steps.resolve-pr.outputs.pr_number }}', 10);
+
+            // Retrieve the PR body to find closing keywords
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            // Find linked issue numbers from PR body (closes/fixes/resolves #N)
+            const body = pr.body || '';
+            const closingPattern = /(?:closes?|fixes?|resolves?)\s+#(\d+)/gi;
+            const linkedIssues = [];
+            let m;
+            while ((m = closingPattern.exec(body)) !== null) {
+              linkedIssues.push(parseInt(m[1], 10));
+            }
+
+            // Close each linked issue
+            for (const issueNumber of linkedIssues) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                state: 'closed',
+                state_reason: 'completed',
+              });
+              core.info(`Closed issue #${issueNumber}`);
+            }
+
+            // Load .github/issue-index.json for next-task chaining
+            let index = null;
+            try {
+              const raw = fs.readFileSync('.github/issue-index.json', 'utf-8');
+              index = JSON.parse(raw);
+            } catch {
+              core.info('No .github/issue-index.json found — skipping next-task trigger.');
+              return;
+            }
+
+            // Determine current task from PR branch (task/E<n>-S<n>-T<n>)
+            const branchMatch = pr.head.ref.match(/E(\d+)-S(\d+)-T(\d+)/i);
+            if (!branchMatch) {
+              core.info(`Branch "${pr.head.ref}" does not match task pattern — skipping next-task.`);
+              return;
+            }
+            const [, epic, story, task] = branchMatch.map(Number);
+
+            // Update current task status to done
+            const current = index.tasks.find(
+              t => t.epic === epic && t.story === story && t.task === task
+            );
+            if (current) {
+              current.status = 'done';
+              core.info(`Marked task E${epic}-S${story}-T${task} as done.`);
+            }
+
+            // Find the next open task
+            const sortedTasks = [...index.tasks].sort((a, b) =>
+              a.epic !== b.epic ? a.epic - b.epic :
+              a.story !== b.story ? a.story - b.story :
+              a.task - b.task
+            );
+
+            const nextTask = sortedTasks.find(t => t.status === 'open');
+            if (!nextTask) {
+              core.info('No next open task found in issue-index.json — workflow complete!');
+            } else if (nextTask.issue) {
+              core.info(`Triggering next task: E${nextTask.epic}-S${nextTask.story}-T${nextTask.task}, issue #${nextTask.issue}`);
+
+              // Step 1: Remove existing @copilot assignment (idempotent)
+              try {
+                await github.rest.issues.removeAssignees({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: nextTask.issue,
+                  assignees: ['copilot'],
+                });
+              } catch { /* ignore if not assigned */ }
+
+              // Step 2: Post context comment (do NOT @-mention copilot here)
+              const agentName = nextTask.agent || 'task-implementer';
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: nextTask.issue,
+                body:
+                  `🤖 **Next task ready for execution**\n\n` +
+                  `- Task: \`E${nextTask.epic}-S${nextTask.story}-T${nextTask.task}\`\n` +
+                  `- Title: ${nextTask.title}\n` +
+                  `- Agent: \`${agentName}\`\n\n` +
+                  `Previous task E${epic}-S${story}-T${task} merged successfully.`,
+              });
+
+              // Step 3: Assign @copilot using COPILOT_TRIGGER_TOKEN (Fine-Grained PAT)
+              if (process.env.COPILOT_TRIGGER_TOKEN) {
+                const triggerOctokit = github.getOctokit(process.env.COPILOT_TRIGGER_TOKEN);
+                await triggerOctokit.rest.issues.addAssignees({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: nextTask.issue,
+                  assignees: ['copilot'],
+                });
+                core.info(`Assigned @copilot to issue #${nextTask.issue}`);
+              } else {
+                core.warning('COPILOT_TRIGGER_TOKEN not set — skipping @copilot assignment.');
+              }
+
+              nextTask.status = 'in_progress';
+            } else {
+              core.info(`Next task E${nextTask.epic}-S${nextTask.story}-T${nextTask.task} has no issue number yet.`);
+            }
+
+            // Write updated issue-index.json back via API
+            try {
+              const updated = JSON.stringify(index, null, 2);
+              const { data: file } = await github.rest.repos.getContent({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                path: '.github/issue-index.json',
+              });
+              await github.rest.repos.createOrUpdateFileContents({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                path: '.github/issue-index.json',
+                message: `chore(issue-index): update task statuses after PR #${prNumber} merge`,
+                content: Buffer.from(updated).toString('base64'),
+                sha: file.sha,
+              });
+              core.info('issue-index.json updated.');
+            } catch (err) {
+              core.warning(`Failed to update issue-index.json: ${err.message}`);
+            }

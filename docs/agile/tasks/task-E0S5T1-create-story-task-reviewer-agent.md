@@ -10,10 +10,10 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `prompt-engineer` |
-| **Depends on** | E0-S1-T2 |
+| **Depends on** | E0-S5-T0 |
 | **Blocks** | — |
 | Created at | 2026-04-13 13:23:32 -03 |
-| Last updated | 2026-04-13 20:59:09 -03 |
+| Last updated | 2026-04-14 00:37:39 -03 |
 
 ---
 

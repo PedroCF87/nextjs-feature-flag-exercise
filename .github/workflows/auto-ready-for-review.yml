@@ -1,0 +1,170 @@
+name: Auto Ready for Review
+
+# Purpose: Converts Copilot's draft PR to "ready for review" once Copilot finishes
+# its initial work session, enabling the code review cycle to start.
+#
+# Security guards:
+#   - workflow_run.conclusion == 'success'
+#   - workflow_run.actor.type == 'Bot'
+#   - workflow_run.actor.login == 'Copilot' (exact match)
+#   - workflow_run.repository.full_name == github.repository (same-repo guard)
+#
+# Required secrets:
+#   - COPILOT_CLASSIC_PAT: Classic PAT with repo scope. Fine-Grained PATs cannot
+#     be used for the markPullRequestReadyForReview GraphQL mutation when the PR
+#     was created by a GitHub App (Copilot).
+
+on:
+  workflow_run:
+    workflows: ['Copilot Push Signal']
+    types: [completed]
+
+jobs:
+  ready-for-review:
+    runs-on: ubuntu-latest
+
+    # Security guards — evaluated before the job even starts
+    if: |
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.actor.type == 'Bot' &&
+      (github.event.workflow_run.actor.login == 'Copilot' || github.event.workflow_run.actor.login == 'copilot[bot]') &&
+      github.event.workflow_run.repository.full_name == github.repository
+
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Convert draft PR to ready for review
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.COPILOT_CLASSIC_PAT }}
+          script: |
+            const branch = context.payload.workflow_run.head_branch;
+            core.info(`Processing branch: ${branch}`);
+
+            // 1. Resolve the open PR for the pushed branch
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${branch}`,
+              state: 'open',
+            });
+
+            if (prs.length === 0) {
+              core.info(`No open PR found for branch ${branch} — skipping.`);
+              return;
+            }
+
+            const pr = prs[0];
+            core.info(`Found PR #${pr.number}: "${pr.title}" (draft=${pr.draft})`);
+
+            if (!pr.draft) {
+              core.info(`PR #${pr.number} is already ready for review — skipping.`);
+              return;
+            }
+
+            // 2. Poll for Copilot's pending review request (up to ~3 min / 18 × 10 s)
+            let reviewRequested = false;
+            for (let attempt = 1; attempt <= 18; attempt++) {
+              const { data: reviewers } = await github.rest.pulls.listRequestedReviewers({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+              });
+
+              const copilotRequested =
+                reviewers.users.some(u =>
+                  u.login === 'Copilot' || u.login === 'copilot[bot]'
+                ) ||
+                reviewers.teams.some(t => t.slug === 'copilot');
+
+              if (copilotRequested) {
+                reviewRequested = true;
+                core.info(`Copilot review request detected on attempt ${attempt}.`);
+                break;
+              }
+
+              core.info(`Attempt ${attempt}/18 — no review request yet; waiting 10 s...`);
+              await new Promise(resolve => setTimeout(resolve, 10_000));
+            }
+
+            if (!reviewRequested) {
+              core.warning('No Copilot review request detected after 18 attempts. Converting anyway.');
+            }
+
+            // 3. Mark PR ready for review via GraphQL
+            await github.graphql(`
+              mutation MarkReadyForReview($prId: ID!) {
+                markPullRequestReadyForReview(input: { pullRequestId: $prId }) {
+                  pullRequest {
+                    number
+                    isDraft
+                  }
+                }
+              }
+            `, { prId: pr.node_id });
+
+            core.info(`PR #${pr.number} successfully converted to ready for review.`);
+
+      - name: Update issue-index status to in_progress
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const branch = context.payload.workflow_run.head_branch;
+
+            // Load issue-index.json (best-effort; skips silently if absent)
+            let index;
+            try {
+              const { data } = await github.rest.repos.getContent({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                path: '.github/issue-index.json',
+              });
+              index = JSON.parse(Buffer.from(data.content, 'base64').toString('utf-8'));
+            } catch {
+              core.info('No .github/issue-index.json found — skipping status update.');
+              return;
+            }
+
+            // Find task matching the branch (branch pattern: task/E<n>-S<n>-T<n>)
+            const taskMatch = branch.match(/E(\d+)-S(\d+)-T(\d+)/i);
+            if (!taskMatch) {
+              core.info(`Branch ${branch} does not match task pattern — skipping.`);
+              return;
+            }
+            const [, epic, story, task] = taskMatch.map(Number);
+
+            const entry = index.tasks.find(
+              t => t.epic === epic && t.story === story && t.task === task
+            );
+            if (!entry) {
+              core.info(`Task E${epic}-S${story}-T${task} not found in issue-index — skipping.`);
+              return;
+            }
+
+            if (entry.status === 'in_progress') {
+              core.info(`Task already in_progress — no update needed.`);
+              return;
+            }
+
+            entry.status = 'in_progress';
+
+            const updated = JSON.stringify(index, null, 2);
+            const { data: file } = await github.rest.repos.getContent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              path: '.github/issue-index.json',
+            });
+
+            await github.rest.repos.createOrUpdateFileContents({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              path: '.github/issue-index.json',
+              message: `chore(issue-index): mark task E${epic}-S${story}-T${task} as in_progress`,
+              content: Buffer.from(updated).toString('base64'),
+              sha: file.sha,
+            });
+
+            core.info(`Task E${epic}-S${story}-T${task} status → in_progress`);

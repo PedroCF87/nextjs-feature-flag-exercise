@@ -1,0 +1,5 @@
+{
+  "_comment": "Task/issue mapping for the auto-merge-on-clean-review workflow. Add one entry per task as GitHub Issues are created. Status values: open | in_progress | done",
+  "tasks": [
+  ]
+}
