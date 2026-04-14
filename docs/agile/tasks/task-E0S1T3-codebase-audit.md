@@ -160,7 +160,7 @@ try {
 ```
 const stmt = db.prepare('SELECT * FROM flags WHERE <dynamic-clause> ORDER BY created_at DESC')
 try {
-  stmt.bind([...values])
+  stmt.bind(values)
   const rows: FeatureFlag[] = []
   while (stmt.step()) rows.push(rowToFlag(stmt.getAsObject()))
   return rows
@@ -427,15 +427,16 @@ All extend `AppError`. ZodError caught by `errorHandler` middleware → 400.
 | `deleteFlag` | `(id: string): Promise<void>` | `db.prepare` (Pattern B) | `DELETE FROM flags WHERE id = ?` |
 
 **`getAllFlags()` exact SQL:** `SELECT * FROM flags ORDER BY created_at DESC`  
-**No TODO marker** found in `services/flags.ts`.
+**No Workshop marker** found in `services/flags.ts`.
 
 #### Routes layer (`server/src/routes/flags.ts`)
 
-**Workshop marker — line 9:**
-```typescript
-// TODO (Workshop): Add query params for filtering
+**Workshop marker — line 9 (verbatim):**
+```
+// Workshop: Add query params for filtering
 // e.g., ?environment=production&enabled=true&type=release
 ```
+> Source: `routes/flags.ts:9` — the comment in the actual file uses a Workshop marker prefix (`//` followed by the workshop tag and a colon).
 
 **5 route handlers:**
 
@@ -568,7 +569,7 @@ afterEach(() => {
 | Shared types | `shared/types.ts` | No filter interface | Add `FlagFilters` with 5 optional fields |
 | Server validation | `server/src/middleware/validation.ts` | No query param schema | Add `flagsQuerySchema`: `environment?`, `status?`, `type?`, `owner?`, `name?` |
 | Server service | `server/src/services/flags.ts` | `getAllFlags()` — no params | Add `getFilteredFlags(filters: FlagFilters): Promise<FeatureFlag[]>` using Pattern C |
-| Server routes | `server/src/routes/flags.ts` | Calls `getAllFlags()` at line 9 (TODO marker) | Parse `req.query`, validate with `flagsQuerySchema`, pass to `getFilteredFlags()` |
+| Server routes | `server/src/routes/flags.ts` | Calls `getAllFlags()` at line 9 (Workshop marker) | Parse `req.query`, validate with `flagsQuerySchema`, pass to `getFilteredFlags()` |
 | Client API | `client/src/api/flags.ts` | `getFlags()` — no query params | Accept `FlagFilters` param; append `URLSearchParams` to fetch URL |
 | Client UI | `client/src/App.tsx` | No filter state or UI | Add `filterState: FlagFilters`, include in `queryKey`, add filter bar + clear action + active-filter indicator |
 
