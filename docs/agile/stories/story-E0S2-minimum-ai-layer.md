@@ -388,7 +388,7 @@ jobs:
 
 ---
 
-### [Task E0-S2-T5 — Validate, commit, and sign readiness checklist](../tasks/task-E0S2T5-validate-commit-and-sign-readiness-checklist.md)
+### ✅ [Task E0-S2-T5 — Validate, commit, and sign readiness checklist](../tasks/task-E0S2T5-validate-commit-and-sign-readiness-checklist.md)
 
 **Goal:** verify all T1–T4 AI Layer artifacts are committed in the fork, trigger the `copilot-setup-steps.yml` dry-run, and produce and commit the AI Layer coverage report.
 

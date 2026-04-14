@@ -167,7 +167,7 @@ This epic is considered complete when **all** items below are true:
 
 **Description:** create fork strategy, validate base branch, project structure, remotes, and essential execution commands. Conduct codebase audit of `nextjs-feature-flag-exercise` (architecture, patterns, tests, integration points, risks).
 
-### [Story E0-S2 — Minimum AI Layer configuration](../agile/stories/story-E0S2-minimum-ai-layer.md)
+### ✅ [Story E0-S2 — Minimum AI Layer configuration](../agile/stories/story-E0S2-minimum-ai-layer.md)
 
 **Description:** adapt and apply existing AI Layer artifacts from `Docs/.github/` (instructions, agents, skills) to the fork repository. Configure fork governance (Actions, environments, secrets, MCP).
 

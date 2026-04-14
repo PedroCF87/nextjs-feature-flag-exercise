@@ -409,7 +409,7 @@
 
 ---
 
-### [Task E0-S6-T8 — Configure secrets and self-hosted runner](../tasks/task-E0S6T8-configure-secrets-and-self-hosted-runner.md)
+### ✅ [Task E0-S6-T8 — Configure secrets and self-hosted runner](../tasks/task-E0S6T8-configure-secrets-and-self-hosted-runner.md)
 
 **Goal:** configure the two workflow-specific PATs in the fork and set up the self-hosted runner.
 

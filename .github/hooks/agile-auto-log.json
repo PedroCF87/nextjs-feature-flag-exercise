@@ -3,21 +3,21 @@
     "PreToolUse": [
       {
         "type": "command",
-        "command": "node \"/delfos/Projetos/ITBC - Desafio RDH/Docs/.github/hooks/guard-agile-logs.js\"",
+        "command": "node \"/delfos/Projetos/ITBC - Desafio RDH/nextjs-feature-flag-exercise/.github/hooks/guard-agile-logs.js\"",
         "timeout": 30
       }
     ],
     "PostToolUse": [
       {
         "type": "command",
-        "command": "node \"/delfos/Projetos/ITBC - Desafio RDH/Docs/.github/hooks/auto-log-agile-artifact.js\"",
+        "command": "node \"/delfos/Projetos/ITBC - Desafio RDH/nextjs-feature-flag-exercise/.github/hooks/auto-log-agile-artifact.js\"",
         "timeout": 30
       }
     ],
     "Stop": [
       {
         "type": "command",
-        "command": "node \"/delfos/Projetos/ITBC - Desafio RDH/Docs/.github/hooks/enforce-task-pack-stop.js\"",
+        "command": "node \"/delfos/Projetos/ITBC - Desafio RDH/nextjs-feature-flag-exercise/.github/hooks/enforce-task-pack-stop.js\"",
         "timeout": 30
       }
     ]
