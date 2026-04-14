@@ -38,8 +38,8 @@ E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target
 
 | Step | Task | Story | Blocker? | Notes |
 |---|---|---|---|---|
-| 14 | E0-S1-T3 | E0-S1 | Phase 1 done | Codebase audit |
-| 15 | E0-S1-T4 | E0-S1 | T3 done | Produce diagnosis document |
+| ✅ 14 | E0-S1-T3 | E0-S1 | Phase 1 done | Codebase audit |
+| ✅ 15 | E0-S1-T4 | E0-S1 | T3 done | Produce diagnosis document |
 
 ### Phase 3 — AI Layer deployment to fork (E0-S2)
 
