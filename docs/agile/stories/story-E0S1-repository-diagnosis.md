@@ -331,7 +331,7 @@
 
 ---
 
-### [Task E0-S1-T4 — Record diagnosis findings document](../tasks/task-E0S1T4-diagnosis-document.md)
+### ✅ [Task E0-S1-T4 — Record diagnosis findings document](../tasks/task-E0S1T4-diagnosis-document.md)
 
 **Goal:** produce a concise, structured evidence artifact that can be referenced by E0-S2, E0-S4, and EPIC-1.
 
