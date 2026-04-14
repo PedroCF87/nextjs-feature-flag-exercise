@@ -8,12 +8,12 @@
 | **Story** | [E0-S6 — CI/CD Pipeline for Issue-Driven Execution](../stories/story-E0S6-ci-cd-pipeline-automation.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `copilot-env-specialist` |
 | **Depends on** | [E0-S6-T4](task-E0S6T4-create-auto-validate-copilot-fix-yml.md) |
 | **Blocks** | — |
 | Created at | 2026-04-13 23:11:22 -03 |
-| Last updated | 2026-04-13 23:15:02 -03 |
+| Last updated | 2026-04-14 11:58:33 -03 |
 
 ---
 
@@ -82,34 +82,47 @@ Create `.github/workflows/auto-merge-on-clean-review.yml` to merge clean PRs, cl
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:**
+  ```bash
+  python3 -c "import yaml, pathlib; yaml.safe_load(pathlib.Path('.github/workflows/auto-merge-on-clean-review.yml').read_text()); print('YAML_OK')"; echo "EXIT:$?"
+  ```
+- **Exit code:** `0`
+- **Output summary:** `YAML_OK` / `EXIT:0`
+- **Files created/updated:**
+  - `.github/workflows/auto-merge-on-clean-review.yml` — created
+  - `docs/agile/tasks/task-E0S6T5-create-auto-merge-on-clean-review-yml.md` — updated (Status → Done)
+- **Risks found / mitigations:** `COPILOT_TRIGGER_TOKEN` (Fine-Grained PAT) required for `gh api ... assignees` Copilot assignment step; `GITHUB_TOKEN` is silently ignored for Copilot assignment. Context comment in step 2 intentionally omits `@copilot` to avoid triggering conversational AI instead of the coding agent.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** `.github/workflows/auto-merge-on-clean-review.yml` did not exist and T4 was Done,
+- **When** the workflow was created with dual triggers (`pull_request_review: submitted` + `workflow_run` on `Copilot code review`), thread check, squash merge, issue-index read, and 3-step Copilot assign sequence,
+- **Then** YAML validation exits with code `0` and `YAML_OK` is printed, confirming the file is parseable and valid.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
+- [x] `.github/workflows/auto-merge-on-clean-review.yml` exists with valid YAML.
+- [x] Dual triggers: `pull_request_review: submitted` + `workflow_run` on `Copilot code review`.
+- [x] PR draft check and `MERGEABLE` re-fetch before merge.
+- [x] All review threads verified resolved before merge.
+- [x] Squash merge via `gh pr merge --squash --delete-branch --admin`.
+- [x] `.github/issue-index.json` read to resolve linked issue and next task.
+- [x] Linked issue closed as completed.
+- [x] 3-step Copilot trigger: unassign → context comment (no `@copilot`) → assign.
+- [x] `COPILOT_TRIGGER_TOKEN` for Copilot assignment, `GITHUB_TOKEN` for merge/close.
+- [x] Committed with spec message `feat(ci): add auto-merge-on-clean-review workflow`.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** E0-S6-T4 (`auto-validate-copilot-fix.yml`) is Done.
+- **Downstream items unblocked:** E0-S6-T6 (issue index infrastructure) can now proceed.
+- **Open risks:** `gh pr merge --admin` bypasses required reviews — acceptable only if the branch protection rule explicitly permits admin bypass. Verify repo settings before enabling in production. `COPILOT_TRIGGER_TOKEN` must be a Fine-Grained PAT (not Classic PAT) with `Issues: Read and write` scope.

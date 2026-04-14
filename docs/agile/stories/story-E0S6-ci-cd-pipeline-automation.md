@@ -314,7 +314,7 @@
 
 ---
 
-### [Task E0-S6-T5 — Create `auto-merge-on-clean-review.yml`](../tasks/task-E0S6T5-create-auto-merge-on-clean-review-yml.md)
+### ✅ [Task E0-S6-T5 — Create `auto-merge-on-clean-review.yml`](../tasks/task-E0S6T5-create-auto-merge-on-clean-review-yml.md)
 
 **Goal:** create the workflow that merges clean PRs, closes Issues, and triggers the next task.
 
