@@ -1,7 +1,7 @@
 ---
 name: copilot-env-setup
 description: Creates a copilot-setup-steps.yml workflow and its companion secrets/variables checklist for a target repository. Use this skill when asked to set up the GitHub Copilot cloud agent environment from scratch, add a new MCP server configuration, or validate an existing setup-steps workflow for compliance.
-allowed-tools: ["read", "edit", "execute"]
+allowed-tools: ["read", "search", "edit", "execute"]
 ---
 
 ## Purpose
@@ -23,7 +23,7 @@ These rules are enforced by `validate-workflow-file.js`. A workflow that violate
 
 ## Process
 
-1. **Read existing workflow** — search for `.github/workflows/copilot-setup-steps.yml` in the target repository. If it exists, read it with `read_file` and identify which rules above it already satisfies before making any changes.
+1. **Read existing workflow** — search for `.github/workflows/copilot-setup-steps.yml` in the target repository. If it exists, read it with `read` and identify which rules above it already satisfies before making any changes.
 
 2. **Identify required setup steps** — determine what the Copilot agent needs installed to run tasks in this repository:
    - Node.js version (check `package.json` `engines` field or `.nvmrc`)

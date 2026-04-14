@@ -10,7 +10,7 @@ Ensure all AI Layer artifacts in `.github/` are correctly scoped, maintain cross
 
 ## Mandatory rules
 
-1. **Always read before editing** — use `read_file` to inspect the current content of any artifact before applying changes. Never overwrite blindly.
+1. **Always read before editing** — use `read` to inspect the current content of any artifact before applying changes. Never overwrite blindly.
 
 2. **Scope `applyTo` to the target repository** — when deploying an instruction file from a source (e.g., `docs/.github/`) to a target (e.g., fork `.github/`), verify the `applyTo` front matter applies to file patterns that exist in the target. Remove or update workspace-level paths that do not apply.
 
@@ -31,5 +31,4 @@ Ensure all AI Layer artifacts in `.github/` are correctly scoped, maintain cross
 
 - Do not add `applyTo: "**"` to instructions that are meant for a specific layer — over-broad patterns dilute the instruction's signal.
 - Do not create `.agent.md` files that lack a `description` field — Copilot uses the description to decide when to invoke the agent.
-- Do not use `>` or `|` YAML block scalars for the `description` field in `.agent.md` or `SKILL.md` — multiline descriptions cause parsing errors; always use a single-line string.
 - Do not create circular skill references (skill A references skill B which references skill A).

@@ -19,7 +19,7 @@ Stop if all 4 files are absent. At minimum, `AGENTS.md` or `CLAUDE.md` must be p
 
 ## Process
 
-1. **Read all input sources** — use `read_file` on each file listed above. Do not write output until all available files have been read.
+1. **Read all input sources** — use `read` on each file listed above. Do not write output until all available files have been read.
 
 2. **Extract the 7 required facts** — for each required section below, identify the authoritative source lines from the files read in step 1:
 
@@ -37,7 +37,7 @@ Stop if all 4 files are absent. At minimum, `AGENTS.md` or `CLAUDE.md` must be p
 
 4. **Validate completeness** — confirm all 7 sections are present and non-empty. Stop and report any missing section before writing the file.
 
-5. **Write or return the output** — produce the final `copilot-instructions.md` content using the template below.
+5. **Return the output content** — produce the final `copilot-instructions.md` content using the template below. This skill is read-only: return the generated content to the invoking agent. The invoking agent is responsible for writing the file using the `edit` tool.
 
 ## Required output template
 
@@ -52,7 +52,7 @@ Stop if all 4 files are absent. At minimum, `AGENTS.md` or `CLAUDE.md` must be p
 
 | Layer | Technology | Notes |
 |---|---|---|
-| (row per layer) | | |
+| <layer> | <technology> | <notes> |
 
 ## Architecture
 
@@ -62,17 +62,19 @@ Stop if all 4 files are absent. At minimum, `AGENTS.md` or `CLAUDE.md` must be p
 
 ## Validation Commands
 
-### Server (`server/`)
+<!-- Replace each command below with the exact commands extracted from AGENTS.md / CLAUDE.md for this repository -->
+
+### Server (`<sub-project>/`)
 ```bash
-pnpm run build   # TypeScript type check
-pnpm run lint    # ESLint
-pnpm test        # Vitest
+<package-manager> run build   # type check command from AGENTS.md
+<package-manager> run lint    # lint command from AGENTS.md
+<package-manager> test        # test command from AGENTS.md
 ```
 
-### Client (`client/`)
+### Client (`<sub-project>/`)
 ```bash
-pnpm run build   # tsc + Vite build
-pnpm run lint    # ESLint
+<package-manager> run build   # build command from AGENTS.md
+<package-manager> run lint    # lint command from AGENTS.md
 ```
 
 ## Branch Rules
@@ -101,7 +103,7 @@ docs(agents): update copilot-instructions with data flow
 
 | Purpose | File |
 |---|---|
-| (row per key file) | |
+| <purpose> | <file-path> |
 ```
 
 ## Constraints
