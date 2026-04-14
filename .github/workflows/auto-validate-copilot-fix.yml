@@ -44,6 +44,13 @@ jobs:
     steps:
       - name: Evaluate Copilot fix and act
         uses: actions/github-script@v7
+        env:
+          # In github-script, GITHUB_TOKEN is set to the value of 'github-token'.
+          # We use COPILOT_CLASSIC_PAT for all operations in this step (GraphQL
+          # mutations and gh CLI) because Fine-Grained PATs are rejected for these
+          # operations when the PR was created by the Copilot GitHub App.
+          # CLASSIC_PAT is an explicit alias for clarity in the script below.
+          CLASSIC_PAT: ${{ secrets.COPILOT_CLASSIC_PAT }}
         with:
           github-token: ${{ secrets.COPILOT_CLASSIC_PAT }}
           script: |
@@ -170,7 +177,9 @@ jobs:
                   {
                     method: 'POST',
                     headers: {
-                      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+                      // CLASSIC_PAT (= GITHUB_TOKEN in this step context) is valid
+                      // for GitHub Models API; Fine-Grained PATs also work here.
+                      Authorization: `Bearer ${process.env.CLASSIC_PAT}`,
                       'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -227,12 +236,12 @@ jobs:
               }
 
               // 8b. Re-request Copilot code review via gh CLI
-              process.env.GH_TOKEN = process.env.GITHUB_TOKEN;
+              // CLASSIC_PAT is required; gh CLI uses GH_TOKEN env var for auth.
               const { execSync } = require('child_process');
               try {
                 execSync(
                   `gh pr edit ${pr.number} --add-reviewer @copilot --repo ${context.repo.owner}/${context.repo.repo}`,
-                  { stdio: 'pipe', env: { ...process.env, GH_TOKEN: process.env.GITHUB_TOKEN } }
+                  { stdio: 'pipe', env: { ...process.env, GH_TOKEN: process.env.CLASSIC_PAT } }
                 );
                 core.info(`Re-requested Copilot review on PR #${pr.number}`);
               } catch (err) {

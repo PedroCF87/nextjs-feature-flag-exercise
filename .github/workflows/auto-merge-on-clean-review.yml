@@ -314,7 +314,20 @@ jobs:
                 });
                 core.info(`Assigned @copilot to issue #${nextTask.issue}`);
               } else {
-                core.warning('COPILOT_TRIGGER_TOKEN not set — skipping @copilot assignment.');
+                // Post a visible comment so the repo owner knows automation is paused
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: nextTask.issue,
+                  body:
+                    `⚠️ **Automation paused** — \`COPILOT_TRIGGER_TOKEN\` secret is not configured.\n\n` +
+                    `Next task \`E${nextTask.epic}-S${nextTask.story}-T${nextTask.task}\` is ready but ` +
+                    `\`@copilot\` could not be assigned automatically.\n\n` +
+                    `**Action required:** Add \`COPILOT_TRIGGER_TOKEN\` (Fine-Grained PAT with ` +
+                    `\`Issues: Read and write\`) in repository Settings → Secrets and Variables → ` +
+                    `Actions, then manually assign \`@copilot\` to this issue to resume.`,
+                });
+                core.setFailed('COPILOT_TRIGGER_TOKEN is not set. Next-task trigger skipped. See issue comment for details.');
               }
 
               nextTask.status = 'in_progress';

@@ -77,7 +77,7 @@ jobs:
                 reviewers.users.some(u =>
                   u.login === 'Copilot' || u.login === 'copilot[bot]'
                 ) ||
-                reviewers.teams.some(t => t.slug === 'copilot');
+                (reviewers.teams ?? []).some(t => t.slug === 'copilot');
 
               if (copilotRequested) {
                 reviewRequested = true;
