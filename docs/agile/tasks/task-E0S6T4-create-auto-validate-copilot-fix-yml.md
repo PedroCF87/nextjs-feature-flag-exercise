@@ -8,12 +8,12 @@
 | **Story** | [E0-S6 — CI/CD Pipeline for Issue-Driven Execution](../stories/story-E0S6-ci-cd-pipeline-automation.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `copilot-env-specialist` |
 | **Depends on** | [E0-S6-T3](task-E0S6T3-create-auto-copilot-fix-yml.md) |
 | **Blocks** | — |
 | Created at | 2026-04-13 23:11:22 -03 |
-| Last updated | 2026-04-13 23:15:02 -03 |
+| Last updated | 2026-04-14 11:40:21 -03 |
 
 ---
 
@@ -84,34 +84,46 @@ Create `.github/workflows/auto-validate-copilot-fix.yml` to evaluate whether Cop
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:**
+  ```bash
+  python3 -c "import yaml, pathlib; yaml.safe_load(pathlib.Path('.github/workflows/auto-validate-copilot-fix.yml').read_text()); print('YAML_OK')"; echo "EXIT:$?"
+  ```
+- **Exit code:** `0`
+- **Output summary:** `YAML_OK` / `EXIT:0`
+- **Files created/updated:**
+  - `.github/workflows/auto-validate-copilot-fix.yml` — created
+  - `docs/agile/tasks/task-E0S6T4-create-auto-validate-copilot-fix-yml.md` — updated (Status → Done)
+- **Risks found / mitigations:** Comment body containing `[EX:FIX-INCOMPLETE]` and `[EX:TRIGGER-FIX-REQUEST]` built using ANSI `$'\n'` concatenation (same pattern as T3) to avoid YAML parser ambiguity.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** `.github/workflows/auto-validate-copilot-fix.yml` did not exist and T3 was Done,
+- **When** the workflow was created with `workflow_run` trigger on `Copilot Push Signal`, 4 security guards, FIX-APPLIED retry loop (6×10s), GitHub Models evaluation with heuristic fallback, resolved and incomplete paths,
+- **Then** YAML validation exits with code `0` and `YAML_OK` is printed, confirming the file is parseable and valid.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
+- [x] `.github/workflows/auto-validate-copilot-fix.yml` exists with valid YAML.
+- [x] Trigger is `workflow_run: completed` on `Copilot Push Signal`.
+- [x] 4 security guards present (conclusion, Bot actor, exact login, same repo).
+- [x] FIX-APPLIED retry loop (6×10s) implemented.
+- [x] GitHub Models (`gpt-4o-mini`) evaluation with keyword heuristic fallback.
+- [x] Resolved path: `resolveReviewThread` mutation + `gh pr edit --add-reviewer Copilot`.
+- [x] Incomplete path: posts `[EX:FIX-INCOMPLETE]` + `[EX:TRIGGER-FIX-REQUEST]`.
+- [x] Uses `COPILOT_CLASSIC_PAT` (no hardcoded secrets).
+- [x] Committed with spec message `feat(ci): add auto-validate-copilot-fix workflow`.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** E0-S6-T3 (`auto-copilot-fix.yml`) is Done.
+- **Downstream items unblocked:** E0-S6-T5 (`auto-merge-on-clean-review.yml`) can now proceed.
+- **Open risks:** `gh pr edit --add-reviewer Copilot` requires `gh` ≥ 2.88.0 on the self-hosted runner. Verify runner version before deploying. Classic PAT required (Fine-Grained PATs rejected when PR was created by Copilot GitHub App).

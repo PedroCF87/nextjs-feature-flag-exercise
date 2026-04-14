@@ -279,7 +279,7 @@
 
 ---
 
-### [Task E0-S6-T4 — Create `auto-validate-copilot-fix.yml`](../tasks/task-E0S6T4-create-auto-validate-copilot-fix-yml.md)
+### ✅ [Task E0-S6-T4 — Create `auto-validate-copilot-fix.yml`](../tasks/task-E0S6T4-create-auto-validate-copilot-fix-yml.md)
 
 **Goal:** create the workflow that evaluates whether Copilot applied all requested fixes.
 
