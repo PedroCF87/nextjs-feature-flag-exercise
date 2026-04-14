@@ -4,13 +4,17 @@
 |---|---|
 | **Status** | Active |
 | **Mode** | Local execution, bypass approvals |
+| **PR policy** | **NO PRs for any Epic 0 task — commit directly to `exercise-1` and push** |
+| **AI Layer path** | **`.github/` (root) is the live AI Layer — never create artifacts in `docs/.github/`** |
 | **Created at** | 2026-04-13 21:49:02 -03 |
 
 ---
 
 ## Rationale
 
-E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target `docs/.github/` and require no fork AI Layer or codebase audit. E0-S6 T1–T7 (writing workflow YMLs and docs) can also be done now. E0-S6 T8–T10 (secrets, runner, E2E validation) require the fork to be configured in E0-S2 first.
+E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target `.github/` and require no fork AI Layer or codebase audit. E0-S6 T1–7 (writing workflow YMLs and docs) can also be done now. E0-S6 T8–10 (secrets, runner, E2E validation) require the fork to be configured in E0-S2 first.
+
+> **Execution model for all Epic 0 tasks:** run locally in VS Code — `git add <files> && git commit && git push origin exercise-1`. Task files that mention "open PR" or "feature branch" must be ignored for Epic 0; those instructions apply only to Epic 1+.
 
 ---
 
@@ -42,6 +46,9 @@ E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target
 | ✅ 15 | E0-S1-T4 | E0-S1 | T3 done | Produce diagnosis document |
 
 ### Phase 3 — AI Layer deployment to fork (E0-S2)
+
+> All steps in this phase run **locally**. No PRs. Commit directly to `exercise-1`.
+> AI Layer artifacts target `.github/` (root) — skip any task step that says `docs/.github/`.
 
 | Step | Task | Story | Blocker? | Notes |
 |---|---|---|---|---|

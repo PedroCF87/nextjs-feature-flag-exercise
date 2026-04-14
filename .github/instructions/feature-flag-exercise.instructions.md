@@ -45,6 +45,16 @@ When applicable, include lint:
 - cd server && pnpm run lint
 - cd client && pnpm run lint
 
+## Epic 0 — Local Execution Rules (MANDATORY)
+
+Epic 0 (environment preparation) runs **entirely locally** in VS Code. These rules override any task file that describes a different execution model:
+
+1. **No PRs for Epic 0.** All commits go directly to `exercise-1`. Never create feature branches or open PRs for Epic 0 tasks.
+2. **No GitHub Issues for Epic 0.** All tasks are executed by the local agent in VS Code — not by a cloud Copilot agent invoked from a GitHub Issue.
+3. **Commit directly to `exercise-1`** — `git add <files> && git commit -m "..." && git push origin exercise-1`.
+4. **AI Layer artifacts live in `.github/` (root).** Never create or deploy AI Layer files (agents, skills, instructions) to `docs/.github/`. The `docs/.github/` directory is a legacy reference area — the live AI Layer read by GitHub Copilot is `.github/` at the repository root.
+5. **Skip deployment steps in task files.** Any task step that says "push to fork", "open PR", or "merge before next task starts" must be treated as: commit + push on the current `exercise-1` branch. No PR required.
+
 ## What NOT to do
 
 - Do not migrate runtime to Bun inside this exercise as a mandatory step.
@@ -52,6 +62,8 @@ When applicable, include lint:
 - Do not replace Vitest with another runner as a requirement to complete the task.
 - Do not ignore SQL.js-specific limitations (booleans in INTEGER, arrays in JSON string, safe dynamic query construction).
 - Do not break the client/server contract defined in shared/types.ts.
+- Do not create PRs for Epic 0 tasks.
+- Do not create AI Layer artifacts in `docs/.github/` — use `.github/` (root) instead.
 
 ## Key references
 
