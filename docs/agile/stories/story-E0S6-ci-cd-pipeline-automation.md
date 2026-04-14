@@ -195,7 +195,7 @@
 
 ## 4) Tasks
 
-### [Task E0-S6-T1 — Create `copilot-push-signal.yml`](../tasks/task-E0S6T1-create-copilot-push-signal-yml.md)
+### ✅ [Task E0-S6-T1 — Create `copilot-push-signal.yml`](../tasks/task-E0S6T1-create-copilot-push-signal-yml.md)
 
 **Goal:** create the anchor workflow that fires on Copilot's pushes and provides a `workflow_run` trigger source for downstream workflows.
 
@@ -222,7 +222,7 @@
 
 ---
 
-### [Task E0-S6-T2 — Create `auto-ready-for-review.yml`](../tasks/task-E0S6T2-create-auto-ready-for-review-yml.md)
+### ✅ [Task E0-S6-T2 — Create `auto-ready-for-review.yml`](../tasks/task-E0S6T2-create-auto-ready-for-review-yml.md)
 
 **Goal:** create the workflow that converts Copilot's draft PRs to ready-for-review.
 

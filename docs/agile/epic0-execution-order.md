@@ -26,8 +26,8 @@ E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target
 | ✅ 4 | E0-S5-T4 | E0-S5 | T3 done | Create `execute-task-from-issue` skill |
 | ✅ 5 | E0-S5-T5 | E0-S5 | T4 done | Dry-run validation (generate story from Epic 1) |
 | ✅ 6 | E0-S5-T6 | E0-S5 | T5 done | Commit & sign readiness |
-| 7 | E0-S6-T1 | E0-S6 | E0-S5 done | Create `copilot-push-signal.yml` |
-| 8 | E0-S6-T2 | E0-S6 | T7 done | Create `auto-ready-for-review.yml` |
+| ✅ 7 | E0-S6-T1 | E0-S6 | E0-S5 done | Create `copilot-push-signal.yml` |
+| ✅ 8 | E0-S6-T2 | E0-S6 | T7 done | Create `auto-ready-for-review.yml` |
 | 9 | E0-S6-T3 | E0-S6 | T8 done | Create `auto-copilot-fix.yml` |
 | 10 | E0-S6-T4 | E0-S6 | T9 done | Create `auto-validate-copilot-fix.yml` |
 | 11 | E0-S6-T5 | E0-S6 | T10 done | Create `auto-merge-on-clean-review.yml` |

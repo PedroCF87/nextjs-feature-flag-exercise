@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-13 23:25:19 -03",
+  "generated_at": "2026-04-13 23:50:55 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -675,7 +675,7 @@
       "type": "task",
       "epic": "EPIC-0",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Blocked",
       "responsible_agent": [
         "copilot-env-specialist"
       ],
@@ -684,7 +684,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-13 23:11:22 -03",
-      "last_updated": "2026-04-13 23:15:02 -03",
+      "last_updated": "2026-04-13 23:40:55 -03",
       "task_file": "docs/agile/tasks/task-E0S6T1-create-copilot-push-signal-yml.md"
     },
     {
@@ -713,7 +713,7 @@
       "type": "task",
       "epic": "EPIC-0",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "copilot-env-specialist"
       ],
@@ -722,7 +722,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-13 23:11:22 -03",
-      "last_updated": "2026-04-13 23:15:02 -03",
+      "last_updated": "2026-04-13 23:49:29 -03",
       "task_file": "docs/agile/tasks/task-E0S6T2-create-auto-ready-for-review-yml.md"
     },
     {

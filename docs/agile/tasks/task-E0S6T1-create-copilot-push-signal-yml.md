@@ -8,12 +8,12 @@
 | **Story** | [E0-S6 — CI/CD Pipeline for Issue-Driven Execution](../stories/story-E0S6-ci-cd-pipeline-automation.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Blocked |
 | **Responsible agent** | `copilot-env-specialist` |
 | **Depends on** | [E0-S2-T4](task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md) |
 | **Blocks** | — |
 | Created at | 2026-04-13 23:11:22 -03 |
-| Last updated | 2026-04-13 23:15:02 -03 |
+| Last updated | 2026-04-13 23:40:55 -03 |
 
 ---
 
@@ -88,28 +88,37 @@ Create `.github/workflows/copilot-push-signal.yml` — the anchor workflow that 
 
 Record evidence with exact commands and outputs:
 
-- Command(s) executed: `python3 -c "import yaml; yaml.safe_load(open('.github/workflows/copilot-push-signal.yml'))"`, `cat .github/workflows/copilot-push-signal.yml`
-- Exit code(s): expected `0` for YAML parse, then visual confirmation of `name`, triggers, `permissions`, and step.
-- Output summary: YAML parses without error. File content shows `name: "Copilot Push Signal"`, `push.branches: ['copilot/**']`, `workflow_dispatch`, `permissions: {}`, `runs-on: self-hosted`.
+- Command(s) executed:
+  - `find . -path "*/.github/workflows/copilot-setup-steps.yml" -o -path "*/copilot-setup-steps.yml"`
+  - `python3 -c "import yaml, pathlib; yaml.safe_load(pathlib.Path('.github/workflows/copilot-push-signal.yml').read_text()); print('YAML_OK')"`
+  - `sed -n '1,80p' .github/workflows/copilot-push-signal.yml`
+- Exit code(s):
+  - dependency check: `0` with empty output (file not found in root workflow path)
+  - YAML parse: `0` (`YAML_OK`)
+- Output summary:
+  - `.github/workflows/copilot-push-signal.yml` exists and matches required structure (`name`, triggers, `permissions: {}`, `runs-on: self-hosted`, single echo step).
+  - prerequisite `.github/workflows/copilot-setup-steps.yml` was not found in the repository root.
 - Files created/updated: `.github/workflows/copilot-push-signal.yml`
-- Risks found / mitigations: workflow name typo → verify with `grep 'name:' .github/workflows/copilot-push-signal.yml`
+- Risks found / mitigations:
+  - dependency unmet (`E0-S2-T4` output missing) → task status set to `Blocked` until prerequisite is added.
+  - workflow name typo risk → verified exact `name: "Copilot Push Signal"`.
 
 ### Given / When / Then checks
 
-- **Given** `.github/workflows/copilot-setup-steps.yml` exists from E0-S2-T4,
-- **When** `copilot-push-signal.yml` is created with the spec above and YAML is validated,
-- **Then** `python3 -c "import yaml; yaml.safe_load(open('.github/workflows/copilot-push-signal.yml'))"` exits 0, the file contains `name: "Copilot Push Signal"`, and `permissions: {}` is present.
+- **Given** E0-S2-T4 should provide `.github/workflows/copilot-setup-steps.yml`,
+- **When** `copilot-push-signal.yml` is created and YAML validation is executed,
+- **Then** the workflow artifact is valid and ready, but the task remains blocked until the prerequisite workflow exists at `.github/workflows/copilot-setup-steps.yml`.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] `.github/workflows/copilot-push-signal.yml` exists in the fork.
-- [ ] Workflow name is exactly `"Copilot Push Signal"`.
-- [ ] `permissions: {}` present (no write access).
-- [ ] `runs-on: self-hosted` set.
-- [ ] Triggers: `push` on `copilot/**` and `workflow_dispatch`.
-- [ ] YAML validation exits 0.
+- [x] `.github/workflows/copilot-push-signal.yml` exists in the fork.
+- [x] Workflow name is exactly `"Copilot Push Signal"`.
+- [x] `permissions: {}` present (no write access).
+- [x] `runs-on: self-hosted` set.
+- [x] Triggers: `push` on `copilot/**` and `workflow_dispatch`.
+- [x] YAML validation exits 0.
 - [ ] Committed with message `feat(ci): add copilot-push-signal anchor workflow`.
 - [ ] Story AC-1 satisfied.
 
@@ -117,6 +126,6 @@ Record evidence with exact commands and outputs:
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- Upstream dependencies resolved: E0-S5 is done.
+- Downstream items unblocked: none yet (blocked by missing E0-S2-T4 workflow artifact in root path).
+- Open risks (if any): if downstream workflows are created before `copilot-setup-steps.yml`, end-to-end chain validation will fail.

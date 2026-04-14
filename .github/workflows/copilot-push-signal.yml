@@ -1,0 +1,16 @@
+name: "Copilot Push Signal"
+
+on:
+  push:
+    branches:
+      - "copilot/**"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  push-signal:
+    runs-on: self-hosted
+    steps:
+      - name: Echo push signal
+        run: echo "Copilot push signal received for ${{ github.ref }}"
