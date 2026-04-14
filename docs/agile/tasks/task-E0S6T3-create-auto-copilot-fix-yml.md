@@ -8,12 +8,12 @@
 | **Story** | [E0-S6 — CI/CD Pipeline for Issue-Driven Execution](../stories/story-E0S6-ci-cd-pipeline-automation.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `copilot-env-specialist` |
 | **Depends on** | [E0-S6-T2](task-E0S6T2-create-auto-ready-for-review-yml.md) |
 | **Blocks** | — |
 | Created at | 2026-04-13 23:11:22 -03 |
-| Last updated | 2026-04-13 23:15:02 -03 |
+| Last updated | 2026-04-14 11:24:21 -03 |
 
 ---
 
@@ -76,34 +76,42 @@ Create `.github/workflows/auto-copilot-fix.yml` to request fixes from `@copilot`
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:**
+  ```bash
+  python3 -c "import yaml, pathlib; yaml.safe_load(pathlib.Path('.github/workflows/auto-copilot-fix.yml').read_text()); print('YAML_OK')"; echo "EXIT:$?"
+  ```
+- **Exit code:** `0`
+- **Output summary:** `YAML_OK` / `EXIT:0`
+- **Files created/updated:**
+  - `.github/workflows/auto-copilot-fix.yml` — created
+  - `docs/agile/tasks/task-E0S6T3-create-auto-copilot-fix-yml.md` — updated (Status → Done)
+- **Risks found / mitigations:** YAML heredoc with `[EX:TRIGGER-FIX-REQUEST]` on a bare line was misinterpreted by the YAML parser as a flow sequence key. Fixed by replacing the heredoc with ANSI `$'\n'` string concatenation in shell.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** `.github/workflows/auto-copilot-fix.yml` did not exist and T2 was Done,
+- **When** the workflow file was created with dual trigger (`workflow_run` on `Copilot code review` + fallback `pull_request_review`) and YAML validated with `python3 yaml.safe_load`,
+- **Then** exit code is `0` and `YAML_OK` is printed, confirming the file is parseable and valid.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
+- [x] `.github/workflows/auto-copilot-fix.yml` exists with valid YAML.
+- [x] Dual trigger configured (`workflow_run` + `pull_request_review`).
+- [x] Idempotency guard `<!-- review-id: {id} -->` present.
+- [x] Uses `COPILOT_TRIGGER_TOKEN` (no hardcoded secrets).
+- [x] Committed with spec message `feat(ci): add auto-copilot-fix workflow`.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** E0-S6-T2 (`auto-ready-for-review.yml`) is Done.
+- **Downstream items unblocked:** E0-S6-T4 (`auto-validate-copilot-fix.yml`) can now proceed.
+- **Open risks:** None. YAML heredoc issue resolved via ANSI `$'\n'` concatenation.

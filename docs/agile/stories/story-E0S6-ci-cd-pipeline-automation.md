@@ -251,7 +251,7 @@
 
 ---
 
-### [Task E0-S6-T3 — Create `auto-copilot-fix.yml`](../tasks/task-E0S6T3-create-auto-copilot-fix-yml.md)
+### ✅ [Task E0-S6-T3 — Create `auto-copilot-fix.yml`](../tasks/task-E0S6T3-create-auto-copilot-fix-yml.md)
 
 **Goal:** create the workflow that posts `@copilot` fix requests after code reviews with suggestions.
 
