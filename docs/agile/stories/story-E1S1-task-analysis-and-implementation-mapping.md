@@ -74,7 +74,7 @@
 
 ## 4) Tasks
 
-### [Task E1-S1-T1 — Read and confirm TASK.md acceptance criteria](../tasks/task-E1S1T1-read-and-confirm-task-md-acceptance-criteria.md)
+### ✅ [Task E1-S1-T1 — Read and confirm TASK.md acceptance criteria](../tasks/task-E1S1T1-read-and-confirm-task-md-acceptance-criteria.md)
 
 **Goal:** read `TASK.md` in full and produce a structured summary of all 11 acceptance criteria, confirming each is understood with no ambiguity.
 
