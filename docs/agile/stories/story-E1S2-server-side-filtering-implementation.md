@@ -14,7 +14,7 @@
 | **Depends on** | E1-S1 |
 | **Blocks** | E1-S3 |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-15 17:59:52 -03 |
+| Last updated | 2026-04-15 18:07:27 -03 |
 
 ---
 
@@ -95,7 +95,7 @@
 
 ---
 
-### [Task E1-S2-T2 — Add Zod filter query schema to validation middleware](../tasks/task-E1S2T2-add-zod-filter-query-schema-to-validation-middleware.md)
+### ✅ [Task E1-S2-T2 — Add Zod filter query schema to validation middleware](../tasks/task-E1S2T2-add-zod-filter-query-schema-to-validation-middleware.md)
 
 **Goal:** add a Zod schema that validates the `GET /api/flags` query parameters against `FlagFilterParams`, returning 400 for invalid values via `next(error)`.
 

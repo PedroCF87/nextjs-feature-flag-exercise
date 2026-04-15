@@ -1,3 +1,4 @@
+import type { Request, Response, NextFunction } from 'express'
 import { z } from 'zod'
 
 export const createFlagSchema = z.object({
@@ -13,3 +14,20 @@ export const createFlagSchema = z.object({
 })
 
 export const updateFlagSchema = createFlagSchema.partial()
+
+export const flagFilterQuerySchema = z.object({
+  environment: z.enum(['development', 'staging', 'production']).optional(),
+  status: z.enum(['enabled', 'disabled']).optional(),
+  type: z.enum(['release', 'experiment', 'operational', 'permission']).optional(),
+  owner: z.string().optional(),
+  name: z.string().optional(),
+})
+
+export function validateFlagFilters(req: Request, res: Response, next: NextFunction): void {
+  try {
+    res.locals.filters = flagFilterQuerySchema.parse(req.query)
+    next()
+  } catch (error) {
+    next(error)
+  }
+}
