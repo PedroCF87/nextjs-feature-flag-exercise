@@ -35,7 +35,7 @@ As a `task-implementer`, I want to add filter state management in `client/src/Ap
 
 **Goal:** add `useState<FlagFilterParams>` in `App.tsx` above the mutation scope and pass filter state to the `useQuery` call and to the filter controls component.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `client/src/App.tsx` — add filter state, thread to API call and filter controls

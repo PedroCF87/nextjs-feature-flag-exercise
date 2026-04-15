@@ -35,7 +35,7 @@ As a `task-implementer`, I want to update the `GET /api/flags` route handler to 
 
 **Goal:** update the `GET /api/flags` route handler to extract validated filter params from `req.query` and forward them to `FlagsService.getAll()`.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `server/src/routes/flags.ts` — update GET handler to extract and forward filter params

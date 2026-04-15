@@ -4,7 +4,7 @@ applyTo: ../nextjs-ai-optimized-codebase/**
 
 # Gold Standard — Always-On Instructions
 
-This context is specific to the `nextjs-ai-optimized-codebase` repository (RDH architectural reference).
+This context is specific to the `nextjs-ai-optimized-codebase` repository (architectural reference).
 
 ## Objective
 
@@ -57,7 +57,7 @@ After changes, validate in this flow:
 2. `npx tsc --noEmit`
 3. `bun test`
 
-Do not proceed with broken state between phases (PIV discipline).
+Do not proceed with broken state between phases (validation discipline).
 
 ## What NOT to do
 

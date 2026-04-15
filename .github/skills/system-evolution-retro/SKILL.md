@@ -1,11 +1,11 @@
 ---
 name: system-evolution-retro
-description: Turn recurring failures into system improvements by adjusting rules, commands, context, and templates to increase PIV Loop predictability. Use this skill when an error repeats and you need to fix the system root cause, not only the symptom.
+description: Turn recurring failures into system improvements by adjusting rules, commands, context, and templates to increase validation loop predictability. Use this skill when an error repeats and you need to fix the system root cause, not only the symptom.
 ---
 
 ## Context
 
-In the RDH method, quality compounds over cycles. When the same error reappears, the right action is not only fixing code: it is evolving the system (AI Layer) that allowed the error.
+In the workshop method, quality compounds over cycles. When the same error reappears, the right action is not only fixing code: it is evolving the system (AI Layer) that allowed the error.
 
 This skill applies practical retrospective on:
 
@@ -36,7 +36,7 @@ This skill applies practical retrospective on:
    - If it is operational consistency failure → update template/checklist.
    - Keep changes small, specific, and auditable.
 
-4. **Revalidate in a new PIV Loop**
+4. **Revalidate in a new cycle**
    - Run the workflow again with the applied improvement.
    - Verify recurrence rate decreased.
    - Record result and decision for future maintenance.

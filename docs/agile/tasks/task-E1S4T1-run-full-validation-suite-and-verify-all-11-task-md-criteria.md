@@ -34,7 +34,7 @@ As an `agile-exercise-planner`, I want to run the full server and client validat
 
 **Goal:** execute the complete server and client validation suite and run through all 11 TASK.md acceptance criteria to confirm the filtering feature is complete.
 
-**Agent:** `agile-exercise-planner` | **Skill:** `execute-task-from-issue`
+**Agent:** `agile-exercise-planner` (local VS Code)
 
 **Artifacts to create/modify:**
 - Validation evidence section in `docs/.agents/closure/e1s4-baseline-report.md`

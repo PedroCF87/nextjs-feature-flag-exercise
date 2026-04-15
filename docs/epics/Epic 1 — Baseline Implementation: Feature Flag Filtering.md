@@ -8,10 +8,10 @@
 - **Depends on:** EPIC-0 (environment fully prepared)
 - **Target repository (local clone):** `/delfos/Projetos/ITBC - Desafio RDH/nextjs-feature-flag-exercise`
 - **Base branch:** `exercise-1`
-- **Execution model:** GitHub Issue-driven (1 task = 1 Issue, sequential execution, manual validation per story)
-- **Status:** Draft
+- **Execution model:** Local (VS Code agent, sequential tasks, commits to `exercise-1`)
+- **Status:** In Progress
 - **Created at:** 2026-04-09 16:39:45 -03
-- **Last updated:** 2026-04-12 21:52:11 -03
+- **Last updated:** 2026-04-15 00:00:00 -03
 
 ---
 
@@ -23,7 +23,7 @@ Expected value:
 - deliver a functional implementation of the filtering task as defined in `TASK.md`;
 - produce concrete initial metrics (time, number of prompts, rework cycles, confidence level);
 - document friction points encountered during execution, as the raw material for comparison with Epic 2 (AI-assisted run);
-- establish a personal productivity benchmark that will be referenced in the RDH interview debrief.
+- establish a personal productivity benchmark that will be referenced in the workshop interview debrief.
 
 ---
 
@@ -57,8 +57,8 @@ Expected value:
 16. Document observed friction points and decisions made during the Baseline run.
 
 **Execution model:**
-17. Execute each task via its corresponding GitHub Issue (1 Issue = 1 task).
-18. Each task produces a PR that is merged before the next task starts.
+17. Execute each task locally in VS Code, reading the task file directly from `docs/agile/tasks/`.
+18. After each task completes, validate and commit changes to `exercise-1`.
 19. Manual validation checkpoint at the end of each story before proceeding to the next.
 
 ### Out of Scope
@@ -101,7 +101,7 @@ This epic is considered complete when **all** items below are true:
 9. Friction log created with at least 3 meaningful observations from the Baseline run.
 10. No direct commits to `main` — all changes on a branch derived from `exercise-1`.
 11. Implementation follows the existing layered architecture without introducing architectural drift.
-12. All tasks executed via GitHub Issues with merged PRs (one PR per task).
+12. All tasks executed locally with commits to `exercise-1` (task file Status updated on completion).
 13. Manual validation completed at the end of each story (E1-S1 to E1-S4).
 14. Code is committed to the personal fork (`origin`) with conventional commit messages.
 
@@ -137,13 +137,13 @@ This epic is considered complete when **all** items below are true:
    - **Impact:** scope expansion, loss of Baseline validity for the existing codebase context.
    - **Mitigation:** keep the exercise stack (Node.js ESM, Express v5, SQL.js, Zod, Vitest, React 19, Vite, TanStack Query, Tailwind v4) strictly; resist optimizing architecture during this phase.
 
-8. **Risk:** automation artifacts from E0-S5 fail during planning phase (E1-S0).
-   - **Impact:** blocked execution; manual fallback needed.
-   - **Mitigation:** validate all automation artifacts in E0-S5-T5 dry-run before starting E1-S0; have manual fallback commands ready (`gh issue create`, manual story/task file creation).
+8. **Risk:** local execution loses traceability from the Issue-driven model.
+   - **Impact:** weaker audit trail for task-level execution history.
+   - **Mitigation:** update task file `Status` field on completion; commit with descriptive conventional commit messages referencing task IDs.
 
-9. **Risk:** GitHub Issue creation fails due to authentication or permissions.
-   - **Impact:** cannot execute Issue-driven workflow.
-   - **Mitigation:** test `gh auth status` and `gh issue create --dry-run` before planning phase; ensure fork has Issues enabled.
+9. **Risk:** accumulating uncommitted changes across multiple tasks.
+   - **Impact:** harder to isolate failures; risk of losing work.
+   - **Mitigation:** commit after each task validation passes; push to `origin exercise-1` after each story.
 
 ---
 
@@ -203,7 +203,7 @@ This epic is considered complete when **all** items below are true:
 
 **Priority:** P0 | **Depends on:** E1-S0
 
-**Execution model:** GitHub Issues → agent execution → PR per task → manual validation at story end.
+**Execution model:** Local VS Code agent → commit to `exercise-1` → manual validation at story end.
 
 **Description:** read `TASK.md` acceptance criteria in full; map each criterion to the files that must change (server and client); define the AND-logic filter contract; document the implementation approach before writing code.
 
@@ -220,7 +220,7 @@ This epic is considered complete when **all** items below are true:
 
 **Priority:** P0 | **Depends on:** E1-S1
 
-**Execution model:** GitHub Issues → agent execution → PR per task → manual validation at story end.
+**Execution model:** Local VS Code agent → commit to `exercise-1` → manual validation at story end.
 
 **Description:** implement the complete server-side filtering pipeline:
 1. Extend `shared/types.ts` with `FlagFilterParams` type.
@@ -237,7 +237,7 @@ This epic is considered complete when **all** items below are true:
 
 **Priority:** P0 | **Depends on:** E1-S2
 
-**Execution model:** GitHub Issues → agent execution → PR per task → manual validation at story end.
+**Execution model:** Local VS Code agent → commit to `exercise-1` → manual validation at story end.
 
 **Description:** implement the client filtering experience:
 1. Update `client/src/api/flags.ts` to serialize filter params in the API call.
@@ -256,7 +256,7 @@ This epic is considered complete when **all** items below are true:
 
 **Priority:** P0 | **Depends on:** E1-S2, E1-S3
 
-**Execution model:** GitHub Issues → agent execution → PR per task → manual validation at story end.
+**Execution model:** Local VS Code agent → commit to `exercise-1` → manual validation at story end.
 
 **Description:** finalize the Baseline run:
 1. Execute full validation suite (server + client) and confirm all criteria pass.
@@ -276,10 +276,10 @@ Which catalog agents and skills are active during each story of this epic, per `
 | Story | Responsible agent(s) | Skills | Instructions |
 |---|---|---|---|
 | E1-S0 — Planning automation | `agile-exercise-planner`, `story-task-reviewer` | `scaffold-stories-from-epic`, `create-story-task-pack`, `create-github-issue-from-task` | `agile-planning.instructions.md` |
-| E1-S1 — Task analysis and mapping | `project-adaptation-analyst`, `task-implementer` | `execute-task-from-issue`, `project-context-audit` | `coding-agent.instructions.md`, `documentation.instructions.md` |
-| E1-S2 — Server-side filtering | `task-implementer` | `execute-task-from-issue` | `coding-agent.instructions.md`, `feature-flag-exercise.instructions.md` |
-| E1-S3 — Client-side filtering UI | `task-implementer` | `execute-task-from-issue` | `coding-agent.instructions.md`, `feature-flag-exercise.instructions.md` |
-| E1-S4 — Measurement and closure | `agile-exercise-planner` | `execute-task-from-issue`, `record-friction-point`, `record-time-zero-snapshot` | `documentation.instructions.md`, `measurement-baseline.instructions.md` |
+| E1-S1 — Task analysis and mapping | `project-adaptation-analyst` | `project-context-audit`, `execute-task-locally` | `coding-agent.instructions.md`, `documentation.instructions.md` |
+| E1-S2 — Server-side filtering | `task-implementer` (local VS Code) | `execute-task-locally` | `coding-agent.instructions.md`, `feature-flag-exercise.instructions.md` |
+| E1-S3 — Client-side filtering UI | `task-implementer` (local VS Code) | `execute-task-locally` | `coding-agent.instructions.md`, `feature-flag-exercise.instructions.md` |
+| E1-S4 — Measurement and closure | `agile-exercise-planner` | `execute-task-locally`, `record-friction-point`, `record-time-zero-snapshot` | `documentation.instructions.md`, `measurement-baseline.instructions.md` |
 
 ---
 
@@ -324,7 +324,7 @@ pnpm run lint    # ESLint — must pass
 
 ## 10) Execution model
 
-This epic follows the **GitHub Issue-driven execution model** established in EPIC-0 (E0-S5):
+This epic follows a **local execution model** (switched from the Issue-driven model due to Copilot cloud environment issues after E1-S0 and E1-S1-T1):
 
 ### Planning phase (E1-S0)
 
@@ -348,12 +348,11 @@ GitHub Issues (1 per task)
 
 ```
 For each story:
-    For each task Issue:
-        1. Agent reads Issue body → extracts task file path
-        2. Agent reads task file → executes task
-        3. Agent creates feature branch → commits → pushes
-        4. Agent creates PR ("Closes #<issue>")
-        5. PR merged → next task Issue starts
+    For each task:
+        1. Agent reads task file from docs/agile/tasks/
+        2. Agent executes task following the detailed execution plan
+        3. Agent validates with build/lint/test commands
+        4. Agent commits changes to exercise-1 with conventional commit message
     
     Manual validation checkpoint:
         - Human reviews story outputs
@@ -364,11 +363,11 @@ For each story:
 
 | Principle | Rationale |
 |---|---|
-| 1 Issue = 1 task | Clear scope, traceable execution, easy rollback |
+| 1 task file = 1 unit of work | Clear scope, traceable execution via Status field and commits |
 | Sequential execution | Each task builds on previous; no parallel drift |
-| PR per task | Atomic commits, CI validation per change |
+| Commit per task | Atomic commits with task ID in message, local validation per change |
 | Manual checkpoint per story | Quality gate before cross-cutting changes |
-| No in-memory state | All data flows through committed files |
+| Direct to exercise-1 | No feature branches or PRs needed — follows Epic 0 pattern |
 
 ---
 
@@ -382,8 +381,8 @@ For each story:
 6. Baseline metrics document (time-per-phase, total prompts, rework cycles, confidence score).
 7. Friction log with ≥ 3 observations and their context/impact.
 8. Brief summary of expected vs actual effort for the Baseline run.
-9. GitHub Issues created for all tasks (link to Issue list in fork).
-10. PRs merged for all tasks (link to closed PRs in fork).
+9. Git log showing conventional commit messages with task IDs on `exercise-1`.
+10. All task files updated with `Status: Done` upon completion.
 
 ---
 

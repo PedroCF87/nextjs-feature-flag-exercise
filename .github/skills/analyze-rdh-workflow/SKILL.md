@@ -1,11 +1,11 @@
 ---
 name: analyze-rdh-workflow
-description: Deeply analyze an RDH methodology command or skill by decomposing phases, inputs, outputs, design decisions, and practical implications. Use this skill when you need to explain how an RDH workflow works internally with file:line traceability.
+description: Deeply analyze a methodology command or skill by decomposing phases, inputs, outputs, design decisions, and practical implications. Use this skill when you need to explain how a workflow works internally with file:line traceability.
 ---
 
 ## Context
 
-This skill is used for analytical reading of the RDH Rulebook (`resident-health-workshop-resources`) with focus on:
+This skill is used for analytical reading of the Rulebook (`resident-health-workshop-resources`) with focus on:
 
 - Commands in `.claude/commands/*.md`
 - Skills in `.claude/skills/*/SKILL.md`
@@ -13,7 +13,7 @@ This skill is used for analytical reading of the RDH Rulebook (`resident-health-
 - MCP in `.mcp.json`
 - Transcribed mental models in `ai-context/Excal-*.md`
 
-The goal is not to implement code, but to explain the RDH operating system with precision.
+The goal is not to implement code, but to explain the operating system with precision.
 
 ## Process
 
@@ -34,7 +34,7 @@ The goal is not to implement code, but to explain the RDH operating system with 
 
 4. **Map artifact flow**
    - Connect inputs and outputs between commands (e.g., PRD → plan → report).
-   - Highlight where the PIV Loop is applied (Plan → Implement → Validate).
+   - Highlight where the validation loop is applied (Plan → Implement → Validate).
 
 5. **Apply workshop lenses (ai-context)**
    - Use `Excal-2-SystemGap.md` to explain system maturity.
@@ -74,7 +74,7 @@ Use a seguinte estrutura:
 Before finishing, confirm:
 
 - [ ] The analysis explains **what happens** and **why each phase exists**.
-- [ ] There is explicit connection to PIV Loop and AI Layer when relevant.
+- [ ] There is explicit connection to the validation loop and AI Layer when relevant.
 - [ ] There is at least one practical execution example.
 - [ ] There are `file:line` references for core points.
 - [ ] There are no out-of-scope recommendations (implementation, unnecessary migration, etc.).

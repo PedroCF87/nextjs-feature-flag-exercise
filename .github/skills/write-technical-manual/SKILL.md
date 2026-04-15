@@ -1,11 +1,11 @@
 ---
 name: write-technical-manual
-description: Generate detailed, actionable technical manuals based on real repository evidence, including steps, validation, common errors, and file:line references. Use this skill when you need to turn RDH patterns into practical guides for study, execution, and interview preparation.
+description: Generate detailed, actionable technical manuals based on real repository evidence, including steps, validation, common errors, and file:line references. Use this skill when you need to turn workshop patterns into practical guides for study, execution, and interview preparation.
 ---
 
 ## Context
 
-This skill guides writing technical manuals for humans in the RDH workspace. The focus is creating **executable and verifiable** material, not generic text.
+This skill guides writing technical manuals for humans in the workshop workspace. The focus is creating **executable and verifiable** material, not generic text.
 
 Evidence target repositories:
 
@@ -93,4 +93,4 @@ Before concluding:
 - [ ] There are explicit validation commands/checks.
 - [ ] There are real examples and `file:line` references.
 - [ ] The text clearly distinguishes essential vs incremental priority.
-- [ ] Content is consistent with PIV Loop and RDH conventions.
+- [ ] Content is consistent with workshop conventions.

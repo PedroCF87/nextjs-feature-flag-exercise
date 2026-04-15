@@ -9,18 +9,18 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `agile-exercise-planner` |
-| **Skills** | `execute-task-from-issue`, `record-friction-point`, `record-time-zero-snapshot`, `produce-epic-closure-report`, `produce-epic-handoff` |
+| **Skills** | `execute-task-locally`, `record-friction-point`, `record-time-zero-snapshot`, `produce-epic-closure-report`, `produce-epic-handoff` |
 | **Instructions** | `documentation.instructions.md`, `measurement-baseline.instructions.md` |
 | **Depends on** | E1-S2, E1-S3 |
 | **Blocks** | — |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-14 21:29:36 -03 |
+| Last updated | 2026-04-15 00:00:00 -03 |
 
 ---
 
 ## 1) User story
 
-**As a** candidate executing the RDH interview exercises,
+**As a** candidate executing the workshop interview exercises,
 **I want to** finalize the Baseline run by executing the full validation suite, completing the metrics document, writing the friction log, and closing Epic 1 with a handoff document,
 **so that** the Baseline is fully signed off with objective evidence and Epic 2 (AI-assisted run) can begin with a reliable comparison baseline.
 
@@ -91,7 +91,7 @@
 
 **Goal:** execute the complete server and client validation suite and run through all 11 TASK.md acceptance criteria to confirm the filtering feature is complete.
 
-**Agent:** `agile-exercise-planner` | **Skill:** `execute-task-from-issue`
+**Agent:** `agile-exercise-planner` (local VS Code)
 
 **Artifacts to create/modify:**
 - Validation evidence section in `docs/.agents/closure/e1s4-baseline-report.md`

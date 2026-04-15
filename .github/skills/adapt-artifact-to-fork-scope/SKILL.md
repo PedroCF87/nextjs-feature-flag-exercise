@@ -37,7 +37,7 @@ Use this skill when migrating any `.github/` artifact from a multi-repo workspac
 |---|---|
 | `applyTo: ../nextjs-feature-flag-exercise/**` | `applyTo: **` |
 | `applyTo: ../nextjs-feature-flag-exercise/` | `applyTo: ` |
-| Multi-repo workspace description (e.g., "This workspace contains 3 companion repositories") | `This repository is the exercise codebase for the RDH Agentic Engineering Workshop.` |
+| Multi-repo workspace description (e.g., "This workspace contains 3 companion repositories") | `This repository is the exercise codebase for the Agentic Engineering Workshop.` |
 | Any absolute path starting with `/delfos/Projetos/` | Remove (workspace-absolute paths must not leak into fork artifacts) |
 | References to `Docs/.github/` workspace directory | Replace with `.github/` (fork-local reference) |
 

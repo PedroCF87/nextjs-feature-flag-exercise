@@ -5,7 +5,7 @@ description: Systematic codebase audit of `nextjs-feature-flag-exercise`. Produc
 
 ## Context
 
-This skill targets the `nextjs-feature-flag-exercise` codebase — the RDH interview Training Ground. It is a codebase audit skill: it reads and documents, it does not implement.
+This skill targets the `nextjs-feature-flag-exercise` codebase — the interview Training Ground. It is a codebase audit skill: it reads and documents, it does not implement.
 
 **Stack to audit:**
 

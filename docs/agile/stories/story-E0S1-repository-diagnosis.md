@@ -20,7 +20,7 @@
 
 ## 1) User story
 
-**As a** candidate preparing for the RDH interview exercise,
+**As a** candidate preparing for the workshop interview exercise,
 **I want to** create a validated personal fork of `nextjs-feature-flag-exercise`, confirm the base branch and remotes, execute all critical validation commands, and conduct a codebase audit,
 **so that** I can start Exercise 1 implementation from a known-good baseline — with no environment ambiguity, no broken commands, and a clear understanding of the existing architecture and integration points.
 

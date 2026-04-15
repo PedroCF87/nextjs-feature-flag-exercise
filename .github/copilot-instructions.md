@@ -9,6 +9,10 @@ branch `exercise-1`. **Never** commit or push to `main`.
 **Epic 0 rule:** all preparation tasks (E0) run locally — commit directly to `exercise-1`,
 no PRs, no feature branches. AI Layer artifacts live in `.github/` (root).
 
+**Epic 1 rule:** all implementation tasks (E1) run locally — use the `task-implementer` agent
+with the `execute-task-locally` skill. Commit directly to `exercise-1`, no PRs.
+See `docs/.agents/decisions/adr-001-local-execution-model.md`.
+
 ---
 
 ## Tech Stack
@@ -147,7 +151,7 @@ Only one workflow is active during Exercise 1:
 | `.github/workflows/copilot-setup-steps.yml` | Installs dependencies and validates build + tests for the Copilot cloud agent | ✅ Active |
 
 > **Note — `claude.yml` intentionally absent from `.github/workflows/`:**
-> The `claude.yml` workflow (RDH-provided Claude AI flow) was moved to `exercise-2-docs/`
+> The `claude.yml` workflow (Claude AI flow) was moved to `exercise-2-docs/`
 > to prevent it from running during Exercise 1. Exercise 1 uses the personal Copilot AI
 > workflow exclusively. Do **not** move `claude.yml` back to `.github/workflows/` until
 > Exercise 2 starts. Do not reference it as an active workflow file.

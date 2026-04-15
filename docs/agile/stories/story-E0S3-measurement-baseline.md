@@ -21,7 +21,7 @@
 
 ## 1) User story
 
-**As a** candidate preparing for the RDH interview exercise,
+**As a** candidate preparing for the workshop interview exercise,
 **I want to** define and document a measurement baseline — capturing the method, dimensions, and capture template for time, prompts, rework, and confidence — before starting the implementation of Exercise 1,
 **so that** I can quantify my actual productivity with AI during the Baseline execution and produce a meaningful comparison against the AI-assisted run in Exercise 2.
 

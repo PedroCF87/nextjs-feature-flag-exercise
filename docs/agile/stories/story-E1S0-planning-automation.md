@@ -20,7 +20,7 @@
 
 ## 1) User story
 
-**As a** candidate executing the RDH interview exercises,
+**As a** candidate executing the workshop interview exercises,
 **I want to** generate all detailed story MDs and task files for Epic 1 using the automation artifacts
 created in E0-S5, have them reviewed with inline PR suggestions, and create GitHub Issues for
 automated execution,

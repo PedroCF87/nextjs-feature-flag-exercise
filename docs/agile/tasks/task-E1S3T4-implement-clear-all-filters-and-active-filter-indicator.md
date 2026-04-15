@@ -35,7 +35,7 @@ As a `task-implementer`, I want to add a 'clear all filters' button and an activ
 
 **Goal:** add a "clear all filters" button that resets all filter fields, and an active-filter indicator (badge or label) that shows when at least one filter is active.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `client/src/App.tsx` or filter controls component — add clear button and active indicator

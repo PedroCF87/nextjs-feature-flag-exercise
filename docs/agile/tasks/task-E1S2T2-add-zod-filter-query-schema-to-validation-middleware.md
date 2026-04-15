@@ -35,7 +35,7 @@ As a `task-implementer`, I want to add a Zod filter query schema to `server/src/
 
 **Goal:** add a Zod schema that validates the `GET /api/flags` query parameters against `FlagFilterParams`, returning 400 for invalid values via `next(error)`.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `server/src/middleware/validation.ts` — add `flagFilterQuerySchema` and `validateFlagFilter` middleware

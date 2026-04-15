@@ -8,19 +8,19 @@
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `task-implementer` |
-| **Skills** | `execute-task-from-issue` |
+| **Responsible agent** | `task-implementer` (local VS Code) |
+| **Skills** | `execute-task-locally` |
 | **Instructions** | `coding-agent.instructions.md`, `feature-flag-exercise.instructions.md` |
 | **Depends on** | E1-S1 |
 | **Blocks** | E1-S3 |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-14 21:29:36 -03 |
+| Last updated | 2026-04-15 00:00:00 -03 |
 
 ---
 
 ## 1) User story
 
-**As a** candidate executing the RDH interview exercises,
+**As a** candidate executing the workshop interview exercises,
 **I want to** implement the complete server-side filtering pipeline (types → validation → service → route),
 **so that** the `GET /api/flags` endpoint accepts and applies filter parameters with AND logic, all existing tests continue to pass, and the server build and lint emit zero errors.
 
@@ -84,7 +84,7 @@
 
 **Goal:** add the `FlagFilterParams` type to `shared/types.ts` as the single source of truth for the filter contract, with all 5 optional fields.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `shared/types.ts` — add `FlagFilterParams` type
@@ -99,7 +99,7 @@
 
 **Goal:** add a Zod schema that validates the `GET /api/flags` query parameters against `FlagFilterParams`, returning 400 for invalid values via `next(error)`.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `server/src/middleware/validation.ts` — add `flagFilterQuerySchema` and `validateFlagFilter` middleware
@@ -114,7 +114,7 @@
 
 **Goal:** update `FlagsService.getAll()` to accept `FlagFilterParams` and build a parameterized SQL query that applies all provided filters as AND conditions.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `server/src/services/flags.ts` — update `getAll()` signature and SQL query logic
@@ -129,7 +129,7 @@
 
 **Goal:** update the `GET /api/flags` route handler to extract validated filter params from `req.query` and forward them to `FlagsService.getAll()`.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `server/src/routes/flags.ts` — update GET handler to extract and forward filter params
@@ -144,7 +144,7 @@
 
 **Goal:** extend `server/src/__tests__/flags.test.ts` with test cases covering filtering by each dimension and multi-filter AND composition.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `server/src/__tests__/flags.test.ts` — add filter test cases

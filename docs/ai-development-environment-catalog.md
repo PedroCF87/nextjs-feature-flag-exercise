@@ -47,7 +47,7 @@ Este catálogo usa como referência a estrutura já aplicada no projeto DéjàVu
 | `git-ops.agent.md` | E0-S1 — Execução (T1) | Operações git com guardrails do exercício: configuração de fork, remotes, branches, commits e push seguro. Proíbe push direto em `main` ou `upstream`. Companion skill: `fork-and-configure-remotes`. |
 | `environment-validator.agent.md` | E0-S1 — Execução (T2) | Valida ambiente local de desenvolvimento: instala dependências pnpm, executa suite de validação completa (7 comandos individuais), produz relatório de evidência estruturado com exit codes e branch SHA. Companion skill: `validate-exercise-environment`. |
 | `codebase-gap-analyst.agent.md` | Análise comparativa | Compara `nextjs-feature-flag-exercise` (estado atual) vs `nextjs-ai-optimized-codebase` (Gold Standard) em arquitetura, tooling, padrões, AI-readiness e testes. Companion skill: `gap-analysis`. |
-| `rdh-workflow-analyst.agent.md` | Estudo da metodologia RDH | Analisa em profundidade commands, skills e workflows RDH; explica fases, inputs, outputs e decisões de design com rastreabilidade file:line. Companion skill: `analyze-rdh-workflow`. |
+| `rdh-workflow-analyst.agent.md` | Estudo da metodologia do workshop | Analisa em profundidade commands, skills e workflows do workshop; explica fases, inputs, outputs e decisões de design com rastreabilidade file:line. Companion skill: `analyze-rdh-workflow`. |
 | `technical-manual-writer.agent.md` | Documentação técnica | Produz manuais técnicos acionáveis com base em evidências reais dos repositórios (Rulebook, Gold Standard, Exercise). Companion skill: `write-technical-manual`. |
 | `prompt-engineer.agent.md` | AI Layer — criação e revisão | Projeta e cria custom agents e skills (`.agent.md`, `SKILL.md`) refletindo convenções do projeto. Companion skill: `create-specialist-agent`. |
 
@@ -111,7 +111,7 @@ No DéjàVu já existem agents focados em tarefas de infra/setup, por exemplo:
 |---|---|
 | `feature-flag-exercise.instructions.md` | Guardrails e convenções específicas do repositório `nextjs-feature-flag-exercise`: padrões de código, comandos de validação, restrições SQL.js, e regras de branch. |
 | `gold-standard.instructions.md` | Referência para agentes que operam no repositório `nextjs-ai-optimized-codebase`: stack (Bun, Next.js 16, Drizzle, Biome, Zod v4), padrões de import e comandos de validação. |
-| `workshop-resources.instructions.md` | Contexto da metodologia RDH extraído do repositório `resident-health-workshop-resources`: structure de commands, skills e o AI Layer do workshop. |
+| `workshop-resources.instructions.md` | Contexto da metodologia do workshop extraído do repositório `resident-health-workshop-resources`: structure de commands, skills e o AI Layer do workshop. |
 
 ### Referência direta no DéjàVu
 
@@ -151,7 +151,7 @@ Modelos já usados no projeto:
 | `create-exercise-backlog` | Planejamento dos exercícios | Transformar exercícios em backlog executável com prioridade e dependências. |
 | `refine-agile-breakdown` | Planejamento dos exercícios | Refinar backlog existente para melhorar granularidade, aceite e ordem de execução. |
 | `gap-analysis` | Análise comparativa | Comparar duas codebases e produzir um roadmap de transformação priorizado com evidências file:line. |
-| `analyze-rdh-workflow` | Estudo da metodologia RDH | Decompor fases, inputs, outputs e decisões de design de um command ou skill RDH com rastreabilidade. |
+| `analyze-rdh-workflow` | Estudo da metodologia do workshop | Decompor fases, inputs, outputs e decisões de design de um command ou skill do workshop com rastreabilidade. |
 | `system-evolution-retro` | Melhoria sistêmica | Converter falhas recorrentes em melhorias de regras, commands, context e templates para aumentar a previsibilidade do ciclo de validação. |
 | `write-technical-manual` | Documentação técnica | Gerar manuais técnicos detalhados e acionáveis com base em evidências reais do repositório. |
 | `create-specialist-agent` | Criação de agentes | Projetar e criar um novo GitHub Copilot custom agent especializado para um domínio ou tarefa específica. |

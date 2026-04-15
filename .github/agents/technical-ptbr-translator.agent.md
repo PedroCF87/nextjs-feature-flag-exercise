@@ -30,7 +30,7 @@ When translating in this workspace, prioritize consistency with:
    - Confirm source file and target output file.
    - Confirm translation direction: EN → pt-BR.
 2. **Terminology pass**
-   - Extract critical terms (PIV Loop, VSA, AI Layer, etc.).
+   - Extract critical terms (validation loop, VSA, AI Layer, etc.).
    - Lock preferred translations before full translation.
 3. **Structural translation**
    - Translate section-by-section preserving markdown structure.

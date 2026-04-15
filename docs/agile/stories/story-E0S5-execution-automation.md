@@ -21,7 +21,7 @@
 
 ## 1) User story
 
-**As a** candidate executing the RDH interview exercises,
+**As a** candidate executing the workshop interview exercises,
 **I want to** have automation artifacts that generate story MDs from epic outlines, create GitHub Issues from task files, execute tasks via agent sessions, and review agile documents with inline suggestions,
 **so that** Epic 1 can be planned and executed in a fully automated, Issue-driven workflow with minimal manual intervention and consistent quality gates.
 

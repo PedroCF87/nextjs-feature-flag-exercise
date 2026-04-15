@@ -4,7 +4,7 @@ applyTo: ../resident-health-workshop-resources/**
 
 # Workshop Resources — Always-On Instructions
 
-This context is specific to the `resident-health-workshop-resources` repository (RDH methodology Rulebook).
+This context is specific to the `resident-health-workshop-resources` repository (methodology Rulebook).
 
 ## Objective
 
@@ -20,13 +20,13 @@ Ensure any agent treats this repository as the **official methodology source** (
 
 ## Mandatory Mental Model
 
-Always analyze and explain under the PIV Loop:
+Always analyze and explain under the validation loop:
 
 - **Plan** → context definition and structuring
 - **Implement** → phased execution without accumulating broken state
 - **Validate** → verification and self-correction until green
 
-Preferred vocabulary: **PIV Loop, AI Layer, Global Rules, Commands, Skills, VSA, System Gap**.
+Preferred vocabulary: **Validation Loop, AI Layer, Global Rules, Commands, Skills, VSA, System Gap**.
 
 ## Reading Conventions
 

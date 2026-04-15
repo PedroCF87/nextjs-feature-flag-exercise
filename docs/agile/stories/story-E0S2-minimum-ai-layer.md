@@ -20,7 +20,7 @@
 
 ## 1) User story
 
-**As a** candidate preparing for the RDH interview exercise,
+**As a** candidate preparing for the workshop interview exercise,
 **I want to** adapt and apply the minimum AI Layer artifacts from `Docs/.github/` to my personal fork of `nextjs-feature-flag-exercise`, configure fork governance (Actions, environment, secrets), and validate the setup with a dry-run workflow,
 **so that** AI agents (GitHub Copilot, Claude Code) can operate in the fork with accurate context, consistent instructions, and required access — without manual re-configuration before each exercise session.
 

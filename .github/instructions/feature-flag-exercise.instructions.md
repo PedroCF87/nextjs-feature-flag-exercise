@@ -4,7 +4,7 @@ applyTo: "**"
 
 # Feature Flag Exercise - Always-On Instructions
 
-This context is specific to the nextjs-feature-flag-exercise repository (RDH interview Training Ground).
+This context is specific to the nextjs-feature-flag-exercise repository (Agentic Engineering Workshop exercise).
 
 ## Objective
 
@@ -54,6 +54,20 @@ Epic 0 (environment preparation) runs **entirely locally** in VS Code. These rul
 3. **Commit directly to `exercise-1`** — `git add <files> && git commit -m "..." && git push origin exercise-1`.
 4. **AI Layer artifacts live in `.github/` (root).** Never create or deploy AI Layer files (agents, skills, instructions) to `docs/.github/`. The `docs/.github/` directory is a legacy reference area — the live AI Layer read by GitHub Copilot is `.github/` at the repository root.
 5. **Skip deployment steps in task files.** Any task step that says "push to fork", "open PR", or "merge before next task starts" must be treated as: commit + push on the current `exercise-1` branch. No PR required.
+
+## Epic 1 — Local Execution Rules (MANDATORY)
+
+Epic 1 was originally planned with a GitHub Issue-driven model but switched to **local execution** starting from E1-S1-T2 due to Copilot cloud environment issues. See `docs/.agents/decisions/adr-001-local-execution-model.md` for full rationale.
+
+These rules apply to all remaining Epic 1 tasks:
+
+1. **No PRs for Epic 1 implementation tasks.** Commit directly to `exercise-1`.
+2. **No GitHub Issues needed.** Read the task file directly from `docs/agile/tasks/`.
+3. **Use the `execute-task-locally` skill** — it defines the implement → validate → fix → re-validate loop.
+4. **Use the `task-implementer` agent** for coding tasks (E1-S2, E1-S3).
+5. **One commit per task.** Include the task ID in the commit message: `feat(flags): description [E1-S2-T1]`.
+6. **Push at story checkpoints.** Accumulate task commits per story and push after the last task in each story.
+7. **Manual validation checkpoint at story end.** The last task in each story triggers a pause for human review.
 
 ## What NOT to do
 

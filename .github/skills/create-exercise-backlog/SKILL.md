@@ -5,7 +5,7 @@ description: Organize exercises into a complete agile backlog (epics, stories, t
 
 ## Context
 
-This skill transforms exercise scope into an executable backlog, aligned with agile practices and the PIV flow.
+This skill transforms exercise scope into an executable backlog, aligned with agile practices and the validation flow.
 
 ## Process
 

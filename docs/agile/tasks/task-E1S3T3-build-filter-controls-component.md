@@ -35,7 +35,7 @@ As a `task-implementer`, I want to create a filter controls panel component usin
 
 **Goal:** create a filter controls panel component with selects/inputs for environment, status, type, owner, and name search using Radix UI primitives and `cn()` for class composition.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `client/src/components/flags-filter-controls.tsx` — new filter panel component

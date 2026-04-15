@@ -21,7 +21,7 @@
 
 ## 1) User story
 
-**As a** candidate preparing for the RDH interview exercise,
+**As a** candidate preparing for the workshop interview exercise,
 **I want to** consolidate all EPIC-0 evidence into a closure report, verify every DoD item has been satisfied, and produce a clear handoff document for EPIC-1,
 **so that** I can start Exercise 1 implementation from a fully documented, risk-acknowledged, and traceable state — with no preparation debt.
 

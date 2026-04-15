@@ -5,7 +5,7 @@ description: Compare two codebases in a structured way to identify gaps in archi
 
 ## Context
 
-This skill exists for comparative analysis between repositories in the RDH context, mainly:
+This skill exists for comparative analysis between repositories in the workshop context, mainly:
 
 - `nextjs-ai-optimized-codebase` (Gold Standard)
 - `nextjs-feature-flag-exercise` (Current State / Training Ground)
@@ -24,7 +24,7 @@ Goal: generate actionable diagnosis focused on **methodological signal**, **prac
 
 3. **Code patterns**
    - Compare error handling, logging, input validation, style rules, and service/repository separation.
-   - Verify consistency with RDH conventions.
+   - Verify consistency with workshop conventions.
 
 4. **Data architecture**
    - Compare source of truth for types, schema, and validation.
@@ -55,7 +55,7 @@ Goal: generate actionable diagnosis focused on **methodological signal**, **prac
 When classifying gaps, consider this order:
 
 1. Relevance to immediate objective (e.g., interview task)
-2. Impact on PIV Loop reliability
+2. Impact on validation loop reliability
 3. Ganho de AI-readiness (menos ambiguidade, melhor autocorreção)
 4. Implementation cost/risk
 

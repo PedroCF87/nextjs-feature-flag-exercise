@@ -9,18 +9,18 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `project-adaptation-analyst` |
-| **Skills** | `project-context-audit`, `execute-task-from-issue` |
+| **Skills** | `project-context-audit`, `execute-task-locally` |
 | **Instructions** | `coding-agent.instructions.md`, `documentation.instructions.md` |
 | **Depends on** | E1-S0 |
 | **Blocks** | E1-S2 |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-14 21:29:36 -03 |
+| Last updated | 2026-04-15 00:00:00 -03 |
 
 ---
 
 ## 1) User story
 
-**As a** candidate executing the RDH interview exercises,
+**As a** candidate executing the workshop interview exercises,
 **I want to** read and internalize TASK.md acceptance criteria, map each criterion to the files that must change (server and client), define the AND-logic filter contract, and document the implementation approach,
 **so that** Epic 1 implementation can begin with complete clarity and zero ambiguity about scope, file impact, and filter composition logic.
 

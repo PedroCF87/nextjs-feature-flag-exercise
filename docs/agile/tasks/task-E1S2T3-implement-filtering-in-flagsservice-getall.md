@@ -35,7 +35,7 @@ As a `task-implementer`, I want to update `FlagsService.getAll()` to accept and 
 
 **Goal:** update `FlagsService.getAll()` to accept `FlagFilterParams` and build a parameterized SQL query that applies all provided filters as AND conditions.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `server/src/services/flags.ts` — update `getAll()` signature and SQL query logic

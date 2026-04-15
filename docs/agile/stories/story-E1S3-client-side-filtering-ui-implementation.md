@@ -8,19 +8,19 @@
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `task-implementer` |
-| **Skills** | `execute-task-from-issue` |
+| **Responsible agent** | `task-implementer` (local VS Code) |
+| **Skills** | `execute-task-locally` |
 | **Instructions** | `coding-agent.instructions.md`, `feature-flag-exercise.instructions.md` |
 | **Depends on** | E1-S2 |
 | **Blocks** | E1-S4 |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-14 21:29:36 -03 |
+| Last updated | 2026-04-15 00:00:00 -03 |
 
 ---
 
 ## 1) User story
 
-**As a** candidate executing the RDH interview exercises,
+**As a** candidate executing the workshop interview exercises,
 **I want to** implement the complete client-side filtering experience (API wiring → filter state → filter controls → clear action → active-filter indicator),
 **so that** users can filter feature flags by environment, status, type, owner, and name from the UI, filter state persists across mutations, and all 11 TASK.md acceptance criteria are met.
 
@@ -92,7 +92,7 @@
 
 **Goal:** update `client/src/api/flags.ts` to accept `FlagFilterParams` and serialize them as query string parameters in the `GET /api/flags` fetch call.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `client/src/api/flags.ts` — update `getFlags()` to accept and serialize `FlagFilterParams`
@@ -107,7 +107,7 @@
 
 **Goal:** add `useState<FlagFilterParams>` in `App.tsx` above the mutation scope and pass filter state to the `useQuery` call and to the filter controls component.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `client/src/App.tsx` — add filter state, thread to API call and filter controls
@@ -122,7 +122,7 @@
 
 **Goal:** create a filter controls panel component with selects/inputs for environment, status, type, owner, and name search using Radix UI primitives and `cn()` for class composition.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `client/src/components/flags-filter-controls.tsx` — new filter panel component
@@ -137,7 +137,7 @@
 
 **Goal:** add a "clear all filters" button that resets all filter fields, and an active-filter indicator (badge or label) that shows when at least one filter is active.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `client/src/App.tsx` or filter controls component — add clear button and active indicator

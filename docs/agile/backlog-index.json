@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-14 22:58:17 -03",
+  "generated_at": "2026-04-15 16:46:43 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -164,7 +164,7 @@
         "E1-S2"
       ],
       "created_at": "2026-04-14 21:29:36 -03",
-      "last_updated": "2026-04-14 21:29:36 -03",
+      "last_updated": "2026-04-15 00:00:00 -03",
       "story_file": "docs/agile/stories/story-E1S1-task-analysis-and-implementation-mapping.md"
     },
     {
@@ -183,7 +183,7 @@
         "E1-S3"
       ],
       "created_at": "2026-04-14 21:29:36 -03",
-      "last_updated": "2026-04-14 21:29:36 -03",
+      "last_updated": "2026-04-15 00:00:00 -03",
       "story_file": "docs/agile/stories/story-E1S2-server-side-filtering-implementation.md"
     },
     {
@@ -202,7 +202,7 @@
         "E1-S4"
       ],
       "created_at": "2026-04-14 21:29:36 -03",
-      "last_updated": "2026-04-14 21:29:36 -03",
+      "last_updated": "2026-04-15 00:00:00 -03",
       "story_file": "docs/agile/stories/story-E1S3-client-side-filtering-ui-implementation.md"
     },
     {
@@ -220,7 +220,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 21:29:36 -03",
-      "last_updated": "2026-04-14 21:29:36 -03",
+      "last_updated": "2026-04-15 00:00:00 -03",
       "story_file": "docs/agile/stories/story-E1S4-baseline-measurement-and-closure.md"
     },
     {

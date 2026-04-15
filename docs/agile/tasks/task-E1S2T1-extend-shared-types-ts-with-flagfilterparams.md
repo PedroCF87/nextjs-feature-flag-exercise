@@ -35,7 +35,7 @@ As a `task-implementer`, I want to add the `FlagFilterParams` type to `shared/ty
 
 **Goal:** add the `FlagFilterParams` type to `shared/types.ts` as the single source of truth for the filter contract, with all 5 optional fields.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `shared/types.ts` — add `FlagFilterParams` type

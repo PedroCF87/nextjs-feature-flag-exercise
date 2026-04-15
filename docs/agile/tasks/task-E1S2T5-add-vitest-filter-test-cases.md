@@ -35,7 +35,7 @@ As a `task-implementer`, I want to add Vitest test cases for each filter dimensi
 
 **Goal:** extend `server/src/__tests__/flags.test.ts` with test cases covering filtering by each dimension and multi-filter AND composition.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `server/src/__tests__/flags.test.ts` — add filter test cases

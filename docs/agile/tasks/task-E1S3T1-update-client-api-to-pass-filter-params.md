@@ -35,7 +35,7 @@ As a `task-implementer`, I want to update `client/src/api/flags.ts` to accept an
 
 **Goal:** update `client/src/api/flags.ts` to accept `FlagFilterParams` and serialize them as query string parameters in the `GET /api/flags` fetch call.
 
-**Agent:** `task-implementer` | **Skill:** `execute-task-from-issue`
+**Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
 - `client/src/api/flags.ts` — update `getFlags()` to accept and serialize `FlagFilterParams`

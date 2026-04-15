@@ -20,7 +20,7 @@
 
 ## 1) User story
 
-**As a** candidate executing the RDH interview exercises via an Issue-driven workflow,
+**As a** candidate executing the workshop interview exercises via an Issue-driven workflow,
 **I want to** have GitHub Actions workflows that automatically convert Copilot's draft PRs to ready-for-review, request fixes after code review, validate fix completeness, merge clean PRs, close linked Issues, and trigger the next task in sequence,
 **so that** Epic 1 tasks execute in a fully automated loop — from Issue assignment through merge — with minimal manual intervention beyond story-end validation checkpoints.
 
