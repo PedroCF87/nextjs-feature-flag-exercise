@@ -7,6 +7,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 
 interface FlagsFilterControlsProps {
@@ -17,6 +19,10 @@ interface FlagsFilterControlsProps {
 const EMPTY_VALUE = '__all__'
 
 function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsProps) {
+  const activeFilterCount = Object.values(filters).filter(
+    (v) => v !== undefined && v !== ''
+  ).length
+
   const handleSelectChange = (key: keyof FlagFilterParams, value: string) => {
     onChange({ ...filters, [key]: value === EMPTY_VALUE ? undefined : value })
   }
@@ -99,6 +105,20 @@ function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsProps) {
           value={filters.name ?? ''}
           onChange={(e) => handleInputChange('name', e.target.value)}
         />
+      </div>
+
+      <div className={cn('flex items-end gap-2', activeFilterCount === 0 && 'hidden')}>
+        <Button
+          variant="outline"
+          size="sm"
+          className="h-9"
+          onClick={() => onChange({})}
+        >
+          Clear all filters
+        </Button>
+        <Badge variant="secondary">
+          {activeFilterCount} {activeFilterCount === 1 ? 'filter' : 'filters'} active
+        </Badge>
       </div>
     </div>
   )

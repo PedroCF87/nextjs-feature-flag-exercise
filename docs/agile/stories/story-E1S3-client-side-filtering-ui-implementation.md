@@ -133,7 +133,7 @@
 
 ---
 
-### [Task E1-S3-T4 — Implement clear-all-filters and active-filter indicator](../tasks/task-E1S3T4-implement-clear-all-filters-and-active-filter-indicator.md)
+### ✅ [Task E1-S3-T4 — Implement clear-all-filters and active-filter indicator](../tasks/task-E1S3T4-implement-clear-all-filters-and-active-filter-indicator.md)
 
 **Goal:** add a "clear all filters" button that resets all filter fields, and an active-filter indicator (badge or label) that shows when at least one filter is active.
 
