@@ -176,7 +176,7 @@ This epic is considered complete when **all** items below are true:
 
 ## 7) Candidate stories for the epic
 
-### Story E1-S0 — Planning automation
+### [Story E1-S0 — Planning automation](../agile/stories/story-E1S0-planning-automation.md)
 
 **Priority:** P0 | **Depends on:** EPIC-0 (specifically E0-S5 — Execution automation + E0-S6 — CI/CD pipeline)
 
@@ -199,7 +199,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### Story E1-S1 — Task analysis and implementation mapping
+### [Story E1-S1 — Task analysis and implementation mapping](../agile/stories/story-E1S1-task-analysis-and-implementation-mapping.md)
 
 **Priority:** P0 | **Depends on:** E1-S0
 
@@ -216,7 +216,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### Story E1-S2 — Server-side filtering implementation
+### [Story E1-S2 — Server-side filtering implementation](../agile/stories/story-E1S2-server-side-filtering-implementation.md)
 
 **Priority:** P0 | **Depends on:** E1-S1
 
@@ -233,7 +233,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### Story E1-S3 — Client-side filtering UI implementation
+### [Story E1-S3 — Client-side filtering UI implementation](../agile/stories/story-E1S3-client-side-filtering-ui-implementation.md)
 
 **Priority:** P0 | **Depends on:** E1-S2
 
@@ -252,7 +252,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### Story E1-S4 — Baseline measurement and closure
+### [Story E1-S4 — Baseline measurement and closure](../agile/stories/story-E1S4-baseline-measurement-and-closure.md)
 
 **Priority:** P0 | **Depends on:** E1-S2, E1-S3
 

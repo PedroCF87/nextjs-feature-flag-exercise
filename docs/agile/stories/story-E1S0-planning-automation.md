@@ -7,14 +7,14 @@
 | **ID** | E1-S0 |
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner`, `story-task-reviewer` |
 | **Skills** | `scaffold-stories-from-epic`, `create-story-task-pack`, `sync-backlog-index` |
 | **Instructions** | `agile-planning.instructions.md`, `backlog-governance.instructions.md` |
 | **Depends on** | EPIC-0 (E0-S5 + E0-S6) |
 | **Blocks** | E1-S1 |
 | Created at | 2026-04-13 22:42:40 -03 |
-| Last updated | 2026-04-13 22:42:40 -03 |
+| Last updated | 2026-04-14 22:56:58 -03 |
 
 ---
 
@@ -76,7 +76,7 @@ automated execution,
 
 ## 4) Tasks
 
-### Task E1-S0-T1 — Generate story MDs for Epic 1
+### ✅ [Task E1-S0-T1 — Generate story MDs for Epic 1](../tasks/task-E1S0T1-generate-story-mds-for-epic-1.md)
 
 **Goal:** apply `scaffold-stories-from-epic` skill on Epic 1 to produce story-E1S1 through story-E1S4.
 
@@ -94,7 +94,7 @@ automated execution,
 
 ---
 
-### Task E1-S0-T2 — Generate task packs for all E1 stories
+### ✅ [Task E1-S0-T2 — Generate task packs for all E1 stories](../tasks/task-E1S0T2-generate-task-packs-for-all-e1-stories.md)
 
 **Goal:** invoke `create-story-task-pack` on each of the 4 generated stories to produce task files.
 
@@ -109,7 +109,7 @@ automated execution,
 
 ---
 
-### Task E1-S0-T3 — Code-review planning artifacts
+### ✅ [Task E1-S0-T3 — Code-review planning artifacts](../tasks/task-E1S0T3-code-review-planning-artifacts.md)
 
 **Goal:** invoke `story-task-reviewer` on all story and task MDs created in T1–T2.
 
@@ -121,7 +121,7 @@ automated execution,
 
 ---
 
-### Task E1-S0-T4 — Create GitHub Issues for all E1 tasks
+### ✅ [Task E1-S0-T4 — Create GitHub Issues for all E1 tasks](../tasks/task-E1S0T4-create-github-issues-for-all-e1-tasks.md)
 
 **Goal:** run `create-github-issue-from-task.js` for every task file produced in T2.
 
@@ -135,7 +135,7 @@ automated execution,
 
 ---
 
-### Task E1-S0-T5 — Validate, commit, and sign readiness
+### ✅ [Task E1-S0-T5 — Validate, commit, and sign readiness](../tasks/task-E1S0T5-validate-commit-and-sign-readiness.md)
 
 **Goal:** confirm all E1 planning artifacts are present, Issues are open, and sign off before E1-S1 begins.
 

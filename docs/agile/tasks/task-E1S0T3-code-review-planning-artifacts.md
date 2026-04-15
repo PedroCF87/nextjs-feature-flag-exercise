@@ -8,12 +8,12 @@
 | **Story** | [E1-S0 — Planning automation](../stories/story-E1S0-planning-automation.md) |
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
-| **Responsible agent** | `agile-exercise-planner`, `story-task-reviewer` |
+| **Status** | Done |
+| **Responsible agent** | `story-task-reviewer` |
 | **Depends on** | T2 completed |
 | **Blocks** | — |
 | Created at | 2026-04-13 22:44:08 -03 |
-| Last updated | 2026-04-13 22:44:08 -03 |
+| Last updated | 2026-04-14 22:37:08 -03 |
 
 ---
 
@@ -57,34 +57,42 @@ As a delivery agent, I want to execute E1-S0-T3 with complete traceability and e
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:**
+  1. `node validate-task-pack.js docs/agile --story E1-S1` → pass=3 fail=0
+  2. `node validate-task-pack.js docs/agile --story E1-S2` → pass=5 fail=0
+  3. `node validate-task-pack.js docs/agile --story E1-S3` → pass=4 fail=0
+  4. `node validate-task-pack.js docs/agile --story E1-S4` → pass=3 fail=0
+  5. `node sync-backlog-index.js docs/agile --dry-run` → 68 items, 0 cycles
+- **Exit code(s):** 0 for all commands
+- **Output summary:** 15 task files validated (all pass); backlog index dry-run clean with no dependency cycles; 5 MINOR findings produced; 0 BLOCKER/MAJOR findings; verdict `approve`
+- **Files reviewed:**
+  - `docs/agile/stories/story-E1S1-task-analysis-and-implementation-mapping.md`
+  - `docs/agile/stories/story-E1S2-server-side-filtering-implementation.md`
+  - `docs/agile/stories/story-E1S3-client-side-filtering-ui-implementation.md`
+  - `docs/agile/stories/story-E1S4-baseline-measurement-and-closure.md`
+  - All 15 task files under `docs/agile/tasks/task-E1S*T*.md`
+- **Risks found / mitigations:** Self-review anti-pattern flagged (same session authored and reviewed); no leniency applied.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** all E1 story and task MD files are present with `## 4) Tasks` sections populated and task files scaffolded,
+- **When** `story-task-reviewer` runs `validate-task-pack.js` for all 4 stories and `sync-backlog-index.js --dry-run`,
+- **Then** all gates exit 0 (pass=15 fail=0, no cycles), no BLOCKER/MAJOR findings exist, and verdict `approve` is produced.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- Upstream dependencies resolved: T1 (story MDs created) and T2 (task packs generated) are Done
+- Downstream items unblocked: E1-S0-T4 (create GitHub Issues for all E1 tasks) is now unblocked
+- Open risks (if any): self-review anti-pattern observed (same session); process note included in verdict

@@ -93,6 +93,24 @@ Tasks must include at least one `Given / When / Then` validation block.
   once task files exist.
 - Task metadata `Story` row should link back to the parent story file.
 
+## Task completion rules
+
+When a task is marked as `Done`, **two files must be updated atomically**:
+
+1. **Task file (`docs/agile/tasks/task-<id>.md`):**
+   - Set `**Status**` → `Done` in the Metadata table.
+   - Set `Last updated` to the current timestamp (`node docs/.github/functions/datetime.js`).
+   - Fill sections 5 (Validation evidence) and 6 (Definition of Done checklist — all items checked).
+   - Fill section 7 (Notes for handoff) with upstream resolved and downstream unblocked items.
+
+2. **Parent story file (`docs/agile/stories/story-<id>.md`):**
+   - Find the task heading in `## 4) Tasks` that corresponds to this task.
+   - Prepend `✅ ` to the heading text (before the markdown link brackets if the heading is a link).
+   - Example: `### [Task E1-S2-T3 — Title](...)` → `### ✅ [Task E1-S2-T3 — Title](...)`
+   - Do **not** add ✅ to tasks that are not yet Done.
+
+Both updates must be committed in the same commit as the task deliverables.
+
 ## Regeneration and index rules
 
 After creating or editing task files:
@@ -111,3 +129,5 @@ After creating or editing task files:
 - Do not mark tasks as `Done` without validation evidence.
 - Do not omit dependency links when upstream items exist.
 - Do not merge story-level and task-level responsibilities in one file.
+- Do not mark a task as `Done` in the task file without also adding `✅ ` to its heading in the parent story.
+- Do not add `✅ ` to a task heading in the story before the task file `**Status**` is `Done`.

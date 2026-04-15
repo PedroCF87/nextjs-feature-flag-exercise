@@ -78,7 +78,14 @@ Before proceeding to Phase 2, verify that every task listed in `Depends on` has 
 
 ### Phase 4 — Commit and push
 
-1. Stage all relevant changes: `git add <files>`.
+1. **Mark task as Done** — in the task file:
+   - Set `**Status**` → `Done` in the Metadata table.
+   - Set `Last updated` to the current timestamp (`node docs/.github/functions/datetime.js`).
+   - Ensure sections 5 (Validation evidence), 6 (Definition of Done — all checkboxes ticked), and 7 (Notes for handoff) are fully filled.
+2. **Update parent story** — in the story file that owns this task:
+   - Find the task heading in `## 4) Tasks`.
+   - Prepend `✅ ` to the heading: `### ✅ [Task E1-S2-T3 — Title](...)` (inside the link brackets is unchanged; the `✅ ` goes before the `[`).
+3. Stage all relevant changes: `git add <files>`.
 2. Commit using [Conventional Commits](https://www.conventionalcommits.org/) format:
    ```
    <type>(<scope>): <description>
