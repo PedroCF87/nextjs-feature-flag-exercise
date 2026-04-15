@@ -175,7 +175,7 @@ This epic is considered complete when **all** items below are true:
 
 **Description:** formalize method and template for collecting time, prompts, rework, and confidence.
 
-### [Story E0-S4 — Preparation closure and handoff to EPIC-1](../agile/stories/story-E0S4-preparation-closure.md)
+### ✅ [Story E0-S4 — Preparation closure and handoff to EPIC-1](../agile/stories/story-E0S4-preparation-closure.md)
 
 **Description:** consolidate final checklist, residual risks, and Baseline execution plan.
 

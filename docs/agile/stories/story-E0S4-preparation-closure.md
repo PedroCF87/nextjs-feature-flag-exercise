@@ -224,7 +224,7 @@
 
 ---
 
-### [Task E0-S4-T5 — Close story and append timeline entry](../tasks/task-E0S4T5-close-story-and-append-timeline-entry.md)
+### ✅ [Task E0-S4-T5 — Close story and append timeline entry](../tasks/task-E0S4T5-close-story-and-append-timeline-entry.md)
 
 **Purpose:** finalize the story metadata and log the closure in the timeline.
 

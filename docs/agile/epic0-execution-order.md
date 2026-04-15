@@ -75,11 +75,11 @@ E0-S5 was strategically moved ahead of E0-S1-T3 because all its artifacts target
 | ✅ 26 | E0-S3-T1 | E0-S3 | T25 done | Define measurement dimensions |
 | ✅ 27 | E0-S3-T2 | E0-S3 | T26 done | Create capture template |
 | ✅ 28 | E0-S3-T3 | E0-S3 | T27 done | Record time-zero snapshot + sign go/no-go |
-| 29 | E0-S4-T0 | E0-S4 | E0-S3 done | Bootstrap E0-S4 artifacts |
-| 30 | E0-S4-T1 | E0-S4 | T29 done | Verify EPIC-0 DoD evidence |
-| 31 | E0-S4-T2 | E0-S4 | T30 done | Produce `epic0-closure-report.md` |
-| 32 | E0-S4-T3 | E0-S4 | T31 done | Produce `epic1-handoff.md` |
-| 33 | E0-S4-T4 | E0-S4 | T32 done | Commit, push, sign timeline |
+| ✅ 29 | E0-S4-T0 | E0-S4 | E0-S3 done | Bootstrap E0-S4 artifacts |
+| ✅ 30 | E0-S4-T1 | E0-S4 | T29 done | Verify EPIC-0 DoD evidence |
+| ✅ 31 | E0-S4-T2 | E0-S4 | T30 done | Produce `epic0-closure-report.md` |
+| ✅ 32 | E0-S4-T3 | E0-S4 | T31 done | Produce `epic1-handoff.md` |
+| ✅ 33 | E0-S4-T4 | E0-S4 | T32 done | Commit, push, sign timeline |
 
 ---
 
