@@ -63,7 +63,6 @@ on:
 jobs:
   copilot-setup-steps:
     runs-on: ubuntu-latest
-    environment: copilot
     timeout-minutes: 59
 
     steps:
