@@ -38,7 +38,8 @@ As a `task-implementer`, I want to add a 'clear all filters' button and an activ
 **Agent:** `task-implementer` (local VS Code)
 
 **Artifacts to create/modify:**
-- `client/src/App.tsx` or filter controls component — add clear button and active indicator
+- `client/src/components/flags-filter-controls.tsx` — add clear button and active-filter indicator
+- `client/src/App.tsx` — wire clear handler to filter state reset
 
 **Acceptance:** clear button resets all fields and refetches without filters; indicator is visible when any filter is active and hidden when no filters are active; `pnpm run build && pnpm run lint` exit 0.
 

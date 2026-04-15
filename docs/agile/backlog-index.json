@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-15 16:46:43 -03",
+  "generated_at": "2026-04-15 17:25:49 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -153,7 +153,7 @@
       "type": "story",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "In Progress",
       "responsible_agent": [
         "project-adaptation-analyst"
       ],
@@ -1000,7 +1000,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "project-adaptation-analyst"
       ],
@@ -1009,7 +1009,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:32 -03",
-      "last_updated": "2026-04-14 22:21:32 -03",
+      "last_updated": "2026-04-14 23:37:53 -03",
       "task_file": "docs/agile/tasks/task-E1S1T1-read-and-confirm-task-md-acceptance-criteria.md"
     },
     {

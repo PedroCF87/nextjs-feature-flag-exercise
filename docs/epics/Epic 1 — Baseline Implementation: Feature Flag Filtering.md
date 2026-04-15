@@ -182,6 +182,8 @@ This epic is considered complete when **all** items below are true:
 
 **Description:** generate all detailed story MDs and task files for Epic 1 using the automation artifacts created in E0-S5, then create GitHub Issues for automated execution.
 
+> **Note:** GitHub Issues were created during E1-S0 but execution switched to the local model after E1-S0 and E1-S1-T1. See §10 for the current execution model.
+
 **Execution:**
 1. Invoke `scaffold-stories-from-epic` on this epic to generate detailed story MDs (E1-S1 to E1-S4).
 2. For each generated story, invoke `create-story-task-pack` to generate task files.
@@ -373,7 +375,7 @@ For each story:
 
 ## 11) Expected evidence
 
-1. Implementation branch created from `exercise-1` with a clear naming convention.
+1. All commits on `exercise-1` branch with conventional commit messages including task IDs.
 2. Commits on the personal fork with conventional commit messages covering each story.
 3. `shared/types.ts` diff showing the new `FlagFilterParams` type.
 4. Passing output of all server validation commands (screenshot or terminal log).

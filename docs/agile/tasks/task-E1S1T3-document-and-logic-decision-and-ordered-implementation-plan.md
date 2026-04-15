@@ -25,7 +25,7 @@ As a `project-adaptation-analyst`, I want to confirm AND logic for multi-filter 
 
 ## 2) Verifiable expected outcome
 
-- `docs/.agents/closure/e1s1-implementation-analysis.md` contains an AND-logic decision with justification.
+- `.agents/closure/e1s1-implementation-analysis.md` contains an AND-logic decision with justification.
 - An ordered implementation plan (types → validation → service → route → client API → UI) is documented.
 - Document is complete and committed to the repository.
 
@@ -38,9 +38,11 @@ As a `project-adaptation-analyst`, I want to confirm AND logic for multi-filter 
 **Agent:** `project-adaptation-analyst`
 
 **Artifacts to create:**
-- AND-logic decision and implementation order section in `docs/.agents/closure/e1s1-implementation-analysis.md`
+- AND-logic decision and implementation order section in `.agents/closure/e1s1-implementation-analysis.md`
 
 **Acceptance:** AND-logic decision is explicit with justification; implementation order follows the data flow defined in `copilot-instructions.md`; document is committed.
+
+**Validation:** `test -f .agents/closure/e1s1-implementation-analysis.md && grep -q 'AND' .agents/closure/e1s1-implementation-analysis.md && echo 'OK'`
 
 **depends_on:** E1-S1-T2
 

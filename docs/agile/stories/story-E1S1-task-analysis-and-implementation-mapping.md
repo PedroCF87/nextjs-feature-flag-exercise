@@ -7,7 +7,7 @@
 | **ID** | E1-S1 |
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Responsible agent** | `project-adaptation-analyst` |
 | **Skills** | `project-context-audit`, `execute-task-locally` |
 | **Instructions** | `coding-agent.instructions.md`, `documentation.instructions.md` |

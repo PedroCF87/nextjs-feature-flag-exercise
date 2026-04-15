@@ -25,7 +25,7 @@ As a `project-adaptation-analyst`, I want to map each TASK.md acceptance criteri
 
 ## 2) Verifiable expected outcome
 
-- `docs/.agents/closure/e1s1-implementation-analysis.md` contains a file-impact map section.
+- `.agents/closure/e1s1-implementation-analysis.md` contains a file-impact map section.
 - All affected files listed: `shared/types.ts`, `server/src/middleware/validation.ts`, `server/src/services/flags.ts`, `server/src/routes/flags.ts`, `client/src/api/flags.ts`, `client/src/App.tsx`, and the new filter UI component.
 - Each file entry includes reasoning tied to at least one TASK.md criterion.
 
@@ -38,9 +38,11 @@ As a `project-adaptation-analyst`, I want to map each TASK.md acceptance criteri
 **Agent:** `project-adaptation-analyst` | **Skill:** `project-context-audit`
 
 **Artifacts to create:**
-- File-impact map section in `docs/.agents/closure/e1s1-implementation-analysis.md`
+- File-impact map section in `.agents/closure/e1s1-implementation-analysis.md`
 
 **Acceptance:** every affected file is listed (`shared/types.ts`, `validation.ts`, `services/flags.ts`, `routes/flags.ts`, `api/flags.ts`, `App.tsx`, filter UI component); reasoning is provided for each.
+
+**Validation:** `test -f .agents/closure/e1s1-implementation-analysis.md && grep -q 'file-impact' .agents/closure/e1s1-implementation-analysis.md && echo 'OK'`
 
 **depends_on:** E1-S1-T1
 
