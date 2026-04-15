@@ -152,3 +152,20 @@
 **Acceptance:** at least one test per filter dimension (environment, status, type, owner, name); at least one test for multi-filter AND; `pnpm test` exits 0 with all tests passing.
 
 **depends_on:** E1-S2-T4
+
+---
+
+## 5) Implementation session
+
+| Metric | Value |
+|---|---|
+| **Model** | Claude Opus 4.6 (via GitHub Copilot) |
+| **Agent mode** | `prompt-engineer` / `task-implementer` |
+| **Context window** | 45.7K / 192K tokens (24%) |
+| **System instructions** | 13.3% |
+| **User context (messages)** | 3.1% |
+| **User context (files)** | 1.2% |
+| **Session date** | 2026-04-15 |
+| **Tasks completed** | 5 (T1–T5) + code review + 2 non-blocking fixes |
+| **Commits** | 6 (1 per task + 1 fix commit) |
+| **Post-review fixes** | LIKE wildcard escaping, DRY Zod enum values |
