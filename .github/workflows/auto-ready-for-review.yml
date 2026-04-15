@@ -24,11 +24,12 @@ jobs:
         id: resolve_pr
         env:
           GH_TOKEN: ${{ secrets.COPILOT_CLASSIC_PAT }}
+          EVENT_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
         run: |
           set -euo pipefail
 
           REPO="${{ github.repository }}"
-          BRANCH="${{ github.event.workflow_run.head_branch }}"
+          BRANCH="$EVENT_HEAD_BRANCH"
 
           if [[ -z "$BRANCH" ]]; then
             echo "No head_branch in workflow_run payload. Nothing to do."

@@ -27,6 +27,8 @@ jobs:
         id: resolve_pr
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENT_REVIEW_BODY: ${{ github.event.review.body }}
+          EVENT_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
         run: |
           set -euo pipefail
 
@@ -38,11 +40,11 @@ jobs:
             PR_NODE_ID="${{ github.event.pull_request.node_id }}"
             PR_DRAFT="${{ github.event.pull_request.draft }}"
             PR_MERGEABLE="${{ github.event.pull_request.mergeable }}"
-            REVIEW_BODY="${{ github.event.review.body }}"
+            REVIEW_BODY="$EVENT_REVIEW_BODY"
             REVIEW_STATE="${{ github.event.review.state }}"
           else
             # workflow_run trigger: resolve PR from pushed branch
-            BRANCH="${{ github.event.workflow_run.head_branch }}"
+            BRANCH="$EVENT_HEAD_BRANCH"
             if [[ -z "$BRANCH" ]]; then
               echo "No head_branch in workflow_run payload. Nothing to do."
               exit 0

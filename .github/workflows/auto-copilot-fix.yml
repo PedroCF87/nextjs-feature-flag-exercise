@@ -26,6 +26,8 @@ jobs:
       - name: Post idempotent Copilot fix request
         env:
           GH_TOKEN: ${{ secrets.COPILOT_TRIGGER_TOKEN }}
+          EVENT_REVIEW_BODY: ${{ github.event.review.body }}
+          EVENT_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
         run: |
           set -euo pipefail
 
@@ -42,7 +44,7 @@ jobs:
           if [[ "$EVENT_NAME" == "pull_request_review" ]]; then
             PR_NUMBER="${{ github.event.pull_request.number }}"
             REVIEW_ID="${{ github.event.review.id }}"
-            REVIEW_BODY="${{ github.event.review.body }}"
+            REVIEW_BODY="$EVENT_REVIEW_BODY"
 
             # Fallback path only applies when the review explicitly signals suggestions.
             if [[ "$REVIEW_BODY" != *"[EX:REVIEW-HAS-SUGGESTIONS]"* ]]; then
@@ -50,7 +52,7 @@ jobs:
               exit 0
             fi
           else
-            BRANCH="${{ github.event.workflow_run.head_branch }}"
+            BRANCH="$EVENT_HEAD_BRANCH"
             if [[ -z "$BRANCH" ]]; then
               echo "No head_branch in workflow_run payload."
               exit 0
