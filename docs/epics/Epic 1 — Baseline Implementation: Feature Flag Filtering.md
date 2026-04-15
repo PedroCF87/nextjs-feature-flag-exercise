@@ -201,7 +201,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### [Story E1-S1 — Task analysis and implementation mapping](../agile/stories/story-E1S1-task-analysis-and-implementation-mapping.md)
+### ✅ [Story E1-S1 — Task analysis and implementation mapping](../agile/stories/story-E1S1-task-analysis-and-implementation-mapping.md)
 
 **Priority:** P0 | **Depends on:** E1-S0
 
