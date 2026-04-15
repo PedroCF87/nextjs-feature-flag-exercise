@@ -14,7 +14,7 @@
 | **Depends on** | E1-S1 |
 | **Blocks** | E1-S3 |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-15 18:13:07 -03 |
+| Last updated | 2026-04-15 18:17:59 -03 |
 
 ---
 
@@ -125,7 +125,7 @@
 
 ---
 
-### [Task E1-S2-T4 — Update GET /api/flags route handler](../tasks/task-E1S2T4-update-get-api-flags-route-handler.md)
+### ✅ [Task E1-S2-T4 — Update GET /api/flags route handler](../tasks/task-E1S2T4-update-get-api-flags-route-handler.md)
 
 **Goal:** update the `GET /api/flags` route handler to extract validated filter params from `req.query` and forward them to `FlagsService.getAll()`.
 
