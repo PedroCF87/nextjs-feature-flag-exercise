@@ -1,7 +1,5 @@
 # Architecture Diagram — nextjs-feature-flag-exercise
 
-![Architecture-Diagram](./architecture-diagram.png)
-
 > Data flow: `shared/types.ts` → Zod validation → Service → Routes → Client API → UI
 
 ```mermaid
