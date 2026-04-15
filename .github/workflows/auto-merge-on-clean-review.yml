@@ -88,36 +88,50 @@ jobs:
           PR_NUMBER="${{ steps.resolve_pr.outputs.pr_number }}"
           REVIEW_STATE="${{ steps.resolve_pr.outputs.review_state }}"
 
-          # For pull_request_review trigger: only proceed if review is approved or has no suggestions
+          # For pull_request_review trigger: only proceed if review is approved or commented
           if [[ -n "$REVIEW_STATE" && "$REVIEW_STATE" != "approved" && "$REVIEW_STATE" != "commented" ]]; then
             echo "Review state is '$REVIEW_STATE'. Skipping merge."
             echo "should_merge=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          # Check if any recent bot comment contains [EX:REVIEW-HAS-SUGGESTIONS] -> skip
-          RECENT_COMMENTS=$(gh api "/repos/$REPO/issues/$PR_NUMBER/comments?per_page=20" --jq 'reverse | .[]')
+          # 1. Check PR review bodies (where Copilot Code Review posts its verdict)
+          REVIEW_SIGNAL=$(gh api "/repos/$REPO/pulls/$PR_NUMBER/reviews?per_page=30" --jq '
+            [reverse | .[] | .body // "" |
+              if test("\\[EX:REVIEW-HAS-SUGGESTIONS\\]") then "suggestions"
+              elif test("\\[EX:REVIEW-CLEAN\\]") then "clean"
+              else empty
+              end
+            ] | first // "none"')
 
-          HAS_SUGGESTIONS=""
-          while IFS= read -r COMMENT; do
-            BODY=$(echo "$COMMENT" | jq -r '.body // ""')
-            if echo "$BODY" | grep -q "\[EX:REVIEW-HAS-SUGGESTIONS\]"; then
-              HAS_SUGGESTIONS="true"
-              break
-            fi
-            # Stop searching at last REVIEW-CLEAN signal
-            if echo "$BODY" | grep -q "\[EX:REVIEW-CLEAN\]"; then
-              break
-            fi
-          done <<< "$RECENT_COMMENTS"
+          echo "Signal from review bodies: $REVIEW_SIGNAL"
 
-          if [[ "$HAS_SUGGESTIONS" == "true" ]]; then
-            echo "Found [EX:REVIEW-HAS-SUGGESTIONS] — not merging."
-            echo "should_merge=false" >> "$GITHUB_OUTPUT"
-            exit 0
+          # 2. If no signal in reviews, also check issue comments (fallback)
+          COMMENT_SIGNAL="none"
+          if [[ "$REVIEW_SIGNAL" == "none" ]]; then
+            COMMENT_SIGNAL=$(gh api "/repos/$REPO/issues/$PR_NUMBER/comments?per_page=30" --jq '
+              [reverse | .[] | .body // "" |
+                if test("\\[EX:REVIEW-HAS-SUGGESTIONS\\]") then "suggestions"
+                elif test("\\[EX:REVIEW-CLEAN\\]") then "clean"
+                else empty
+                end
+              ] | first // "none"')
+
+            echo "Signal from issue comments: $COMMENT_SIGNAL"
           fi
 
-          echo "should_merge=true" >> "$GITHUB_OUTPUT"
+          # Decision: require POSITIVE [EX:REVIEW-CLEAN] signal to merge.
+          # If no signal exists, the review is still in progress — do NOT merge.
+          if [[ "$REVIEW_SIGNAL" == "suggestions" || "$COMMENT_SIGNAL" == "suggestions" ]]; then
+            echo "Found [EX:REVIEW-HAS-SUGGESTIONS] — not merging."
+            echo "should_merge=false" >> "$GITHUB_OUTPUT"
+          elif [[ "$REVIEW_SIGNAL" == "clean" || "$COMMENT_SIGNAL" == "clean" ]]; then
+            echo "Found [EX:REVIEW-CLEAN] — proceeding to merge."
+            echo "should_merge=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No review signal found ([EX:REVIEW-CLEAN] or [EX:REVIEW-HAS-SUGGESTIONS]). Review may still be in progress. Skipping merge."
+            echo "should_merge=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Verify all review threads are resolved
         id: check_threads
