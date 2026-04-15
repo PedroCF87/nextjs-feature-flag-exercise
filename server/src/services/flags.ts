@@ -94,8 +94,9 @@ export async function getAllFlags(filters: FlagFilterParams = {}): Promise<Featu
     params.push(filters.owner)
   }
   if (filters.name !== undefined) {
-    conditions.push('LOWER(name) LIKE ?')
-    params.push('%' + filters.name.toLowerCase() + '%')
+    conditions.push("LOWER(name) LIKE ? ESCAPE '\\'")
+    const escaped = filters.name.toLowerCase().replace(/[\\%_]/g, '\\$&')
+    params.push('%' + escaped + '%')
   }
 
   const whereClause = conditions.length > 0 ? ' WHERE ' + conditions.join(' AND ') : ''
