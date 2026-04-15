@@ -14,7 +14,7 @@
 | **Depends on** | E1-S1 |
 | **Blocks** | E1-S3 |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-15 18:07:27 -03 |
+| Last updated | 2026-04-15 18:13:07 -03 |
 
 ---
 
@@ -110,7 +110,7 @@
 
 ---
 
-### [Task E1-S2-T3 — Implement filtering in FlagsService.getAll()](../tasks/task-E1S2T3-implement-filtering-in-flagsservice-getall.md)
+### ✅ [Task E1-S2-T3 — Implement filtering in FlagsService.getAll()](../tasks/task-E1S2T3-implement-filtering-in-flagsservice-getall.md)
 
 **Goal:** update `FlagsService.getAll()` to accept `FlagFilterParams` and build a parameterized SQL query that applies all provided filters as AND conditions.
 

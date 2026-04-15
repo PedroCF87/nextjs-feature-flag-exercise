@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 import { getDb, saveDb } from '../db/client.js'
 import { NotFoundError, ConflictError } from '../middleware/error.js'
-import type { FeatureFlag, CreateFlagInput, UpdateFlagInput, Environment, FlagType } from '../../../shared/types.js'
+import type { FeatureFlag, CreateFlagInput, UpdateFlagInput, Environment, FlagType, FlagFilterParams } from '../../../shared/types.js'
 
 const VALID_ENVIRONMENTS: Environment[] = ['development', 'staging', 'production']
 const VALID_FLAG_TYPES: FlagType[] = ['release', 'experiment', 'operational', 'permission']
@@ -71,22 +71,49 @@ function rowToFlag(row: DbRow): FeatureFlag {
   }
 }
 
-function resultToRows(result: { columns: string[], values: unknown[][] }[]): DbRow[] {
-  if (result.length === 0) return []
-  const columns = result[0].columns
-  return result[0].values.map(row => {
-    const obj: Record<string, unknown> = {}
-    columns.forEach((col, i) => {
-      obj[col] = row[i]
-    })
-    return obj as unknown as DbRow
-  })
-}
-
-export async function getAllFlags(): Promise<FeatureFlag[]> {
+export async function getAllFlags(filters: FlagFilterParams = {}): Promise<FeatureFlag[]> {
   const db = await getDb()
-  const result = db.exec('SELECT * FROM flags ORDER BY created_at DESC')
-  return resultToRows(result).map(rowToFlag)
+
+  const conditions: string[] = []
+  const params: (string | number)[] = []
+
+  if (filters.environment !== undefined) {
+    conditions.push('environment = ?')
+    params.push(filters.environment)
+  }
+  if (filters.status !== undefined) {
+    conditions.push('enabled = ?')
+    params.push(filters.status === 'enabled' ? 1 : 0)
+  }
+  if (filters.type !== undefined) {
+    conditions.push('type = ?')
+    params.push(filters.type)
+  }
+  if (filters.owner !== undefined) {
+    conditions.push('owner = ?')
+    params.push(filters.owner)
+  }
+  if (filters.name !== undefined) {
+    conditions.push('LOWER(name) LIKE ?')
+    params.push('%' + filters.name.toLowerCase() + '%')
+  }
+
+  const whereClause = conditions.length > 0 ? ' WHERE ' + conditions.join(' AND ') : ''
+  const sql = `SELECT * FROM flags${whereClause} ORDER BY created_at DESC`
+
+  const stmt = db.prepare(sql)
+  try {
+    if (params.length > 0) {
+      stmt.bind(params)
+    }
+    const rows: DbRow[] = []
+    while (stmt.step()) {
+      rows.push(stmt.getAsObject() as unknown as DbRow)
+    }
+    return rows.map(rowToFlag)
+  } finally {
+    stmt.free()
+  }
 }
 
 export async function getFlagById(id: string): Promise<FeatureFlag | null> {
