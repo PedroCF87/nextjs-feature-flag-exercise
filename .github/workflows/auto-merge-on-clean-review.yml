@@ -120,7 +120,7 @@ jobs:
           fi
 
           # Decision: require POSITIVE [EX:REVIEW-CLEAN] signal to merge.
-          # If no signal exists, the review is still in progress — do NOT merge.
+          # If no signal exists, fall back to checking Copilot PR reviewer + thread state.
           if [[ "$REVIEW_SIGNAL" == "suggestions" || "$COMMENT_SIGNAL" == "suggestions" ]]; then
             echo "Found [EX:REVIEW-HAS-SUGGESTIONS] — not merging."
             echo "should_merge=false" >> "$GITHUB_OUTPUT"
@@ -128,8 +128,29 @@ jobs:
             echo "Found [EX:REVIEW-CLEAN] — proceeding to merge."
             echo "should_merge=true" >> "$GITHUB_OUTPUT"
           else
-            echo "No review signal found ([EX:REVIEW-CLEAN] or [EX:REVIEW-HAS-SUGGESTIONS]). Review may still be in progress. Skipping merge."
-            echo "should_merge=false" >> "$GITHUB_OUTPUT"
+            # No [EX:] tags found. Check if the Copilot PR reviewer posted a review
+            # with zero unresolved threads — treat as implicitly clean.
+            COPILOT_REVIEWER_FOUND=$(gh api "/repos/$REPO/pulls/$PR_NUMBER/reviews?per_page=30" --jq '
+              [.[] | select(.user.login | startswith("copilot-pull-request-reviewer"))] | length > 0')
+
+            if [[ "$COPILOT_REVIEWER_FOUND" == "true" ]]; then
+              PR_NODE_ID="${{ steps.resolve_pr.outputs.pr_node_id }}"
+              UNRESOLVED_COUNT=$(gh api graphql \
+                -f query='query($pr: ID!) { node(id: $pr) { ... on PullRequest { reviewThreads(first: 100) { nodes { isResolved isOutdated } } } } }' \
+                -f pr="$PR_NODE_ID" \
+                --jq '[.data.node.reviewThreads.nodes[] | select(.isResolved == false and .isOutdated == false)] | length')
+
+              if [[ "$UNRESOLVED_COUNT" -eq 0 ]]; then
+                echo "Copilot PR reviewer posted review with zero unresolved threads — treating as clean."
+                echo "should_merge=true" >> "$GITHUB_OUTPUT"
+              else
+                echo "Copilot PR reviewer posted review with $UNRESOLVED_COUNT unresolved thread(s) — not merging."
+                echo "should_merge=false" >> "$GITHUB_OUTPUT"
+              fi
+            else
+              echo "No review signal found ([EX:REVIEW-CLEAN] or [EX:REVIEW-HAS-SUGGESTIONS]) and no Copilot PR reviewer review. Skipping merge."
+              echo "should_merge=false" >> "$GITHUB_OUTPUT"
+            fi
           fi
 
       - name: Verify all review threads are resolved

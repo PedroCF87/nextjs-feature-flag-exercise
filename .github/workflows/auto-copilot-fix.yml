@@ -43,10 +43,28 @@ jobs:
             PR_NUMBER="${{ github.event.pull_request.number }}"
             REVIEW_ID="${{ github.event.review.id }}"
             REVIEW_BODY="${{ github.event.review.body }}"
+            REVIEW_USER="${{ github.event.review.user.login }}"
 
-            # Fallback path only applies when the review explicitly signals suggestions.
-            if [[ "$REVIEW_BODY" != *"[EX:REVIEW-HAS-SUGGESTIONS]"* ]]; then
-              echo "pull_request_review event without [EX:REVIEW-HAS-SUGGESTIONS]; exiting."
+            if [[ "$REVIEW_BODY" == *"[EX:REVIEW-HAS-SUGGESTIONS]"* ]]; then
+              echo "Explicit [EX:REVIEW-HAS-SUGGESTIONS] tag found; proceeding."
+            elif [[ "$REVIEW_USER" == "copilot-pull-request-reviewer"* ]]; then
+              # Copilot PR reviewer doesn't use [EX:] tags natively.
+              # Check if this review actually left unresolved threads before proceeding.
+              UNRESOLVED_COUNT=$(gh api graphql \
+                -f query='query($owner:String!, $repo:String!, $number:Int!) { repository(owner:$owner, name:$repo) { pullRequest(number:$number) { reviewThreads(first:100) { nodes { isResolved isOutdated } } } } }' \
+                -f owner="$OWNER" \
+                -f repo="$REPO_NAME" \
+                -F number="$PR_NUMBER" \
+                --jq '[.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved == false and .isOutdated == false)] | length')
+
+              if [[ "$UNRESOLVED_COUNT" -gt 0 ]]; then
+                echo "Copilot PR reviewer left $UNRESOLVED_COUNT unresolved thread(s); proceeding."
+              else
+                echo "Copilot PR reviewer review with no unresolved threads; exiting."
+                exit 0
+              fi
+            else
+              echo "pull_request_review event without [EX:REVIEW-HAS-SUGGESTIONS] from non-Copilot reviewer ($REVIEW_USER); exiting."
               exit 0
             fi
           else
