@@ -17,7 +17,7 @@
 
 ## 1) Business objective
 
-Execute the Feature Flag Filtering task using the current AI development process — without enforcing a structured AI-assisted validation workflow — and produce a measurable baseline of effort, friction, and quality.
+Execute the Feature Flag Filtering task and produce a measurable baseline of effort, friction, and quality.
 
 Expected value:
 - deliver a functional implementation of the filtering task as defined in `TASK.md`;
