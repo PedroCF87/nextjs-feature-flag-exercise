@@ -71,13 +71,13 @@ The SQL must remain parameterized. Conditions should be collected in an array, p
 
 ### 3.3 Recommended implementation order
 
-1. **Define or confirm shared filter types** in [`shared/types.ts`](../../../shared/types.ts) so both server and client use the same filter contract.
-2. **Add boundary validation** in [`server/src/middleware/validation.ts`](../../../server/src/middleware/validation.ts) for all supported query params and allowed values.
-3. **Implement backend filtering first** in [`server/src/services/flags.ts`](../../../server/src/services/flags.ts), including dynamic AND-composed SQL, parameter binding, and `stmt.free()` in `finally`.
-4. **Wire the route layer** in [`server/src/routes/flags.ts`](../../../server/src/routes/flags.ts) so validated query values reach the service via the existing Express pattern and errors continue to propagate with `next(error)`.
-5. **Add backend tests** in [`server/src/__tests__/flags.test.ts`](../../../server/src/__tests__/flags.test.ts) covering individual filters and representative combinations such as “enabled + release + production”.
-6. **Extend the client API** in [`client/src/api/flags.ts`](../../../client/src/api/flags.ts) so active filters are sent as query parameters and empty values are omitted.
-7. **Implement UI state and persistence** in [`client/src/App.tsx`](../../../client/src/App.tsx) so filters remain active after create/edit/delete flows, the query key includes the full filter state, and a clear-all action resets the list to the unfiltered view.
+1. **Define or confirm shared filter types** in [`shared/types.ts`](../../shared/types.ts) so both server and client use the same filter contract.
+2. **Add boundary validation** in [`server/src/middleware/validation.ts`](../../server/src/middleware/validation.ts) for all supported query params and allowed values.
+3. **Implement backend filtering first** in [`server/src/services/flags.ts`](../../server/src/services/flags.ts), including dynamic AND-composed SQL, parameter binding, and `stmt.free()` in `finally`.
+4. **Wire the route layer** in [`server/src/routes/flags.ts`](../../server/src/routes/flags.ts) so validated query values reach the service via the existing Express pattern and errors continue to propagate with `next(error)`.
+5. **Add backend tests** in [`server/src/__tests__/flags.test.ts`](../../server/src/__tests__/flags.test.ts) covering individual filters and representative combinations such as “enabled + release + production”.
+6. **Extend the client API** in [`client/src/api/flags.ts`](../../client/src/api/flags.ts) so active filters are sent as query parameters and empty values are omitted.
+7. **Implement UI state and persistence** in [`client/src/App.tsx`](../../client/src/App.tsx) so filters remain active after create/edit/delete flows, the query key includes the full filter state, and a clear-all action resets the list to the unfiltered view.
 8. **Add active-filter indication in the UI** so users can tell when results are constrained, satisfying AC-10 without introducing client-side filtering.
 
 ### 3.4 Rationale for this order
