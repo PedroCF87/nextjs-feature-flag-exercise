@@ -44,18 +44,47 @@ jobs:
             REVIEW_ID="${{ github.event.review.id }}"
             REVIEW_BODY="${{ github.event.review.body }}"
             REVIEW_USER="${{ github.event.review.user.login }}"
+            REVIEW_USER_TYPE="${{ github.event.review.user.type }}"
 
             if [[ "$REVIEW_BODY" == *"[EX:REVIEW-HAS-SUGGESTIONS]"* ]]; then
               echo "Explicit [EX:REVIEW-HAS-SUGGESTIONS] tag found; proceeding."
-            elif [[ "$REVIEW_USER" == "copilot-pull-request-reviewer"* ]]; then
+            elif [[ "$REVIEW_USER_TYPE" == "Bot" && "$REVIEW_USER" == "copilot-pull-request-reviewer[bot]" ]]; then
               # Copilot PR reviewer doesn't use [EX:] tags natively.
-              # Check if this review actually left unresolved threads before proceeding.
-              UNRESOLVED_COUNT=$(gh api graphql \
-                -f query='query($owner:String!, $repo:String!, $number:Int!) { repository(owner:$owner, name:$repo) { pullRequest(number:$number) { reviewThreads(first:100) { nodes { isResolved isOutdated } } } } }' \
-                -f owner="$OWNER" \
-                -f repo="$REPO_NAME" \
-                -F number="$PR_NUMBER" \
-                --jq '[.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved == false and .isOutdated == false)] | length')
+              # Check if this exact trusted bot review actually left unresolved threads before proceeding.
+              THREADS_QUERY='query($owner:String!, $repo:String!, $number:Int!, $after:String) { repository(owner:$owner, name:$repo) { pullRequest(number:$number) { reviewThreads(first:100, after:$after) { nodes { isResolved isOutdated } pageInfo { hasNextPage endCursor } } } } }'
+              UNRESOLVED_COUNT=0
+              HAS_NEXT_PAGE="true"
+              END_CURSOR=""
+
+              while [[ "$HAS_NEXT_PAGE" == "true" ]]; do
+                if [[ -n "$END_CURSOR" ]]; then
+                  PAGE_DATA=$(gh api graphql \
+                    -f query="$THREADS_QUERY" \
+                    -f owner="$OWNER" \
+                    -f repo="$REPO_NAME" \
+                    -F number="$PR_NUMBER" \
+                    -f after="$END_CURSOR" \
+                    --jq '[
+                      ([.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved == false and .isOutdated == false)] | length),
+                      .data.repository.pullRequest.reviewThreads.pageInfo.hasNextPage,
+                      (.data.repository.pullRequest.reviewThreads.pageInfo.endCursor // "")
+                    ] | @tsv')
+                else
+                  PAGE_DATA=$(gh api graphql \
+                    -f query="$THREADS_QUERY" \
+                    -f owner="$OWNER" \
+                    -f repo="$REPO_NAME" \
+                    -F number="$PR_NUMBER" \
+                    --jq '[
+                      ([.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved == false and .isOutdated == false)] | length),
+                      .data.repository.pullRequest.reviewThreads.pageInfo.hasNextPage,
+                      (.data.repository.pullRequest.reviewThreads.pageInfo.endCursor // "")
+                    ] | @tsv')
+                fi
+
+                IFS=$'\t' read -r PAGE_UNRESOLVED_COUNT HAS_NEXT_PAGE END_CURSOR <<< "$PAGE_DATA"
+                UNRESOLVED_COUNT=$((UNRESOLVED_COUNT + PAGE_UNRESOLVED_COUNT))
+              done
 
               if [[ "$UNRESOLVED_COUNT" -gt 0 ]]; then
                 echo "Copilot PR reviewer left $UNRESOLVED_COUNT unresolved thread(s); proceeding."

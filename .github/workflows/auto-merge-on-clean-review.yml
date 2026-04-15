@@ -128,17 +128,34 @@ jobs:
             echo "Found [EX:REVIEW-CLEAN] — proceeding to merge."
             echo "should_merge=true" >> "$GITHUB_OUTPUT"
           else
-            # No [EX:] tags found. Check if the Copilot PR reviewer posted a review
-            # with zero unresolved threads — treat as implicitly clean.
-            COPILOT_REVIEWER_FOUND=$(gh api "/repos/$REPO/pulls/$PR_NUMBER/reviews?per_page=30" --jq '
-              [.[] | select(.user.login | startswith("copilot-pull-request-reviewer"))] | length > 0')
+            # No [EX:] tags found. Check if the trusted Copilot PR reviewer bot
+            # posted a review with zero unresolved threads — treat as implicitly clean.
+            COPILOT_REVIEWER_FOUND=$(gh api "/repos/$REPO/pulls/$PR_NUMBER/reviews?per_page=100" --jq '
+              [.[] | select(.user.login == "copilot-pull-request-reviewer[bot]" and .user.type == "Bot")] | length > 0')
 
             if [[ "$COPILOT_REVIEWER_FOUND" == "true" ]]; then
               PR_NODE_ID="${{ steps.resolve_pr.outputs.pr_node_id }}"
-              UNRESOLVED_COUNT=$(gh api graphql \
-                -f query='query($pr: ID!) { node(id: $pr) { ... on PullRequest { reviewThreads(first: 100) { nodes { isResolved isOutdated } } } } }' \
-                -f pr="$PR_NODE_ID" \
-                --jq '[.data.node.reviewThreads.nodes[] | select(.isResolved == false and .isOutdated == false)] | length')
+              UNRESOLVED_COUNT=0
+              HAS_NEXT_PAGE=true
+              CURSOR=""
+
+              while [[ "$HAS_NEXT_PAGE" == "true" ]]; do
+                if [[ -n "$CURSOR" ]]; then
+                  THREADS_RESPONSE=$(gh api graphql \
+                    -f query='query($pr: ID!, $cursor: String) { node(id: $pr) { ... on PullRequest { reviewThreads(first: 100, after: $cursor) { nodes { isResolved isOutdated } pageInfo { hasNextPage endCursor } } } } }' \
+                    -f pr="$PR_NODE_ID" \
+                    -f cursor="$CURSOR")
+                else
+                  THREADS_RESPONSE=$(gh api graphql \
+                    -f query='query($pr: ID!, $cursor: String) { node(id: $pr) { ... on PullRequest { reviewThreads(first: 100, after: $cursor) { nodes { isResolved isOutdated } pageInfo { hasNextPage endCursor } } } } }' \
+                    -f pr="$PR_NODE_ID")
+                fi
+
+                PAGE_UNRESOLVED_COUNT=$(printf '%s' "$THREADS_RESPONSE" | jq '[.data.node.reviewThreads.nodes[] | select(.isResolved == false and .isOutdated == false)] | length')
+                UNRESOLVED_COUNT=$((UNRESOLVED_COUNT + PAGE_UNRESOLVED_COUNT))
+                HAS_NEXT_PAGE=$(printf '%s' "$THREADS_RESPONSE" | jq -r '.data.node.reviewThreads.pageInfo.hasNextPage')
+                CURSOR=$(printf '%s' "$THREADS_RESPONSE" | jq -r '.data.node.reviewThreads.pageInfo.endCursor // empty')
+              done
 
               if [[ "$UNRESOLVED_COUNT" -eq 0 ]]; then
                 echo "Copilot PR reviewer posted review with zero unresolved threads — treating as clean."
