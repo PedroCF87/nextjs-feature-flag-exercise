@@ -8,12 +8,12 @@
 | **Story** | [E1-S1 — Task analysis and implementation mapping](../stories/story-E1S1-task-analysis-and-implementation-mapping.md) |
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `project-adaptation-analyst` |
 | **Depends on** | E1-S1-T1 |
 | **Blocks** | — |
 | Created at | 2026-04-14 22:21:32 -03 |
-| Last updated | 2026-04-14 22:21:32 -03 |
+| Last updated | 2026-04-15 17:42:32 -03 |
 
 ---
 
@@ -60,13 +60,14 @@ As a `project-adaptation-analyst`, I want to map each TASK.md acceptance criteri
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:**
+  ```
+  test -f .agents/closure/e1s1-implementation-analysis.md && grep -q 'file-impact\|File-Impact\|File Impact' .agents/closure/e1s1-implementation-analysis.md && echo "OK"
+  ```
+- **Exit code:** 0
+- **Output summary:** `OK` — file exists and contains the File-Impact Map section heading.
+- **Files created/updated:** `.agents/closure/e1s1-implementation-analysis.md` (Section 2 extended with `flags-filter-controls.tsx` row 10)
+- **Risks found / mitigations:** None. The document already had rows 1–9; row 10 (`flags-filter-controls.tsx`) was added to ensure the new filter UI component is explicitly mapped.
 
 ### Given / When / Then checks
 
@@ -78,16 +79,16 @@ Record evidence with exact commands and outputs:
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** E1-S1-T1 (TASK.md AC summary) — confirmed Done before execution.
+- **Downstream items unblocked:** E1-S2 (server-side filtering implementation) and E1-S3 (client-side UI) can now proceed with a clear file inventory and change reasoning.
+- **Open risks (if any):** None introduced by this task. The dynamic SQL construction risk (R1) documented in the analysis remains the highest-priority implementation concern for E1-S2.

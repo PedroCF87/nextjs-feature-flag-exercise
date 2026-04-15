@@ -89,7 +89,7 @@
 
 ---
 
-### [Task E1-S1-T2 — Produce file-impact map](../tasks/task-E1S1T2-produce-file-impact-map.md)
+### ✅ [Task E1-S1-T2 — Produce file-impact map](../tasks/task-E1S1T2-produce-file-impact-map.md)
 
 **Goal:** map each TASK.md acceptance criterion to the specific source files that must be created or modified, with reasoning for each change.
 
