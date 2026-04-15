@@ -118,7 +118,7 @@
 
 ---
 
-### [Task E1-S3-T3 — Build filter controls component](../tasks/task-E1S3T3-build-filter-controls-component.md)
+### ✅ [Task E1-S3-T3 — Build filter controls component](../tasks/task-E1S3T3-build-filter-controls-component.md)
 
 **Goal:** create a filter controls panel component with selects/inputs for environment, status, type, owner, and name search using Radix UI primitives and `cn()` for class composition.
 
