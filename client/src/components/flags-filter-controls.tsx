@@ -32,7 +32,7 @@ function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsProps) {
   }
 
   return (
-    <div className={cn('flex flex-wrap items-end gap-3')}>
+    <div className="flex flex-wrap items-end gap-3">
       <div className="flex flex-col gap-1.5">
         <label className="text-sm font-medium text-muted-foreground">Environment</label>
         <Select
@@ -88,8 +88,9 @@ function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsProps) {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label className="text-sm font-medium text-muted-foreground">Owner</label>
+        <label htmlFor="filter-owner" className="text-sm font-medium text-muted-foreground">Owner</label>
         <Input
+          id="filter-owner"
           className="w-[160px]"
           placeholder="Filter by owner..."
           value={filters.owner ?? ''}
@@ -98,8 +99,9 @@ function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsProps) {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label className="text-sm font-medium text-muted-foreground">Name</label>
+        <label htmlFor="filter-name" className="text-sm font-medium text-muted-foreground">Name</label>
         <Input
+          id="filter-name"
           className="w-[180px]"
           placeholder="Search by name..."
           value={filters.name ?? ''}

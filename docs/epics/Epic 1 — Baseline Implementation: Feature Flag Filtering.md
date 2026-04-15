@@ -235,7 +235,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### [Story E1-S3 — Client-side filtering UI implementation](../agile/stories/story-E1S3-client-side-filtering-ui-implementation.md)
+### ✅ [Story E1-S3 — Client-side filtering UI implementation](../agile/stories/story-E1S3-client-side-filtering-ui-implementation.md)
 
 **Priority:** P0 | **Depends on:** E1-S2
 

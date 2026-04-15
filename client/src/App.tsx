@@ -114,7 +114,9 @@ function FlagsApp() {
           </Button>
         </div>
 
-        <FlagsFilterControls filters={filters} onChange={setFilters} />
+        <div className="mb-6">
+          <FlagsFilterControls filters={filters} onChange={setFilters} />
+        </div>
 
         {isLoading ? (
           <div className="text-center py-12 text-muted-foreground">Loading flags...</div>
