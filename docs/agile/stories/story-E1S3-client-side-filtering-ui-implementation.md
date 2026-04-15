@@ -103,7 +103,7 @@
 
 ---
 
-### [Task E1-S3-T2 — Add filter state management in App.tsx](../tasks/task-E1S3T2-add-filter-state-management-in-app-tsx.md)
+### ✅ [Task E1-S3-T2 — Add filter state management in App.tsx](../tasks/task-E1S3T2-add-filter-state-management-in-app-tsx.md)
 
 **Goal:** add `useState<FlagFilterParams>` in `App.tsx` above the mutation scope and pass filter state to the `useQuery` call and to the filter controls component.
 

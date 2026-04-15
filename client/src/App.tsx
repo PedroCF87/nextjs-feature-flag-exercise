@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { QueryClient, QueryClientProvider, useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import type { FeatureFlag, CreateFlagInput, UpdateFlagInput } from '@shared/types'
+import type { FeatureFlag, CreateFlagInput, UpdateFlagInput, FlagFilterParams } from '@shared/types'
 import { getFlags, createFlag, updateFlag, deleteFlag } from '@/api/flags'
 import { FlagsTable } from '@/components/flags-table'
 import { FlagFormModal } from '@/components/flag-form-modal'
@@ -15,10 +15,11 @@ function FlagsApp() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const [selectedFlag, setSelectedFlag] = useState<FeatureFlag | null>(null)
+  const [filters] = useState<FlagFilterParams>({})
 
   const { data: flags = [], isLoading, error } = useQuery({
-    queryKey: ['flags'],
-    queryFn: () => getFlags(),
+    queryKey: ['flags', filters],
+    queryFn: () => getFlags(filters),
   })
 
   const createMutation = useMutation({
