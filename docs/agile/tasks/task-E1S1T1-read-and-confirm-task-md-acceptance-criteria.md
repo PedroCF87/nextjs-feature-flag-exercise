@@ -25,7 +25,7 @@ As a `project-adaptation-analyst`, I want to read `TASK.md` in full and produce 
 
 ## 2) Verifiable expected outcome
 
-- `docs/.agents/closure/e1s1-implementation-analysis.md` exists with all 11 TASK.md criteria listed and confirmed.
+- `.agents/closure/e1s1-implementation-analysis.md` exists with all 11 TASK.md criteria listed and confirmed.
 - All 11 criteria are summarized in plain language with no ambiguity notes.
 - Document is committed to the repository.
 
@@ -38,7 +38,7 @@ As a `project-adaptation-analyst`, I want to read `TASK.md` in full and produce 
 **Agent:** `project-adaptation-analyst` | **Skill:** `project-context-audit`
 
 **Artifacts to create:**
-- Summary section in the analysis document: `docs/.agents/closure/e1s1-implementation-analysis.md`
+- Summary section in the analysis document: `.agents/closure/e1s1-implementation-analysis.md`
 
 **Acceptance:** all 11 TASK.md criteria listed with plain-language confirmations; document exists.
 
@@ -62,15 +62,15 @@ Record evidence with exact commands and outputs:
 
 - Command(s) executed: `cat TASK.md` (read full file at repository root)
 - Exit code(s): 0
-- Output summary: 11 acceptance criteria identified and recorded verbatim in `docs/.agents/closure/e1s1-implementation-analysis.md` §1
-- Files created/updated: `docs/.agents/closure/e1s1-implementation-analysis.md` (created)
+- Output summary: 11 acceptance criteria identified and recorded verbatim in `.agents/closure/e1s1-implementation-analysis.md` §1
+- Files created/updated: `.agents/closure/e1s1-implementation-analysis.md` (created)
 - Risks found / mitigations: AC-2 requires boolean conversion (`enabled`→INTEGER) — documented in analysis table; AC-5 requires case-insensitive LIKE — documented; AC-7 requires dynamic AND-logic SQL — noted for E1-S2.
 
 ### Given / When / Then checks
 
 - **Given** `TASK.md` is present at the repository root,
 - **When** the analyst reads it and produces the summary document,
-- **Then** `docs/.agents/closure/e1s1-implementation-analysis.md` exists with all 11 criteria summarized; no criterion is missing or ambiguous. ✅
+- **Then** `.agents/closure/e1s1-implementation-analysis.md` exists with all 11 criteria summarized; no criterion is missing or ambiguous. ✅
 
 ---
 
