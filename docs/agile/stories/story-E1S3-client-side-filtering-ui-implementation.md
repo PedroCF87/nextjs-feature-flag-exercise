@@ -88,7 +88,7 @@
 
 ## 4) Tasks
 
-### [Task E1-S3-T1 — Update client API to pass filter params](../tasks/task-E1S3T1-update-client-api-to-pass-filter-params.md)
+### ✅ [Task E1-S3-T1 — Update client API to pass filter params](../tasks/task-E1S3T1-update-client-api-to-pass-filter-params.md)
 
 **Goal:** update `client/src/api/flags.ts` to accept `FlagFilterParams` and serialize them as query string parameters in the `GET /api/flags` fetch call.
 

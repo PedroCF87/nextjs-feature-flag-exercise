@@ -18,7 +18,7 @@ function FlagsApp() {
 
   const { data: flags = [], isLoading, error } = useQuery({
     queryKey: ['flags'],
-    queryFn: getFlags,
+    queryFn: () => getFlags(),
   })
 
   const createMutation = useMutation({
