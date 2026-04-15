@@ -8,12 +8,12 @@
 | **Story** | [E1-S2 — Server-side filtering implementation](../stories/story-E1S2-server-side-filtering-implementation.md) |
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `task-implementer` |
 | **Depends on** | E1-S1 |
 | **Blocks** | — |
 | Created at | 2026-04-14 22:21:37 -03 |
-| Last updated | 2026-04-14 22:21:37 -03 |
+| Last updated | 2026-04-15 17:59:52 -03 |
 
 ---
 
@@ -60,11 +60,11 @@ As a `task-implementer`, I want to add the `FlagFilterParams` type to `shared/ty
 
 Record evidence with exact commands and outputs:
 
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- Command(s) executed: `cd server && pnpm run build && pnpm run lint && pnpm test && cd ../client && pnpm run build && pnpm run lint`
+- Exit code(s): all 0
+- Output summary: server tsc clean; server lint clean; 16 tests passed (0 failed); client vite build successful (3 assets); client lint clean
+- Files created/updated: `shared/types.ts`
+- Risks found / mitigations: none
 
 ### Given / When / Then checks
 
@@ -76,16 +76,16 @@ Record evidence with exact commands and outputs:
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- Upstream dependencies resolved: E1-S1 (Done)
+- Downstream items unblocked: E1-S2-T2 (Add Zod filter query schema)
+- Open risks (if any): none

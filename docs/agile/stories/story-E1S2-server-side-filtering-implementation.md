@@ -7,14 +7,14 @@
 | **ID** | E1-S2 |
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Responsible agent** | `task-implementer` (local VS Code) |
 | **Skills** | `execute-task-locally` |
 | **Instructions** | `coding-agent.instructions.md`, `feature-flag-exercise.instructions.md` |
 | **Depends on** | E1-S1 |
 | **Blocks** | E1-S3 |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-15 00:00:00 -03 |
+| Last updated | 2026-04-15 17:59:52 -03 |
 
 ---
 
@@ -80,7 +80,7 @@
 
 ## 4) Tasks
 
-### [Task E1-S2-T1 — Extend shared/types.ts with FlagFilterParams](../tasks/task-E1S2T1-extend-shared-types-ts-with-flagfilterparams.md)
+### ✅ [Task E1-S2-T1 — Extend shared/types.ts with FlagFilterParams](../tasks/task-E1S2T1-extend-shared-types-ts-with-flagfilterparams.md)
 
 **Goal:** add the `FlagFilterParams` type to `shared/types.ts` as the single source of truth for the filter contract, with all 5 optional fields.
 
