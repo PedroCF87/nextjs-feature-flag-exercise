@@ -74,14 +74,14 @@
 
 ## 4) Tasks
 
-### [Task E1-S1-T1 — Read and confirm TASK.md acceptance criteria](../tasks/task-E1S1T1-read-and-confirm-task-md-acceptance-criteria.md)
+### ✅ [Task E1-S1-T1 — Read and confirm TASK.md acceptance criteria](../tasks/task-E1S1T1-read-and-confirm-task-md-acceptance-criteria.md)
 
 **Goal:** read `TASK.md` in full and produce a structured summary of all 11 acceptance criteria, confirming each is understood with no ambiguity.
 
 **Agent:** `project-adaptation-analyst` | **Skill:** `project-context-audit`
 
 **Artifacts to create:**
-- Summary section in the analysis document: `docs/.agents/closure/e1s1-implementation-analysis.md`
+- Summary section in the analysis document: `.agents/closure/e1s1-implementation-analysis.md`
 
 **Acceptance:** all 11 TASK.md criteria listed with plain-language confirmations; document exists.
 
@@ -96,7 +96,7 @@
 **Agent:** `project-adaptation-analyst` | **Skill:** `project-context-audit`
 
 **Artifacts to create:**
-- File-impact map section in `docs/.agents/closure/e1s1-implementation-analysis.md`
+- File-impact map section in `.agents/closure/e1s1-implementation-analysis.md`
 
 **Acceptance:** every affected file is listed (`shared/types.ts`, `validation.ts`, `services/flags.ts`, `routes/flags.ts`, `api/flags.ts`, `App.tsx`, filter UI component); reasoning is provided for each.
 
@@ -111,7 +111,7 @@
 **Agent:** `project-adaptation-analyst`
 
 **Artifacts to create:**
-- AND-logic decision and implementation order section in `docs/.agents/closure/e1s1-implementation-analysis.md`
+- AND-logic decision and implementation order section in `.agents/closure/e1s1-implementation-analysis.md`
 
 **Acceptance:** AND-logic decision is explicit with justification; implementation order follows the data flow defined in `copilot-instructions.md`; document is committed.
 
