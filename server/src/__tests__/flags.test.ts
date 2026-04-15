@@ -287,4 +287,96 @@ describe('Flag Service', () => {
         .rejects.toThrow('not found')
     })
   })
+
+  describe('filtering', () => {
+    it('filters by environment', async () => {
+      await createFlag({ name: 'prod-flag', description: 'prod', enabled: true, environment: 'production', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'staging-flag', description: 'staging', enabled: true, environment: 'staging', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'dev-flag', description: 'dev', enabled: true, environment: 'development', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+
+      const result = await getAllFlags({ environment: 'production' })
+
+      expect(result).toHaveLength(1)
+      expect(result[0].name).toBe('prod-flag')
+      expect(result.every(f => f.environment === 'production')).toBe(true)
+    })
+
+    it('filters by status enabled', async () => {
+      await createFlag({ name: 'enabled-flag', description: 'on', enabled: true, environment: 'development', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'disabled-flag', description: 'off', enabled: false, environment: 'development', type: 'release', rolloutPercentage: 0, owner: 'team-a', tags: [] })
+
+      const result = await getAllFlags({ status: 'enabled' })
+
+      expect(result).toHaveLength(1)
+      expect(result[0].name).toBe('enabled-flag')
+      expect(result.every(f => f.enabled === true)).toBe(true)
+    })
+
+    it('filters by status disabled', async () => {
+      await createFlag({ name: 'flag-on', description: 'on', enabled: true, environment: 'development', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'flag-off', description: 'off', enabled: false, environment: 'development', type: 'release', rolloutPercentage: 0, owner: 'team-a', tags: [] })
+
+      const result = await getAllFlags({ status: 'disabled' })
+
+      expect(result).toHaveLength(1)
+      expect(result[0].name).toBe('flag-off')
+      expect(result.every(f => f.enabled === false)).toBe(true)
+    })
+
+    it('filters by type', async () => {
+      await createFlag({ name: 'release-flag', description: 'release', enabled: true, environment: 'production', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'experiment-flag', description: 'experiment', enabled: true, environment: 'production', type: 'experiment', rolloutPercentage: 50, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'permission-flag', description: 'permission', enabled: true, environment: 'production', type: 'permission', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+
+      const result = await getAllFlags({ type: 'experiment' })
+
+      expect(result).toHaveLength(1)
+      expect(result[0].name).toBe('experiment-flag')
+      expect(result.every(f => f.type === 'experiment')).toBe(true)
+    })
+
+    it('filters by owner', async () => {
+      await createFlag({ name: 'alpha-flag', description: 'alpha', enabled: true, environment: 'production', type: 'release', rolloutPercentage: 100, owner: 'team-alpha', tags: [] })
+      await createFlag({ name: 'beta-flag', description: 'beta', enabled: true, environment: 'production', type: 'release', rolloutPercentage: 100, owner: 'team-beta', tags: [] })
+
+      const result = await getAllFlags({ owner: 'team-alpha' })
+
+      expect(result).toHaveLength(1)
+      expect(result[0].name).toBe('alpha-flag')
+      expect(result.every(f => f.owner === 'team-alpha')).toBe(true)
+    })
+
+    it('filters by name partial match (case-insensitive)', async () => {
+      await createFlag({ name: 'payment-service', description: 'payments', enabled: true, environment: 'production', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'auth-service', description: 'auth', enabled: true, environment: 'production', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'payment-gateway', description: 'gateway', enabled: true, environment: 'production', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+
+      const result = await getAllFlags({ name: 'PAYMENT' })
+
+      expect(result).toHaveLength(2)
+      expect(result.every(f => f.name.toLowerCase().includes('payment'))).toBe(true)
+    })
+
+    it('applies AND logic for multiple filters', async () => {
+      await createFlag({ name: 'match-all', description: 'matches all', enabled: true, environment: 'production', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'prod-disabled', description: 'prod but disabled', enabled: false, environment: 'production', type: 'release', rolloutPercentage: 0, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'staging-enabled', description: 'staging enabled', enabled: true, environment: 'staging', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'prod-experiment', description: 'prod experiment', enabled: true, environment: 'production', type: 'experiment', rolloutPercentage: 50, owner: 'team-a', tags: [] })
+
+      const result = await getAllFlags({ environment: 'production', status: 'enabled', type: 'release' })
+
+      expect(result).toHaveLength(1)
+      expect(result[0].name).toBe('match-all')
+    })
+
+    it('returns all flags when no filters are provided', async () => {
+      await createFlag({ name: 'flag-one', description: 'one', enabled: true, environment: 'production', type: 'release', rolloutPercentage: 100, owner: 'team-a', tags: [] })
+      await createFlag({ name: 'flag-two', description: 'two', enabled: false, environment: 'staging', type: 'experiment', rolloutPercentage: 0, owner: 'team-b', tags: [] })
+      await createFlag({ name: 'flag-three', description: 'three', enabled: true, environment: 'development', type: 'operational', rolloutPercentage: 100, owner: 'team-c', tags: [] })
+
+      const result = await getAllFlags({})
+
+      expect(result).toHaveLength(3)
+    })
+  })
 })

@@ -7,14 +7,14 @@
 | **ID** | E1-S2 |
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Done |
 | **Responsible agent** | `task-implementer` (local VS Code) |
 | **Skills** | `execute-task-locally` |
 | **Instructions** | `coding-agent.instructions.md`, `feature-flag-exercise.instructions.md` |
 | **Depends on** | E1-S1 |
 | **Blocks** | E1-S3 |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-15 18:17:59 -03 |
+| Last updated | 2026-04-15 18:21:14 -03 |
 
 ---
 
@@ -140,7 +140,7 @@
 
 ---
 
-### [Task E1-S2-T5 — Add Vitest filter test cases](../tasks/task-E1S2T5-add-vitest-filter-test-cases.md)
+### ✅ [Task E1-S2-T5 — Add Vitest filter test cases](../tasks/task-E1S2T5-add-vitest-filter-test-cases.md)
 
 **Goal:** extend `server/src/__tests__/flags.test.ts` with test cases covering filtering by each dimension and multi-filter AND composition.
 

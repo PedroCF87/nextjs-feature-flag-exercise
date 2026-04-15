@@ -218,7 +218,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### [Story E1-S2 — Server-side filtering implementation](../agile/stories/story-E1S2-server-side-filtering-implementation.md)
+### ✅ [Story E1-S2 — Server-side filtering implementation](../agile/stories/story-E1S2-server-side-filtering-implementation.md)
 
 **Priority:** P0 | **Depends on:** E1-S1
 
