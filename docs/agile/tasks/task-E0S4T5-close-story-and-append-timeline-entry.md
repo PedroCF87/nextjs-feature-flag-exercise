@@ -8,12 +8,12 @@
 | **Story** | [E0-S4 — Preparation Closure and Handoff to EPIC-1](../stories/story-E0S4-preparation-closure.md) |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `project-adaptation-analyst` |
 | **Depends on** | [E0-S4-T0 — Bootstrap AI Layer artifacts](../tasks/task-E0S4T0-bootstrap-ai-layer-artifacts.md), [E0-S4-T4 — Verify closure artifacts and record final SHA](../tasks/task-E0S4T4-commit-and-push-closure-artifacts.md) |
 | **Blocks** | — |
 | Created at | 2026-04-11 20:50:15 -03 |
-| Last updated | 2026-04-12 15:13:58 -03 |
+| Last updated | 2026-04-14 21:02:41 -03 |
 
 ---
 
@@ -157,9 +157,9 @@ Exit code of all four commands must be `0`.
 
 ## 6) Definition of Done
 
-- [ ] `story-E0S4-preparation-closure.md` has `**Status** | Done`.
-- [ ] `story-E0S4-preparation-closure.md` has `Last updated` set to the closure timestamp.
-- [ ] `timeline.jsonl` contains `{action: "close", artifact_id: "E0-S4"}` with E0-S4 and EPIC-0 elapsed times.
-- [ ] `sync-backlog-index.js` runs without cycle warnings.
-- [ ] `backlog-index.json` shows `E0-S4` with status `Done`.
-- [ ] Branch `exercise-1/close-epic0-story` pushed and PR merged into `exercise-1`.
+- [x] `story-E0S4-preparation-closure.md` has `**Status** | Done`.
+- [x] `story-E0S4-preparation-closure.md` has `Last updated` set to the closure timestamp (`2026-04-14 21:02:41 -03`).
+- [x] `timeline.jsonl` contains `{action: "close", artifact_id: "E0-S4"}` with E0-S4 elapsed: 6,238 min and EPIC-0 total elapsed: 7,410 min.
+- [x] `sync-backlog-index.js` runs without cycle warnings.
+- [x] `backlog-index.json` shows `E0-S4` with status `Done`.
+- [x] Committed directly to `exercise-1` under Epic 0 local execution rule (no branch/PR required).

@@ -7,7 +7,7 @@
 | **ID** | E0-S4 |
 | **Epic** | [EPIC-0 — Environment Preparation for Exercise 1](../../epics/Epic%200%20%E2%80%94%20Environment%20Preparation%20for%20Exercise%201.md) |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `project-adaptation-analyst` |
 | **Supporting agents** | `project-adaptation-analyst` (T4 — verify closure artifacts + record SHA), `agile-exercise-planner` (T1 — DoD verification) |
 | **Skills** | `config-migration-plan`, `validate-ai-layer-coverage`, `timeline-tracker`, `produce-epic-closure-report`, `produce-epic-handoff` |
@@ -15,7 +15,7 @@
 | **Depends on** | [E0-S3 — Definition of Measurement Baseline](story-E0S3-measurement-baseline.md) |
 | **Blocks** | EPIC-1 — Baseline Implementation: Feature Flag Filtering |
 | Created at | 2026-04-10 12:08:50 -03 |
-| Last updated | 2026-04-12 15:27:35 -03 |
+| Last updated | 2026-04-14 21:02:41 -03 |
 
 ---
 
@@ -224,7 +224,7 @@
 
 ---
 
-### ✅ [Task E0-S4-T5 — Close story and append timeline entry](../tasks/task-E0S4T5-close-story-and-append-timeline-entry.md)
+### [Task E0-S4-T5 — Close story and append timeline entry](../tasks/task-E0S4T5-close-story-and-append-timeline-entry.md)
 
 **Purpose:** finalize the story metadata and log the closure in the timeline.
 
@@ -261,16 +261,16 @@
 
 This story is done when **all** of the following are true:
 
-- [ ] All 13 EPIC-0 DoD items verified — each has a ✅/⚠️ status and an evidence link in the closure report.
-- [ ] `nextjs-feature-flag-exercise/.agents/closure/epic0-closure-report.md` exists with 5 sections complete.
-- [ ] `nextjs-feature-flag-exercise/.agents/closure/epic1-handoff.md` exists with 6 sections complete.
-- [ ] Section 6 of `epic1-handoff.md` contains the signed `READY — EPIC-1 may begin.` statement.
-- [ ] Total EPIC-0 elapsed time (from `timeline-query.js`) recorded in the closure report.
-- [ ] `docs/.github/instructions/documentation.instructions.md` created/verified with 7 `##` headings.
-- [ ] No ❌ items in the DoD checklist without a mitigation note.
-- [ ] T2 commit (`docs(epic0): produce EPIC-0 closure report`) and T3 commit (`docs(epic0): produce EPIC-1 handoff document`) both pushed to fork.
-- [ ] `Last updated` in story metadata updated to actual closure timestamp.
-- [ ] One timeline entry with `action: "close"` appended for `E0-S4`.
+- [x] All 13 EPIC-0 DoD items verified — each has a ✅/⚠️ status and an evidence link in the closure report (15 items: 14 ✅ / 1 ⚠️).
+- [x] `nextjs-feature-flag-exercise/.agents/closure/epic0-closure-report.md` exists with 5 sections complete.
+- [x] `nextjs-feature-flag-exercise/.agents/closure/epic1-handoff.md` exists with 6 sections complete.
+- [x] Section 6 of `epic1-handoff.md` contains the signed `READY — EPIC-1 may begin.` statement.
+- [x] Total EPIC-0 elapsed time (from `timeline-query.js`) recorded in the closure report (7,410 min).
+- [x] `docs/.github/instructions/documentation.instructions.md` created/verified with 7 `##` headings.
+- [x] No ❌ items in the DoD checklist without a mitigation note.
+- [x] T2 commit (`docs(epic0): produce EPIC-0 closure report`) and T3 commit (`docs(epic0): produce EPIC-1 handoff document`) both pushed to fork.
+- [x] `Last updated` in story metadata updated to actual closure timestamp (`2026-04-14 21:02:41 -03`).
+- [x] One timeline entry with `action: "close"` appended for `E0-S4`.
 
 ---
 
