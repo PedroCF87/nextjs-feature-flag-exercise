@@ -176,7 +176,7 @@ This epic is considered complete when **all** items below are true:
 
 ## 7) Candidate stories for the epic
 
-### [Story E1-S0 — Planning automation](../agile/stories/story-E1S0-planning-automation.md)
+### ✅ [Story E1-S0 — Planning automation](../agile/stories/story-E1S0-planning-automation.md)
 
 **Priority:** P0 | **Depends on:** EPIC-0 (specifically E0-S5 — Execution automation + E0-S6 — CI/CD pipeline)
 

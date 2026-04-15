@@ -111,6 +111,23 @@ When a task is marked as `Done`, **two files must be updated atomically**:
 
 Both updates must be committed in the same commit as the task deliverables.
 
+## Story completion rules
+
+When a story is marked as `Done` (all its tasks are Done and all ACs are satisfied),
+**two files must be updated atomically**:
+
+1. **Story file (`docs/agile/stories/story-<id>.md`):**
+   - Set `**Status**` → `Done` in the Metadata table.
+   - Set `Last updated` to the current timestamp.
+
+2. **Parent epic file (`docs/epics/Epic <n> — *.md`):**
+   - Find the story heading in `## 7) Candidate stories` that corresponds to this story.
+   - Prepend `✅ ` to the heading text (before the markdown link brackets).
+   - Example: `### [Story E1-S0 — Title](...)` → `### ✅ [Story E1-S0 — Title](...)`
+   - Do **not** add ✅ to stories that are not yet Done.
+
+Both updates must be committed in the same commit as the last task deliverable.
+
 ## Regeneration and index rules
 
 After creating or editing task files:
@@ -131,3 +148,5 @@ After creating or editing task files:
 - Do not merge story-level and task-level responsibilities in one file.
 - Do not mark a task as `Done` in the task file without also adding `✅ ` to its heading in the parent story.
 - Do not add `✅ ` to a task heading in the story before the task file `**Status**` is `Done`.
+- Do not mark a story as `Done` in the story file without also adding `✅ ` to its heading in the parent epic.
+- Do not add `✅ ` to a story heading in the epic before the story `**Status**` is `Done`.
