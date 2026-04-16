@@ -87,7 +87,7 @@
 
 ## 4) Tasks
 
-### [Task E1-S4-T1 — Run full validation suite and verify all 11 TASK.md criteria](../tasks/task-E1S4T1-run-full-validation-suite-and-verify-all-11-task-md-criteria.md)
+### ✅ [Task E1-S4-T1 — Run full validation suite and verify all 11 TASK.md criteria](../tasks/task-E1S4T1-run-full-validation-suite-and-verify-all-11-task-md-criteria.md)
 
 **Goal:** execute the complete server and client validation suite and run through all 11 TASK.md acceptance criteria to confirm the filtering feature is complete.
 
