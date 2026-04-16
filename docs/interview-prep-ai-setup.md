@@ -46,7 +46,8 @@ Catálogo consolidado de agentes, instruções e skills voltados para **análise
 - Arquivos-template de referência no Gold Standard
 
 **Tools:** `read`, `search`  
-**Companion skill:** `gap-analysis`
+**Companion skill:** `gap-analysis`  
+**Reference doc:** [`docs/references/gold-standard-patterns.md`](references/gold-standard-patterns.md) — extracted Gold Standard patterns with file references, organized by 12 dimensions (VSA, AI context files, logging, env validation, error handling, shared schemas, testing mocks, Biome config, health endpoints, strict TS, path aliases, auth).
 
 ---
 
