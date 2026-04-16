@@ -10,24 +10,27 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `prompt-engineer` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S1-T3 |
+| **Blocks** | E2-S1-T8 |
 | Created at | 2026-04-16 02:35:49 -03 |
-| Last updated | 2026-04-16 02:35:49 -03 |
+| Last updated | 2026-04-16 02:54:23 -03 |
 
 ---
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S1-T4 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a `prompt-engineer`, I want to create 5 extended commands (`prime-endpoint.md`, `validate.md`, `create-prd.md`, `review.md`, `security-review.md`) so that the PIV Loop has additional tooling for endpoint analysis, validation, PRD generation, and code review.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- `.claude/commands/prime-endpoint.md` exists with I→P→O structure.
+- `.claude/commands/validate.md` exists with I→P→O structure.
+- `.claude/commands/create-prd.md` exists with I→P→O structure.
+- `.claude/commands/review.md` exists with I→P→O structure.
+- `.claude/commands/security-review.md` exists with I→P→O structure.
+- Each command has YAML front matter with `description` and `argument-hint`.
 
 ---
 
@@ -39,8 +42,6 @@ As a delivery agent, I want to execute E2-S1-T4 with complete traceability and e
 - **Given** Core 4 commands are in place
 - **When** extended commands are created
 - **Then** all 5 files exist with I→P→O structure and `$ARGUMENTS` parameterization
-
----
 
 ---
 

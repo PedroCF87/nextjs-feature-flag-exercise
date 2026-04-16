@@ -10,24 +10,24 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `prompt-engineer` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S1-T3 |
+| **Blocks** | E2-S1-T8 |
 | Created at | 2026-04-16 02:35:49 -03 |
-| Last updated | 2026-04-16 02:35:49 -03 |
+| Last updated | 2026-04-16 02:54:23 -03 |
 
 ---
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S1-T5 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a `prompt-engineer`, I want to create the `agent-browser` skill for Playwright browser automation so that commands can invoke a reusable subroutine for UI testing and visual validation.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- `.claude/skills/agent-browser/SKILL.md` exists with clear purpose, prerequisites, process, and constraints sections.
+- Skill references this project’s UI (localhost:3000, flags table, filter controls).
+- Skill defines integration points with `/validate` and `/implement` commands.
 
 ---
 
@@ -39,8 +39,6 @@ As a delivery agent, I want to execute E2-S1-T5 with complete traceability and e
 - **Given** commands may need browser automation
 - **When** the skill is created
 - **Then** `.claude/skills/agent-browser/SKILL.md` exists with clear purpose, inputs, process, and outputs
-
----
 
 ---
 

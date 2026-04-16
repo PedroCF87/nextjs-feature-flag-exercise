@@ -10,24 +10,25 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `rules-bootstrap` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S1-T1 |
+| **Blocks** | E2-S1-T3, E2-S1-T7 |
 | Created at | 2026-04-16 02:35:49 -03 |
-| Last updated | 2026-04-16 02:35:49 -03 |
+| Last updated | 2026-04-16 02:54:23 -03 |
 
 ---
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S1-T2 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a `rules-bootstrap` agent, I want to create the `CLAUDE.md` global rules file adapted for Exercise 2 so that the Claude Code agent has accurate project context auto-loaded in every session.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- `CLAUDE.md` exists at repository root with 4 Venn diagram categories: Tech Stack & Architecture, Code Styles & Patterns, Testing Requirements, Misconceptions AI Often Has.
+- References `exercise-2` branch and PIV Loop methodology.
+- Contains validation commands, error classes, and key file reference table.
+- Does NOT contain workflow definitions, task-specific content, or universal knowledge.
 
 ---
 
@@ -39,8 +40,6 @@ As a delivery agent, I want to execute E2-S1-T2 with complete traceability and e
 - **Given** the codebase analysis from T1
 - **When** `CLAUDE.md` is written
 - **Then** it contains all 4 required categories, references `exercise-2`, includes validation commands, error classes, key files, and misconceptions; excludes universal knowledge, workflow definitions, task-specific content
-
----
 
 ---
 

@@ -10,24 +10,26 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `prompt-engineer` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S1-T2 |
+| **Blocks** | E2-S1-T4, E2-S1-T5 |
 | Created at | 2026-04-16 02:35:49 -03 |
-| Last updated | 2026-04-16 02:35:49 -03 |
+| Last updated | 2026-04-16 02:54:23 -03 |
 
 ---
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S1-T3 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a `prompt-engineer`, I want to create the 4 Core PIV Loop commands (`prime.md`, `plan.md`, `implement.md`, `commit.md`) so that Claude Code has structured workflows for context loading, planning, implementation, and committing.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- `.claude/commands/prime.md` exists with I→P→O structure and YAML front matter.
+- `.claude/commands/plan.md` exists with I→P→O structure and YAML front matter.
+- `.claude/commands/implement.md` exists with I→P→O structure and YAML front matter.
+- `.claude/commands/commit.md` exists with I→P→O structure and YAML front matter.
+- Each command accepts `$ARGUMENTS` where applicable.
 
 ---
 
@@ -39,8 +41,6 @@ As a delivery agent, I want to execute E2-S1-T3 with complete traceability and e
 - **Given** `CLAUDE.md` is complete
 - **When** Core 4 commands are created
 - **Then** all 4 files exist, each has I→P→O structure, each accepts `$ARGUMENTS` where applicable
-
----
 
 ---
 

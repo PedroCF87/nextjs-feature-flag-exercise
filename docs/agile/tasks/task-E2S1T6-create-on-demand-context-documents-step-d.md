@@ -10,24 +10,24 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `prompt-engineer` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S1-T1 |
+| **Blocks** | E2-S1-T7 |
 | Created at | 2026-04-16 02:35:49 -03 |
-| Last updated | 2026-04-16 02:35:49 -03 |
+| Last updated | 2026-04-16 02:54:23 -03 |
 
 ---
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S1-T6 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a `prompt-engineer`, I want to create 3 on-demand context documents with `file:line` references so that commands like `/prime` and `/plan` can load deep codebase knowledge on demand.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- `.agents/reference/backend-patterns.md` exists covering Express v5, SQL.js, Zod, and error classes with `file:line` references.
+- `.agents/reference/frontend-patterns.md` exists covering React 19, TanStack Query, Tailwind v4, and Radix UI with `file:line` references.
+- `.agents/reference/sql-js-constraints.md` exists with deep SQL.js-specific documentation (statement lifecycle, boolean handling, parameterized queries, common mistakes).
 
 ---
 
@@ -39,8 +39,6 @@ As a delivery agent, I want to execute E2-S1-T6 with complete traceability and e
 - **Given** the codebase analysis and architecture mapping
 - **When** on-demand context documents are created
 - **Then** all 3 files exist; `backend-patterns.md` covers Express v5, SQL.js, Zod, error classes; `frontend-patterns.md` covers React 19, TanStack Query, Tailwind v4, Radix UI; `sql-js-constraints.md` covers SQL.js-specific limitations in depth
-
----
 
 ---
 

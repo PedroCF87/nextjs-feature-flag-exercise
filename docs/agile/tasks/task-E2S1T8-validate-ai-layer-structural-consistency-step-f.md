@@ -10,24 +10,25 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `prompt-engineer` |
-| **Depends on** | — |
+| **Depends on** | E2-S1-T4, E2-S1-T5, E2-S1-T7 |
 | **Blocks** | — |
 | Created at | 2026-04-16 02:35:49 -03 |
-| Last updated | 2026-04-16 02:35:49 -03 |
+| Last updated | 2026-04-16 02:54:23 -03 |
 
 ---
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S1-T8 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a `prompt-engineer`, I want to validate the full AI Layer for structural consistency so that the PIV Loop can start with zero orphan references or missing dependencies.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- A validation report exists with ✅/❌ per check across all tiers: Tier 1 (CLAUDE.md), Tier 2 (9 commands), Tier 3 (skills), On-Demand Context (≥2 docs), Layer 2 (PRD).
+- All cross-references are valid: commands reference existing files, PRD references existing docs.
+- If all checks pass: signed statement “AI Layer validation passed — ready for PIV Loop.”
+- If any check fails: remediation list with no sign-off.
 
 ---
 
@@ -39,8 +40,6 @@ As a delivery agent, I want to execute E2-S1-T8 with complete traceability and e
 - **Given** all AI Layer artifacts have been created
 - **When** structural validation is run
 - **Then** all tiers are consistent; no orphan references; commands reference valid skill/context paths; PRD references existing on-demand docs
-
----
 
 ---
 

@@ -10,24 +10,24 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `prompt-engineer` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S1-T2, E2-S1-T6 |
+| **Blocks** | E2-S1-T8 |
 | Created at | 2026-04-16 02:35:49 -03 |
-| Last updated | 2026-04-16 02:35:49 -03 |
+| Last updated | 2026-04-16 02:54:23 -03 |
 
 ---
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S1-T7 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a `prompt-engineer`, I want to generate the PRD with all 15 sections so that the PIV Loop has a complete Layer 2 task planning document for feature flag filtering.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- `.agents/PRDs/feature-flag-filtering-e2.prd.md` exists with all 15 sections: Executive Summary, Mission, Target Users, MVP Scope, User Stories, Core Architecture, Tools/Features, Technology Stack, Security & Configuration, API Specification, Success Criteria, Implementation Phases, Future Considerations, Risks & Mitigations, Appendix.
+- PRD references `CLAUDE.md`, on-demand context docs from `.agents/reference/`, and `TASK.md`.
+- PRD follows the Prompt Structure 5-step (Excal-6).
 
 ---
 
@@ -39,8 +39,6 @@ As a delivery agent, I want to execute E2-S1-T7 with complete traceability and e
 - **Given** Layer 1 artifacts are complete (CLAUDE.md, commands, on-demand context)
 - **When** the PRD is generated
 - **Then** it contains all 15 sections, follows the 5-step structure, references CLAUDE.md + on-demand context + TASK.md
-
----
 
 ---
 
