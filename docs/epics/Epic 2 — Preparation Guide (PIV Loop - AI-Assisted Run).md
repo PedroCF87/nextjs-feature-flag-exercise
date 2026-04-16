@@ -387,7 +387,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### [Story E2-S2 — Repository configuration and workflow activation](../agile/stories/story-E2S2-repository-configuration-workflow-activation.md)
+### ✅ [Story E2-S2 — Repository configuration and workflow activation](../agile/stories/story-E2S2-repository-configuration-workflow-activation.md)
 
 **Priority:** P0 | **Depends on:** E2-S0
 

@@ -7,14 +7,14 @@
 | **ID** | E2-S2 |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Done |
 | **Responsible agent** | `git-ops` |
 | **Skills** | `fork-and-configure-remotes`, `copilot-env-setup` |
 | **Instructions** | `git-operations.instructions.md`, `feature-flag-exercise.instructions.md` |
 | **Depends on** | E2-S0 |
 | **Blocks** | E2-S1 |
 | Created at | 2026-04-16 02:31:41 -03 |
-| Last updated | 2026-04-16 13:04:58 -03 |
+| Last updated | 2026-04-16 14:36:24 -03 |
 
 ---
 
@@ -161,7 +161,7 @@
 
 ---
 
-### [Task E2-S2-T7 — Run full validation suite on exercise-2](../tasks/task-E2S2T7-run-full-validation-suite-on-exercise-2.md)
+### ✅ [Task E2-S2-T7 — Run full validation suite on exercise-2](../tasks/task-E2S2T7-run-full-validation-suite-on-exercise-2.md)
 
 **Description:** Run `pnpm run build && pnpm run lint && pnpm test` on server and `pnpm run build && pnpm run lint` on client to confirm the branch is clean.
 
