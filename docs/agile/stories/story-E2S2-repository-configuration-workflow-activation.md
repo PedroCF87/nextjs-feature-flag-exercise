@@ -14,7 +14,7 @@
 | **Depends on** | E2-S0 |
 | **Blocks** | E2-S1 |
 | Created at | 2026-04-16 02:31:41 -03 |
-| Last updated | 2026-04-16 02:31:41 -03 |
+| Last updated | 2026-04-16 02:38:40 -03 |
 
 ---
 
@@ -95,7 +95,7 @@
 
 ## 4) Tasks
 
-### Task E2-S2-T1 — Create exercise-2 branch from upstream state
+### [Task E2-S2-T1 — Create exercise-2 branch from upstream state](../tasks/task-E2S2T1-create-exercise-2-branch-from-upstream-state.md)
 
 **Description:** Create `exercise-2` branch from `f73979ed~1` (parent of first fork commit). This ensures the implementation starts from the original upstream state with zero Exercise 1 implementation code.
 
@@ -106,7 +106,7 @@
 
 ---
 
-### Task E2-S2-T2 — Cherry-pick documentation and agile artifacts
+### [Task E2-S2-T2 — Cherry-pick documentation and agile artifacts](../tasks/task-E2S2T2-cherry-pick-documentation-and-agile-artifacts.md)
 
 **Description:** Identify and cherry-pick commits from `exercise-1` that contain documentation, agile planning, and AI Layer infrastructure artifacts — excluding any implementation code.
 
@@ -117,7 +117,7 @@
 
 ---
 
-### Task E2-S2-T3 — Remove Exercise 1 automation workflows
+### [Task E2-S2-T3 — Remove Exercise 1 automation workflows](../tasks/task-E2S2T3-remove-exercise-1-automation-workflows.md)
 
 **Description:** Remove the 5 Exercise 1 automation workflow files from `.github/workflows/` on `exercise-2`.
 
@@ -128,7 +128,7 @@
 
 ---
 
-### Task E2-S2-T4 — Activate Claude Code workflows
+### [Task E2-S2-T4 — Activate Claude Code workflows](../tasks/task-E2S2T4-activate-claude-code-workflows.md)
 
 **Description:** Move `claude.yml`, `pr-review.yml`, `security-review.yml` from `exercise-2-docs/` to `.github/workflows/`.
 
@@ -139,7 +139,7 @@
 
 ---
 
-### Task E2-S2-T5 — Install Claude GitHub App and configure secret
+### [Task E2-S2-T5 — Install Claude GitHub App and configure secret](../tasks/task-E2S2T5-install-claude-github-app-and-configure-secret.md)
 
 **Description:** Install the Claude GitHub App on the fork and configure `ANTHROPIC_API_KEY` as a repository secret.
 
@@ -150,7 +150,7 @@
 
 ---
 
-### Task E2-S2-T6 — Push and validate with draft PR
+### [Task E2-S2-T6 — Push and validate with draft PR](../tasks/task-E2S2T6-push-and-validate-with-draft-pr.md)
 
 **Description:** Push `exercise-2` branch, create a draft PR, and confirm Claude workflows trigger correctly.
 
@@ -161,7 +161,7 @@
 
 ---
 
-### Task E2-S2-T7 — Run full validation suite on exercise-2
+### [Task E2-S2-T7 — Run full validation suite on exercise-2](../tasks/task-E2S2T7-run-full-validation-suite-on-exercise-2.md)
 
 **Description:** Run `pnpm run build && pnpm run lint && pnpm test` on server and `pnpm run build && pnpm run lint` on client to confirm the branch is clean.
 
