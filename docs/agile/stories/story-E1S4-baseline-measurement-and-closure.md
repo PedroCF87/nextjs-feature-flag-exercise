@@ -14,7 +14,7 @@
 | **Depends on** | E1-S2, E1-S3 |
 | **Blocks** | — |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-15 00:00:00 -03 |
+| Last updated | 2026-04-15 21:11:16 -03 |
 
 ---
 
@@ -102,7 +102,7 @@
 
 ---
 
-### [Task E1-S4-T2 — Complete baseline metrics document and friction log](../tasks/task-E1S4T2-complete-baseline-metrics-document-and-friction-log.md)
+### ✅ [Task E1-S4-T2 — Complete baseline metrics document and friction log](../tasks/task-E1S4T2-complete-baseline-metrics-document-and-friction-log.md)
 
 **Goal:** fill in the baseline metrics document with all collected data (time, prompt count, rework cycles, confidence) and write the friction log with at least 3 meaningful observations.
 

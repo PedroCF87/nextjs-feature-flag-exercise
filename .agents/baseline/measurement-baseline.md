@@ -76,9 +76,23 @@
 
 | Field | Value |
 |---|---|
-| **Start timestamp** | [FILL IN — node "docs/.github/functions/datetime.js"] |
-| **End timestamp** | [FILL IN — node "docs/.github/functions/datetime.js"] |
-| **Elapsed** | [FILL IN — node "docs/.github/functions/elapsed-time.js" "\<start\>" "\<end\>"] |
+| **Start timestamp** | 2026-04-15 17:30:55 -03 |
+| **End timestamp** | 2026-04-15 21:02:45 -03 |
+| **Elapsed** | 212 min (3h 32m) |
+
+### Time per story (git commit-based)
+
+| Story | First commit | Last commit | Elapsed (min) | Notes |
+|---|---|---|---|---|
+| E1-S0 (Planning) | 2026-04-13 22:42:40 -03 | 2026-04-14 22:58:40 -03 | ~120 (est.) | Multi-session; no fine-grained tracking |
+| E1-S1 (Analysis) | 2026-04-15 17:30:55 -03 | 2026-04-15 17:47:41 -03 | 18 | Includes transition to local execution model |
+| E1-S2 (Server) | 2026-04-15 18:00:19 -03 | 2026-04-15 18:56:55 -03 | 57 | 5 tasks + 2 fix commits + story docs |
+| E1-S3 (Client) | 2026-04-15 19:02:41 -03 | 2026-04-15 20:47:36 -03 | 106 | 4 tasks + accessibility enhancement |
+| E1-S4 (Baseline) | 2026-04-15 21:02:45 -03 | 2026-04-15 21:12:00 -03 | ~10 | T1 validation + T2 metrics |
+| **Total (S1–S4)** | — | — | **212** | Implementation window (excl. S0 planning) |
+| **Total (S0–S4)** | — | — | **~332** | Including multi-session planning |
+
+> **Source:** git commit timestamps (`git log --format="%ai %s"`). No EPIC-1 entries in `timeline.jsonl`.
 
 ---
 
@@ -86,10 +100,12 @@
 
 | Phase | Prompt count | Notes |
 |---|---|---|
-| Plan | [FILL IN] | |
-| Implement | [FILL IN] | |
-| Validate | [FILL IN] | |
-| **Total** | [FILL IN] | |
+| Plan (E1-S0) | 5 | Epic scaffold, story generation, task-pack creation, review, backlog sync |
+| Analyze (E1-S1) | 3 | Local execution transition, T2 file-impact map, T3 implementation plan |
+| Implement Server (E1-S2) | 8 | 5 task prompts + 3 fix/validation prompts |
+| Implement Client (E1-S3) | 7 | 4 task prompts + 2 fix prompts + 1 accessibility enhancement |
+| Validate (E1-S4) | 2 | T1 full validation suite, T2 metrics document |
+| **Total** | **25** | Conservative count from session task invocations |
 
 ---
 
@@ -97,7 +113,11 @@
 
 | # | Regression description | Affected command | Time to fix |
 |---|---|---|---|
-| 1 | [FILL IN] | [FILL IN] | [FILL IN] |
+| 1 | Cloud agent PR #29 (E1-S1-T1) reverted — GitHub Issue execution model failed due to Copilot cloud environment issues; required pivot to local execution model | `git revert`, branch rebuild | ~30 min |
+| 2 | `tsconfig.json` `baseUrl` option caused path resolution issues after E1-S2-T5; server build broke | `pnpm run build` | ~8 min |
+| 3 | LIKE wildcards in name filter not escaped — SQL injection-adjacent edge case caught post-green tests | `pnpm test` | ~5 min |
+
+> **Total rework cycles:** 3
 
 ---
 
@@ -105,9 +125,9 @@
 
 | Checkpoint | Score (1–5) | Justification |
 |---|---|---|
-| Pre-implementation | [FILL IN] | |
-| Mid-implementation | [FILL IN] | |
-| Post-validation | [FILL IN] | |
+| Pre-implementation | 3 | Clear direction from TASK.md and E0 audit; uncertain about SQL.js parameterized query edge cases and LIKE filter composition |
+| Mid-implementation | 4 | Server-side filtering complete and tested; remaining client work is straightforward UI wiring with known Radix/TanStack patterns |
+| Post-validation | 5 | All 11 TASK.md criteria verified; 25 tests pass; build + lint green on both server and client |
 
 Scale: 1 = no idea where to start · 3 = clear direction but uncertain about edge cases · 5 = execution is mechanical, no surprises.
 
@@ -119,7 +139,12 @@ Record blockers, ambiguities, or rework moments observed during implementation.
 
 | Timestamp | Phase | Friction point | Impact (low/medium/high) | Mitigation |
 |---|---|---|---|---|
-| [FILL IN] | [FILL IN] | [FILL IN] | [FILL IN] | [FILL IN] |
+| 2026-04-14 23:26:59 -03 | E1-S1 | Cloud agent execution model failed — PR #29 reverted; required ADR and pivot to local execution | high | Created ADR-001, switched all remaining E1 tasks to local model |
+| 2026-04-15 18:31:23 -03 | E1-S2 | tsconfig baseUrl caused path resolution conflict after server filter implementation | low | Removed baseUrl option; paths resolved via tsconfig paths mapping |
+| 2026-04-15 18:35:42 -03 | E1-S2 | LIKE wildcards (%, _) not escaped in name filter — security-adjacent edge case | low | Added escapeForLike() helper; covered in test suite |
+| 2026-04-15 21:07:00 -03 | E1-S4 | No EPIC-1 entries in timeline.jsonl — metrics required manual computation from git log | medium | Used git commit timestamps as fallback data source |
+
+> **Full friction log:** `.agents/baseline/epic1-friction-log.md`
 
 ---
 
