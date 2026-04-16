@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import type { Request, Response, NextFunction } from 'express'
 
 export const createFlagSchema = z.object({
   name: z.string().min(1, 'Name is required').regex(/^[a-z0-9-]+$/, 'Name must be lowercase alphanumeric with hyphens'),
@@ -13,3 +14,20 @@ export const createFlagSchema = z.object({
 })
 
 export const updateFlagSchema = createFlagSchema.partial()
+
+export const flagFilterQuerySchema = z.object({
+  environment: z.enum(['development', 'staging', 'production']).optional(),
+  status: z.enum(['enabled', 'disabled']).optional(),
+  type: z.enum(['release', 'experiment', 'operational', 'permission']).optional(),
+  owner: z.string().optional(),
+  name: z.string().optional(),
+})
+
+export function validateFlagFilters(req: Request, res: Response, next: NextFunction): void {
+  try {
+    res.locals.filters = flagFilterQuerySchema.parse(req.query)
+    next()
+  } catch (error) {
+    next(error)
+  }
+}

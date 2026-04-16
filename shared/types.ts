@@ -41,6 +41,14 @@ export interface UpdateFlagInput {
   expiresAt?: string | null
 }
 
+export interface FlagFilterParams {
+  environment?: Environment
+  status?: 'enabled' | 'disabled'
+  type?: FlagType
+  owner?: string
+  name?: string
+}
+
 export interface ApiError {
   error: string
   message: string

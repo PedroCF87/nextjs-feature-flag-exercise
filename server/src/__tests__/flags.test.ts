@@ -287,4 +287,79 @@ describe('Flag Service', () => {
         .rejects.toThrow('not found')
     })
   })
+
+  describe('filtering', () => {
+    beforeEach(async () => {
+      await createFlag({ name: 'prod-release', description: 'D', enabled: true,
+        environment: 'production', type: 'release', rolloutPercentage: 100,
+        owner: 'team-a', tags: [] })
+      await createFlag({ name: 'dev-experiment', description: 'D', enabled: false,
+        environment: 'development', type: 'experiment', rolloutPercentage: 0,
+        owner: 'team-b', tags: [] })
+      await createFlag({ name: 'staging-ops', description: 'D', enabled: true,
+        environment: 'staging', type: 'operational', rolloutPercentage: 50,
+        owner: 'team-a', tags: [] })
+      await createFlag({ name: 'dark-mode-feature', description: 'D', enabled: true,
+        environment: 'production', type: 'permission', rolloutPercentage: 100,
+        owner: 'team-c', tags: [] })
+    })
+
+    it('returns all flags when no filters provided', async () => {
+      const flags = await getAllFlags()
+      expect(flags).toHaveLength(4)
+    })
+
+    it('filters by environment', async () => {
+      const flags = await getAllFlags({ environment: 'production' })
+      expect(flags).toHaveLength(2)
+      expect(flags.every(f => f.environment === 'production')).toBe(true)
+    })
+
+    it('filters by status enabled', async () => {
+      const flags = await getAllFlags({ status: 'enabled' })
+      expect(flags).toHaveLength(3)
+      expect(flags.every(f => f.enabled === true)).toBe(true)
+    })
+
+    it('filters by status disabled', async () => {
+      const flags = await getAllFlags({ status: 'disabled' })
+      expect(flags).toHaveLength(1)
+      expect(flags[0].enabled).toBe(false)
+    })
+
+    it('filters by type', async () => {
+      const flags = await getAllFlags({ type: 'release' })
+      expect(flags).toHaveLength(1)
+      expect(flags[0].type).toBe('release')
+    })
+
+    it('filters by owner', async () => {
+      const flags = await getAllFlags({ owner: 'team-a' })
+      expect(flags).toHaveLength(2)
+      expect(flags.every(f => f.owner === 'team-a')).toBe(true)
+    })
+
+    it('filters by name partial match (case-insensitive)', async () => {
+      const flags = await getAllFlags({ name: 'dark' })
+      expect(flags).toHaveLength(1)
+      expect(flags[0].name).toBe('dark-mode-feature')
+    })
+
+    it('filters by name case-insensitively', async () => {
+      const flags = await getAllFlags({ name: 'PROD' })
+      expect(flags).toHaveLength(1)
+      expect(flags[0].name).toBe('prod-release')
+    })
+
+    it('combines multiple filters with AND logic', async () => {
+      const flags = await getAllFlags({ environment: 'production', status: 'enabled' })
+      expect(flags).toHaveLength(2)
+      expect(flags.every(f => f.environment === 'production' && f.enabled)).toBe(true)
+    })
+
+    it('returns empty array when no flags match', async () => {
+      const flags = await getAllFlags({ owner: 'team-nonexistent' })
+      expect(flags).toEqual([])
+    })
+  })
 })
