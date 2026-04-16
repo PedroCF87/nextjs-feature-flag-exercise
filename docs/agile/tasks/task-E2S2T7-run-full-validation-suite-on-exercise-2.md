@@ -10,10 +10,10 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `environment-validator` |
-| **Depends on** | — |
+| **Depends on** | E2-S2-T6 |
 | **Blocks** | — |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 12:20:22 -03 |
 
 ---
 

@@ -10,10 +10,10 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `copilot-env-specialist` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S2-T4 |
+| **Blocks** | E2-S2-T6 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 12:20:22 -03 |
 
 ---
 
