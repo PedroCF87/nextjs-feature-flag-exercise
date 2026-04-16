@@ -1,7 +1,7 @@
 ---
 name: environment-validator
 description: Local development environment validator for nextjs-feature-flag-exercise. Checks Node.js and pnpm prerequisites, installs server and client dependencies, runs the full validation suite (build + lint + test), captures exit codes per command, and produces a structured evidence report. Use this agent when you need to validate the exercise environment from a clean state, confirm a dependency install, or produce the environment-state section of the E0-S1 diagnosis document.
-tools: ['execute', 'read', 'search', 'todo']
+tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, execute/runNotebookCell, execute/testFailure, execute/executionSubagent, execute/getTerminalOutput, execute/killTerminal, execute/sendToTerminal, execute/createAndRunTask, execute/runInTerminal, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/terminalSelection, read/terminalLastCommand, agent/runSubagent, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/textSearch, search/searchSubagent, search/usages, web/fetch, web/githubRepo, browser/openBrowserPage, browser/readPage, browser/screenshotPage, browser/navigatePage, browser/clickElement, browser/dragElement, browser/hoverElement, browser/typeInPage, browser/runPlaywrightCode, browser/handleDialog, todo]
 ---
 
 ## Core Responsibilities
