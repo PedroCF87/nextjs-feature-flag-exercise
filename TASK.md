@@ -14,17 +14,17 @@ Currently, the dashboard displays all flags in a single table with no way to fil
 
 ## Acceptance Criteria
 
-- [ ] Users can filter flags by environment (development, staging, production)
-- [ ] Users can filter flags by status (enabled/disabled)
-- [ ] Users can filter flags by type (release, experiment, operational, permission)
-- [ ] Users can filter flags by owner
-- [ ] Users can search flags by name (partial match)
-- [ ] Filtering should happen in the backend
-- [ ] Multiple filters can be applied simultaneously (e.g., "all enabled release flags in production")
-- [ ] Filters persist while using other features (creating, editing, deleting flags)
-- [ ] There is a way to clear all filters and return to the full list
-- [ ] The UI clearly indicates when filters are active
-- [ ] Filtering should feel responsive, even as the number of flags grows
+- [x] Users can filter flags by environment (development, staging, production)
+- [x] Users can filter flags by status (enabled/disabled)
+- [x] Users can filter flags by type (release, experiment, operational, permission)
+- [x] Users can filter flags by owner
+- [x] Users can search flags by name (partial match)
+- [x] Filtering should happen in the backend
+- [x] Multiple filters can be applied simultaneously (e.g., "all enabled release flags in production")
+- [x] Filters persist while using other features (creating, editing, deleting flags)
+- [x] There is a way to clear all filters and return to the full list
+- [x] The UI clearly indicates when filters are active
+- [x] Filtering should feel responsive, even as the number of flags grows
 
 ## Notes
 
