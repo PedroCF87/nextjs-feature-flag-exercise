@@ -59,16 +59,16 @@ export function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsPr
   return (
     <div className="flex flex-wrap items-center gap-3 mb-4">
       <Select
-        value={filters.environment ?? ''}
+        value={filters.environment ?? 'all'}
         onValueChange={(v) =>
-          onChange({ ...filters, environment: v ? (v as Environment) : undefined })
+          onChange({ ...filters, environment: v !== 'all' ? (v as Environment) : undefined })
         }
       >
         <SelectTrigger className="w-[160px]">
           <SelectValue placeholder="Environment" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="">All environments</SelectItem>
+          <SelectItem value="all">All environments</SelectItem>
           <SelectItem value="development">Development</SelectItem>
           <SelectItem value="staging">Staging</SelectItem>
           <SelectItem value="production">Production</SelectItem>
@@ -76,32 +76,32 @@ export function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsPr
       </Select>
 
       <Select
-        value={filters.status ?? ''}
+        value={filters.status ?? 'all'}
         onValueChange={(v) =>
-          onChange({ ...filters, status: v ? (v as 'enabled' | 'disabled') : undefined })
+          onChange({ ...filters, status: v !== 'all' ? (v as 'enabled' | 'disabled') : undefined })
         }
       >
         <SelectTrigger className="w-[130px]">
           <SelectValue placeholder="Status" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="">All statuses</SelectItem>
+          <SelectItem value="all">All statuses</SelectItem>
           <SelectItem value="enabled">Enabled</SelectItem>
           <SelectItem value="disabled">Disabled</SelectItem>
         </SelectContent>
       </Select>
 
       <Select
-        value={filters.type ?? ''}
+        value={filters.type ?? 'all'}
         onValueChange={(v) =>
-          onChange({ ...filters, type: v ? (v as FlagType) : undefined })
+          onChange({ ...filters, type: v !== 'all' ? (v as FlagType) : undefined })
         }
       >
         <SelectTrigger className="w-[150px]">
           <SelectValue placeholder="Type" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="">All types</SelectItem>
+          <SelectItem value="all">All types</SelectItem>
           <SelectItem value="release">Release</SelectItem>
           <SelectItem value="experiment">Experiment</SelectItem>
           <SelectItem value="operational">Operational</SelectItem>
