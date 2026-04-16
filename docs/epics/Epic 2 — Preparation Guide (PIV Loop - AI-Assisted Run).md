@@ -340,7 +340,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### Story E2-S1 — Claude AI Layer preparation (Brownfield Workflow)
+### [Story E2-S1 — Claude AI Layer preparation (Brownfield Workflow)](../agile/stories/story-E2S1-claude-ai-layer-preparation.md)
 
 **Priority:** P0 | **Depends on:** E2-S2
 
@@ -387,7 +387,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### Story E2-S2 — Repository configuration and workflow activation
+### [Story E2-S2 — Repository configuration and workflow activation](../agile/stories/story-E2S2-repository-configuration-workflow-activation.md)
 
 **Priority:** P0 | **Depends on:** E2-S0
 
@@ -409,7 +409,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### Story E2-S3 — Server-side filtering re-implementation (PIV Loop)
+### [Story E2-S3 — Server-side filtering re-implementation (PIV Loop)](../agile/stories/story-E2S3-server-side-filtering-reimplementation.md)
 
 **Priority:** P0 | **Depends on:** E2-S2
 
@@ -432,7 +432,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### Story E2-S4 — Client-side filtering UI re-implementation (PIV Loop)
+### [Story E2-S4 — Client-side filtering UI re-implementation (PIV Loop)](../agile/stories/story-E2S4-client-side-filtering-ui-reimplementation.md)
 
 **Priority:** P0 | **Depends on:** E2-S3
 
@@ -455,7 +455,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### Story E2-S5 — Measurement, comparison, and closure
+### [Story E2-S5 — Measurement, comparison, and closure](../agile/stories/story-E2S5-measurement-comparison-closure.md)
 
 **Priority:** P0 | **Depends on:** E2-S3, E2-S4
 
