@@ -27,6 +27,14 @@ export function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsPr
     latestFiltersRef.current = filters
   }, [filters])
 
+  // Cleared to false on unmount so pending timer callbacks become no-ops.
+  const mountedRef = useRef(true)
+  useEffect(() => {
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
+
   const nameTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const ownerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -34,7 +42,7 @@ export function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsPr
     setNameInput(value)
     if (nameTimerRef.current !== null) clearTimeout(nameTimerRef.current)
     nameTimerRef.current = setTimeout(() => {
-      onChange({ ...latestFiltersRef.current, name: value || undefined })
+      if (mountedRef.current) onChange({ ...latestFiltersRef.current, name: value || undefined })
     }, 300)
   }
 
@@ -42,7 +50,7 @@ export function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsPr
     setOwnerInput(value)
     if (ownerTimerRef.current !== null) clearTimeout(ownerTimerRef.current)
     ownerTimerRef.current = setTimeout(() => {
-      onChange({ ...latestFiltersRef.current, owner: value || undefined })
+      if (mountedRef.current) onChange({ ...latestFiltersRef.current, owner: value || undefined })
     }, 300)
   }
 
