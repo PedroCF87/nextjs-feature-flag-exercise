@@ -7,14 +7,14 @@
 | **ID** | E2-S1 |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `prompt-engineer` |
 | **Skills** | `create-specialist-agent`, `global-rules-bootstrap`, `analyze-rdh-workflow` |
 | **Instructions** | `copilot-config-governance.instructions.md`, `workshop-resources.instructions.md` |
 | **Depends on** | E2-S2 |
 | **Blocks** | E2-S3 |
 | Created at | 2026-04-16 02:31:41 -03 |
-| Last updated | 2026-04-16 02:54:23 -03 |
+| Last updated | 2026-04-16 03:51:55 -03 |
 
 ---
 
@@ -95,7 +95,7 @@
 
 ## 4) Tasks
 
-### [Task E2-S1-T1 — Analyze codebase and map architecture (Step A)](../tasks/task-E2S1T1-analyze-codebase-and-map-architecture-step-a.md)
+### ✅ [Task E2-S1-T1 — Analyze codebase and map architecture (Step A)](../tasks/task-E2S1T1-analyze-codebase-and-map-architecture-step-a.md)
 
 **Description:** Read `.agents/closure/codebase-audit.md`, `AGENTS.md`, `CLAUDE.md`, and key source files. Map architecture layers, data flow, naming conventions, error handling patterns, SQL.js constraints, test strategy, and integration points. Produce a brief analysis summary to inform subsequent tasks.
 
@@ -106,7 +106,7 @@
 
 ---
 
-### [Task E2-S1-T2 — Create/update CLAUDE.md for Exercise 2 (Step B)](../tasks/task-E2S1T2-create-update-claude-md-for-exercise-2-step-b.md)
+### ✅ [Task E2-S1-T2 — Create/update CLAUDE.md for Exercise 2 (Step B)](../tasks/task-E2S1T2-create-update-claude-md-for-exercise-2-step-b.md)
 
 **Description:** Create or update `CLAUDE.md` adapted for Exercise 2 state. Follow the Excal-4 Venn diagram: Tech Stack & Architecture, Code Styles & Patterns, Testing Requirements, Misconceptions AI Often Has. Reference `exercise-2` branch and PIV Loop methodology. Use the Gold Standard two-document pattern as reference.
 
@@ -117,7 +117,7 @@
 
 ---
 
-### [Task E2-S1-T3 — Create Core 4 commands (Step C)](../tasks/task-E2S1T3-create-core-4-commands-step-c.md)
+### ✅ [Task E2-S1-T3 — Create Core 4 commands (Step C)](../tasks/task-E2S1T3-create-core-4-commands-step-c.md)
 
 **Description:** Create `.claude/commands/prime.md`, `plan.md`, `implement.md`, `commit.md`. Each follows Input → Process → Output structure. Base on workshop reference (`resident-health-workshop-resources/.claude/commands/`).
 
@@ -128,7 +128,7 @@
 
 ---
 
-### [Task E2-S1-T4 — Create extended commands (Step C continued)](../tasks/task-E2S1T4-create-extended-commands-step-c-continued.md)
+### ✅ [Task E2-S1-T4 — Create extended commands (Step C continued)](../tasks/task-E2S1T4-create-extended-commands-step-c-continued.md)
 
 **Description:** Create `.claude/commands/prime-endpoint.md`, `validate.md`, `create-prd.md`, `review.md`, `security-review.md`. Each follows I→P→O structure.
 
@@ -139,7 +139,7 @@
 
 ---
 
-### [Task E2-S1-T5 — Create skills directory (Step C.2)](../tasks/task-E2S1T5-create-skills-directory-step-c-2.md)
+### ✅ [Task E2-S1-T5 — Create skills directory (Step C.2)](../tasks/task-E2S1T5-create-skills-directory-step-c-2.md)
 
 **Description:** Create `.claude/skills/agent-browser/SKILL.md` for Playwright browser automation.
 
@@ -150,7 +150,7 @@
 
 ---
 
-### [Task E2-S1-T6 — Create on-demand context documents (Step D)](../tasks/task-E2S1T6-create-on-demand-context-documents-step-d.md)
+### ✅ [Task E2-S1-T6 — Create on-demand context documents (Step D)](../tasks/task-E2S1T6-create-on-demand-context-documents-step-d.md)
 
 **Description:** Create `.agents/reference/backend-patterns.md`, `frontend-patterns.md`, and `sql-js-constraints.md` with `file:line` references and deep pattern documentation.
 
@@ -161,7 +161,7 @@
 
 ---
 
-### [Task E2-S1-T7 — Create PRD with 15-section structure (Step E)](../tasks/task-E2S1T7-create-prd-with-15-section-structure-step-e.md)
+### ✅ [Task E2-S1-T7 — Create PRD with 15-section structure (Step E)](../tasks/task-E2S1T7-create-prd-with-15-section-structure-step-e.md)
 
 **Description:** Generate `.agents/PRDs/feature-flag-filtering-e2.prd.md` with all 15 sections following the Prompt Structure 5-step. Must reference on-demand context docs and TASK.md.
 
@@ -172,7 +172,7 @@
 
 ---
 
-### [Task E2-S1-T8 — Validate AI Layer structural consistency (Step F)](../tasks/task-E2S1T8-validate-ai-layer-structural-consistency-step-f.md)
+### ✅ [Task E2-S1-T8 — Validate AI Layer structural consistency (Step F)](../tasks/task-E2S1T8-validate-ai-layer-structural-consistency-step-f.md)
 
 **Description:** Run structural validation of the full AI Layer: Tier 1 (CLAUDE.md) → Tier 2 (9 commands with I→P→O) → Tier 3 (skills) → On-Demand Context (≥2 docs) → Layer 2 (PRD). Check for orphan references and missing dependencies.
 

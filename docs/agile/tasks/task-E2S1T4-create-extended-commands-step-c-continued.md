@@ -8,12 +8,12 @@
 | **Story** | [E2-S1 — Claude AI Layer preparation (Brownfield Workflow)](../stories/story-E2S1-claude-ai-layer-preparation.md) |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `prompt-engineer` |
 | **Depends on** | E2-S1-T3 |
 | **Blocks** | E2-S1-T8 |
 | Created at | 2026-04-16 02:35:49 -03 |
-| Last updated | 2026-04-16 02:54:23 -03 |
+| Last updated | 2026-04-16 03:26:25 -03 |
 
 ---
 
@@ -57,34 +57,37 @@ As a `prompt-engineer`, I want to create 5 extended commands (`prime-endpoint.md
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:** `ls -la .claude/commands/` + `head -4` on each file
+- **Exit code(s):** 0
+- **Output summary:** All 5 files exist with correct YAML front matter; `description` present on all 5; `argument-hint` present on 4 (correctly absent on `validate.md`)
+- **Files created:**
+  - `.claude/commands/prime-endpoint.md` — I→P→O structure, `$ARGUMENTS` for optional endpoint/area
+  - `.claude/commands/validate.md` — I→P→O structure, no arguments (runs full suite)
+  - `.claude/commands/create-prd.md` — I→P→O structure, `$ARGUMENTS` for output filename
+  - `.claude/commands/review.md` — I→P→O structure, `$ARGUMENTS` for file/folder/scope
+  - `.claude/commands/security-review.md` — I→P→O structure, `$ARGUMENTS` for file/directory
+- **Risks found / mitigations:** None — commands are prompt templates, no executable code
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** Core 4 commands are in place (E2-S1-T3 Done),
+- **When** 5 extended commands are created in `.claude/commands/`,
+- **Then** all 5 files exist with YAML front matter (`description` + `argument-hint` where applicable), each follows I→P→O structure, no references to MCP/Jira/Confluence/Supabase/Drizzle/Bun.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** E2-S1-T3 (Core 4 commands) is Done
+- **Downstream items unblocked:** E2-S1-T8 (final validation)
+- **Open risks (if any):** None

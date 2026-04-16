@@ -340,7 +340,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### [Story E2-S1 — Claude AI Layer preparation (Brownfield Workflow)](../agile/stories/story-E2S1-claude-ai-layer-preparation.md)
+### ✅ [Story E2-S1 — Claude AI Layer preparation (Brownfield Workflow)](../agile/stories/story-E2S1-claude-ai-layer-preparation.md)
 
 **Priority:** P0 | **Depends on:** E2-S2
 
