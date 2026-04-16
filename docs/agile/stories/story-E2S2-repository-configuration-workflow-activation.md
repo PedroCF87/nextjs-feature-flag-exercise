@@ -150,7 +150,7 @@
 
 ---
 
-### [Task E2-S2-T6 — Push and validate with draft PR](../tasks/task-E2S2T6-push-and-validate-with-draft-pr.md)
+### ✅ [Task E2-S2-T6 — Push and validate with draft PR](../tasks/task-E2S2T6-push-and-validate-with-draft-pr.md)
 
 **Description:** Push `exercise-2` branch, create a draft PR, and confirm Claude workflows trigger correctly.
 
