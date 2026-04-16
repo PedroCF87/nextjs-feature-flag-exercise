@@ -19,21 +19,36 @@
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S2-T5 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a repository administrator, I want to install the Claude GitHub App on the fork and configure the `ANTHROPIC_API_KEY` repository secret so that Claude Code workflows can authenticate and execute PR reviews.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- The Claude GitHub App is installed on `PedroCF87/nextjs-feature-flag-exercise` and visible in Settings → GitHub Apps.
+- The `ANTHROPIC_API_KEY` repository secret is visible in Settings → Secrets and Variables → Actions.
+- No API key is hardcoded in any file in the repository.
 
 ---
 
 ## 3) Detailed execution plan
 
-**Description:** Install the Claude GitHub App on the fork and configure `ANTHROPIC_API_KEY` as a repository secret.
+**Description:** Install the Claude GitHub App on the fork and configure `ANTHROPIC_API_KEY` as a repository secret. This is a manual task performed in the browser.
+
+**Execution steps:**
+1. **Install Claude GitHub App:**
+   - Navigate to https://github.com/apps/claude
+   - Click "Install" → select `PedroCF87/nextjs-feature-flag-exercise`
+   - Grant the requested permissions (code read, PR write, issues write)
+2. **Configure ANTHROPIC_API_KEY secret:**
+   - Go to `https://github.com/PedroCF87/nextjs-feature-flag-exercise/settings/secrets/actions`
+   - Click "New repository secret"
+   - Name: `ANTHROPIC_API_KEY`
+   - Value: paste the Anthropic API key (never share or log this value)
+   - Click "Add secret"
+3. **Verify installation:**
+   - Check Settings → Integrations → GitHub Apps → confirm "Claude" is listed
+   - Check Settings → Secrets and Variables → Actions → confirm `ANTHROPIC_API_KEY` appears (value hidden)
 
 **Acceptance criteria:**
 - **Given** the fork needs Claude Code integration
@@ -42,15 +57,12 @@ As a delivery agent, I want to execute E2-S2-T5 with complete traceability and e
 
 ---
 
----
-
 ## 4) Architecture and security requirements
 
-- Preserve existing architecture boundaries (no cross-layer shortcuts).
-- Validate all external inputs before processing.
-- Never hardcode secrets, tokens, or credentials in files.
-- Document any security-sensitive decision and fallback/rollback path.
-- For data-layer operations, use parameterized queries and explicit resource cleanup.
+- **Never** hardcode the API key in any file, commit message, or log output.
+- The secret must be configured as a GitHub repository secret, not an environment variable in code.
+- Grant the Claude App minimum required permissions (code read, PR write, issues write).
+- If the API key is compromised, revoke it immediately at https://console.anthropic.com/.
 
 ---
 

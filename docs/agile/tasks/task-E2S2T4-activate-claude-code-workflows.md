@@ -19,15 +19,15 @@
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S2-T4 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a CI/CD engineer, I want to add `pr-review.yml` and `security-review.yml` Claude Code workflows to `.github/workflows/` on `exercise-2` so that automated PR reviews are active for Exercise 2 implementation.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- `.github/workflows/` contains exactly 3 files: `claude.yml`, `pr-review.yml`, `security-review.yml`.
+- All 3 pass YAML syntax validation.
+- A commit exists on `exercise-2` with the message containing `[E2-S2-T4]`.
 
 ---
 
@@ -59,15 +59,12 @@ git show exercise-1:exercise-2-docs/security-review.yml > .github/workflows/secu
 
 ---
 
----
-
 ## 4) Architecture and security requirements
 
-- Preserve existing architecture boundaries (no cross-layer shortcuts).
-- Validate all external inputs before processing.
-- Never hardcode secrets, tokens, or credentials in files.
-- Document any security-sensitive decision and fallback/rollback path.
-- For data-layer operations, use parameterized queries and explicit resource cleanup.
+- Workflow files must not contain hardcoded secrets — they should reference `${{ secrets.ANTHROPIC_API_KEY }}`.
+- The `git show` extraction must come from a trusted source branch (`exercise-1`).
+- Validate YAML syntax before committing to prevent broken CI.
+- Rollback: `git rm` the 2 files + commit, or `git reset --hard HEAD~1`.
 
 ---
 

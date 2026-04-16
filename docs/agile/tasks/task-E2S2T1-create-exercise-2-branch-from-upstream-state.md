@@ -19,21 +19,45 @@
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S2-T1 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a repository engineer, I want to create the `exercise-2` branch from the upstream original state (`f73979ed~1`) so that Exercise 2 implementation starts from a clean baseline with zero Exercise 1 code.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- The `exercise-2` branch exists locally at commit `04ea0ba` (parent of first fork commit).
+- `git log --oneline -1` on `exercise-2` shows the upstream base commit.
+- No filtering code (`FlagFilterParams`, `getAllFlags.*filter`, `LIKE.*ESCAPE`) is found in `server/src/`.
+- Server tests show exactly 16 passing tests (CRUD only, no filtering tests).
 
 ---
 
 ## 3) Detailed execution plan
 
 **Description:** Create `exercise-2` branch from `f73979ed~1` (parent of first fork commit). This ensures the implementation starts from the original upstream state with zero Exercise 1 implementation code.
+
+**Execution steps:**
+1. Identify the correct base commit — the parent of the first fork-specific commit:
+   ```bash
+   git log --oneline f73979ed~1 -1
+   ```
+2. Create the branch from that commit:
+   ```bash
+   git checkout -b exercise-2 f73979ed~1
+   ```
+3. Verify the branch HEAD is at the expected upstream commit:
+   ```bash
+   git log --oneline -3
+   ```
+4. Confirm no Exercise 1 filtering code exists:
+   ```bash
+   grep -r "FlagFilterParams\|getAllFlags.*filter\|LIKE.*ESCAPE" server/src/ || echo "No filtering code found"
+   ```
+5. Run server tests to confirm CRUD-only baseline:
+   ```bash
+   cd server && pnpm install && pnpm test
+   ```
+   Expected: 16 tests passed (CRUD only, no filtering tests).
 
 **Acceptance criteria:**
 - **Given** the fork history is available
@@ -42,15 +66,11 @@ As a delivery agent, I want to execute E2-S2-T1 with complete traceability and e
 
 ---
 
----
-
 ## 4) Architecture and security requirements
 
-- Preserve existing architecture boundaries (no cross-layer shortcuts).
-- Validate all external inputs before processing.
-- Never hardcode secrets, tokens, or credentials in files.
-- Document any security-sensitive decision and fallback/rollback path.
-- For data-layer operations, use parameterized queries and explicit resource cleanup.
+- Branch creation is a local-only operation — no remote side effects until T6 push.
+- The base commit must be verified to contain zero Exercise 1 implementation code.
+- No secrets or credentials are involved in this task.
 
 ---
 
@@ -75,9 +95,9 @@ Record evidence with exact commands and outputs:
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** the fork history includes `f73979ed` as the first fork-specific commit,
+- **When** `exercise-2` branch is created from `f73979ed~1` and server tests are run,
+- **Then** the branch HEAD is at `04ea0ba`, zero filtering code is found in `server/src/`, and 16 CRUD-only tests pass.
 
 ---
 

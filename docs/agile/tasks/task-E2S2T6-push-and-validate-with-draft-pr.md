@@ -19,38 +19,55 @@
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S2-T6 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a repository engineer, I want to push the `exercise-2` branch to origin and create a draft PR so that Claude Code workflows can be validated against the PR trigger.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- The `exercise-2` branch is pushed to `origin` (`PedroCF87/nextjs-feature-flag-exercise`).
+- A draft PR is open from `exercise-2` to `exercise-1` (or `main`).
+- At least `pr-review.yml` and `security-review.yml` appear in the PR’s checks/actions tab.
 
 ---
 
 ## 3) Detailed execution plan
 
-**Description:** Push `exercise-2` branch, create a draft PR, and confirm Claude workflows trigger correctly.
+**Description:** Push `exercise-2` branch to origin, create a draft PR, and confirm Claude workflows trigger correctly.
+
+**Execution steps:**
+1. Ensure `exercise-2` branch is checked out and all T1–T4 commits are present:
+   ```bash
+   git branch --show-current   # → exercise-2
+   git log --oneline -6
+   ```
+2. Push the branch to origin:
+   ```bash
+   git push origin exercise-2
+   ```
+3. Create a draft PR (via GitHub CLI or web UI):
+   ```bash
+   gh pr create --base exercise-1 --head exercise-2 --title "feat: exercise-2 branch setup [E2-S2]" --body "Sets up exercise-2 branch with docs, AI Layer, and Claude Code workflows." --draft
+   ```
+   If `gh` is not available, create the PR manually at `https://github.com/PedroCF87/nextjs-feature-flag-exercise/compare/exercise-1...exercise-2`.
+4. Verify workflow triggers:
+   - Go to the PR’s "Checks" or "Actions" tab
+   - Confirm `pr-review.yml` and `security-review.yml` appear (may show as pending, running, or completed)
+   - If workflows don’t trigger, check: (a) `.github/workflows/` files are on the PR branch, (b) ANTHROPIC_API_KEY secret exists
 
 **Acceptance criteria:**
-- **Given** all configuration is in place
+- **Given** all configuration is in place (T1–T5 completed)
 - **When** a draft PR is created
 - **Then** at least `pr-review.yml` and `security-review.yml` appear in the PR's checks/actions
 
 ---
 
----
-
 ## 4) Architecture and security requirements
 
-- Preserve existing architecture boundaries (no cross-layer shortcuts).
-- Validate all external inputs before processing.
-- Never hardcode secrets, tokens, or credentials in files.
-- Document any security-sensitive decision and fallback/rollback path.
-- For data-layer operations, use parameterized queries and explicit resource cleanup.
+- Push only to the personal fork (`origin`), never to `upstream`.
+- The draft PR should target `exercise-1` as the base branch.
+- No secrets should appear in commit messages or PR description.
+- Rollback: close the PR and delete the remote branch with `git push origin --delete exercise-2`.
 
 ---
 

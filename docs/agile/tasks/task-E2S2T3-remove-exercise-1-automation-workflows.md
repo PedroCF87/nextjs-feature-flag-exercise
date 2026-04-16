@@ -19,15 +19,15 @@
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S2-T3 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a repository engineer, I want to remove the 6 Exercise 1 automation workflow files from `.github/workflows/` on `exercise-2` so that only `claude.yml` remains before adding Exercise 2 workflows in T4.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- Only `claude.yml` remains in `.github/workflows/` on `exercise-2`.
+- The 6 Exercise 1 automation files (`auto-copilot-fix.yml`, `auto-merge-on-clean-review.yml`, `auto-ready-for-review.yml`, `auto-validate-copilot-fix.yml`, `copilot-push-signal.yml`, `copilot-setup-steps.yml`) are absent.
+- A commit exists on `exercise-2` with the message containing `[E2-S2-T3]`.
 
 ---
 
@@ -64,15 +64,12 @@ As a delivery agent, I want to execute E2-S2-T3 with complete traceability and e
 
 ---
 
----
-
 ## 4) Architecture and security requirements
 
-- Preserve existing architecture boundaries (no cross-layer shortcuts).
-- Validate all external inputs before processing.
-- Never hardcode secrets, tokens, or credentials in files.
-- Document any security-sensitive decision and fallback/rollback path.
-- For data-layer operations, use parameterized queries and explicit resource cleanup.
+- Only remove workflow files listed in the execution plan — never delete `claude.yml`.
+- Verify listing before and after removal to prevent accidental deletion of needed files.
+- No secrets or credentials are involved in this task.
+- Rollback: `git reset --hard HEAD~1` to restore removed files if needed.
 
 ---
 

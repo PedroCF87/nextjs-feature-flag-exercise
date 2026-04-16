@@ -19,21 +19,47 @@
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S2-T7 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a quality engineer, I want to run the full validation suite (build, lint, test) on both server and client on `exercise-2` so that the branch is confirmed clean and ready for implementation.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- Server: `pnpm run build` exits 0, `pnpm run lint` exits 0, `pnpm test` shows 16 passing tests (exit 0).
+- Client: `pnpm run build` exits 0, `pnpm run lint` exits 0.
+- Zero errors across all 5 commands.
 
 ---
 
 ## 3) Detailed execution plan
 
-**Description:** Run `pnpm run build && pnpm run lint && pnpm test` on server and `pnpm run build && pnpm run lint` on client to confirm the branch is clean.
+**Description:** Run the full validation suite on both server and client to confirm the `exercise-2` branch is clean (no broken code, no filtering implementation).
+
+**Execution steps:**
+1. Ensure `exercise-2` branch is checked out:
+   ```bash
+   git branch --show-current   # → exercise-2
+   ```
+2. Run server validation:
+   ```bash
+   cd server
+   pnpm install           # ensure deps are fresh
+   pnpm run build         # TypeScript type check (tsc) → expect exit 0
+   pnpm run lint          # ESLint → expect exit 0
+   pnpm test              # Vitest → expect 16 tests passing, exit 0
+   cd ..
+   ```
+3. Run client validation:
+   ```bash
+   cd client
+   pnpm install           # ensure deps are fresh
+   pnpm run build         # tsc + vite build → expect exit 0
+   pnpm run lint          # ESLint → expect exit 0
+   cd ..
+   ```
+4. Record all exit codes and test counts in the validation evidence section.
+
+**Stop condition:** If any command fails, diagnose and fix before proceeding. Zero errors is the gate.
 
 **Acceptance criteria:**
 - **Given** the branch has no filtering code
@@ -42,15 +68,11 @@ As a delivery agent, I want to execute E2-S2-T7 with complete traceability and e
 
 ---
 
----
-
 ## 4) Architecture and security requirements
 
-- Preserve existing architecture boundaries (no cross-layer shortcuts).
-- Validate all external inputs before processing.
-- Never hardcode secrets, tokens, or credentials in files.
-- Document any security-sensitive decision and fallback/rollback path.
-- For data-layer operations, use parameterized queries and explicit resource cleanup.
+- Run `pnpm install` to ensure dependencies match the branch state (exercise-2 may have different lockfiles than exercise-1).
+- Do not modify any source code during validation — this task is read-only verification.
+- If tests fail due to missing dependencies, fix with `pnpm install`, not by editing code.
 
 ---
 

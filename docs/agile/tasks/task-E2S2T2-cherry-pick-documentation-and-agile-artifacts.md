@@ -11,23 +11,24 @@
 | **Status** | Done |
 | **Responsible agent** | `git-ops` |
 | **Depends on** | E2-S2-T1 |
-| **Blocks** | E2-S2-T6 |
+| **Blocks** | E2-S2-T3, E2-S2-T6 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 12:35:38 -03 |
+| Last updated | 2026-04-16 13:14:17 -03 |
 
 ---
 
 ## 1) Task statement
 
-As a delivery agent, I want to execute E2-S2-T2 with complete traceability and explicit validation so that the parent story can progress without ambiguity.
+As a repository engineer, I want to copy pre-saved `docs/`, `manuals/`, and `.github/` folders from the exercise-1 backup into the `exercise-2` branch so that all planning, agile, documentation, and AI Layer artifacts are available for Exercise 2.
 
 ---
 
 ## 2) Verifiable expected outcome
 
-- A concrete deliverable exists for this task and is linked in this document.
-- All required sections from the task definition are fully populated (no placeholders).
-- Validation evidence is attached with command outputs and/or file references.
+- `docs/`, `manuals/`, and `.github/` directories are fully populated on `exercise-2` with artifacts from exercise-1.
+- A commit exists on `exercise-2` with the message containing `[E2-S2-T2]`.
+- Upstream `claude.yml` in `.github/workflows/` is preserved (not overwritten).
+- Exercise-1 workflow files are present (cleanup deferred to T3).
 
 ---
 
@@ -67,15 +68,12 @@ As a delivery agent, I want to execute E2-S2-T2 with complete traceability and e
 
 ---
 
----
-
 ## 4) Architecture and security requirements
 
-- Preserve existing architecture boundaries (no cross-layer shortcuts).
-- Validate all external inputs before processing.
-- Never hardcode secrets, tokens, or credentials in files.
-- Document any security-sensitive decision and fallback/rollback path.
-- For data-layer operations, use parameterized queries and explicit resource cleanup.
+- Copy operation merges into existing `.github/` directory — must not overwrite upstream `claude.yml`.
+- No secrets or credentials are included in the copied folders.
+- AI Layer artifacts will be reviewed for exercise-2 fitness in E2-S1 (not this task).
+- Rollback: `git reset --hard HEAD~1` to undo the commit if content is wrong.
 
 ---
 
@@ -87,15 +85,20 @@ As a delivery agent, I want to execute E2-S2-T2 with complete traceability and e
   3. `cp -r "/delfos/Projetos/ITBC - Desafio RDH/manuals" ./manuals`
   4. `cp -r "/delfos/Projetos/ITBC - Desafio RDH/.github/." ./.github/` (merge into existing .github/)
   5. `git add docs/ manuals/ .github/ && git commit -m "docs: restore docs, manuals, and .github artifacts from exercise-1 backup [E2-S2-T2]"`
+  6. `git checkout exercise-1 -- <30 agile files>` (sync task/story/epics that had been updated on exercise-1 after the backup was taken) → commit `fd65535`
+  7. `git rm docs/agile/prompts/prompts-E2S1-claude-ai-layer-preparation.md` (removed renamed file leftover) → commit `7e90362`
 - **Exit code(s):** All 0
-- **Output summary:** 313 files changed, 56659 insertions(+). Commit `266a8da` on exercise-2.
+- **Output summary:**
+  - Commit `266a8da`: 313 files changed, 56659 insertions(+) — main copy of `docs/`, `manuals/`, `.github/`
+  - Commit `fd65535`: 30 files changed — sync of agile artifacts (stories, tasks, backlog-index, epics, prompts) from exercise-1 to match latest state
+  - Commit `7e90362`: 1 file deleted — removed `prompts-E2S1-claude-ai-layer-preparation.md` leftover from a rename on exercise-1
 - **Files created/updated:** `docs/` (agile, epics, dashboard, manuals, references, images), `manuals/` (4 interview guides + epic2 prep), `.github/` (agents, instructions, skills, functions, hooks, workflows, copilot-instructions.md, copilot-mcp.json)
 - **Risks found / mitigations:** Upstream `claude.yml` in `.github/workflows/` was preserved — the merge copy (`.github/.` → `.github/`) added exercise-1 workflow files alongside it without overwriting. Exercise-1 workflows will be cleaned up in T3.
 
 ### Given / When / Then checks
 
 - **Given** backup folders exist at `/delfos/Projetos/ITBC - Desafio RDH/{docs,manuals,.github}` and exercise-2 branch is clean,
-- **When** folders are copied into the repository and committed as `266a8da`,
+- **When** folders are copied into the repository (commit `266a8da`), synced to latest exercise-1 agile state (commit `fd65535`), and leftover renamed file removed (commit `7e90362`),
 - **Then** `docs/`, `manuals/`, and `.github/` are fully populated on exercise-2 with all planning, agile, documentation, and AI Layer artifacts from exercise-1.
 
 ---
