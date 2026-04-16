@@ -139,7 +139,7 @@
 
 ---
 
-### [Task E2-S2-T5 — Install Claude GitHub App and configure secret](../tasks/task-E2S2T5-install-claude-github-app-and-configure-secret.md)
+### ✅ [Task E2-S2-T5 — Install Claude GitHub App and configure secret](../tasks/task-E2S2T5-install-claude-github-app-and-configure-secret.md)
 
 **Description:** Install the Claude GitHub App on the fork and configure `ANTHROPIC_API_KEY` as a repository secret.
 

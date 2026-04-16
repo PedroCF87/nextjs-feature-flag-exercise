@@ -8,12 +8,12 @@
 | **Story** | [E2-S2 — Repository configuration and workflow activation](../stories/story-E2S2-repository-configuration-workflow-activation.md) |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `copilot-env-specialist` |
 | **Depends on** | E2-S2-T4 |
 | **Blocks** | E2-S2-T6 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 12:20:22 -03 |
+| Last updated | 2026-04-16 13:53:21 -03 |
 
 ---
 
@@ -70,32 +70,39 @@ As a repository administrator, I want to install the Claude GitHub App on the fo
 
 Record evidence with exact commands and outputs:
 
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:** Manual steps in browser (no CLI commands)
+  1. Navigated to https://github.com/apps/claude → installed on `PedroCF87/nextjs-feature-flag-exercise`
+  2. Navigated to repository Settings → Secrets and Variables → Actions → created `ANTHROPIC_API_KEY` repository secret
+  3. Verified in Settings → GitHub Apps → "Claude" listed as installed
+  4. Verified in Settings → Secrets → `ANTHROPIC_API_KEY` visible (value hidden)
+- **Exit code(s):** N/A (manual browser task)
+- **Output summary:**
+  - Claude GitHub App: installed and visible in repository integrations
+  - `ANTHROPIC_API_KEY`: configured as repository secret (value masked)
+  - Screenshot evidence: [`docs/images/Claude-App-installed.png`](../../images/Claude-App-installed.png)
+- **Files created/updated:** `docs/images/Claude-App-installed.png` (screenshot of installed app)
+- **Risks found / mitigations:** None — API key stored exclusively as GitHub secret, never committed to code
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** the fork `PedroCF87/nextjs-feature-flag-exercise` needed Claude Code integration and T4 had placed all 3 workflow files,
+- **When** the Claude GitHub App was installed and `ANTHROPIC_API_KEY` was configured as a repository secret,
+- **Then** the app appears in Settings → GitHub Apps, the secret is visible in Settings → Secrets (value hidden), and no API key is hardcoded in the repository.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** E2-S2-T4 (all 3 Claude workflows present in `.github/workflows/`)
+- **Downstream items unblocked:** E2-S2-T6 (push branch + create draft PR to trigger workflows)
+- **Open risks (if any):** If the `ANTHROPIC_API_KEY` value is invalid or expired, workflows will fail at runtime — verify on first PR trigger (T6)
