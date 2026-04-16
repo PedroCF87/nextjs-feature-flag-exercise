@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import type { FlagFilterParams } from '@shared/types'
 import {
   Select,
@@ -17,18 +18,57 @@ interface FlagsFilterControlsProps {
 }
 
 const EMPTY_VALUE = '__all__'
+const DEBOUNCE_MS = 300
 
 function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsProps) {
+  const [ownerInput, setOwnerInput] = useState(filters.owner ?? '')
+  const [nameInput, setNameInput] = useState(filters.name ?? '')
+  const [prevFilters, setPrevFilters] = useState(filters)
+
+  // Sync local state when filters change externally (e.g. "Clear all")
+  // React-recommended pattern: conditional setState during render
+  if (filters.owner !== prevFilters.owner || filters.name !== prevFilters.name) {
+    setPrevFilters(filters)
+    if (filters.owner !== prevFilters.owner) setOwnerInput(filters.owner ?? '')
+    if (filters.name !== prevFilters.name) setNameInput(filters.name ?? '')
+  }
+
+  // Refs for latest values inside debounce callbacks
+  const filtersRef = useRef(filters)
+  const onChangeRef = useRef(onChange)
+  useEffect(() => {
+    filtersRef.current = filters
+    onChangeRef.current = onChange
+  }, [filters, onChange])
+
+  // Debounce owner input
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const normalized = ownerInput || undefined
+      if (normalized !== filtersRef.current.owner) {
+        onChangeRef.current({ ...filtersRef.current, owner: normalized })
+      }
+    }, DEBOUNCE_MS)
+    return () => clearTimeout(timer)
+  }, [ownerInput])
+
+  // Debounce name input
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const normalized = nameInput || undefined
+      if (normalized !== filtersRef.current.name) {
+        onChangeRef.current({ ...filtersRef.current, name: normalized })
+      }
+    }, DEBOUNCE_MS)
+    return () => clearTimeout(timer)
+  }, [nameInput])
+
   const activeFilterCount = Object.values(filters).filter(
     (v) => v !== undefined && v !== ''
   ).length
 
   const handleSelectChange = (key: keyof FlagFilterParams, value: string) => {
     onChange({ ...filters, [key]: value === EMPTY_VALUE ? undefined : value })
-  }
-
-  const handleInputChange = (key: keyof FlagFilterParams, value: string) => {
-    onChange({ ...filters, [key]: value || undefined })
   }
 
   return (
@@ -93,8 +133,8 @@ function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsProps) {
           id="filter-owner"
           className="w-[160px]"
           placeholder="Filter by owner..."
-          value={filters.owner ?? ''}
-          onChange={(e) => handleInputChange('owner', e.target.value)}
+          value={ownerInput}
+          onChange={(e) => setOwnerInput(e.target.value)}
         />
       </div>
 
@@ -104,8 +144,8 @@ function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsProps) {
           id="filter-name"
           className="w-[180px]"
           placeholder="Search by name..."
-          value={filters.name ?? ''}
-          onChange={(e) => handleInputChange('name', e.target.value)}
+          value={nameInput}
+          onChange={(e) => setNameInput(e.target.value)}
         />
       </div>
 
