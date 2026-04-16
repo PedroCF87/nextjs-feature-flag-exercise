@@ -14,20 +14,45 @@ Currently, the dashboard displays all flags in a single table with no way to fil
 
 ## Acceptance Criteria
 
-- [ ] Users can filter flags by environment (development, staging, production)
-- [ ] Users can filter flags by status (enabled/disabled)
-- [ ] Users can filter flags by type (release, experiment, operational, permission)
-- [ ] Users can filter flags by owner
-- [ ] Users can search flags by name (partial match)
-- [ ] Filtering should happen in the backend
-- [ ] Multiple filters can be applied simultaneously (e.g., "all enabled release flags in production")
-- [ ] Filters persist while using other features (creating, editing, deleting flags)
-- [ ] There is a way to clear all filters and return to the full list
-- [ ] The UI clearly indicates when filters are active
-- [ ] Filtering should feel responsive, even as the number of flags grows
+- [x] Users can filter flags by environment (development, staging, production)
+- [x] Users can filter flags by status (enabled/disabled)
+- [x] Users can filter flags by type (release, experiment, operational, permission)
+- [x] Users can filter flags by owner
+- [x] Users can search flags by name (partial match)
+- [x] Filtering should happen in the backend
+- [x] Multiple filters can be applied simultaneously (e.g., "all enabled release flags in production")
+- [x] Filters persist while using other features (creating, editing, deleting flags)
+- [x] There is a way to clear all filters and return to the full list
+- [x] The UI clearly indicates when filters are active
+- [x] Filtering should feel responsive, even as the number of flags grows
 
 ## Notes
 
 - Consider where filtering logic should live for the best user experience
 - Think about how filters interact with each other (AND vs OR logic)
 - The filter UI should be intuitive and not clutter the interface
+
+---
+
+## Implementation — Epic 1 Results
+
+### Before
+
+> No filtering capabilities. All flags displayed in a flat list with no controls.
+
+![Feature Flags Screen v1](docs/images/Feature-Flags-Screen-v1.png)
+
+### After
+
+> Server-side filtering by environment, status, type, owner, and name. Active-filter badge and "Clear all filters" action. Filter state persists across create/edit/delete mutations. Text inputs include 300 ms debounce.
+
+![Feature Flags Screen v2](docs/images/Feature-Flags-Screen-v2.png)
+
+### Deliverables
+
+| Artifact | Path |
+|---|---|
+| Closure report | [`.agents/closure/epic1-closure-report.md`](.agents/closure/epic1-closure-report.md) |
+| Epic 2 handoff | [`.agents/closure/epic2-handoff.md`](.agents/closure/epic2-handoff.md) |
+| Baseline metrics | [`.agents/baseline/measurement-baseline.md`](.agents/baseline/measurement-baseline.md) |
+| Friction log | [`.agents/baseline/epic1-friction-log.md`](.agents/baseline/epic1-friction-log.md) |

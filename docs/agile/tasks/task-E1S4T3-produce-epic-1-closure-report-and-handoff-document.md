@@ -91,3 +91,28 @@ Record evidence with exact commands and outputs:
 - Upstream dependencies resolved: E1-S4-T2 (Done), E1-S4-T1 (Done)
 - Downstream items unblocked: EPIC-2 (handoff document with READY declaration delivered)
 - Open risks (if any): None — all 14 DoD items ✅
+
+---
+
+## 8) Epic 1 — Final Deliverables
+
+### Closure artifacts
+
+| Artifact | Path |
+|---|---|
+| Closure report | [`.agents/closure/epic1-closure-report.md`](../../../.agents/closure/epic1-closure-report.md) |
+| Epic 2 handoff | [`.agents/closure/epic2-handoff.md`](../../../.agents/closure/epic2-handoff.md) |
+| Baseline metrics | [`.agents/baseline/measurement-baseline.md`](../../../.agents/baseline/measurement-baseline.md) |
+| Friction log | [`.agents/baseline/epic1-friction-log.md`](../../../.agents/baseline/epic1-friction-log.md) |
+
+### Before — Feature Flags UI (pre-implementation)
+
+> No filtering capabilities. All flags displayed in a flat list with no controls.
+
+![Feature Flags Screen v1](../../images/Feature-Flags-Screen-v1.png)
+
+### After — Feature Flags UI (post-implementation)
+
+> Server-side filtering by environment, status, type, owner, and name. Active-filter indicator and "Clear all filters" action. Filter state persists across mutations.
+
+![Feature Flags Screen v2](../../images/Feature-Flags-Screen-v2.png)
