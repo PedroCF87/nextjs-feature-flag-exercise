@@ -8,12 +8,12 @@
 | **Story** | [E2-S2 — Repository configuration and workflow activation](../stories/story-E2S2-repository-configuration-workflow-activation.md) |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `git-ops` |
 | **Depends on** | E2-S2-T2 |
 | **Blocks** | E2-S2-T4 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 12:20:22 -03 |
+| Last updated | 2026-04-16 13:18:02 -03 |
 
 ---
 
@@ -77,32 +77,40 @@ As a repository engineer, I want to remove the 6 Exercise 1 automation workflow 
 
 Record evidence with exact commands and outputs:
 
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:**
+  1. `ls -la .github/workflows/` → 7 files listed (6 E1 + claude.yml)
+  2. `rm -f .github/workflows/auto-copilot-fix.yml .github/workflows/auto-merge-on-clean-review.yml .github/workflows/auto-ready-for-review.yml .github/workflows/auto-validate-copilot-fix.yml .github/workflows/copilot-push-signal.yml .github/workflows/copilot-setup-steps.yml`
+  3. `ls -la .github/workflows/` → only claude.yml (1537 bytes)
+  4. `git add -A .github/workflows/ && git commit -m "ci: remove Exercise 1 automation workflows from exercise-2 [E2-S2-T3]"`
+  5. `git log --oneline -3`
+- **Exit code(s):** All 0
+- **Output summary:**
+  - Before: 7 workflow files (6 E1 automation + claude.yml)
+  - After: 1 workflow file (claude.yml only, 1537 bytes, unchanged)
+  - Commit `a341a92`: 6 files changed, 913 deletions(-), all 6 E1 files deleted
+- **Files created/updated:** 6 files deleted from `.github/workflows/`; `claude.yml` untouched
+- **Risks found / mitigations:** `claude.yml` content verified identical to upstream base `04ea0ba` — not affected by removal
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** T2 copied `.github/` from exercise-1 backup, resulting in 7 workflow files on exercise-2,
+- **When** the 6 Exercise 1 automation files are removed and committed as `a341a92`,
+- **Then** only `claude.yml` remains in `.github/workflows/`, confirming no exercise-1 automation workflows will trigger on exercise-2.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** E2-S2-T2 (`.github/` restored on exercise-2 with all artifacts)
+- **Downstream items unblocked:** E2-S2-T4 (add `pr-review.yml` and `security-review.yml` — workflows directory is now clean)
+- **Open risks (if any):** None — `claude.yml` preserved, 6 E1 files removed, branch committed at `a341a92`

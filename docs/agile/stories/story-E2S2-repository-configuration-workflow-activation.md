@@ -117,7 +117,7 @@
 
 ---
 
-### [Task E2-S2-T3 — Clean up Exercise 1 automation workflows](../tasks/task-E2S2T3-remove-exercise-1-automation-workflows.md)
+### ✅ [Task E2-S2-T3 — Clean up Exercise 1 automation workflows](../tasks/task-E2S2T3-remove-exercise-1-automation-workflows.md)
 
 **Description:** Remove the 6 Exercise 1 automation workflow files from `.github/workflows/` that were brought in by the T2 copy. Keep only `claude.yml` (from upstream).
 
