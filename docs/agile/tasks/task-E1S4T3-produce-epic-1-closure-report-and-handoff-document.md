@@ -8,12 +8,12 @@
 | **Story** | [E1-S4 — Baseline measurement and closure](../stories/story-E1S4-baseline-measurement-and-closure.md) |
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | E1-S4-T2 |
 | **Blocks** | — |
 | Created at | 2026-04-14 22:21:45 -03 |
-| Last updated | 2026-04-14 22:21:45 -03 |
+| Last updated | 2026-04-15 21:20:55 -03 |
 
 ---
 
@@ -62,11 +62,11 @@ As an `agile-exercise-planner`, I want to generate the Epic 1 closure report and
 
 Record evidence with exact commands and outputs:
 
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- Command(s) executed: `check-ai-layer-files.js` (×2 for closure + handoff), `sync-backlog-index.js`, `timeline-query.js` (×6), `datetime.js` (×2), `git-info.js`
+- Exit code(s): all 0
+- Output summary: `✅ 1/1 files present` for both closure artifacts; `✅ backlog-index.json written — 68 items`; `🔗 No dependency cycles found`
+- Files created/updated: `.agents/closure/epic1-closure-report.md` (new), `.agents/closure/epic2-handoff.md` (new), `docs/agile/backlog-index.json` (regenerated)
+- Risks found / mitigations: timeline.jsonl had no EPIC-1 entries — used git commit timestamps as fallback
 
 ### Given / When / Then checks
 
@@ -78,16 +78,16 @@ Record evidence with exact commands and outputs:
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- Upstream dependencies resolved: E1-S4-T2 (Done), E1-S4-T1 (Done)
+- Downstream items unblocked: EPIC-2 (handoff document with READY declaration delivered)
+- Open risks (if any): None — all 14 DoD items ✅

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-15 17:25:49 -03",
+  "generated_at": "2026-04-15 21:21:37 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -153,7 +153,7 @@
       "type": "story",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "In Progress",
+      "status": "Done",
       "responsible_agent": [
         "project-adaptation-analyst"
       ],
@@ -164,7 +164,7 @@
         "E1-S2"
       ],
       "created_at": "2026-04-14 21:29:36 -03",
-      "last_updated": "2026-04-15 00:00:00 -03",
+      "last_updated": "2026-04-15 17:46:39 -03",
       "story_file": "docs/agile/stories/story-E1S1-task-analysis-and-implementation-mapping.md"
     },
     {
@@ -172,7 +172,7 @@
       "type": "story",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -183,7 +183,7 @@
         "E1-S3"
       ],
       "created_at": "2026-04-14 21:29:36 -03",
-      "last_updated": "2026-04-15 00:00:00 -03",
+      "last_updated": "2026-04-15 18:21:14 -03",
       "story_file": "docs/agile/stories/story-E1S2-server-side-filtering-implementation.md"
     },
     {
@@ -191,7 +191,7 @@
       "type": "story",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -210,7 +210,7 @@
       "type": "story",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "agile-exercise-planner"
       ],
@@ -220,7 +220,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 21:29:36 -03",
-      "last_updated": "2026-04-15 00:00:00 -03",
+      "last_updated": "2026-04-15 21:20:55 -03",
       "story_file": "docs/agile/stories/story-E1S4-baseline-measurement-and-closure.md"
     },
     {
@@ -1017,7 +1017,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "project-adaptation-analyst"
       ],
@@ -1026,7 +1026,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:32 -03",
-      "last_updated": "2026-04-14 22:21:32 -03",
+      "last_updated": "2026-04-15 17:42:32 -03",
       "task_file": "docs/agile/tasks/task-E1S1T2-produce-file-impact-map.md"
     },
     {
@@ -1034,7 +1034,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "project-adaptation-analyst"
       ],
@@ -1043,7 +1043,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:32 -03",
-      "last_updated": "2026-04-14 22:21:32 -03",
+      "last_updated": "2026-04-15 17:46:39 -03",
       "task_file": "docs/agile/tasks/task-E1S1T3-document-and-logic-decision-and-ordered-implementation-plan.md"
     },
     {
@@ -1051,7 +1051,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -1060,7 +1060,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:37 -03",
-      "last_updated": "2026-04-14 22:21:37 -03",
+      "last_updated": "2026-04-15 17:59:52 -03",
       "task_file": "docs/agile/tasks/task-E1S2T1-extend-shared-types-ts-with-flagfilterparams.md"
     },
     {
@@ -1068,7 +1068,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -1077,7 +1077,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:37 -03",
-      "last_updated": "2026-04-14 22:21:37 -03",
+      "last_updated": "2026-04-15 18:07:27 -03",
       "task_file": "docs/agile/tasks/task-E1S2T2-add-zod-filter-query-schema-to-validation-middleware.md"
     },
     {
@@ -1085,7 +1085,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -1094,7 +1094,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:37 -03",
-      "last_updated": "2026-04-14 22:21:37 -03",
+      "last_updated": "2026-04-15 18:13:07 -03",
       "task_file": "docs/agile/tasks/task-E1S2T3-implement-filtering-in-flagsservice-getall.md"
     },
     {
@@ -1102,7 +1102,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -1111,7 +1111,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:37 -03",
-      "last_updated": "2026-04-14 22:21:37 -03",
+      "last_updated": "2026-04-15 18:17:59 -03",
       "task_file": "docs/agile/tasks/task-E1S2T4-update-get-api-flags-route-handler.md"
     },
     {
@@ -1119,7 +1119,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -1128,7 +1128,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:37 -03",
-      "last_updated": "2026-04-14 22:21:37 -03",
+      "last_updated": "2026-04-15 18:21:14 -03",
       "task_file": "docs/agile/tasks/task-E1S2T5-add-vitest-filter-test-cases.md"
     },
     {
@@ -1136,7 +1136,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -1145,7 +1145,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:41 -03",
-      "last_updated": "2026-04-14 22:21:41 -03",
+      "last_updated": "2026-04-15 19:02:10 -03",
       "task_file": "docs/agile/tasks/task-E1S3T1-update-client-api-to-pass-filter-params.md"
     },
     {
@@ -1153,7 +1153,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -1162,7 +1162,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:41 -03",
-      "last_updated": "2026-04-14 22:21:41 -03",
+      "last_updated": "2026-04-15 20:13:12 -03",
       "task_file": "docs/agile/tasks/task-E1S3T2-add-filter-state-management-in-app-tsx.md"
     },
     {
@@ -1170,7 +1170,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -1179,7 +1179,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:41 -03",
-      "last_updated": "2026-04-14 22:21:41 -03",
+      "last_updated": "2026-04-15 20:17:21 -03",
       "task_file": "docs/agile/tasks/task-E1S3T3-build-filter-controls-component.md"
     },
     {
@@ -1187,7 +1187,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "task-implementer"
       ],
@@ -1196,7 +1196,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:41 -03",
-      "last_updated": "2026-04-14 22:21:41 -03",
+      "last_updated": "2026-04-15 20:24:12 -03",
       "task_file": "docs/agile/tasks/task-E1S3T4-implement-clear-all-filters-and-active-filter-indicator.md"
     },
     {
@@ -1204,7 +1204,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "agile-exercise-planner"
       ],
@@ -1214,7 +1214,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:45 -03",
-      "last_updated": "2026-04-14 22:21:45 -03",
+      "last_updated": "2026-04-15 21:00:53 -03",
       "task_file": "docs/agile/tasks/task-E1S4T1-run-full-validation-suite-and-verify-all-11-task-md-criteria.md"
     },
     {
@@ -1222,7 +1222,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "agile-exercise-planner"
       ],
@@ -1231,7 +1231,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:45 -03",
-      "last_updated": "2026-04-14 22:21:45 -03",
+      "last_updated": "2026-04-15 21:11:16 -03",
       "task_file": "docs/agile/tasks/task-E1S4T2-complete-baseline-metrics-document-and-friction-log.md"
     },
     {
@@ -1239,7 +1239,7 @@
       "type": "task",
       "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "agile-exercise-planner"
       ],
@@ -1248,7 +1248,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-14 22:21:45 -03",
-      "last_updated": "2026-04-14 22:21:45 -03",
+      "last_updated": "2026-04-15 21:20:55 -03",
       "task_file": "docs/agile/tasks/task-E1S4T3-produce-epic-1-closure-report-and-handoff-document.md"
     }
   ]

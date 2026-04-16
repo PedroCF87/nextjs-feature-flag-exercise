@@ -7,14 +7,14 @@
 | **ID** | E1-S4 |
 | **Epic** | [Epic 1 — Baseline Implementation: Feature Flag Filtering](../../epics/Epic%201%20%E2%80%94%20Baseline%20Implementation%3A%20Feature%20Flag%20Filtering.md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Skills** | `execute-task-locally`, `record-friction-point`, `record-time-zero-snapshot`, `produce-epic-closure-report`, `produce-epic-handoff` |
 | **Instructions** | `documentation.instructions.md`, `measurement-baseline.instructions.md` |
 | **Depends on** | E1-S2, E1-S3 |
 | **Blocks** | — |
 | Created at | 2026-04-14 21:29:36 -03 |
-| Last updated | 2026-04-15 21:11:16 -03 |
+| Last updated | 2026-04-15 21:20:55 -03 |
 
 ---
 
@@ -118,7 +118,7 @@
 
 ---
 
-### [Task E1-S4-T3 — Produce Epic 1 closure report and handoff document](../tasks/task-E1S4T3-produce-epic-1-closure-report-and-handoff-document.md)
+### ✅ [Task E1-S4-T3 — Produce Epic 1 closure report and handoff document](../tasks/task-E1S4T3-produce-epic-1-closure-report-and-handoff-document.md)
 
 **Goal:** generate the Epic 1 closure report and Epic 2 handoff document using `produce-epic-closure-report` and `produce-epic-handoff` skills, then commit all changes.
 

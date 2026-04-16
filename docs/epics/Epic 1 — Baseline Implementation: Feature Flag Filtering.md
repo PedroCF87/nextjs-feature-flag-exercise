@@ -9,9 +9,9 @@
 - **Target repository (local clone):** `/delfos/Projetos/ITBC - Desafio RDH/nextjs-feature-flag-exercise`
 - **Base branch:** `exercise-1`
 - **Execution model:** Local (VS Code agent, sequential tasks, commits to `exercise-1`)
-- **Status:** In Progress
+- **Status:** Done
 - **Created at:** 2026-04-09 16:39:45 -03
-- **Last updated:** 2026-04-15 00:00:00 -03
+- **Last updated:** 2026-04-15 21:20:55 -03
 
 ---
 
@@ -254,7 +254,7 @@ This epic is considered complete when **all** items below are true:
 
 ---
 
-### [Story E1-S4 — Baseline measurement and closure](../agile/stories/story-E1S4-baseline-measurement-and-closure.md)
+### ✅ [Story E1-S4 — Baseline measurement and closure](../agile/stories/story-E1S4-baseline-measurement-and-closure.md)
 
 **Priority:** P0 | **Depends on:** E1-S2, E1-S3
 
