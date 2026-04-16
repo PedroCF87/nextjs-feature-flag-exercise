@@ -57,6 +57,19 @@ function placeholderRegex() {
   return /\b(TODO|TBD|<placeholder>|\.{3})\b/i;
 }
 
+/**
+ * Strip inline code spans (backtick-delimited) and fenced code blocks before
+ * checking for placeholder patterns. This avoids false positives where `...`
+ * appears inside URLs or code literals (e.g., `compare/exercise-1...exercise-2`).
+ */
+function stripCodeSpans(md) {
+  // Remove fenced code blocks (``` ... ```)
+  let stripped = md.replace(/```[\s\S]*?```/g, '');
+  // Remove inline code spans (` ... `)
+  stripped = stripped.replace(/`[^`\n]+`/g, '');
+  return stripped;
+}
+
 function hasGwt(md) {
   return /Given[\s\S]*When[\s\S]*Then/i.test(md);
 }
@@ -94,7 +107,7 @@ function validateFile(filePath, storyId) {
     }
   }
 
-  if (placeholderRegex().test(md)) {
+  if (placeholderRegex().test(stripCodeSpans(md))) {
     errors.push('Contains placeholders (TODO/TBD/<placeholder>/...)');
   }
 

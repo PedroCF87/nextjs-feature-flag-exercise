@@ -65,7 +65,7 @@ As a repository engineer, I want to push the `exercise-2` branch to origin and c
 ## 4) Architecture and security requirements
 
 - Push only to the personal fork (`origin`), never to `upstream`.
-- The draft PR should target `exercise-1` as the base branch.
+- The draft PR originally targeted `exercise-1`. **Actual:** PR #34 targets `main` — a `main` branch was created at `04ea0ba` with the workflow files to solve GitHub's `pull_request` trigger requirement (base branch must have the workflow files). See §5 for full workaround details.
 - No secrets should appear in commit messages or PR description.
 - Rollback: close the PR and delete the remote branch with `git push origin --delete exercise-2`.
 

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-16 12:23:03 -03",
+  "generated_at": "2026-04-16 14:53:29 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -247,7 +247,7 @@
       "type": "story",
       "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "git-ops"
       ],
@@ -258,7 +258,7 @@
         "E2-S1"
       ],
       "created_at": "2026-04-16 02:31:41 -03",
-      "last_updated": "2026-04-16 12:20:22 -03",
+      "last_updated": "2026-04-16 14:36:24 -03",
       "story_file": "docs/agile/stories/story-E2S2-repository-configuration-workflow-activation.md"
     },
     {
@@ -1506,7 +1506,7 @@
       "type": "task",
       "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "git-ops"
       ],
@@ -1515,7 +1515,7 @@
         "E2-S2-T2"
       ],
       "created_at": "2026-04-16 02:36:01 -03",
-      "last_updated": "2026-04-16 12:20:22 -03",
+      "last_updated": "2026-04-16 12:30:18 -03",
       "task_file": "docs/agile/tasks/task-E2S2T1-create-exercise-2-branch-from-upstream-state.md"
     },
     {
@@ -1523,7 +1523,7 @@
       "type": "task",
       "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "git-ops"
       ],
@@ -1531,10 +1531,11 @@
         "E2-S2-T1"
       ],
       "blocks": [
+        "E2-S2-T3",
         "E2-S2-T6"
       ],
       "created_at": "2026-04-16 02:36:01 -03",
-      "last_updated": "2026-04-16 12:20:22 -03",
+      "last_updated": "2026-04-16 13:14:17 -03",
       "task_file": "docs/agile/tasks/task-E2S2T2-cherry-pick-documentation-and-agile-artifacts.md"
     },
     {
@@ -1542,7 +1543,7 @@
       "type": "task",
       "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "git-ops"
       ],
@@ -1553,7 +1554,7 @@
         "E2-S2-T4"
       ],
       "created_at": "2026-04-16 02:36:01 -03",
-      "last_updated": "2026-04-16 12:20:22 -03",
+      "last_updated": "2026-04-16 13:18:02 -03",
       "task_file": "docs/agile/tasks/task-E2S2T3-remove-exercise-1-automation-workflows.md"
     },
     {
@@ -1561,7 +1562,7 @@
       "type": "task",
       "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "copilot-env-specialist"
       ],
@@ -1573,7 +1574,7 @@
         "E2-S2-T6"
       ],
       "created_at": "2026-04-16 02:36:01 -03",
-      "last_updated": "2026-04-16 12:20:22 -03",
+      "last_updated": "2026-04-16 13:26:08 -03",
       "task_file": "docs/agile/tasks/task-E2S2T4-activate-claude-code-workflows.md"
     },
     {
@@ -1581,7 +1582,7 @@
       "type": "task",
       "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "copilot-env-specialist"
       ],
@@ -1592,7 +1593,7 @@
         "E2-S2-T6"
       ],
       "created_at": "2026-04-16 02:36:01 -03",
-      "last_updated": "2026-04-16 12:20:22 -03",
+      "last_updated": "2026-04-16 13:53:21 -03",
       "task_file": "docs/agile/tasks/task-E2S2T5-install-claude-github-app-and-configure-secret.md"
     },
     {
@@ -1600,7 +1601,7 @@
       "type": "task",
       "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "git-ops"
       ],
@@ -1613,7 +1614,7 @@
         "E2-S2-T7"
       ],
       "created_at": "2026-04-16 02:36:01 -03",
-      "last_updated": "2026-04-16 12:20:22 -03",
+      "last_updated": "2026-04-16 14:32:02 -03",
       "task_file": "docs/agile/tasks/task-E2S2T6-push-and-validate-with-draft-pr.md"
     },
     {
@@ -1621,7 +1622,7 @@
       "type": "task",
       "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
       "priority": "P0",
-      "status": "Draft",
+      "status": "Done",
       "responsible_agent": [
         "environment-validator"
       ],
@@ -1630,7 +1631,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-16 02:36:01 -03",
-      "last_updated": "2026-04-16 12:20:22 -03",
+      "last_updated": "2026-04-16 14:36:24 -03",
       "task_file": "docs/agile/tasks/task-E2S2T7-run-full-validation-suite-on-exercise-2.md"
     },
     {
