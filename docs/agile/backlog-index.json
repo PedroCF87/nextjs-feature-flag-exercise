@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-04-16 02:36:25 -03",
+  "generated_at": "2026-04-16 02:40:57 -03",
   "items": [
     {
       "id": "E0-S1",
@@ -230,8 +230,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
-        "rules-bootstrap"
+        "prompt-engineer"
       ],
       "depends_on": [
         "E2-S2"
@@ -240,7 +239,7 @@
         "E2-S3"
       ],
       "created_at": "2026-04-16 02:31:41 -03",
-      "last_updated": "2026-04-16 02:31:41 -03",
+      "last_updated": "2026-04-16 02:38:40 -03",
       "story_file": "docs/agile/stories/story-E2S1-claude-ai-layer-preparation.md"
     },
     {
@@ -250,8 +249,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "git-ops",
-        "copilot-env-specialist"
+        "git-ops"
       ],
       "depends_on": [
         "E2-S0"
@@ -260,7 +258,7 @@
         "E2-S1"
       ],
       "created_at": "2026-04-16 02:31:41 -03",
-      "last_updated": "2026-04-16 02:31:41 -03",
+      "last_updated": "2026-04-16 02:38:40 -03",
       "story_file": "docs/agile/stories/story-E2S2-repository-configuration-workflow-activation.md"
     },
     {
@@ -318,7 +316,7 @@
       ],
       "blocks": [],
       "created_at": "2026-04-16 02:31:41 -03",
-      "last_updated": "2026-04-16 02:31:41 -03",
+      "last_updated": "2026-04-16 02:38:40 -03",
       "story_file": "docs/agile/stories/story-E2S5-measurement-comparison-closure.md"
     },
     {
@@ -1356,8 +1354,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
-        "rules-bootstrap"
+        "project-adaptation-analyst"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1372,7 +1369,6 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
         "rules-bootstrap"
       ],
       "depends_on": [],
@@ -1388,8 +1384,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
-        "rules-bootstrap"
+        "prompt-engineer"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1404,8 +1399,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
-        "rules-bootstrap"
+        "prompt-engineer"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1420,8 +1414,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
-        "rules-bootstrap"
+        "prompt-engineer"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1436,8 +1429,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
-        "rules-bootstrap"
+        "prompt-engineer"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1452,8 +1444,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
-        "rules-bootstrap"
+        "prompt-engineer"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1468,8 +1459,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "prompt-engineer",
-        "rules-bootstrap"
+        "prompt-engineer"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1484,8 +1474,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "git-ops",
-        "copilot-env-specialist"
+        "git-ops"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1500,8 +1489,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "git-ops",
-        "copilot-env-specialist"
+        "git-ops"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1516,8 +1504,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "git-ops",
-        "copilot-env-specialist"
+        "git-ops"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1532,7 +1519,6 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "git-ops",
         "copilot-env-specialist"
       ],
       "depends_on": [],
@@ -1548,7 +1534,6 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "git-ops",
         "copilot-env-specialist"
       ],
       "depends_on": [],
@@ -1564,8 +1549,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "git-ops",
-        "copilot-env-specialist"
+        "git-ops"
       ],
       "depends_on": [],
       "blocks": [],
@@ -1580,8 +1564,7 @@
       "priority": "P0",
       "status": "Draft",
       "responsible_agent": [
-        "git-ops",
-        "copilot-env-specialist"
+        "environment-validator"
       ],
       "depends_on": [],
       "blocks": [],

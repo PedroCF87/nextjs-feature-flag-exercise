@@ -9,7 +9,7 @@
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `git-ops`, `copilot-env-specialist` |
+| **Responsible agent** | `git-ops` |
 | **Depends on** | — |
 | **Blocks** | — |
 | Created at | 2026-04-16 02:36:01 -03 |

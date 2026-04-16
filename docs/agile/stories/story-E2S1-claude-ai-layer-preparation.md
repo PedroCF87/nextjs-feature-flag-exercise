@@ -8,7 +8,7 @@
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
 | **Status** | Draft |
-| **Responsible agent** | `prompt-engineer`, `rules-bootstrap` |
+| **Responsible agent** | `prompt-engineer` |
 | **Skills** | `create-specialist-agent`, `global-rules-bootstrap`, `analyze-rdh-workflow` |
 | **Instructions** | `copilot-config-governance.instructions.md`, `workshop-resources.instructions.md` |
 | **Depends on** | E2-S2 |
