@@ -42,9 +42,9 @@ Antes de iniciar o Exercício 2, confirme que:
 
 - [x] Epic 1 está **Done** — todos os 11 critérios de aceitação do `TASK.md` foram implementados e validados
 - [x] `epic2-handoff.md` tem declaração `READY` assinada — [`.agents/closure/epic2-handoff.md`](../.agents/closure/epic2-handoff.md)
-- [ ] Conta GitHub com acesso ao fork `PedroCF87/nextjs-feature-flag-exercise`
-- [ ] `ANTHROPIC_API_KEY` disponível (necessário para os workflows Claude)
-- [ ] Ambiente local funcional (`node v22+`, `pnpm 10+`)
+- [x] Conta GitHub com acesso ao fork `PedroCF87/nextjs-feature-flag-exercise`
+- [x] `ANTHROPIC_API_KEY` disponível (variável `ANTHROPIC_API_KEY` no arquivo `.env`)
+- [x] Ambiente local funcional (`node v22+`, `pnpm 10+`)
 - [ ] Leitura completa da metodologia PIV Loop (Seção 5 deste documento)
 
 ---
@@ -301,7 +301,7 @@ Execute cada item na ordem:
 - [ ] **6. Workflows Claude:** copiar `exercise-2-docs/*.yml` para `.github/workflows/`
 - [ ] **7. Commit workflows:** `ci(e2): activate Claude Code workflows for PIV Loop exercise`
 - [ ] **8. GitHub App:** instalar o Claude App no fork via github.com/apps/claude
-- [ ] **9. Secret:** configurar `ANTHROPIC_API_KEY` no GitHub fork
+- [x] **9. Secret:** configurar `ANTHROPIC_API_KEY` no GitHub fork
 - [ ] **10. Push:** `git push origin exercise-2`
 - [ ] **11. Testar workflows:** criar PR draft e verificar que reviews ativam
 - [ ] **12. Plano:** criar `.agents/plans/feature-flag-filtering.plan.md`
