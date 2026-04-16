@@ -95,7 +95,7 @@
 
 ## 4) Tasks
 
-### [Task E2-S2-T1 — Create exercise-2 branch from upstream state](../tasks/task-E2S2T1-create-exercise-2-branch-from-upstream-state.md)
+### ✅ [Task E2-S2-T1 — Create exercise-2 branch from upstream state](../tasks/task-E2S2T1-create-exercise-2-branch-from-upstream-state.md)
 
 **Description:** Create `exercise-2` branch from `f73979ed~1` (parent of first fork commit). This ensures the implementation starts from the original upstream state with zero Exercise 1 implementation code.
 
