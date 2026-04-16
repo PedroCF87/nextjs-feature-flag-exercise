@@ -8,12 +8,12 @@
 | **Story** | [E2-S2 — Repository configuration and workflow activation](../stories/story-E2S2-repository-configuration-workflow-activation.md) |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `git-ops` |
 | **Depends on** | E2-S2-T1 |
 | **Blocks** | E2-S2-T6 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 12:20:22 -03 |
+| Last updated | 2026-04-16 12:35:38 -03 |
 
 ---
 
@@ -81,34 +81,37 @@ As a delivery agent, I want to execute E2-S2-T2 with complete traceability and e
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:**
+  1. `git checkout exercise-2 && git status --short` → clean tree confirmed
+  2. `cp -r "/delfos/Projetos/ITBC - Desafio RDH/docs" ./docs`
+  3. `cp -r "/delfos/Projetos/ITBC - Desafio RDH/manuals" ./manuals`
+  4. `cp -r "/delfos/Projetos/ITBC - Desafio RDH/.github/." ./.github/` (merge into existing .github/)
+  5. `git add docs/ manuals/ .github/ && git commit -m "docs: restore docs, manuals, and .github artifacts from exercise-1 backup [E2-S2-T2]"`
+- **Exit code(s):** All 0
+- **Output summary:** 313 files changed, 56659 insertions(+). Commit `266a8da` on exercise-2.
+- **Files created/updated:** `docs/` (agile, epics, dashboard, manuals, references, images), `manuals/` (4 interview guides + epic2 prep), `.github/` (agents, instructions, skills, functions, hooks, workflows, copilot-instructions.md, copilot-mcp.json)
+- **Risks found / mitigations:** Upstream `claude.yml` in `.github/workflows/` was preserved — the merge copy (`.github/.` → `.github/`) added exercise-1 workflow files alongside it without overwriting. Exercise-1 workflows will be cleaned up in T3.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** backup folders exist at `/delfos/Projetos/ITBC - Desafio RDH/{docs,manuals,.github}` and exercise-2 branch is clean,
+- **When** folders are copied into the repository and committed as `266a8da`,
+- **Then** `docs/`, `manuals/`, and `.github/` are fully populated on exercise-2 with all planning, agile, documentation, and AI Layer artifacts from exercise-1.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** E2-S2-T1 (exercise-2 branch created at 04ea0ba)
+- **Downstream items unblocked:** E2-S2-T3 (workflow cleanup — exercise-1 auto-* workflows now exist on exercise-2 and need removal), E2-S2-T6 (push + draft PR)
+- **Open risks (if any):** The `.github/workflows/` directory now contains 7 workflow files (6 from exercise-1 + upstream claude.yml). T3 must remove the 6 exercise-1 files before pushing.

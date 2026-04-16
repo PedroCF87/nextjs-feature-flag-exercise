@@ -106,7 +106,7 @@
 
 ---
 
-### [Task E2-S2-T2 — Copy documentation, manuals, and AI Layer artifacts](../tasks/task-E2S2T2-cherry-pick-documentation-and-agile-artifacts.md)
+### ✅ [Task E2-S2-T2 — Copy documentation, manuals, and AI Layer artifacts](../tasks/task-E2S2T2-cherry-pick-documentation-and-agile-artifacts.md)
 
 **Description:** Copy pre-saved `docs/`, `manuals/`, and `.github/` folders from the backup location outside the repository into `exercise-2`. Replaces cherry-pick approach. AI Layer artifacts will be reviewed in E2-S1.
 
