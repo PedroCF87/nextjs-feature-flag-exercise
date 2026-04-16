@@ -11,7 +11,7 @@
 - **Execution model:** Hybrid — Phase 1 with Copilot (Claude Opus 4.6 in VS Code), Phase 2 with Claude Code (GitHub workflows + PIV Loop)
 - **Status:** Not started
 - **Created at:** 2026-04-16 00:20:45 -03
-- **Last updated:** 2026-04-16 18:30:00 -03
+- **Last updated:** 2026-04-16 22:15:00 -03
 
 ---
 
@@ -313,18 +313,30 @@ This epic is considered complete when **all** items below are true:
 
 **Priority:** P0 | **Depends on:** EPIC-1 closure
 
-**Description:** generate all detailed story MDs and task files for Epic 2 using the agile automation artifacts from EPIC-0.
+**Description:** generate detailed story MDs for all Epic 2 stories and task files only for Copilot-executed stories, respecting that PIV Loop stories (E2-S3, E2-S4) are driven by the PRD + `/plan` artifact — not by agile task files.
+
+> **PIV Loop alignment:** In the PIV Loop methodology, the _planning_ phase is executed by the `/plan` command, which reads the PRD and generates a structured plan artifact (`.agents/plans/feature-flag-filtering.plan.md`). That plan artifact replaces the role of detailed agile task files for implementation stories. Creating task files for PIV Loop stories would introduce two competing sources of truth and contradict the methodology being validated.
 
 **Execution:**
 1. Invoke `scaffold-stories-from-epic` on this epic to generate detailed story MDs (E2-S1 to E2-S5).
-2. For each generated story, invoke `create-story-task-pack` to generate task files.
-3. Review generated documents with `story-task-reviewer` agent.
-4. Sync backlog index with `sync-backlog-index`.
+2. For **Copilot-executed stories** (E2-S1, E2-S2, E2-S5), invoke `create-story-task-pack` to generate task files.
+3. For **PIV Loop stories** (E2-S3, E2-S4), generate story MDs only — no task files. Their execution is driven by the PRD + plan.md.
+4. Review generated documents with `story-task-reviewer` agent.
+5. Sync backlog index with `sync-backlog-index`.
 
 **Key outputs:**
 - 5 detailed story MDs: `story-E2S1-*.md`, `story-E2S2-*.md`, `story-E2S3-*.md`, `story-E2S4-*.md`, `story-E2S5-*.md`.
-- Task files for all stories in `docs/agile/tasks/`.
+- Task files for Copilot-executed stories (E2-S1, E2-S2, E2-S5) in `docs/agile/tasks/`.
+- **No task files** for PIV Loop stories (E2-S3, E2-S4) — the `/plan` artifact serves as the task management layer.
 - Updated `backlog-index.json`.
+
+| Story | Execution model | Task files? | Task source of truth |
+|---|---|---|---|
+| E2-S1 (AI Layer prep) | Copilot (VS Code) | ✅ Yes | Agile task files |
+| E2-S2 (Repo config) | Copilot + manual | ✅ Yes | Agile task files |
+| E2-S3 (Server filtering) | Claude Code (PIV Loop) | ❌ No | PRD + plan.md |
+| E2-S4 (Client filtering) | Claude Code (PIV Loop) | ❌ No | PRD + plan.md |
+| E2-S5 (Measurement/closure) | Copilot (VS Code) | ✅ Yes | Agile task files |
 
 ---
 
@@ -405,7 +417,9 @@ This epic is considered complete when **all** items below are true:
 
 **Description:** as a software engineer using the PIV Loop, I want the server-side filtering pipeline re-implemented so that the API supports filtering by environment, status, type, owner, and name — with per-task build validation ensuring zero broken state accumulation.
 
-**Key tasks:**
+> **PIV Loop execution note:** The "Key tasks" below outline the expected implementation flow for **tracking and checkpoint purposes only**. No separate agile task files are generated for this story. The actual task breakdown, ordering, and dependencies are managed by the `/plan` command, which generates `.agents/plans/feature-flag-filtering.plan.md` from the PRD. The **plan.md artifact is the single source of truth** for implementation task management during the PIV Loop.
+
+**Key tasks (guidance — actual execution driven by plan.md):**
 1. Execute `/plan` from the PRD — generate `.agents/plans/feature-flag-filtering.plan.md`. The plan leverages all **4 Context Engineering pillars** (Excal-3): RAG (references on-demand context docs), Memory (builds on CLAUDE.md), Task Management (ordered tasks with validation checkpoints), Prompt Engineering (clear I→P→O for each task). Follows the **Vibe Planning Meta-Loop** (Excal-6): Human provides direction (“implement filtering per TASK.md”) → AI finds docs & sources (PRD, on-demand context, CLAUDE.md) → AI structures into steps (task list with validation gates) → Result is the plan artifact ready for `/implement`.
 2. Extend `shared/types.ts` with `FlagFilterParams` type → `pnpm run build` (server + client).
 3. Add Zod filter query schema to `server/src/middleware/validation.ts` → `pnpm run build` (server).
@@ -426,7 +440,9 @@ This epic is considered complete when **all** items below are true:
 
 **Description:** as a software engineer using the PIV Loop, I want the client-side filtering UI re-implemented so that users can visually filter flags by all criteria — with per-task build validation after each UI change.
 
-**Key tasks:**
+> **PIV Loop execution note:** The "Key tasks" below outline the expected implementation flow for **tracking and checkpoint purposes only**. No separate agile task files are generated for this story. This story is a continuation of the `/implement` execution started in E2-S3, working from the same plan.md artifact.
+
+**Key tasks (guidance — actual execution driven by plan.md):**
 1. Update `client/src/api/flags.ts` to serialize filter params → `pnpm run build` (client).
 2. Add filter state management in `client/src/App.tsx` → `pnpm run build` (client).
 3. Create/update filter controls component (`flags-filter-controls.tsx`) → `pnpm run build` (client).
