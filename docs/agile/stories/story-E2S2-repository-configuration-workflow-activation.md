@@ -128,7 +128,7 @@
 
 ---
 
-### [Task E2-S2-T4 — Activate Claude Code workflows](../tasks/task-E2S2T4-activate-claude-code-workflows.md)
+### ✅ [Task E2-S2-T4 — Activate Claude Code workflows](../tasks/task-E2S2T4-activate-claude-code-workflows.md)
 
 **Description:** Add `pr-review.yml` and `security-review.yml` to `.github/workflows/` by extracting them from `exercise-1` branch (`exercise-2-docs/` directory). `claude.yml` already exists at upstream.
 

@@ -8,12 +8,12 @@
 | **Story** | [E2-S2 — Repository configuration and workflow activation](../stories/story-E2S2-repository-configuration-workflow-activation.md) |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `copilot-env-specialist` |
 | **Depends on** | E2-S2-T3 |
 | **Blocks** | E2-S2-T5, E2-S2-T6 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 12:20:22 -03 |
+| Last updated | 2026-04-16 13:26:08 -03 |
 
 ---
 
@@ -72,32 +72,43 @@ git show exercise-1:exercise-2-docs/security-review.yml > .github/workflows/secu
 
 Record evidence with exact commands and outputs:
 
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:**
+  1. `ls .github/workflows/` → `claude.yml` only (precondition confirmed)
+  2. `git show exercise-1:exercise-2-docs/pr-review.yml > .github/workflows/pr-review.yml`
+  3. `git show exercise-1:exercise-2-docs/security-review.yml > .github/workflows/security-review.yml`
+  4. `ls -la .github/workflows/` → 3 files: `claude.yml` (1537B), `pr-review.yml` (1109B), `security-review.yml` (528B)
+  5. YAML validation via `python3 -c "import yaml; yaml.safe_load(...)"` → all 3 valid
+  6. Secret reference check: all 3 use `${{ secrets.ANTHROPIC_API_KEY }}`, zero hardcoded keys
+  7. `git add .github/workflows/pr-review.yml .github/workflows/security-review.yml && git commit -m "ci: activate Claude Code PR review and security review workflows [E2-S2-T4]"`
+- **Exit code(s):** All 0
+- **Output summary:**
+  - Commit `d5ad823`: 2 files changed, 59 insertions(+)
+  - `pr-review.yml` triggers on `pull_request` events (opened, synchronize, reopened)
+  - `security-review.yml` triggers on `pull_request` events for security-focused review
+  - All 3 workflows reference `${{ secrets.ANTHROPIC_API_KEY }}` — no hardcoded secrets
+- **Files created/updated:** `.github/workflows/pr-review.yml`, `.github/workflows/security-review.yml` (created); `claude.yml` untouched
+- **Risks found / mitigations:** None — YAML valid, secrets properly referenced, source branch (`exercise-1`) trusted
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** `exercise-2` has only `claude.yml` in `.github/workflows/` (T3 cleanup done) and `exercise-1` branch contains source files in `exercise-2-docs/`,
+- **When** `pr-review.yml` and `security-review.yml` are extracted via `git show` and committed as `d5ad823`,
+- **Then** `.github/workflows/` contains exactly 3 valid YAML files (`claude.yml`, `pr-review.yml`, `security-review.yml`), all referencing secrets properly.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** E2-S2-T3 (Exercise 1 workflows removed, only `claude.yml` remained)
+- **Downstream items unblocked:** E2-S2-T5 (install Claude GitHub App + configure `ANTHROPIC_API_KEY` secret), E2-S2-T6 (push + draft PR to trigger workflows)
+- **Open risks (if any):** Workflows will not trigger until T5 configures the secret and T6 pushes the branch + opens a PR
