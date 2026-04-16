@@ -8,12 +8,12 @@
 | **Story** | [E2-S5 — Measurement, comparison, and closure](../stories/story-E2S5-measurement-comparison-closure.md) |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | — |
 | **Blocks** | — |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 17:08:08 -03 |
 
 ---
 
@@ -56,34 +56,32 @@ As a delivery agent, I want to execute E2-S5-T2 with complete traceability and e
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:** File comparison — verified format matches Exercise 1 baseline structure.
+- **Exit code(s):** N/A (documentation task).
+- **Output summary:** Metrics document contains all 6 required sections: Metadata, Pre-Implementation State, Time Capture, Prompt Count Tally, Rework Log, and Confidence Self-Assessment.
+- **Files created/updated:** `.agents/baseline/measurement-exercise2.md` — complete metrics document.
+- **Risks found / mitigations:** None.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** raw metrics were recorded during implementation (git commit timestamps, session prompts, rework incidents, confidence scores),
+- **When** the metrics document `.agents/baseline/measurement-exercise2.md` is finalized,
+- **Then** it contains: total time (284 min active), prep/implementation breakdown (183 min prep + 101 min impl), prompt count (34), rework cycles (1), and confidence self-assessment (4→5→5).
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- Upstream dependencies resolved: E2-S5-T1 (validation suite pass) confirms all criteria met.
+- Downstream items unblocked: E2-S5-T3 (comparative analysis) — now has both Exercise 1 and Exercise 2 metrics to compare.
+- Open risks (if any): None.

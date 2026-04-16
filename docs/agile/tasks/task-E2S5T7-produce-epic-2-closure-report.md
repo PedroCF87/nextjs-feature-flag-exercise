@@ -8,12 +8,12 @@
 | **Story** | [E2-S5 — Measurement, comparison, and closure](../stories/story-E2S5-measurement-comparison-closure.md) |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | — |
 | **Blocks** | — |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 17:25:02 -03 |
 
 ---
 
@@ -56,34 +56,36 @@ As a delivery agent, I want to execute E2-S5-T7 with complete traceability and e
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:**
+  - `gh pr view 35 --repo PedroCF87/nextjs-feature-flag-exercise --json ...` — confirmed PR state, reviews, comments.
+  - `gh run list --repo PedroCF87/nextjs-feature-flag-exercise --branch exercise-2` — confirmed workflow runs.
+  - `ls .claude/commands/ .claude/skills/ .agents/reference/ .agents/PRDs/ .agents/plans/` — confirmed AI Layer artifacts.
+  - `git log --oneline exercise-2` — confirmed commit history.
+- **Exit code(s):** All commands exited 0.
+- **Output summary:** 28-item DoD checklist produced. 27/28 confirmed ✅. Item 27 (EPIC-3 handoff) is ⚠️ pending — addressed by T8. 5-section closure report follows E1 format with Phase 1–4 DoD evidence, residual risks, friction summary, decisions record, and preparation time breakdown.
+- **Files created/updated:** `.agents/closure/epic2-closure-report.md` (created).
+- **Risks found / mitigations:** Item 27 (handoff) not yet produced — will be completed in T8. No other risks.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** all EPIC-2 DoD items are verified (T1 validation report, T2 metrics, T3 comparative analysis, T4 friction log, T5 retrospective, T6 PR evidence),
+- **When** the closure report is written with evidence links for each DoD item,
+- **Then** it follows the 5-section template; 27/28 DoD items have evidence links (item 27 pending T8); the report is complete and auditable.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** T1–T6 deliverables provide all evidence for the 28-item DoD checklist.
+- **Downstream items unblocked:** T8 (EPIC-3 handoff) — final task in E2-S5.
+- **Open risks (if any):** DoD item 27 (handoff) marked ⚠️ — will be resolved by T8 completion.

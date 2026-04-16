@@ -7,14 +7,14 @@
 | **ID** | E2-S5 |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Skills** | `produce-epic-closure-report`, `produce-epic-handoff`, `record-friction-point` |
 | **Instructions** | `documentation.instructions.md`, `measurement-baseline.instructions.md` |
 | **Depends on** | E2-S3, E2-S4 |
 | **Blocks** | — |
 | Created at | 2026-04-16 02:31:41 -03 |
-| Last updated | 2026-04-16 02:38:40 -03 |
+| Last updated | 2026-04-16 17:28:51 -03 |
 
 ---
 
@@ -101,7 +101,7 @@
 
 ## 4) Tasks
 
-### [Task E2-S5-T1 — Run full validation suite and verify all 11 criteria](../tasks/task-E2S5T1-run-full-validation-suite-and-verify-all-11-criteria.md)
+### ✅ [Task E2-S5-T1 — Run full validation suite and verify all 11 criteria](../tasks/task-E2S5T1-run-full-validation-suite-and-verify-all-11-criteria.md)
 
 **Description:** Execute the full validation suite on both server and client. Verify each of the 11 TASK.md acceptance criteria is met.
 
@@ -112,7 +112,7 @@
 
 ---
 
-### [Task E2-S5-T2 — Complete metrics document](../tasks/task-E2S5T2-complete-metrics-document.md)
+### ✅ [Task E2-S5-T2 — Complete metrics document](../tasks/task-E2S5T2-complete-metrics-document.md)
 
 **Description:** Finalize `.agents/baseline/measurement-exercise2.md` with all data collected during the PIV Loop implementation. Break out prep time (E2-S1 + E2-S2) vs implementation time (E2-S3 + E2-S4).
 
@@ -123,7 +123,7 @@
 
 ---
 
-### [Task E2-S5-T3 — Produce comparative analysis document](../tasks/task-E2S5T3-produce-comparative-analysis-document.md)
+### ✅ [Task E2-S5-T3 — Produce comparative analysis document](../tasks/task-E2S5T3-produce-comparative-analysis-document.md)
 
 **Description:** Create a delta document comparing Exercise 1 (Baseline: 212 min, 25 prompts, 3 rework cycles, confidence 3→4→5) with Exercise 2 metrics. Include prep overhead as a separate line item.
 
@@ -134,7 +134,7 @@
 
 ---
 
-### [Task E2-S5-T4 — Write friction log with System Evolution entries](../tasks/task-E2S5T4-write-friction-log-with-system-evolution-entries.md)
+### ✅ [Task E2-S5-T4 — Write friction log with System Evolution entries](../tasks/task-E2S5T4-write-friction-log-with-system-evolution-entries.md)
 
 **Description:** Consolidate all friction points and `[SYSTEM-EVOLUTION]` entries recorded during the PIV Loop into a final friction log document.
 
@@ -145,7 +145,7 @@
 
 ---
 
-### [Task E2-S5-T5 — System Evolution retrospective](../tasks/task-E2S5T5-system-evolution-retrospective.md)
+### ✅ [Task E2-S5-T5 — System Evolution retrospective](../tasks/task-E2S5T5-system-evolution-retrospective.md)
 
 **Description:** Review all `[SYSTEM-EVOLUTION]` entries. Classify each as Pattern A (Preventable) or Pattern B (Emergent). Audit the "3+ times = command" heuristic. Document root causes.
 
@@ -156,7 +156,7 @@
 
 ---
 
-### [Task E2-S5-T6 — Create PR and verify automated reviews](../tasks/task-E2S5T6-create-pr-and-verify-automated-reviews.md)
+### ✅ [Task E2-S5-T6 — Create PR and verify automated reviews](../tasks/task-E2S5T6-create-pr-and-verify-automated-reviews.md)
 
 **Description:** Create a PR from `exercise-2` and confirm that `pr-review.yml` and `security-review.yml` produce review comments.
 
@@ -167,7 +167,7 @@
 
 ---
 
-### [Task E2-S5-T7 — Produce EPIC-2 closure report](../tasks/task-E2S5T7-produce-epic-2-closure-report.md)
+### ✅ [Task E2-S5-T7 — Produce EPIC-2 closure report](../tasks/task-E2S5T7-produce-epic-2-closure-report.md)
 
 **Description:** Write the EPIC-2 closure report using the standard 5-section template. Include evidence links for all DoD items.
 
@@ -178,7 +178,7 @@
 
 ---
 
-### [Task E2-S5-T8 — Produce EPIC-3 handoff document](../tasks/task-E2S5T8-produce-epic-3-handoff-document.md)
+### ✅ [Task E2-S5-T8 — Produce EPIC-3 handoff document](../tasks/task-E2S5T8-produce-epic-3-handoff-document.md)
 
 **Description:** Write the EPIC-3 handoff document capturing branch state, AI Layer coverage, first story link, top 3 risks, and READY declaration.
 

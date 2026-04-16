@@ -8,12 +8,12 @@
 | **Story** | [E2-S5 — Measurement, comparison, and closure](../stories/story-E2S5-measurement-comparison-closure.md) |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | — |
 | **Blocks** | — |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 17:15:43 -03 |
 
 ---
 
@@ -56,34 +56,32 @@ As a delivery agent, I want to execute E2-S5-T4 with complete traceability and e
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:** N/A (documentation task).
+- **Exit code(s):** N/A.
+- **Output summary:** Friction log contains 5 entries (0 high, 2 medium, 3 low) with timestamps, descriptions, impact classifications, and resolutions. Two `[SYSTEM-EVOLUTION]` entries are documented with Pattern A/B classification, root cause, and system improvement action.
+- **Files created/updated:** `.agents/baseline/epic2-friction-log.md`.
+- **Risks found / mitigations:** None.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** friction points were recorded during Phases 1–3 (E2-S1 through E2-S4),
+- **When** the friction log is finalized,
+- **Then** each entry has: timestamp, description, impact classification, resolution; both `[SYSTEM-EVOLUTION]` entries (SE-1: Radix Pattern B, SE-2: Review Pattern A) are present with detailed analysis.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- Upstream dependencies resolved: Friction points collected during E2-S1 through E2-S4 implementation sessions.
+- Downstream items unblocked: E2-S5-T5 (System Evolution retrospective) — uses the `[SYSTEM-EVOLUTION]` entries from this log.
+- Open risks (if any): None.

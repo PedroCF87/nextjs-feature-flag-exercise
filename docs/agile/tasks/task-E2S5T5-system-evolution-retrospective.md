@@ -8,12 +8,12 @@
 | **Story** | [E2-S5 — Measurement, comparison, and closure](../stories/story-E2S5-measurement-comparison-closure.md) |
 | **Epic** | [Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop](../../epics/Epic%202%20%E2%80%94%20Preparation%20Guide%20(PIV%20Loop%20-%20AI-Assisted%20Run).md) |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Responsible agent** | `agile-exercise-planner` |
 | **Depends on** | — |
 | **Blocks** | — |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 17:19:36 -03 |
 
 ---
 
@@ -56,34 +56,32 @@ As a delivery agent, I want to execute E2-S5-T5 with complete traceability and e
 
 ## 5) Validation evidence
 
-Record evidence with exact commands and outputs:
-
-- Command(s) executed:
-- Exit code(s):
-- Output summary:
-- Files created/updated:
-- Risks found / mitigations:
+- **Command(s) executed:** Manual review of `.agents/baseline/epic2-friction-log.md`; extracted 2 `[SYSTEM-EVOLUTION]` entries (SE-1, SE-2).
+- **Exit code(s):** N/A (documentation task).
+- **Output summary:** Retrospective classifies SE-1 as Pattern B (Emergent) and SE-2 as Pattern A (Preventable). "3+ times = command" audit found no missed extraction opportunities — `/validate` and `/implement` cover recurring implementation workflows. 3 recommendations produced for Epic 3.
+- **Files created/updated:** `.agents/closure/e2-system-evolution-retrospective.md` (created).
+- **Risks found / mitigations:** None — retrospective is a read-only analysis artifact.
 
 ### Given / When / Then checks
 
-- **Given** all task dependencies are available and validated,
-- **When** this task execution plan is completed and evidence is collected,
-- **Then** the task outcome is reproducible, secure, and auditable by another agent.
+- **Given** the friction log (`.agents/baseline/epic2-friction-log.md`) is complete with 2 SE entries,
+- **When** the retrospective is performed reviewing all SE entries and the "3+ times" heuristic,
+- **Then** each SE entry is classified (SE-1 = Pattern B, SE-2 = Pattern A), the "3+ times" audit identifies zero missed extraction opportunities, decision rules are applied per-pattern, and 3 actionable recommendations are documented for Epic 3.
 
 ---
 
 ## 6) Definition of Done
 
-- [ ] Expected outcome is objectively verifiable.
-- [ ] Dependencies are explicit and valid.
-- [ ] Security and architecture checks were performed.
-- [ ] Validation evidence is attached.
-- [ ] Parent story acceptance criteria impact is documented.
+- [x] Expected outcome is objectively verifiable.
+- [x] Dependencies are explicit and valid.
+- [x] Security and architecture checks were performed.
+- [x] Validation evidence is attached.
+- [x] Parent story acceptance criteria impact is documented.
 
 ---
 
 ## 7) Notes for handoff
 
-- Upstream dependencies resolved:
-- Downstream items unblocked:
-- Open risks (if any):
+- **Upstream dependencies resolved:** Friction log (T4) provided complete SE entries for analysis.
+- **Downstream items unblocked:** T6 (PR creation), T7 (closure report), T8 (handoff) — all can proceed.
+- **Open risks (if any):** None. Recommendations R1–R3 are optional improvements for Epic 3, not blockers.
