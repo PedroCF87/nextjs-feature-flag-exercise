@@ -10,10 +10,10 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `copilot-env-specialist` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S2-T3 |
+| **Blocks** | E2-S2-T5, E2-S2-T6 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 12:20:22 -03 |
 
 ---
 
@@ -33,12 +33,29 @@ As a delivery agent, I want to execute E2-S2-T4 with complete traceability and e
 
 ## 3) Detailed execution plan
 
-**Description:** Move `claude.yml`, `pr-review.yml`, `security-review.yml` from `exercise-2-docs/` to `.github/workflows/`.
+**Description:** Add the 2 missing Claude Code workflow files (`pr-review.yml`, `security-review.yml`) to `.github/workflows/` on `exercise-2`. The `claude.yml` file already exists at the upstream base commit and does not need to be copied.
+
+**Source:** Extract files from `exercise-1` branch using `git show`:
+```bash
+git show exercise-1:exercise-2-docs/pr-review.yml > .github/workflows/pr-review.yml
+git show exercise-1:exercise-2-docs/security-review.yml > .github/workflows/security-review.yml
+```
+
+**Execution steps:**
+1. Ensure `exercise-2` branch is checked out.
+2. Verify `claude.yml` already exists: `ls .github/workflows/claude.yml`.
+3. Extract the 2 workflow files from `exercise-1` branch (commands above).
+4. Validate YAML syntax: `python3 -c "import yaml; yaml.safe_load(open('.github/workflows/pr-review.yml'))"` (repeat for security-review.yml), or use `yq` if available.
+5. Stage and commit:
+   ```bash
+   git add .github/workflows/pr-review.yml .github/workflows/security-review.yml
+   git commit -m "ci: activate Claude Code PR review and security review workflows [E2-S2-T4]"
+   ```
 
 **Acceptance criteria:**
-- **Given** the workflow source files exist in `exercise-2-docs/`
-- **When** they are moved to `.github/workflows/`
-- **Then** all 3 files are in `.github/workflows/`; YAML syntax is valid
+- **Given** `exercise-1` branch contains the workflow source files in `exercise-2-docs/`
+- **When** `pr-review.yml` and `security-review.yml` are extracted and placed in `.github/workflows/`
+- **Then** `.github/workflows/` contains `claude.yml` (from upstream), `pr-review.yml`, and `security-review.yml`; all 3 have valid YAML syntax
 
 ---
 

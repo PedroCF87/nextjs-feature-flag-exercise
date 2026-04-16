@@ -14,7 +14,7 @@
 | **Depends on** | E2-S0 |
 | **Blocks** | E2-S1 |
 | Created at | 2026-04-16 02:31:41 -03 |
-| Last updated | 2026-04-16 02:38:40 -03 |
+| Last updated | 2026-04-16 12:20:22 -03 |
 
 ---
 
@@ -31,9 +31,9 @@
 ### In scope
 
 1. Create `exercise-2` branch from `f73979ed~1` (parent of first fork commit — upstream original state).
-2. Cherry-pick documentation/agile/AI Layer artifacts from `exercise-1`.
-3. Remove Exercise 1 automation workflows (5 files: `auto-copilot-fix.yml`, `auto-merge-on-clean-review.yml`, `auto-ready-for-review.yml`, `auto-validate-copilot-fix.yml`, `copilot-push-signal.yml`).
-4. Move Claude Code workflows from `exercise-2-docs/` to `.github/workflows/` (3 files: `claude.yml`, `pr-review.yml`, `security-review.yml`).
+2. Copy `docs/`, `manuals/`, and `.github/` folders from a pre-saved backup of `exercise-1` into `exercise-2` (replaces cherry-pick approach to avoid artifact loss).
+3. Clean up Exercise 1 automation workflows brought by the `.github/` copy (6 files: `auto-copilot-fix.yml`, `auto-merge-on-clean-review.yml`, `auto-ready-for-review.yml`, `auto-validate-copilot-fix.yml`, `copilot-push-signal.yml`, `copilot-setup-steps.yml`).
+4. Add `pr-review.yml` and `security-review.yml` Claude Code workflows from `exercise-1` branch (`exercise-2-docs/` directory); `claude.yml` already exists at upstream.
 5. Install the Claude GitHub App on the fork.
 6. Configure `ANTHROPIC_API_KEY` secret in the GitHub fork.
 7. Push `exercise-2` and create a draft PR to validate workflows trigger correctly.
@@ -55,23 +55,23 @@
 - **When** `exercise-2` branch is created
 - **Then** it starts from the parent commit of the first fork commit (no Exercise 1 implementation code); server tests show 16 tests (CRUD only, no filtering tests)
 
-### AC-2 — Documentation artifacts cherry-picked
+### AC-2 — Documentation and AI Layer artifacts restored
 
-- **Given** `exercise-1` contains documentation/agile/AI Layer artifacts
-- **When** relevant commits are cherry-picked to `exercise-2`
-- **Then** `docs/`, `.agents/`, and `.github/` directories contain the planning and AI Layer infrastructure (not implementation code)
+- **Given** `exercise-1` artifacts have been saved to a backup location outside the repository
+- **When** the `docs/`, `manuals/`, and `.github/` folders are copied into `exercise-2`
+- **Then** `docs/`, `manuals/`, and `.github/` directories contain planning, agile, documentation, and AI Layer infrastructure artifacts (not implementation code); AI Layer review is deferred to E2-S1
 
-### AC-3 — Exercise 1 automation workflows removed
+### AC-3 — Exercise 1 automation workflows cleaned up
 
-- **Given** Exercise 2 uses Claude Code instead of Copilot-driven automation
-- **When** the workflow directory is updated
-- **Then** `auto-copilot-fix.yml`, `auto-merge-on-clean-review.yml`, `auto-ready-for-review.yml`, `auto-validate-copilot-fix.yml`, and `copilot-push-signal.yml` are absent from `.github/workflows/` on `exercise-2`
+- **Given** the `.github/` copy from `exercise-1` includes Exercise 1 automation workflows
+- **When** the cleanup is performed
+- **Then** `auto-copilot-fix.yml`, `auto-merge-on-clean-review.yml`, `auto-ready-for-review.yml`, `auto-validate-copilot-fix.yml`, `copilot-push-signal.yml`, and `copilot-setup-steps.yml` are absent from `.github/workflows/` on `exercise-2`; only `claude.yml` remains
 
 ### AC-4 — Claude Code workflows activated
 
-- **Given** Claude Code workflows exist in `exercise-2-docs/`
-- **When** they are moved to `.github/workflows/`
-- **Then** `claude.yml`, `pr-review.yml`, and `security-review.yml` are present and active in `.github/workflows/` on `exercise-2`
+- **Given** `claude.yml` already exists at upstream and `pr-review.yml` / `security-review.yml` exist on `exercise-1` branch in `exercise-2-docs/`
+- **When** the 2 missing workflow files are extracted and placed in `.github/workflows/`
+- **Then** `claude.yml`, `pr-review.yml`, and `security-review.yml` are all present and active in `.github/workflows/` on `exercise-2`
 
 ### AC-5 — Claude GitHub App installed and secret configured
 
@@ -106,36 +106,36 @@
 
 ---
 
-### [Task E2-S2-T2 — Cherry-pick documentation and agile artifacts](../tasks/task-E2S2T2-cherry-pick-documentation-and-agile-artifacts.md)
+### [Task E2-S2-T2 — Copy documentation, manuals, and AI Layer artifacts](../tasks/task-E2S2T2-cherry-pick-documentation-and-agile-artifacts.md)
 
-**Description:** Identify and cherry-pick commits from `exercise-1` that contain documentation, agile planning, and AI Layer infrastructure artifacts — excluding any implementation code.
+**Description:** Copy pre-saved `docs/`, `manuals/`, and `.github/` folders from the backup location outside the repository into `exercise-2`. Replaces cherry-pick approach. AI Layer artifacts will be reviewed in E2-S1.
 
 **Acceptance criteria:**
-- **Given** `exercise-1` has documentation commits
-- **When** the relevant commits are cherry-picked
-- **Then** `docs/`, `.agents/`, `.github/instructions/`, `.github/skills/`, `.github/agents/` directories are populated with planning artifacts on `exercise-2`
+- **Given** the backup folders exist at the specified paths
+- **When** the folders are copied into the `exercise-2` branch and committed
+- **Then** `docs/`, `manuals/`, and `.github/` directories are fully populated with planning, agile, documentation, and AI Layer artifacts from `exercise-1`
 
 ---
 
-### [Task E2-S2-T3 — Remove Exercise 1 automation workflows](../tasks/task-E2S2T3-remove-exercise-1-automation-workflows.md)
+### [Task E2-S2-T3 — Clean up Exercise 1 automation workflows](../tasks/task-E2S2T3-remove-exercise-1-automation-workflows.md)
 
-**Description:** Remove the 5 Exercise 1 automation workflow files from `.github/workflows/` on `exercise-2`.
+**Description:** Remove the 6 Exercise 1 automation workflow files from `.github/workflows/` that were brought in by the T2 copy. Keep only `claude.yml` (from upstream).
 
 **Acceptance criteria:**
-- **Given** the cherry-pick may have brought Exercise 1 workflows
-- **When** the cleanup is done
-- **Then** `auto-copilot-fix.yml`, `auto-merge-on-clean-review.yml`, `auto-ready-for-review.yml`, `auto-validate-copilot-fix.yml`, `copilot-push-signal.yml` are gone; `copilot-setup-steps.yml` remains
+- **Given** T2 copied `.github/` from exercise-1 backup
+- **When** the cleanup is performed
+- **Then** only `claude.yml` remains in `.github/workflows/`; all 6 Exercise 1 automation files are absent
 
 ---
 
 ### [Task E2-S2-T4 — Activate Claude Code workflows](../tasks/task-E2S2T4-activate-claude-code-workflows.md)
 
-**Description:** Move `claude.yml`, `pr-review.yml`, `security-review.yml` from `exercise-2-docs/` to `.github/workflows/`.
+**Description:** Add `pr-review.yml` and `security-review.yml` to `.github/workflows/` by extracting them from `exercise-1` branch (`exercise-2-docs/` directory). `claude.yml` already exists at upstream.
 
 **Acceptance criteria:**
-- **Given** the workflow source files exist in `exercise-2-docs/`
-- **When** they are moved to `.github/workflows/`
-- **Then** all 3 files are in `.github/workflows/`; YAML syntax is valid
+- **Given** `exercise-1` branch contains the workflow source files in `exercise-2-docs/`
+- **When** the 2 files are extracted and placed in `.github/workflows/`
+- **Then** `.github/workflows/` contains all 3 Claude workflows; YAML syntax is valid
 
 ---
 

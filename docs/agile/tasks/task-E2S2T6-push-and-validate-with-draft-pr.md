@@ -10,10 +10,10 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `git-ops` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S2-T2, E2-S2-T4, E2-S2-T5 |
+| **Blocks** | E2-S2-T7 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 12:20:22 -03 |
 
 ---
 

@@ -1,4 +1,4 @@
-# Task E2-S2-T2 — Cherry-pick documentation and agile artifacts
+# Task E2-S2-T2 — Copy documentation and agile artifacts to exercise-2
 
 ## Metadata
 
@@ -10,10 +10,10 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `git-ops` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S2-T1 |
+| **Blocks** | E2-S2-T6 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 12:20:22 -03 |
 
 ---
 
@@ -33,12 +33,37 @@ As a delivery agent, I want to execute E2-S2-T2 with complete traceability and e
 
 ## 3) Detailed execution plan
 
-**Description:** Identify and cherry-pick commits from `exercise-1` that contain documentation, agile planning, and AI Layer infrastructure artifacts — excluding any implementation code.
+**Description:** Copy pre-saved `docs/`, `manuals/`, and `.github/` folders from the backup location outside the repository into the `exercise-2` branch. This replaces the original cherry-pick approach to avoid losing documents that exist on `exercise-1` but might not survive selective cherry-picks. The `.github/` artifacts will be reviewed on the `exercise-2` branch to decide which to keep or adjust.
+
+**Backup source paths (already saved by the user):**
+- `/delfos/Projetos/ITBC - Desafio RDH/docs`
+- `/delfos/Projetos/ITBC - Desafio RDH/manuals`
+- `/delfos/Projetos/ITBC - Desafio RDH/.github`
+
+**Execution steps:**
+1. Ensure `exercise-2` branch is checked out and clean (`git status`).
+2. Copy the backup folders into the repository root:
+   ```bash
+   cp -r "/delfos/Projetos/ITBC - Desafio RDH/docs" ./docs
+   cp -r "/delfos/Projetos/ITBC - Desafio RDH/manuals" ./manuals
+   cp -r "/delfos/Projetos/ITBC - Desafio RDH/.github" ./.github
+   ```
+3. Stage and verify the copied content:
+   ```bash
+   git add docs/ manuals/ .github/
+   git status
+   ```
+4. Commit with traceability:
+   ```bash
+   git commit -m "docs: restore docs, manuals, and .github artifacts from exercise-1 backup [E2-S2-T2]"
+   ```
+
+**Note:** The `.github/` copy will bring AI Layer artifacts (instructions, skills, agents, copilot-instructions.md) and workflows from exercise-1. Workflow cleanup happens in T3; AI Layer review is deferred to E2-S1.
 
 **Acceptance criteria:**
-- **Given** `exercise-1` has documentation commits
-- **When** the relevant commits are cherry-picked
-- **Then** `docs/`, `.agents/`, `.github/instructions/`, `.github/skills/`, `.github/agents/` directories are populated with planning artifacts on `exercise-2`
+- **Given** the backup folders exist at the specified paths outside the repository
+- **When** the folders are copied into the `exercise-2` branch and committed
+- **Then** `docs/`, `manuals/`, and `.github/` directories are fully populated on `exercise-2` with planning, agile, documentation, and AI Layer artifacts from `exercise-1`
 
 ---
 

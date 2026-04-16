@@ -1,4 +1,4 @@
-# Task E2-S2-T3 — Remove Exercise 1 automation workflows
+# Task E2-S2-T3 — Clean up Exercise 1 automation workflows
 
 ## Metadata
 
@@ -10,10 +10,10 @@
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Responsible agent** | `git-ops` |
-| **Depends on** | — |
-| **Blocks** | — |
+| **Depends on** | E2-S2-T2 |
+| **Blocks** | E2-S2-T4 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 12:20:22 -03 |
 
 ---
 
@@ -33,12 +33,34 @@ As a delivery agent, I want to execute E2-S2-T3 with complete traceability and e
 
 ## 3) Detailed execution plan
 
-**Description:** Remove the 5 Exercise 1 automation workflow files from `.github/workflows/` on `exercise-2`.
+**Description:** After T2 copies `.github/` from the exercise-1 backup, the workflows directory will contain Exercise 1 automation files that are not needed for Exercise 2. Remove them and keep only `claude.yml` (which came from upstream).
+
+**Files to remove (if present):**
+- `.github/workflows/auto-copilot-fix.yml`
+- `.github/workflows/auto-merge-on-clean-review.yml`
+- `.github/workflows/auto-ready-for-review.yml`
+- `.github/workflows/auto-validate-copilot-fix.yml`
+- `.github/workflows/copilot-push-signal.yml`
+- `.github/workflows/copilot-setup-steps.yml`
+
+**Execution steps:**
+1. List current workflows: `ls .github/workflows/`
+2. Remove Exercise 1 files (skip any that don't exist):
+   ```bash
+   cd .github/workflows/
+   rm -f auto-copilot-fix.yml auto-merge-on-clean-review.yml auto-ready-for-review.yml auto-validate-copilot-fix.yml copilot-push-signal.yml copilot-setup-steps.yml
+   ```
+3. Verify only `claude.yml` remains: `ls .github/workflows/`
+4. Stage and commit:
+   ```bash
+   git add -A .github/workflows/
+   git commit -m "ci: remove Exercise 1 automation workflows from exercise-2 [E2-S2-T3]"
+   ```
 
 **Acceptance criteria:**
-- **Given** the cherry-pick may have brought Exercise 1 workflows
-- **When** the cleanup is done
-- **Then** `auto-copilot-fix.yml`, `auto-merge-on-clean-review.yml`, `auto-ready-for-review.yml`, `auto-validate-copilot-fix.yml`, `copilot-push-signal.yml` are gone; `copilot-setup-steps.yml` remains
+- **Given** T2 has copied `.github/` from the exercise-1 backup
+- **When** the cleanup is performed
+- **Then** only `claude.yml` remains in `.github/workflows/`; all 6 Exercise 1 automation files are absent
 
 ---
 

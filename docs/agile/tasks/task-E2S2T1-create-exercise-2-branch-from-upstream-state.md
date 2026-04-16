@@ -11,9 +11,9 @@
 | **Status** | Draft |
 | **Responsible agent** | `git-ops` |
 | **Depends on** | — |
-| **Blocks** | — |
+| **Blocks** | E2-S2-T2 |
 | Created at | 2026-04-16 02:36:01 -03 |
-| Last updated | 2026-04-16 02:36:01 -03 |
+| Last updated | 2026-04-16 12:20:22 -03 |
 
 ---
 
