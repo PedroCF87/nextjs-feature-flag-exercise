@@ -1,0 +1,1730 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-04-16 02:56:43 -03",
+  "items": [
+    {
+      "id": "E0-S1",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst",
+        "git-ops",
+        "environment-validator"
+      ],
+      "depends_on": [],
+      "blocks": [
+        "E0-S2",
+        "E0-S3",
+        "E0-S4",
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-09 18:08:58 -03",
+      "last_updated": "2026-04-10 17:45:54 -03",
+      "story_file": "docs/agile/stories/story-E0S1-repository-diagnosis.md"
+    },
+    {
+      "id": "E0-S2",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-config-refactor",
+        "rules-bootstrap",
+        "copilot-env-specialist",
+        "git-ops"
+      ],
+      "depends_on": [
+        "E0-S1"
+      ],
+      "blocks": [
+        "E0-S3",
+        "E0-S4",
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-09 18:56:38 -03",
+      "last_updated": "2026-04-14 12:00:00 -03",
+      "story_file": "docs/agile/stories/story-E0S2-minimum-ai-layer.md"
+    },
+    {
+      "id": "E0-S3",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S2"
+      ],
+      "blocks": [
+        "E0-S4",
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-09 22:24:08 -03",
+      "last_updated": "2026-04-11 16:44:05 -03",
+      "story_file": "docs/agile/stories/story-E0S3-measurement-baseline.md"
+    },
+    {
+      "id": "E0-S4",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S3"
+      ],
+      "blocks": [
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-10 12:08:50 -03",
+      "last_updated": "2026-04-14 21:02:41 -03",
+      "story_file": "docs/agile/stories/story-E0S4-preparation-closure.md"
+    },
+    {
+      "id": "E0-S5",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "prompt-engineer",
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S1-T2"
+      ],
+      "blocks": [
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-12 21:52:11 -03",
+      "last_updated": "2026-04-13 20:59:09 -03",
+      "story_file": "docs/agile/stories/story-E0S5-execution-automation.md"
+    },
+    {
+      "id": "E0-S6",
+      "type": "story",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist",
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E0-S5",
+        "E0-S2-T4"
+      ],
+      "blocks": [
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-13 21:49:02 -03",
+      "last_updated": "2026-04-13 23:15:02 -03",
+      "story_file": "docs/agile/stories/story-E0S6-ci-cd-pipeline-automation.md"
+    },
+    {
+      "id": "E1-S0",
+      "type": "story",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner",
+        "story-task-reviewer"
+      ],
+      "depends_on": [
+        "EPIC-0"
+      ],
+      "blocks": [
+        "E1-S1"
+      ],
+      "created_at": "2026-04-13 22:42:40 -03",
+      "last_updated": "2026-04-14 22:56:58 -03",
+      "story_file": "docs/agile/stories/story-E1S0-planning-automation.md"
+    },
+    {
+      "id": "E1-S1",
+      "type": "story",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E1-S0"
+      ],
+      "blocks": [
+        "E1-S2"
+      ],
+      "created_at": "2026-04-14 21:29:36 -03",
+      "last_updated": "2026-04-15 17:46:39 -03",
+      "story_file": "docs/agile/stories/story-E1S1-task-analysis-and-implementation-mapping.md"
+    },
+    {
+      "id": "E1-S2",
+      "type": "story",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S1"
+      ],
+      "blocks": [
+        "E1-S3"
+      ],
+      "created_at": "2026-04-14 21:29:36 -03",
+      "last_updated": "2026-04-15 18:21:14 -03",
+      "story_file": "docs/agile/stories/story-E1S2-server-side-filtering-implementation.md"
+    },
+    {
+      "id": "E1-S3",
+      "type": "story",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S2"
+      ],
+      "blocks": [
+        "E1-S4"
+      ],
+      "created_at": "2026-04-14 21:29:36 -03",
+      "last_updated": "2026-04-15 00:00:00 -03",
+      "story_file": "docs/agile/stories/story-E1S3-client-side-filtering-ui-implementation.md"
+    },
+    {
+      "id": "E1-S4",
+      "type": "story",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E1-S2",
+        "E1-S3"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 21:29:36 -03",
+      "last_updated": "2026-04-15 21:20:55 -03",
+      "story_file": "docs/agile/stories/story-E1S4-baseline-measurement-and-closure.md"
+    },
+    {
+      "id": "E2-S1",
+      "type": "story",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E2-S2"
+      ],
+      "blocks": [
+        "E2-S3"
+      ],
+      "created_at": "2026-04-16 02:31:41 -03",
+      "last_updated": "2026-04-16 02:54:23 -03",
+      "story_file": "docs/agile/stories/story-E2S1-claude-ai-layer-preparation.md"
+    },
+    {
+      "id": "E2-S2",
+      "type": "story",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "git-ops"
+      ],
+      "depends_on": [
+        "E2-S0"
+      ],
+      "blocks": [
+        "E2-S1"
+      ],
+      "created_at": "2026-04-16 02:31:41 -03",
+      "last_updated": "2026-04-16 02:38:40 -03",
+      "story_file": "docs/agile/stories/story-E2S2-repository-configuration-workflow-activation.md"
+    },
+    {
+      "id": "E2-S3",
+      "type": "story",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "/plan",
+        "/implement"
+      ],
+      "depends_on": [
+        "E2-S1"
+      ],
+      "blocks": [
+        "E2-S4",
+        "E2-S5"
+      ],
+      "created_at": "2026-04-16 02:31:41 -03",
+      "last_updated": "2026-04-16 02:31:41 -03",
+      "story_file": "docs/agile/stories/story-E2S3-server-side-filtering-reimplementation.md"
+    },
+    {
+      "id": "E2-S4",
+      "type": "story",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "/implement"
+      ],
+      "depends_on": [
+        "E2-S3"
+      ],
+      "blocks": [
+        "E2-S5"
+      ],
+      "created_at": "2026-04-16 02:31:41 -03",
+      "last_updated": "2026-04-16 02:31:41 -03",
+      "story_file": "docs/agile/stories/story-E2S4-client-side-filtering-ui-reimplementation.md"
+    },
+    {
+      "id": "E2-S5",
+      "type": "story",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E2-S3",
+        "E2-S4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-16 02:31:41 -03",
+      "last_updated": "2026-04-16 02:38:40 -03",
+      "story_file": "docs/agile/stories/story-E2S5-measurement-comparison-closure.md"
+    },
+    {
+      "id": "E0-S1-T0",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [
+        "E0-S1-T1"
+      ],
+      "created_at": "2026-04-10 17:45:54 -03",
+      "last_updated": "2026-04-13 14:02:29 -03",
+      "task_file": "docs/agile/tasks/task-E0S1T0-bootstrap-ai-layer.md"
+    },
+    {
+      "id": "E0-S1-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "git-ops"
+      ],
+      "depends_on": [
+        "E0-S1-T0"
+      ],
+      "blocks": [
+        "E0-S1-T2"
+      ],
+      "created_at": "2026-04-10 17:45:54 -03",
+      "last_updated": "2026-04-13 14:42:59 -03",
+      "task_file": "docs/agile/tasks/task-E0S1T1-fork-configure-remotes.md"
+    },
+    {
+      "id": "E0-S1-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "environment-validator"
+      ],
+      "depends_on": [
+        "E0-S1-T1"
+      ],
+      "blocks": [
+        "E0-S1-T3"
+      ],
+      "created_at": "2026-04-10 17:45:54 -03",
+      "last_updated": "2026-04-12 14:15:15 -03",
+      "task_file": "docs/agile/tasks/task-E0S1T2-validate-environment.md"
+    },
+    {
+      "id": "E0-S1-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S1-T2"
+      ],
+      "blocks": [
+        "E0-S1-T4"
+      ],
+      "created_at": "2026-04-10 17:45:54 -03",
+      "last_updated": "2026-04-14 12:59:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S1T3-codebase-audit.md"
+    },
+    {
+      "id": "E0-S1-T4",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S1-T3"
+      ],
+      "blocks": [
+        "E0-S2",
+        "E0-S4",
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-10 17:45:54 -03",
+      "last_updated": "2026-04-14 12:59:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S1T4-diagnosis-document.md"
+    },
+    {
+      "id": "E0-S2-T0",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E0-S1"
+      ],
+      "blocks": [
+        "E0-S2-T1",
+        "E0-S2-T2",
+        "E0-S2-T3",
+        "E0-S2-T4"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-14 13:30:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S2T0-bootstrap-ai-layer-management-artifacts.md"
+    },
+    {
+      "id": "E0-S2-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "rules-bootstrap"
+      ],
+      "depends_on": [
+        "E0-S2-T0"
+      ],
+      "blocks": [
+        "E0-S2-T5"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-14 17:00:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S2T1-adapt-and-deploy-global-rules-to-fork.md"
+    },
+    {
+      "id": "E0-S2-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-config-refactor"
+      ],
+      "depends_on": [
+        "E0-S2-T0"
+      ],
+      "blocks": [
+        "E0-S2-T5"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-14 17:30:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S2T2-adapt-and-deploy-instructions-to-fork.md"
+    },
+    {
+      "id": "E0-S2-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-config-refactor"
+      ],
+      "depends_on": [
+        "E0-S2-T0"
+      ],
+      "blocks": [
+        "E0-S2-T5"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-14 17:30:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S2T3-adapt-and-deploy-agents-and-skills-to-fork.md"
+    },
+    {
+      "id": "E0-S2-T4",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S2-T0"
+      ],
+      "blocks": [
+        "E0-S2-T5"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-14 00:00:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S2T4-create-copilot-setup-steps-yml-and-configure-governance.md"
+    },
+    {
+      "id": "E0-S2-T5",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "git-ops"
+      ],
+      "depends_on": [
+        "E0-S2-T1",
+        "E0-S2-T2",
+        "E0-S2-T3",
+        "E0-S2-T4"
+      ],
+      "blocks": [
+        "E0-S3",
+        "E0-S4",
+        "EPIC-1"
+      ],
+      "created_at": "2026-04-11 15:14:45 -03",
+      "last_updated": "2026-04-14 12:00:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S2T5-validate-commit-and-sign-readiness-checklist.md"
+    },
+    {
+      "id": "E0-S3-T0",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S2"
+      ],
+      "blocks": [
+        "E0-S3-T1",
+        "E0-S3-T2",
+        "E0-S3-T3"
+      ],
+      "created_at": "2026-04-11 16:43:15 -03",
+      "last_updated": "2026-04-14 20:00:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S3T0-bootstrap-ai-layer-artifacts-for-this-story.md"
+    },
+    {
+      "id": "E0-S3-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S2",
+        "E0-S3-T0"
+      ],
+      "blocks": [
+        "E0-S3-T2",
+        "E0-S3-T3"
+      ],
+      "created_at": "2026-04-11 16:43:15 -03",
+      "last_updated": "2026-04-14 20:15:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S3T1-define-measurement-dimensions-and-capture-method.md"
+    },
+    {
+      "id": "E0-S3-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S3-T1",
+        "E0-S3-T0"
+      ],
+      "blocks": [
+        "E0-S3-T3"
+      ],
+      "created_at": "2026-04-11 16:43:15 -03",
+      "last_updated": "2026-04-14 19:50:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S3T2-create-measurement-capture-template.md"
+    },
+    {
+      "id": "E0-S3-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S3-T2",
+        "E0-S1",
+        "E0-S2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-11 16:43:15 -03",
+      "last_updated": "2026-04-14 20:00:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S3T3-record-time-zero-snapshot-and-sign-go-no-go-checklist.md"
+    },
+    {
+      "id": "E0-S4-T0",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S3"
+      ],
+      "blocks": [
+        "E0-S4-T1",
+        "E0-S4-T2",
+        "E0-S4-T3",
+        "E0-S4-T5"
+      ],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-14 20:09:58 -03",
+      "task_file": "docs/agile/tasks/task-E0S4T0-bootstrap-ai-layer-artifacts.md"
+    },
+    {
+      "id": "E0-S4-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S4-T0"
+      ],
+      "blocks": [
+        "E0-S4-T2",
+        "E0-S4-T3"
+      ],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-14 20:13:01 -03",
+      "task_file": "docs/agile/tasks/task-E0S4T1-verify-epic-0-dod-evidence.md"
+    },
+    {
+      "id": "E0-S4-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S4-T1",
+        "E0-S4-T0"
+      ],
+      "blocks": [
+        "E0-S4-T4"
+      ],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-14 20:19:40 -03",
+      "task_file": "docs/agile/tasks/task-E0S4T2-produce-epic0-closure-report-md.md"
+    },
+    {
+      "id": "E0-S4-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S4-T0",
+        "E0-S4-T1",
+        "E0-S4-T2"
+      ],
+      "blocks": [
+        "E0-S4-T4"
+      ],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-14 20:29:04 -03",
+      "task_file": "docs/agile/tasks/task-E0S4T3-produce-epic1-handoff-md.md"
+    },
+    {
+      "id": "E0-S4-T4",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S4-T2",
+        "E0-S4-T3"
+      ],
+      "blocks": [
+        "E0-S4-T5"
+      ],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-14 20:34:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S4T4-commit-and-push-closure-artifacts.md"
+    },
+    {
+      "id": "E0-S4-T5",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P1",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E0-S4-T0",
+        "E0-S4-T4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-11 20:50:15 -03",
+      "last_updated": "2026-04-14 21:02:41 -03",
+      "task_file": "docs/agile/tasks/task-E0S4T5-close-story-and-append-timeline-entry.md"
+    },
+    {
+      "id": "E0-S5-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E0-S1-T2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 20:59:09 -03",
+      "task_file": "docs/agile/tasks/task-E0S5T1-create-story-task-reviewer-agent.md"
+    },
+    {
+      "id": "E0-S5-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S5-T1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 20:59:09 -03",
+      "task_file": "docs/agile/tasks/task-E0S5T2-create-scaffold-stories-from-epic-skill.md"
+    },
+    {
+      "id": "E0-S5-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S5-T2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 20:59:09 -03",
+      "task_file": "docs/agile/tasks/task-E0S5T3-create-create-github-issue-from-task-function.md"
+    },
+    {
+      "id": "E0-S5-T4",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S5-T3"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 20:59:09 -03",
+      "task_file": "docs/agile/tasks/task-E0S5T4-create-execute-task-from-issue-skill.md"
+    },
+    {
+      "id": "E0-S5-T5",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S5-T4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 20:59:09 -03",
+      "task_file": "docs/agile/tasks/task-E0S5T5-validate-automation-with-dry-run.md"
+    },
+    {
+      "id": "E0-S5-T6",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "git-ops"
+      ],
+      "depends_on": [
+        "E0-S5-T5"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 13:23:32 -03",
+      "last_updated": "2026-04-13 23:02:23 -03",
+      "task_file": "docs/agile/tasks/task-E0S5T6-commit-and-sign-readiness.md"
+    },
+    {
+      "id": "E0-S6-T1",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S5-T6"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-14 12:47:17 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T1-create-copilot-push-signal-yml.md"
+    },
+    {
+      "id": "E0-S6-T10",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S6-T6",
+        "E0-S6-T7",
+        "E0-S6-T8",
+        "E0-S6-T9"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-14 19:40:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T10-end-to-end-structural-validation-and-readiness.md"
+    },
+    {
+      "id": "E0-S6-T2",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S6-T1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-13 23:49:29 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T2-create-auto-ready-for-review-yml.md"
+    },
+    {
+      "id": "E0-S6-T3",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S6-T2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-14 11:24:21 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T3-create-auto-copilot-fix-yml.md"
+    },
+    {
+      "id": "E0-S6-T4",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S6-T3"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-14 11:40:21 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T4-create-auto-validate-copilot-fix-yml.md"
+    },
+    {
+      "id": "E0-S6-T5",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S6-T4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-14 11:58:33 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T5-create-auto-merge-on-clean-review-yml.md"
+    },
+    {
+      "id": "E0-S6-T6",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S5-T3",
+        "E0-S6-T5"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-14 12:04:01 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T6-create-issue-index-infrastructure.md"
+    },
+    {
+      "id": "E0-S6-T7",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E0-S6-T1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-14 12:51:13 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T7-create-pr-tag-system-documentation.md"
+    },
+    {
+      "id": "E0-S6-T8",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S6-T5"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-14 22:30:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T8-configure-secrets-and-self-hosted-runner.md"
+    },
+    {
+      "id": "E0-S6-T9",
+      "type": "task",
+      "epic": "EPIC-0",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [
+        "E0-S2-T4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 23:11:22 -03",
+      "last_updated": "2026-04-14 00:00:00 -03",
+      "task_file": "docs/agile/tasks/task-E0S6T9-create-mcp-configuration.md"
+    },
+    {
+      "id": "E1-S0-T1",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E0-S5"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-13 22:44:08 -03",
+      "last_updated": "2026-04-14 21:29:36 -03",
+      "task_file": "docs/agile/tasks/task-E1S0T1-generate-story-mds-for-epic-1.md"
+    },
+    {
+      "id": "E1-S0-T2",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-13 22:44:08 -03",
+      "last_updated": "2026-04-14 22:23:16 -03",
+      "task_file": "docs/agile/tasks/task-E1S0T2-generate-task-packs-for-all-e1-stories.md"
+    },
+    {
+      "id": "E1-S0-T3",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "story-task-reviewer"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-13 22:44:08 -03",
+      "last_updated": "2026-04-14 22:37:08 -03",
+      "task_file": "docs/agile/tasks/task-E1S0T3-code-review-planning-artifacts.md"
+    },
+    {
+      "id": "E1-S0-T4",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-13 22:44:08 -03",
+      "last_updated": "2026-04-14 22:53:40 -03",
+      "task_file": "docs/agile/tasks/task-E1S0T4-create-github-issues-for-all-e1-tasks.md"
+    },
+    {
+      "id": "E1-S0-T5",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-13 22:44:08 -03",
+      "last_updated": "2026-04-14 22:56:58 -03",
+      "task_file": "docs/agile/tasks/task-E1S0T5-validate-commit-and-sign-readiness.md"
+    },
+    {
+      "id": "E1-S1-T1",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E1-S0"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:32 -03",
+      "last_updated": "2026-04-14 23:37:53 -03",
+      "task_file": "docs/agile/tasks/task-E1S1T1-read-and-confirm-task-md-acceptance-criteria.md"
+    },
+    {
+      "id": "E1-S1-T2",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E1-S1-T1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:32 -03",
+      "last_updated": "2026-04-15 17:42:32 -03",
+      "task_file": "docs/agile/tasks/task-E1S1T2-produce-file-impact-map.md"
+    },
+    {
+      "id": "E1-S1-T3",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [
+        "E1-S1-T2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:32 -03",
+      "last_updated": "2026-04-15 17:46:39 -03",
+      "task_file": "docs/agile/tasks/task-E1S1T3-document-and-logic-decision-and-ordered-implementation-plan.md"
+    },
+    {
+      "id": "E1-S2-T1",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:37 -03",
+      "last_updated": "2026-04-15 17:59:52 -03",
+      "task_file": "docs/agile/tasks/task-E1S2T1-extend-shared-types-ts-with-flagfilterparams.md"
+    },
+    {
+      "id": "E1-S2-T2",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S2-T1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:37 -03",
+      "last_updated": "2026-04-15 18:07:27 -03",
+      "task_file": "docs/agile/tasks/task-E1S2T2-add-zod-filter-query-schema-to-validation-middleware.md"
+    },
+    {
+      "id": "E1-S2-T3",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S2-T2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:37 -03",
+      "last_updated": "2026-04-15 18:13:07 -03",
+      "task_file": "docs/agile/tasks/task-E1S2T3-implement-filtering-in-flagsservice-getall.md"
+    },
+    {
+      "id": "E1-S2-T4",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S2-T3"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:37 -03",
+      "last_updated": "2026-04-15 18:17:59 -03",
+      "task_file": "docs/agile/tasks/task-E1S2T4-update-get-api-flags-route-handler.md"
+    },
+    {
+      "id": "E1-S2-T5",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S2-T4"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:37 -03",
+      "last_updated": "2026-04-15 18:21:14 -03",
+      "task_file": "docs/agile/tasks/task-E1S2T5-add-vitest-filter-test-cases.md"
+    },
+    {
+      "id": "E1-S3-T1",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:41 -03",
+      "last_updated": "2026-04-15 19:02:10 -03",
+      "task_file": "docs/agile/tasks/task-E1S3T1-update-client-api-to-pass-filter-params.md"
+    },
+    {
+      "id": "E1-S3-T2",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S3-T1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:41 -03",
+      "last_updated": "2026-04-15 20:13:12 -03",
+      "task_file": "docs/agile/tasks/task-E1S3T2-add-filter-state-management-in-app-tsx.md"
+    },
+    {
+      "id": "E1-S3-T3",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S3-T2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:41 -03",
+      "last_updated": "2026-04-15 20:17:21 -03",
+      "task_file": "docs/agile/tasks/task-E1S3T3-build-filter-controls-component.md"
+    },
+    {
+      "id": "E1-S3-T4",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "task-implementer"
+      ],
+      "depends_on": [
+        "E1-S3-T3"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:41 -03",
+      "last_updated": "2026-04-15 20:24:12 -03",
+      "task_file": "docs/agile/tasks/task-E1S3T4-implement-clear-all-filters-and-active-filter-indicator.md"
+    },
+    {
+      "id": "E1-S4-T1",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E1-S2",
+        "E1-S3"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:45 -03",
+      "last_updated": "2026-04-15 21:00:53 -03",
+      "task_file": "docs/agile/tasks/task-E1S4T1-run-full-validation-suite-and-verify-all-11-task-md-criteria.md"
+    },
+    {
+      "id": "E1-S4-T2",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E1-S4-T1"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:45 -03",
+      "last_updated": "2026-04-15 21:11:16 -03",
+      "task_file": "docs/agile/tasks/task-E1S4T2-complete-baseline-metrics-document-and-friction-log.md"
+    },
+    {
+      "id": "E1-S4-T3",
+      "type": "task",
+      "epic": "Epic 1 — Baseline Implementation: Feature Flag Filtering",
+      "priority": "P0",
+      "status": "Done",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [
+        "E1-S4-T2"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-14 22:21:45 -03",
+      "last_updated": "2026-04-15 21:20:55 -03",
+      "task_file": "docs/agile/tasks/task-E1S4T3-produce-epic-1-closure-report-and-handoff-document.md"
+    },
+    {
+      "id": "E2-S1-T1",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "project-adaptation-analyst"
+      ],
+      "depends_on": [],
+      "blocks": [
+        "E2-S1-T2",
+        "E2-S1-T6"
+      ],
+      "created_at": "2026-04-16 02:35:49 -03",
+      "last_updated": "2026-04-16 02:54:23 -03",
+      "task_file": "docs/agile/tasks/task-E2S1T1-analyze-codebase-and-map-architecture-step-a.md"
+    },
+    {
+      "id": "E2-S1-T2",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "rules-bootstrap"
+      ],
+      "depends_on": [
+        "E2-S1-T1"
+      ],
+      "blocks": [
+        "E2-S1-T3",
+        "E2-S1-T7"
+      ],
+      "created_at": "2026-04-16 02:35:49 -03",
+      "last_updated": "2026-04-16 02:54:23 -03",
+      "task_file": "docs/agile/tasks/task-E2S1T2-create-update-claude-md-for-exercise-2-step-b.md"
+    },
+    {
+      "id": "E2-S1-T3",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E2-S1-T2"
+      ],
+      "blocks": [
+        "E2-S1-T4",
+        "E2-S1-T5"
+      ],
+      "created_at": "2026-04-16 02:35:49 -03",
+      "last_updated": "2026-04-16 02:54:23 -03",
+      "task_file": "docs/agile/tasks/task-E2S1T3-create-core-4-commands-step-c.md"
+    },
+    {
+      "id": "E2-S1-T4",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E2-S1-T3"
+      ],
+      "blocks": [
+        "E2-S1-T8"
+      ],
+      "created_at": "2026-04-16 02:35:49 -03",
+      "last_updated": "2026-04-16 02:54:23 -03",
+      "task_file": "docs/agile/tasks/task-E2S1T4-create-extended-commands-step-c-continued.md"
+    },
+    {
+      "id": "E2-S1-T5",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E2-S1-T3"
+      ],
+      "blocks": [
+        "E2-S1-T8"
+      ],
+      "created_at": "2026-04-16 02:35:49 -03",
+      "last_updated": "2026-04-16 02:54:23 -03",
+      "task_file": "docs/agile/tasks/task-E2S1T5-create-skills-directory-step-c-2.md"
+    },
+    {
+      "id": "E2-S1-T6",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E2-S1-T1"
+      ],
+      "blocks": [
+        "E2-S1-T7"
+      ],
+      "created_at": "2026-04-16 02:35:49 -03",
+      "last_updated": "2026-04-16 02:54:23 -03",
+      "task_file": "docs/agile/tasks/task-E2S1T6-create-on-demand-context-documents-step-d.md"
+    },
+    {
+      "id": "E2-S1-T7",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E2-S1-T2",
+        "E2-S1-T6"
+      ],
+      "blocks": [
+        "E2-S1-T8"
+      ],
+      "created_at": "2026-04-16 02:35:49 -03",
+      "last_updated": "2026-04-16 02:54:23 -03",
+      "task_file": "docs/agile/tasks/task-E2S1T7-create-prd-with-15-section-structure-step-e.md"
+    },
+    {
+      "id": "E2-S1-T8",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "prompt-engineer"
+      ],
+      "depends_on": [
+        "E2-S1-T4",
+        "E2-S1-T5",
+        "E2-S1-T7"
+      ],
+      "blocks": [],
+      "created_at": "2026-04-16 02:35:49 -03",
+      "last_updated": "2026-04-16 02:54:23 -03",
+      "task_file": "docs/agile/tasks/task-E2S1T8-validate-ai-layer-structural-consistency-step-f.md"
+    },
+    {
+      "id": "E2-S2-T1",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "git-ops"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S2T1-create-exercise-2-branch-from-upstream-state.md"
+    },
+    {
+      "id": "E2-S2-T2",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "git-ops"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S2T2-cherry-pick-documentation-and-agile-artifacts.md"
+    },
+    {
+      "id": "E2-S2-T3",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "git-ops"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S2T3-remove-exercise-1-automation-workflows.md"
+    },
+    {
+      "id": "E2-S2-T4",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S2T4-activate-claude-code-workflows.md"
+    },
+    {
+      "id": "E2-S2-T5",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "copilot-env-specialist"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S2T5-install-claude-github-app-and-configure-secret.md"
+    },
+    {
+      "id": "E2-S2-T6",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "git-ops"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S2T6-push-and-validate-with-draft-pr.md"
+    },
+    {
+      "id": "E2-S2-T7",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "environment-validator"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S2T7-run-full-validation-suite-on-exercise-2.md"
+    },
+    {
+      "id": "E2-S5-T1",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S5T1-run-full-validation-suite-and-verify-all-11-criteria.md"
+    },
+    {
+      "id": "E2-S5-T2",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S5T2-complete-metrics-document.md"
+    },
+    {
+      "id": "E2-S5-T3",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S5T3-produce-comparative-analysis-document.md"
+    },
+    {
+      "id": "E2-S5-T4",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S5T4-write-friction-log-with-system-evolution-entries.md"
+    },
+    {
+      "id": "E2-S5-T5",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S5T5-system-evolution-retrospective.md"
+    },
+    {
+      "id": "E2-S5-T6",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S5T6-create-pr-and-verify-automated-reviews.md"
+    },
+    {
+      "id": "E2-S5-T7",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S5T7-produce-epic-2-closure-report.md"
+    },
+    {
+      "id": "E2-S5-T8",
+      "type": "task",
+      "epic": "Epic 2 — AI-Assisted Run: Feature Flag Filtering with PIV Loop.md)",
+      "priority": "P0",
+      "status": "Draft",
+      "responsible_agent": [
+        "agile-exercise-planner"
+      ],
+      "depends_on": [],
+      "blocks": [],
+      "created_at": "2026-04-16 02:36:01 -03",
+      "last_updated": "2026-04-16 02:36:01 -03",
+      "task_file": "docs/agile/tasks/task-E2S5T8-produce-epic-3-handoff-document.md"
+    }
+  ]
+}

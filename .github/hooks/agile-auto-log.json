@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/guard-agile-logs.js",
+        "timeout": 30
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/auto-log-agile-artifact.js",
+        "timeout": 30
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/enforce-task-pack-stop.js",
+        "timeout": 30
+      }
+    ]
+  }
+}

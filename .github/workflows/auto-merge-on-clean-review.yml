@@ -1,0 +1,314 @@
+name: "Auto Merge on Clean Review"
+
+on:
+  pull_request_review:
+    types:
+      - submitted
+  workflow_run:
+    workflows:
+      - "Copilot code review"
+    types:
+      - completed
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  auto-merge:
+    if: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.actor.type == 'Bot' && github.event.workflow_run.actor.login == 'Copilot' && github.event.workflow_run.repository.full_name == github.repository) || (github.event_name == 'pull_request_review' && github.event.action == 'submitted') }}
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve PR context
+        id: resolve_pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENT_REVIEW_BODY: ${{ github.event.review.body }}
+          EVENT_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+        run: |
+          set -euo pipefail
+
+          REPO="${{ github.repository }}"
+
+          # pull_request_review trigger provides PR number directly
+          if [[ "${{ github.event_name }}" == "pull_request_review" ]]; then
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+            PR_NODE_ID="${{ github.event.pull_request.node_id }}"
+            PR_DRAFT="${{ github.event.pull_request.draft }}"
+            PR_MERGEABLE="${{ github.event.pull_request.mergeable }}"
+            REVIEW_BODY="$EVENT_REVIEW_BODY"
+            REVIEW_STATE="${{ github.event.review.state }}"
+          else
+            # workflow_run trigger: resolve PR from pushed branch
+            BRANCH="$EVENT_HEAD_BRANCH"
+            if [[ -z "$BRANCH" ]]; then
+              echo "No head_branch in workflow_run payload. Nothing to do."
+              exit 0
+            fi
+
+            PR_JSON=$(gh api \
+              "/repos/$REPO/pulls?head=${REPO%%/*}:$BRANCH&state=open&per_page=1" \
+              --jq '.[0] // empty')
+
+            if [[ -z "$PR_JSON" ]]; then
+              echo "No open PR for branch $BRANCH."
+              exit 0
+            fi
+
+            PR_NUMBER=$(echo "$PR_JSON" | jq -r '.number')
+            PR_NODE_ID=$(echo "$PR_JSON" | jq -r '.node_id')
+            PR_DRAFT=$(echo "$PR_JSON" | jq -r '.draft')
+            PR_MERGEABLE=$(echo "$PR_JSON" | jq -r '.mergeable')
+            REVIEW_STATE=""
+            REVIEW_BODY=""
+          fi
+
+          if [[ "$PR_DRAFT" == "true" ]]; then
+            echo "PR #$PR_NUMBER is still a draft. Skipping."
+            exit 0
+          fi
+
+          echo "pr_number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+          echo "pr_node_id=$PR_NODE_ID" >> "$GITHUB_OUTPUT"
+          echo "pr_mergeable=$PR_MERGEABLE" >> "$GITHUB_OUTPUT"
+          echo "review_state=$REVIEW_STATE" >> "$GITHUB_OUTPUT"
+
+      - name: Check for [EX:REVIEW-CLEAN] signal and skip on suggestions
+        id: review_check
+        if: ${{ steps.resolve_pr.outputs.pr_number != '' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          REPO="${{ github.repository }}"
+          PR_NUMBER="${{ steps.resolve_pr.outputs.pr_number }}"
+          REVIEW_STATE="${{ steps.resolve_pr.outputs.review_state }}"
+
+          # For pull_request_review trigger: only proceed if review is approved or commented
+          if [[ -n "$REVIEW_STATE" && "$REVIEW_STATE" != "approved" && "$REVIEW_STATE" != "commented" ]]; then
+            echo "Review state is '$REVIEW_STATE'. Skipping merge."
+            echo "should_merge=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # 1. Check PR review bodies (where Copilot Code Review posts its verdict)
+          REVIEW_SIGNAL=$(gh api "/repos/$REPO/pulls/$PR_NUMBER/reviews?per_page=30" --jq '
+            [reverse | .[] | .body // "" |
+              if test("\\[EX:REVIEW-HAS-SUGGESTIONS\\]") then "suggestions"
+              elif test("\\[EX:REVIEW-CLEAN\\]") then "clean"
+              else empty
+              end
+            ] | first // "none"')
+
+          echo "Signal from review bodies: $REVIEW_SIGNAL"
+
+          # 2. If no signal in reviews, also check issue comments (fallback)
+          COMMENT_SIGNAL="none"
+          if [[ "$REVIEW_SIGNAL" == "none" ]]; then
+            COMMENT_SIGNAL=$(gh api "/repos/$REPO/issues/$PR_NUMBER/comments?per_page=30" --jq '
+              [reverse | .[] | .body // "" |
+                if test("\\[EX:REVIEW-HAS-SUGGESTIONS\\]") then "suggestions"
+                elif test("\\[EX:REVIEW-CLEAN\\]") then "clean"
+                else empty
+                end
+              ] | first // "none"')
+
+            echo "Signal from issue comments: $COMMENT_SIGNAL"
+          fi
+
+          # Decision: require POSITIVE [EX:REVIEW-CLEAN] signal to merge.
+          # If no signal exists, the review is still in progress — do NOT merge.
+          if [[ "$REVIEW_SIGNAL" == "suggestions" || "$COMMENT_SIGNAL" == "suggestions" ]]; then
+            echo "Found [EX:REVIEW-HAS-SUGGESTIONS] — not merging."
+            echo "should_merge=false" >> "$GITHUB_OUTPUT"
+          elif [[ "$REVIEW_SIGNAL" == "clean" || "$COMMENT_SIGNAL" == "clean" ]]; then
+            echo "Found [EX:REVIEW-CLEAN] — proceeding to merge."
+            echo "should_merge=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No review signal found ([EX:REVIEW-CLEAN] or [EX:REVIEW-HAS-SUGGESTIONS]). Review may still be in progress. Skipping merge."
+            echo "should_merge=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Verify all review threads are resolved
+        id: check_threads
+        if: ${{ steps.review_check.outputs.should_merge == 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          PR_NODE_ID="${{ steps.resolve_pr.outputs.pr_node_id }}"
+
+          UNRESOLVED=$(gh api graphql -f query='
+            query($pr: ID!) {
+              node(id: $pr) {
+                ... on PullRequest {
+                  reviewThreads(first: 50) {
+                    nodes {
+                      id
+                      isResolved
+                      isOutdated
+                    }
+                  }
+                }
+              }
+            }' -f pr="$PR_NODE_ID" --jq \
+            '[.data.node.reviewThreads.nodes[] | select(.isResolved == false and .isOutdated == false)] | length')
+
+          echo "Unresolved threads: $UNRESOLVED"
+
+          if [[ "$UNRESOLVED" -gt 0 ]]; then
+            echo "PR has $UNRESOLVED unresolved thread(s). Skipping merge."
+            echo "threads_clear=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "threads_clear=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Squash merge the PR
+        id: merge_pr
+        if: ${{ steps.check_threads.outputs.threads_clear == 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          REPO="${{ github.repository }}"
+          PR_NUMBER="${{ steps.resolve_pr.outputs.pr_number }}"
+
+          # Verify mergeable state (re-fetch in case it changed)
+          MERGEABLE=$(gh api "/repos/$REPO/pulls/$PR_NUMBER" --jq '.mergeable')
+          if [[ "$MERGEABLE" != "true" ]]; then
+            echo "PR #$PR_NUMBER is not mergeable (state: $MERGEABLE). Skipping."
+            echo "merged=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Squash-merging PR #$PR_NUMBER..."
+          gh pr merge "$PR_NUMBER" \
+            --repo "$REPO" \
+            --squash \
+            --delete-branch \
+            --admin
+
+          echo "merged=true" >> "$GITHUB_OUTPUT"
+          echo "Merged PR #$PR_NUMBER."
+
+      - name: Load issue-index and close linked issue
+        id: close_issue
+        if: ${{ steps.merge_pr.outputs.merged == 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          REPO="${{ github.repository }}"
+          PR_NUMBER="${{ steps.resolve_pr.outputs.pr_number }}"
+          INDEX_FILE=".github/issue-index.json"
+
+          if [[ ! -f "$INDEX_FILE" ]]; then
+            echo "No issue-index.json found. Skipping issue close and next-task trigger."
+            echo "next_issue=" >> "$GITHUB_OUTPUT"
+            echo "next_task_title=" >> "$GITHUB_OUTPUT"
+            echo "next_task_agent=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          INDEX=$(cat "$INDEX_FILE")
+
+          # Find the task linked to this PR by number
+          LINKED_ISSUE=$(echo "$INDEX" | jq --argjson pr "$PR_NUMBER" '
+            .tasks[] | select(.pr == $pr) | .issue
+          ' 2>/dev/null || echo "")
+
+          CURRENT_TASK_INDEX=$(echo "$INDEX" | jq --argjson pr "$PR_NUMBER" '
+            [.tasks | to_entries[] | select(.value.pr == $pr)] | .[0].key
+          ' 2>/dev/null || echo "")
+
+          # Find by current PR branch name as fallback
+          PR_BRANCH=$(gh api "/repos/$REPO/pulls/$PR_NUMBER" --jq '.head.ref' 2>/dev/null || echo "")
+
+          if [[ -z "$LINKED_ISSUE" || "$LINKED_ISSUE" == "null" ]]; then
+            LINKED_ISSUE=$(echo "$INDEX" | jq --arg branch "$PR_BRANCH" '
+              .tasks[] | select(.branch == $branch) | .issue
+            ' 2>/dev/null || echo "")
+            CURRENT_TASK_INDEX=$(echo "$INDEX" | jq --arg branch "$PR_BRANCH" '
+              [.tasks | to_entries[] | select(.value.branch == $branch)] | .[0].key
+            ' 2>/dev/null || echo "")
+          fi
+
+          if [[ -n "$LINKED_ISSUE" && "$LINKED_ISSUE" != "null" ]]; then
+            echo "Closing issue #$LINKED_ISSUE as completed..."
+            gh issue close "$LINKED_ISSUE" \
+              --repo "$REPO" \
+              --reason "completed" \
+              --comment "Closed automatically: PR #$PR_NUMBER was squash-merged with a clean review." \
+              2>/dev/null || echo "Warning: could not close issue #$LINKED_ISSUE"
+          else
+            echo "No linked issue found for PR #$PR_NUMBER."
+          fi
+
+          # Determine next task
+          NEXT_ISSUE=""
+          NEXT_TITLE=""
+          NEXT_AGENT=""
+
+          if [[ -n "$CURRENT_TASK_INDEX" && "$CURRENT_TASK_INDEX" != "null" ]]; then
+            NEXT_TASK_INDEX=$((CURRENT_TASK_INDEX + 1))
+            NEXT_ENTRY=$(echo "$INDEX" | jq --argjson idx "$NEXT_TASK_INDEX" '.tasks[$idx] // empty')
+
+            if [[ -n "$NEXT_ENTRY" ]]; then
+              NEXT_ISSUE=$(echo "$NEXT_ENTRY" | jq -r '.issue // empty')
+              NEXT_TITLE=$(echo "$NEXT_ENTRY" | jq -r '.title // ""')
+              NEXT_AGENT=$(echo "$NEXT_ENTRY" | jq -r '.agent // "task-implementer"')
+            fi
+          fi
+
+          echo "next_issue=$NEXT_ISSUE" >> "$GITHUB_OUTPUT"
+          printf '%s' "$NEXT_TITLE" > /tmp/next_task_title.txt
+          echo "next_task_title_file=/tmp/next_task_title.txt" >> "$GITHUB_OUTPUT"
+          echo "next_task_agent=$NEXT_AGENT" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Copilot on next task (3-step assign sequence)
+        if: ${{ steps.close_issue.outputs.next_issue != '' }}
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_TRIGGER_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          REPO="${{ github.repository }}"
+          NEXT_ISSUE="${{ steps.close_issue.outputs.next_issue }}"
+          NEXT_AGENT="${{ steps.close_issue.outputs.next_task_agent }}"
+          NEXT_TITLE_FILE="${{ steps.close_issue.outputs.next_task_title_file }}"
+          NEXT_TITLE=$(cat "$NEXT_TITLE_FILE" 2>/dev/null || echo "next task")
+
+          echo "Triggering Copilot on issue #$NEXT_ISSUE: $NEXT_TITLE"
+
+          # Step 1: Remove existing @copilot assignment (idempotent)
+          echo "Step 1: Removing existing Copilot assignment (if any)..."
+          gh api \
+            --method DELETE \
+            "/repos/$REPO/issues/$NEXT_ISSUE/assignees" \
+            -f "assignees[]=Copilot" 2>/dev/null || true
+
+          # Step 2: Post context comment — does NOT mention @copilot to avoid conversational AI
+          echo "Step 2: Posting context comment..."
+          CONTEXT_COMMENT="Agent: ${NEXT_AGENT}"$'\n'"Task: ${NEXT_TITLE}"$'\n'"The previous task was completed and its PR was merged. Please implement this task following the specification in the issue body."
+
+          gh api \
+            --method POST \
+            "/repos/$REPO/issues/$NEXT_ISSUE/comments" \
+            -f body="$CONTEXT_COMMENT" >/dev/null
+
+          # Step 3: Assign @copilot — this starts the coding agent session
+          echo "Step 3: Assigning Copilot to start coding session..."
+          gh api \
+            --method POST \
+            "/repos/$REPO/issues/$NEXT_ISSUE/assignees" \
+            -f "assignees[]=Copilot"
+
+          echo "Copilot assigned to issue #$NEXT_ISSUE. Coding session started."

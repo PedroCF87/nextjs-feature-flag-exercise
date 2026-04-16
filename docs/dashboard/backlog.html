@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Backlog — AI Layer Dashboards</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
+  <style>
+    body          { background: #f5f6fa; }
+    .filter-bar   { background: #fff; border-radius: 8px; padding: 1rem 1.25rem;
+                    margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+    .table-sm td,
+    .table-sm th  { font-size: 0.82rem; vertical-align: middle; }
+    .notes-cell   { max-width: 320px; white-space: nowrap; overflow: hidden;
+                    text-overflow: ellipsis; cursor: pointer; }
+    .notes-cell.expanded { white-space: normal; }
+    .badge        { font-size: 0.73rem; }
+    .dep-badge    { cursor: pointer; }
+    .result-hint  { font-size: 0.82rem; color: #6c757d; }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 mb-0">
+    <a class="navbar-brand fw-bold" href="#">📊 AI Layer</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="timeline.html">
+          🕒 Timeline <span class="badge bg-secondary">256</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active fw-semibold" href="backlog.html">
+          📋 Backlog <span class="badge bg-secondary">32</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="friction-log.html">
+          ⚡ Friction Log <span class="badge bg-secondary">2</span>
+        </a>
+      </li>
+      </ul>
+    </div>
+  </nav>
+<div class="container-fluid py-4 px-4">
+
+<h4 class="mb-1">📋 Backlog Index
+  <span class="badge bg-secondary ms-1" id="bl-count">32</span>
+  <small class="text-muted ms-2" style="font-size:0.73rem">
+    v1.0.0 · generated 2026-04-13 14:02:56 -03
+  </small>
+</h4>
+<div class="filter-bar row g-2 align-items-end mt-2">
+  <div class="col-md-2">
+    <label class="form-label mb-1">Epic</label>
+    <select class="form-select form-select-sm" id="bl-epic">
+      <option value="">All</option><option value="EPIC-0">EPIC-0</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label class="form-label mb-1">Status</label>
+    <select class="form-select form-select-sm" id="bl-status">
+      <option value="">All</option><option value="Draft">Draft</option><option value="In Progress">In Progress</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label class="form-label mb-1">Priority</label>
+    <select class="form-select form-select-sm" id="bl-priority">
+      <option value="">All</option><option value="P0">P0</option><option value="P1">P1</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label class="form-label mb-1">Type</label>
+    <select class="form-select form-select-sm" id="bl-type">
+      <option value="">All</option><option value="story">story</option><option value="task">task</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label mb-1">Search by ID</label>
+    <input type="text" class="form-control form-control-sm" id="bl-search"
+           placeholder="e.g. E0-S1">
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-sm btn-outline-secondary w-100 mt-1" onclick="clearBLFilters()">
+      Clear
+    </button>
+  </div>
+</div>
+<p class="result-hint mb-2">
+  Click a <span class="badge bg-secondary">depends_on</span> or
+  <span class="badge bg-danger">blocks</span> badge to filter to that item.
+</p>
+<div class="table-responsive">
+  <table class="table table-sm table-striped table-hover" id="bl-table">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th><th>Type</th><th>Epic</th><th>Priority</th><th>Status</th>
+        <th>Agents</th><th>Depends on</th><th>Blocks</th><th>Last updated</th>
+      </tr>
+    </thead>
+    <tbody><tr class="bl-row"
+        data-id="E0-S1"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="story">
+      <td><strong>E0-S1</strong> <a href="../Docs/agile/stories/story-E0S1-repository-diagnosis.md" title="Docs/agile/stories/story-E0S1-repository-diagnosis.md"
+              class="text-decoration-none ms-1">📄</a></td>
+      <td><code style="font-size:0.75rem">story</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">project-adaptation-analyst</span><span class="badge bg-dark me-1">git-ops</span><span class="badge bg-dark me-1">environment-validator</span></td>
+      <td>—</td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S2')"
+                 title="Filter to E0-S2">E0-S2</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S3')"
+                 title="Filter to E0-S3">E0-S3</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4')"
+                 title="Filter to E0-S4">E0-S4</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('EPIC-1')"
+                 title="Filter to EPIC-1">EPIC-1</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-10 17:45:54 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S2"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="story">
+      <td><strong>E0-S2</strong> <a href="../Docs/agile/stories/story-E0S2-minimum-ai-layer.md" title="Docs/agile/stories/story-E0S2-minimum-ai-layer.md"
+              class="text-decoration-none ms-1">📄</a></td>
+      <td><code style="font-size:0.75rem">story</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">copilot-config-refactor</span><span class="badge bg-dark me-1">rules-bootstrap</span><span class="badge bg-dark me-1">copilot-env-specialist</span><span class="badge bg-dark me-1">git-ops</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S1')"
+                 title="Filter to E0-S1">E0-S1</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S3')"
+                 title="Filter to E0-S3">E0-S3</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4')"
+                 title="Filter to E0-S4">E0-S4</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('EPIC-1')"
+                 title="Filter to EPIC-1">EPIC-1</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 16:19:17 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S3"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="story">
+      <td><strong>E0-S3</strong> <a href="../Docs/agile/stories/story-E0S3-measurement-baseline.md" title="Docs/agile/stories/story-E0S3-measurement-baseline.md"
+              class="text-decoration-none ms-1">📄</a></td>
+      <td><code style="font-size:0.75rem">story</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2')"
+                 title="Filter to E0-S2">E0-S2</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4')"
+                 title="Filter to E0-S4">E0-S4</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('EPIC-1')"
+                 title="Filter to EPIC-1">EPIC-1</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-11 16:44:05 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S4"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="story">
+      <td><strong>E0-S4</strong> <a href="../Docs/agile/stories/story-E0S4-preparation-closure.md" title="Docs/agile/stories/story-E0S4-preparation-closure.md"
+              class="text-decoration-none ms-1">📄</a></td>
+      <td><code style="font-size:0.75rem">story</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">project-adaptation-analyst</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S3')"
+                 title="Filter to E0-S3">E0-S3</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('EPIC-1')"
+                 title="Filter to EPIC-1">EPIC-1</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 15:27:35 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S5"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="story">
+      <td><strong>E0-S5</strong> <a href="../Docs/agile/stories/story-E0S5-execution-automation.md" title="Docs/agile/stories/story-E0S5-execution-automation.md"
+              class="text-decoration-none ms-1">📄</a></td>
+      <td><code style="font-size:0.75rem">story</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">prompt-engineer</span><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2')"
+                 title="Filter to E0-S2">E0-S2</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('EPIC-1')"
+                 title="Filter to EPIC-1">EPIC-1</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 21:52:11 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S1-T0"
+        data-epic="EPIC-0"
+        data-status="In Progress"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S1-T0</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-primary">In Progress</span></td>
+      <td><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td>—</td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S1-T1')"
+                 title="Filter to E0-S1-T1">E0-S1-T1</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 14:03:39 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S1-T1"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S1-T1</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">git-ops</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S1-T0')"
+                 title="Filter to E0-S1-T0">E0-S1-T0</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S1-T2')"
+                 title="Filter to E0-S1-T2">E0-S1-T2</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 14:15:15 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S1-T2"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S1-T2</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">environment-validator</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S1-T1')"
+                 title="Filter to E0-S1-T1">E0-S1-T1</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S1-T3')"
+                 title="Filter to E0-S1-T3">E0-S1-T3</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 14:15:15 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S1-T3"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S1-T3</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">project-adaptation-analyst</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S1-T2')"
+                 title="Filter to E0-S1-T2">E0-S1-T2</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S1-T4')"
+                 title="Filter to E0-S1-T4">E0-S1-T4</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 14:20:54 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S1-T4"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S1-T4</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">project-adaptation-analyst</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S1-T3')"
+                 title="Filter to E0-S1-T3">E0-S1-T3</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S2')"
+                 title="Filter to E0-S2">E0-S2</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4')"
+                 title="Filter to E0-S4">E0-S4</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('EPIC-1')"
+                 title="Filter to EPIC-1">EPIC-1</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 14:24:20 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S2-T0"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S2-T0</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">agile-exercise-planner</span><span class="badge bg-dark me-1">prompt-engineer</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S1')"
+                 title="Filter to E0-S1">E0-S1</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S2-T1')"
+                 title="Filter to E0-S2-T1">E0-S2-T1</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S2-T2')"
+                 title="Filter to E0-S2-T2">E0-S2-T2</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S2-T3')"
+                 title="Filter to E0-S2-T3">E0-S2-T3</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S2-T4')"
+                 title="Filter to E0-S2-T4">E0-S2-T4</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 16:19:17 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S2-T1"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S2-T1</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">rules-bootstrap</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2-T0')"
+                 title="Filter to E0-S2-T0">E0-S2-T0</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S2-T5')"
+                 title="Filter to E0-S2-T5">E0-S2-T5</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-11 16:09:01 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S2-T2"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S2-T2</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">copilot-config-refactor</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2-T0')"
+                 title="Filter to E0-S2-T0">E0-S2-T0</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S2-T5')"
+                 title="Filter to E0-S2-T5">E0-S2-T5</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-11 16:14:20 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S2-T3"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S2-T3</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">copilot-config-refactor</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2-T0')"
+                 title="Filter to E0-S2-T0">E0-S2-T0</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S2-T5')"
+                 title="Filter to E0-S2-T5">E0-S2-T5</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-11 16:18:38 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S2-T4"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S2-T4</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">copilot-env-specialist</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2-T0')"
+                 title="Filter to E0-S2-T0">E0-S2-T0</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S2-T5')"
+                 title="Filter to E0-S2-T5">E0-S2-T5</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-11 16:25:13 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S2-T5"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S2-T5</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">git-ops</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2-T1')"
+                 title="Filter to E0-S2-T1">E0-S2-T1</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2-T2')"
+                 title="Filter to E0-S2-T2">E0-S2-T2</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2-T3')"
+                 title="Filter to E0-S2-T3">E0-S2-T3</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2-T4')"
+                 title="Filter to E0-S2-T4">E0-S2-T4</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S3')"
+                 title="Filter to E0-S3">E0-S3</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4')"
+                 title="Filter to E0-S4">E0-S4</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('EPIC-1')"
+                 title="Filter to EPIC-1">EPIC-1</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-11 16:31:09 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S3-T0"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S3-T0</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2')"
+                 title="Filter to E0-S2">E0-S2</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S3-T1')"
+                 title="Filter to E0-S3-T1">E0-S3-T1</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S3-T2')"
+                 title="Filter to E0-S3-T2">E0-S3-T2</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S3-T3')"
+                 title="Filter to E0-S3-T3">E0-S3-T3</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-11 16:49:00 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S3-T1"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S3-T1</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2')"
+                 title="Filter to E0-S2">E0-S2</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S3-T0')"
+                 title="Filter to E0-S3-T0">E0-S3-T0</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S3-T2')"
+                 title="Filter to E0-S3-T2">E0-S3-T2</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S3-T3')"
+                 title="Filter to E0-S3-T3">E0-S3-T3</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-11 16:53:40 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S3-T2"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S3-T2</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S3-T1')"
+                 title="Filter to E0-S3-T1">E0-S3-T1</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S3-T0')"
+                 title="Filter to E0-S3-T0">E0-S3-T0</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S3-T3')"
+                 title="Filter to E0-S3-T3">E0-S3-T3</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-11 17:09:31 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S3-T3"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S3-T3</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S3-T2')"
+                 title="Filter to E0-S3-T2">E0-S3-T2</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S1')"
+                 title="Filter to E0-S1">E0-S1</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2')"
+                 title="Filter to E0-S2">E0-S2</span></td>
+      <td>—</td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-11 17:32:15 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S4-T0"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S4-T0</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">project-adaptation-analyst</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S3')"
+                 title="Filter to E0-S3">E0-S3</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4-T1')"
+                 title="Filter to E0-S4-T1">E0-S4-T1</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4-T2')"
+                 title="Filter to E0-S4-T2">E0-S4-T2</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4-T3')"
+                 title="Filter to E0-S4-T3">E0-S4-T3</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4-T5')"
+                 title="Filter to E0-S4-T5">E0-S4-T5</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 15:13:58 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S4-T1"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S4-T1</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">project-adaptation-analyst</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S4-T0')"
+                 title="Filter to E0-S4-T0">E0-S4-T0</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4-T2')"
+                 title="Filter to E0-S4-T2">E0-S4-T2</span><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4-T3')"
+                 title="Filter to E0-S4-T3">E0-S4-T3</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 15:13:58 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S4-T2"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S4-T2</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">project-adaptation-analyst</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S4-T1')"
+                 title="Filter to E0-S4-T1">E0-S4-T1</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S4-T0')"
+                 title="Filter to E0-S4-T0">E0-S4-T0</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4-T4')"
+                 title="Filter to E0-S4-T4">E0-S4-T4</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 15:13:58 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S4-T3"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S4-T3</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">project-adaptation-analyst</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S4-T0')"
+                 title="Filter to E0-S4-T0">E0-S4-T0</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S4-T1')"
+                 title="Filter to E0-S4-T1">E0-S4-T1</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S4-T2')"
+                 title="Filter to E0-S4-T2">E0-S4-T2</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4-T4')"
+                 title="Filter to E0-S4-T4">E0-S4-T4</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 15:13:58 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S4-T4"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S4-T4</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">project-adaptation-analyst</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S4-T2')"
+                 title="Filter to E0-S4-T2">E0-S4-T2</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S4-T3')"
+                 title="Filter to E0-S4-T3">E0-S4-T3</span></td>
+      <td><span class="badge bg-danger dep-badge me-1"
+                 onclick="filterById('E0-S4-T5')"
+                 title="Filter to E0-S4-T5">E0-S4-T5</span></td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 15:13:58 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S4-T5"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P1"
+        data-type="task">
+      <td><strong>E0-S4-T5</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-warning text-dark">P1</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">project-adaptation-analyst</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S4-T0')"
+                 title="Filter to E0-S4-T0">E0-S4-T0</span><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S4-T4')"
+                 title="Filter to E0-S4-T4">E0-S4-T4</span></td>
+      <td>—</td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-12 15:13:58 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S5-T1"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S5-T1</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">prompt-engineer</span><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S2')"
+                 title="Filter to E0-S2">E0-S2</span></td>
+      <td>—</td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-13 13:23:32 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S5-T2"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S5-T2</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">prompt-engineer</span><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S5-T1')"
+                 title="Filter to E0-S5-T1">E0-S5-T1</span></td>
+      <td>—</td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-13 13:23:32 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S5-T3"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S5-T3</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">prompt-engineer</span><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S5-T2')"
+                 title="Filter to E0-S5-T2">E0-S5-T2</span></td>
+      <td>—</td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-13 13:23:32 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S5-T4"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S5-T4</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">prompt-engineer</span><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S5-T3')"
+                 title="Filter to E0-S5-T3">E0-S5-T3</span></td>
+      <td>—</td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-13 13:23:32 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S5-T5"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S5-T5</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">prompt-engineer</span><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S5-T4')"
+                 title="Filter to E0-S5-T4">E0-S5-T4</span></td>
+      <td>—</td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-13 13:23:32 -03</td>
+    </tr>
+<tr class="bl-row"
+        data-id="E0-S5-T6"
+        data-epic="EPIC-0"
+        data-status="Draft"
+        data-priority="P0"
+        data-type="task">
+      <td><strong>E0-S5-T6</strong></td>
+      <td><code style="font-size:0.75rem">task</code></td>
+      <td>EPIC-0</td>
+      <td><span class="badge bg-danger">P0</span></td>
+      <td><span class="badge bg-secondary">Draft</span></td>
+      <td><span class="badge bg-dark me-1">prompt-engineer</span><span class="badge bg-dark me-1">agile-exercise-planner</span></td>
+      <td><span class="badge bg-secondary dep-badge me-1"
+                 onclick="filterById('E0-S5-T5')"
+                 title="Filter to E0-S5-T5">E0-S5-T5</span></td>
+      <td>—</td>
+      <td class="text-muted" style="font-size:0.75rem;white-space:nowrap">2026-04-13 13:23:32 -03</td>
+    </tr></tbody>
+  </table>
+</div>
+<script>
+  function applyBLFilters() {
+    const epic     = document.getElementById('bl-epic').value;
+    const status   = document.getElementById('bl-status').value;
+    const priority = document.getElementById('bl-priority').value;
+    const type     = document.getElementById('bl-type').value;
+    const search   = document.getElementById('bl-search').value.toLowerCase().trim();
+    let count = 0;
+    document.querySelectorAll('.bl-row').forEach(row => {
+      const ok = (!epic     || row.dataset.epic     === epic)
+               && (!status   || row.dataset.status   === status)
+               && (!priority || row.dataset.priority === priority)
+               && (!type     || row.dataset.type     === type)
+               && (!search   || row.dataset.id.toLowerCase().includes(search));
+      row.style.display = ok ? '' : 'none';
+      if (ok) count++;
+    });
+    document.getElementById('bl-count').textContent = count;
+  }
+  function clearBLFilters() {
+    ['bl-epic','bl-status','bl-priority','bl-type'].forEach(id =>
+      document.getElementById(id).value = '');
+    document.getElementById('bl-search').value = '';
+    applyBLFilters();
+  }
+  function filterById(id) {
+    document.getElementById('bl-search').value = id;
+    applyBLFilters();
+  }
+  ['bl-epic','bl-status','bl-priority','bl-type'].forEach(id =>
+    document.getElementById(id).addEventListener('change', applyBLFilters));
+  document.getElementById('bl-search').addEventListener('input', applyBLFilters);
+</script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
