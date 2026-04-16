@@ -34,7 +34,7 @@ Currently, the dashboard displays all flags in a single table with no way to fil
 
 ---
 
-## Implementation — Epic 1 Results
+## Implementation — [Epic 1 Results](./docs/epics/Epic%201%20—%20Baseline%20Implementation:%20Feature%20Flag%20Filtering.md)
 
 ### Before
 
