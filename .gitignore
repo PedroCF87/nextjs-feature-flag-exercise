@@ -23,3 +23,6 @@ dist/
 
 # Claude Code
 .claude/
+
+# Hook runtime state
+.github/hooks/.task-pack-validation-state.json

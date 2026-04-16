@@ -130,8 +130,8 @@ function extractPatchPaths(patchText) {
   return paths
 }
 
-function collectPaths(value, out = []) {
-  if (!value) return out
+function collectPaths(value, out = [], depth = 0) {
+  if (!value || depth > 10) return out
 
   if (typeof value === 'string') {
     if (value.includes('/')) out.push(value)
@@ -139,7 +139,7 @@ function collectPaths(value, out = []) {
   }
 
   if (Array.isArray(value)) {
-    for (const item of value) collectPaths(item, out)
+    for (const item of value) collectPaths(item, out, depth + 1)
     return out
   }
 
@@ -156,16 +156,16 @@ function collectPaths(value, out = []) {
     ]
 
     for (const key of directKeys) {
-      if (key in value) collectPaths(value[key], out)
+      if (key in value) collectPaths(value[key], out, depth + 1)
     }
 
     if (typeof value.input === 'string') {
-      collectPaths(extractPatchPaths(value.input), out)
+      collectPaths(extractPatchPaths(value.input), out, depth + 1)
     }
 
     for (const nestedValue of Object.values(value)) {
       if (nestedValue && typeof nestedValue === 'object') {
-        collectPaths(nestedValue, out)
+        collectPaths(nestedValue, out, depth + 1)
       }
     }
   }
@@ -281,36 +281,13 @@ function toAbsoluteFsPath(filePath) {
   return path.join(WORKSPACE_ROOT, normalized)
 }
 
-function parseResponsibleAgentsFromMarkdown(filePath) {
-  const absPath = toAbsoluteFsPath(filePath)
-  if (!absPath || !fs.existsSync(absPath)) return []
-
-  let content = ''
-  try {
-    content = fs.readFileSync(absPath, 'utf8')
-  } catch {
-    return []
-  }
-
-  const rowMatch = content.match(/^\|\s*\*\*Responsible agent\*\*\s*\|\s*(.+?)\s*\|\s*$/im)
-  if (!rowMatch) return []
-
-  const raw = rowMatch[1]
-  const cleaned = raw
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    .replace(/[*`]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-
-  if (!cleaned) return []
-
-  return cleaned
-    .split(',')
-    .map((v) => v.trim())
-    .filter(Boolean)
-}
-
-function parseResponsibleAgentsFromMarkdownContent(content) {
+/**
+ * Extract responsible agents from markdown content string.
+ * Shared helper used by both file-based and content-based variants.
+ * @param {string} content  Raw markdown string
+ * @returns {string[]}
+ */
+function _extractAgentsFromContent(content) {
   if (!content || typeof content !== 'string') return []
 
   const rowMatch = content.match(/^\|\s*\*\*Responsible agent\*\*\s*\|\s*(.+?)\s*\|\s*$/im)
@@ -328,6 +305,24 @@ function parseResponsibleAgentsFromMarkdownContent(content) {
     .split(',')
     .map((v) => v.trim())
     .filter(Boolean)
+}
+
+function parseResponsibleAgentsFromMarkdown(filePath) {
+  const absPath = toAbsoluteFsPath(filePath)
+  if (!absPath || !fs.existsSync(absPath)) return []
+
+  let content = ''
+  try {
+    content = fs.readFileSync(absPath, 'utf8')
+  } catch {
+    return []
+  }
+
+  return _extractAgentsFromContent(content)
+}
+
+function parseResponsibleAgentsFromMarkdownContent(content) {
+  return _extractAgentsFromContent(content)
 }
 
 function resolveTimelineAgent(payload, toolInput, filePath, artifactType) {

@@ -43,7 +43,7 @@
 
 'use strict';
 
-const { execSync } = require('child_process');
+const { execSync, spawnSync } = require('child_process');
 
 /**
  * Run a command and return trimmed stdout, or null on failure.
@@ -53,6 +53,22 @@ const { execSync } = require('child_process');
 function run(cmd) {
   try {
     return execSync(cmd, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] }).trim();
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Run a command as an argv array via spawnSync to avoid shell injection.
+ * @param {string} bin
+ * @param {string[]} args
+ * @returns {string|null}
+ */
+function safeRun(bin, args) {
+  try {
+    const result = spawnSync(bin, args, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] });
+    if (result.status !== 0) return null;
+    return (result.stdout || '').trim();
   } catch {
     return null;
   }
@@ -118,10 +134,10 @@ function checkPrereqs(opts = {}) {
   });
 
   // ── Active branch ─────────────────────────────────────────────────────────
-  const branchCmd = repoPath
-    ? `git -C "${repoPath}" branch --show-current`
-    : 'git branch --show-current';
-  const branch     = run(branchCmd);
+  const branchArgs = repoPath
+    ? ['-C', repoPath, 'branch', '--show-current']
+    : ['branch', '--show-current'];
+  const branch     = safeRun('git', branchArgs);
   const branchPass = branch === expectedBranch;
   checks.push({
     name:  'branch',

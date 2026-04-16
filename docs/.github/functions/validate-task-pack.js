@@ -75,8 +75,13 @@ function hasGwt(md) {
 }
 
 function hasSecuritySignals(md) {
-  const signals = ['parameterized', 'secrets', 'rollback', 'validation', 'security'];
-  return signals.some(s => md.toLowerCase().includes(s));
+  // Extract section 4 content specifically to avoid trivially matching
+  // 'validation' from section headers like '## 2) Verifiable expected outcome'.
+  const section4Match = md.match(/## 4\).*?(?=## 5\)|$)/s);
+  const scope = section4Match ? section4Match[0].toLowerCase() : md.toLowerCase();
+  const signals = ['parameterized', 'secrets', 'rollback', 'validation', 'security', 'injection', 'sanitize'];
+  const matched = signals.filter(s => scope.includes(s));
+  return matched.length >= 2;
 }
 
 function validateFile(filePath, storyId) {

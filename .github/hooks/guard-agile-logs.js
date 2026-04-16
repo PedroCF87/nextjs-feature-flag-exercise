@@ -38,8 +38,8 @@ function extractPatchPaths(patchText) {
   return paths
 }
 
-function collectPaths(value, out = []) {
-  if (!value) return out
+function collectPaths(value, out = [], depth = 0) {
+  if (!value || depth > 10) return out
 
   if (typeof value === 'string') {
     if (value.includes('/')) out.push(value)
@@ -47,7 +47,7 @@ function collectPaths(value, out = []) {
   }
 
   if (Array.isArray(value)) {
-    for (const item of value) collectPaths(item, out)
+    for (const item of value) collectPaths(item, out, depth + 1)
     return out
   }
 
@@ -64,16 +64,16 @@ function collectPaths(value, out = []) {
     ]
 
     for (const key of directKeys) {
-      if (key in value) collectPaths(value[key], out)
+      if (key in value) collectPaths(value[key], out, depth + 1)
     }
 
     if (typeof value.input === 'string') {
-      collectPaths(extractPatchPaths(value.input), out)
+      collectPaths(extractPatchPaths(value.input), out, depth + 1)
     }
 
     for (const nestedValue of Object.values(value)) {
       if (nestedValue && typeof nestedValue === 'object') {
-        collectPaths(nestedValue, out)
+        collectPaths(nestedValue, out, depth + 1)
       }
     }
   }

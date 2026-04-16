@@ -29,16 +29,14 @@ const WORKSPACE_ROOT   = path.resolve(__dirname, '..', '..', '..');
 const DOCS_ROOT        = path.join(WORKSPACE_ROOT, 'Docs');
 const TIMELINE_PATH    = path.join(DOCS_ROOT, 'agile', 'timeline.jsonl');
 const BACKLOG_PATH     = path.join(DOCS_ROOT, 'agile', 'backlog-index.json');
-const DEFAULT_FRICTION = path.join(
-  WORKSPACE_ROOT,
-  'nextjs-feature-flag-exercise',
-  '.agents', 'templates', 'friction-log.md'
-);
+const DEFAULT_FRICTION = path.resolve(__dirname, '..', '..', '.agents', 'templates', 'friction-log.md');
 const OUTPUT_DIR = path.join(DOCS_ROOT, 'dashboard');
 
 // Bootstrap 5.3.3 CDN
 const BS_CSS = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
+const BS_CSS_SRI = 'sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH';
 const BS_JS  = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';
+const BS_JS_SRI  = 'sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz';
 
 // ─── Data loaders ─────────────────────────────────────────────────────────────
 
@@ -209,7 +207,7 @@ function htmlWrap(title, activePage, bodyContent, totals) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${title} — AI Layer Dashboards</title>
-  <link rel="stylesheet" href="${BS_CSS}" crossorigin="anonymous">
+  <link rel="stylesheet" href="${BS_CSS}" integrity="${BS_CSS_SRI}" crossorigin="anonymous">
   <style>
     body          { background: #f5f6fa; }
     .filter-bar   { background: #fff; border-radius: 8px; padding: 1rem 1.25rem;
@@ -229,7 +227,7 @@ ${navbar(activePage, totals)}
 <div class="container-fluid py-4 px-4">
 ${bodyContent}
 </div>
-<script src="${BS_JS}" crossorigin="anonymous"></script>
+<script src="${BS_JS}" integrity="${BS_JS_SRI}" crossorigin="anonymous"></script>
 </body>
 </html>`;
 }
