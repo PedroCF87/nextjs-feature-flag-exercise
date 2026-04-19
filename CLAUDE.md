@@ -2,9 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Workshop Context
-
-This is an exercise for the Agentic Engineering Workshop. The task is to implement feature flag filtering (see `TASK.md`).
+## Constraints
 
 ### Branch Rules
 
@@ -43,30 +41,6 @@ This is an exercise for the Agentic Engineering Workshop. The task is to impleme
 
 - **`shared/types.ts`** - Single source of truth for data contracts
 - Path aliases: `@shared/*` maps to `shared/*`
-
----
-
-## Commands
-
-### Server (from `server/` directory)
-
-```bash
-pnpm install          # Install dependencies
-pnpm dev              # Start dev server (port 3001)
-pnpm run build        # Type check (tsc)
-pnpm run lint         # Run ESLint
-pnpm test             # Run tests (vitest)
-pnpm test -- --watch  # Run tests in watch mode
-```
-
-### Client (from `client/` directory)
-
-```bash
-pnpm install          # Install dependencies
-pnpm dev              # Start dev server (port 3000)
-pnpm run build        # Type check and build (tsc + vite)
-pnpm run lint         # Run ESLint
-```
 
 ---
 
@@ -151,19 +125,19 @@ client/                 # React frontend (port 3000)
 - **Pattern**: `describe` blocks by feature, `it` blocks for specific cases
 - **Assertions**: `expect().toBe()`, `expect().toThrow()`, `expect().toEqual()`
 
-### Validation Checks
-
-Run these before committing:
-
-```bash
-# Server
-cd server && pnpm run build && pnpm run lint && pnpm test
-
-# Client
-cd client && pnpm run build && pnpm run lint
-```
-
 **All checks must pass with zero errors.**
+
+---
+
+## AI Gotchas
+
+Project-specific patterns where AI assistants commonly make mistakes:
+
+- **Express v5 error propagation**: In route handlers, ALWAYS use `next(error)` in catch blocks. NEVER call `res.status().json()` inside a catch — it bypasses the centralized error middleware silently.
+- **SQL.js resource leak**: ALWAYS call `stmt.free()` in a `finally` block after every prepared statement. NEVER skip it — WASM does not garbage-collect statements.
+- **Validation order**: ALWAYS parse request data with Zod BEFORE passing to service layer. NEVER call a service method with unvalidated input.
+- **Type imports**: ALWAYS use `import type { Foo }` for type-only imports. Never `import { Foo }` when Foo is only used as a type.
+- **Custom errors only**: NEVER `throw new Error(...)`. Use `NotFoundError`, `ConflictError`, or `ValidationError` so the error middleware formats the response correctly.
 
 ---
 
@@ -192,16 +166,6 @@ throw new ConflictError(`Flag with name '${name}' already exists`)
 
 // 400 - Validation error
 throw new ValidationError('Invalid input')
-```
-
-### Error Response Format
-
-```json
-{
-  "error": "NOT_FOUND",
-  "message": "Flag with id 'abc' not found",
-  "statusCode": 404
-}
 ```
 
 ---
