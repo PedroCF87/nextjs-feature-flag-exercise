@@ -1,8 +1,11 @@
 # Phase 4 — Agents: Round 19 — Audit `type-design-analyzer` Agent
 
 **Target file**: `nextjs-feature-flag-exercise/.claude/agents/type-design-analyzer.md`
+
 **Gold Standard concepts**: #17 (Code Styles & Patterns), #25 (Input → Process → Output)
+
 **Agent-specific quality checks**: proactive `description` trigger, minimum-viable `tools`, identity, numbered process, structured output, rating system
+
 **Reference**: `docs/Gold-Standard-Plan/my-gold-standard.md`
 
 ---

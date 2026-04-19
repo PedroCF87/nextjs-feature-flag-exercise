@@ -1,7 +1,9 @@
 # Phase 3 — Additional Commands: Round 10 — Audit `/security-review` Command
 
 **Target file**: `nextjs-feature-flag-exercise/.claude/commands/security-review.md`
+
 **Gold Standard concepts**: #25, #26, #27, #28, #29
+
 **Reference**: `docs/Gold-Standard-Plan/my-gold-standard.md`
 
 ---

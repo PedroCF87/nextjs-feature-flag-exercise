@@ -1,8 +1,11 @@
 # Phase 3 — Additional Commands: Round 8 — Create `/create-pr` Command
 
 **Target file**: `nextjs-feature-flag-exercise/.claude/commands/create-pr.md` *(does NOT exist — must be created)*
+
 **Baseline reference**: `nextjs-ai-optimized-codebase/.claude/commands/create-pr.md` *(~61 lines, XML-style)*
+
 **Gold Standard concepts**: #2, #6, #25, #26, #27, #28, #29
+
 **Reference**: `docs/Gold-Standard-Plan/my-gold-standard.md`
 
 ---

@@ -1,8 +1,11 @@
 # Phase 4 — Agents: Round 18 — Audit `silent-failure-hunter` Agent
 
 **Target file**: `nextjs-feature-flag-exercise/.claude/agents/silent-failure-hunter.md`
+
 **Gold Standard concepts**: #17 (Misconceptions AI Has With Your Project), #25 (Input → Process → Output)
+
 **Agent-specific quality checks**: proactive `description` trigger, minimum-viable `tools`, identity, numbered process, structured output
+
 **Reference**: `docs/Gold-Standard-Plan/my-gold-standard.md`
 
 ---

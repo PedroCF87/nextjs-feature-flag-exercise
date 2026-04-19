@@ -1,7 +1,9 @@
 # Phase 5 — Skills: Round 22 — Audit `agent-browser` Skill
 
 **Target file**: `nextjs-feature-flag-exercise/.claude/skills/agent-browser/SKILL.md`
+
 **Gold Standard concepts**: #25 (Input → Process → Output), #32 (Prompt Structure for Setup Steps: Context Ref → Install → Implement → Validate → Commit)
+
 **Reference**: `docs/Gold-Standard-Plan/my-gold-standard.md`
 
 ---
@@ -367,7 +369,7 @@ Section-by-section breakdown of the skill file:
 
 ## Execution Prompt (copy-paste ready)
 
-```
+````
 Read the following files from your workspace:
 1. `docs/Gold-Standard-Plan/my-gold-standard.md` — Gold Standard reference (§25, §32)
 2. `.claude/skills/agent-browser/SKILL.md` — current skill
@@ -653,7 +655,7 @@ Edit `.claude/skills/agent-browser/SKILL.md` with these requirements:
     - The ref-stability note ("Do not hardcode element refs across sessions")
 
 Do NOT change any source code. Only edit `.claude/skills/agent-browser/SKILL.md`.
-```
+````
 
 ---
 

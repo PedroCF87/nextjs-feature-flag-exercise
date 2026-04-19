@@ -1,7 +1,9 @@
 # Phase 3 — Additional Commands: Round 7 — Audit `/review-pr` Command
 
 **Target file**: `nextjs-feature-flag-exercise/.claude/commands/review-pr.md`
+
 **Gold Standard concepts**: #3, #15, #25, #26, #27, #28
+
 **Reference**: `docs/Gold-Standard-Plan/my-gold-standard.md`
 
 ---

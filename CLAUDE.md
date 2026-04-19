@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Branch Rules
 
-- **Base branch**: `exercise-1`
+- **Base commit**: `04ea0ba24f64f50e6e0cda0238e10be2a02d1ca0`
 - You may create new branches from these
 - **Never** commit or push to `main`
 
@@ -89,6 +89,31 @@ client/                 # React frontend (port 3000)
 
 ---
 
+## Workflow / PIV Loop
+
+The AI layer follows the PIV Loop: Planning → Implementing → Validating.
+
+```
+/prime → /plan → /implement → /commit → /create-pr → Human review
+            ↑                     ↑
+     /prd-interactive       /validate (optional)
+     /create-stories        /review-pr (optional)
+```
+
+**Planning phase**: `/prime` (orient) → `/prd-interactive` (define feature, optional) → `/create-stories` (decompose, optional) → `/plan` (task plan)
+
+**Implementing phase**: `/implement <plan-file>`
+
+**Validating phase**: `/validate` → `/review-pr` (optional) → `/commit` → `/create-pr`
+
+**Sideways loops** (invoked on failure or special condition):
+- `/rca <symptom>` — root cause analysis when a failure is non-obvious
+- `/security-review` — OWASP security review when sensitive surfaces change
+- `/check-ignores` — audit suppression comments (on-demand)
+- `/create-rules` — regenerate CLAUDE.md from codebase analysis (on-demand)
+
+---
+
 ## Code Style & Patterns
 
 ### TypeScript
@@ -143,13 +168,18 @@ Project-specific patterns where AI assistants commonly make mistakes:
 
 ## On-Demand Context
 
-For deeper context on specific areas, read these files:
+Reference guides for deeper context on specific areas. Load only what your task needs.
 
-| Topic | File |
-|-------|------|
-| Project requirements | `.agents/PRDs/feature-flag-manager.prd.md` |
-| Frontend patterns | `.agents/reference/frontend.md` |
-| Backend patterns | `.agents/reference/backend.md` |
+| Topic | File | Load when |
+|-------|------|-----------|
+| Project requirements | `.agents/PRDs/feature-flag-manager.prd.md` | Planning a new feature; starting a new PR |
+| Backend narrative | `.agents/reference/backend.md` | Starting in an unfamiliar backend area |
+| Backend patterns (rules) | `.agents/reference/backend-patterns.md` | Reviewing, implementing, or simplifying backend code |
+| Frontend narrative | `.agents/reference/frontend.md` | Starting in an unfamiliar frontend area |
+| Frontend patterns (rules) | `.agents/reference/frontend-patterns.md` | Reviewing, implementing, or simplifying frontend code |
+| SQL.js constraints | `.agents/reference/sql-js-constraints.md` | Any database operation; security review |
+
+See `.agents/reference/README.md` for the full producer/consumer map and loading conventions.
 
 ---
 

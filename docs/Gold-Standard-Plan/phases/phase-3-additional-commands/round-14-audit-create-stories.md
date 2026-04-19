@@ -1,7 +1,9 @@
 # Phase 3 — Additional Commands: Round 14 — Audit `/create-stories` Command
 
 **Target file**: `nextjs-feature-flag-exercise/.claude/commands/create-stories.md`
+
 **Gold Standard concepts**: #8, #25, #26, #27, #28, #29
+
 **Reference**: `docs/Gold-Standard-Plan/my-gold-standard.md`
 
 ---

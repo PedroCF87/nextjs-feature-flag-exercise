@@ -1,7 +1,9 @@
 # Phase 6 — Gap Analysis: Round 23 — On-Demand Context Gap
 
 **Scope**: `.agents/` directory (full tree) vs commands and agents that should reference it
+
 **Gold Standard concepts**: #4 (On-Demand Context), #9 (Two Planning Layers — Layer 2), #20 ("Department Training" metaphor), #21 (Reference guides)
+
 **Reference**: `docs/Gold-Standard-Plan/my-gold-standard.md`
 
 ---

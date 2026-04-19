@@ -1,7 +1,9 @@
 # Phase 6 — Gap Analysis: Round 24 — Command Chaining Audit (PIV Loop)
 
 **Scope**: All 14 `.claude/commands/*.md` against the PIV Loop chain and sideways loops
+
 **Gold Standard concepts**: #6 (PIV Loop), #29 (Command Chaining)
+
 **Reference**: `docs/Gold-Standard-Plan/my-gold-standard.md`
 
 ---
@@ -27,8 +29,8 @@ Auditing the terminal output / chain hints of all 14 commands as they exist TODA
 | `/implement` | Terminal report: "Next: /commit" | ✅ Present |
 | `/validate` | On failure: no suggestion — user stranded | ❌ Missing |
 | `/review-pr` | APPROVE/NEEDS WORK/CRITICAL ISSUES verdict — no next command | ⚠️ Partial |
-| `/commit` | `## Output` line 102: `Next: git push origin {branch}` | ❌ **Wrong** |
-| `/create-pr` | **Does not exist** — Round 8 must create | ❌ Missing |
+| `/commit` | `## Phase 4 REPORT`: `Next: Run /create-pr to open a pull request for this branch.` | ✅ Fixed (Round 5) |
+| `/create-pr` | **Exists** — created in Round 8 | ✅ Done |
 | `/rca` | Next steps: "Review evidence chain, Implement fix, Run verification" — no command names | ⚠️ Partial |
 | `/security-review` | Per Round 10 plan: verdict + "Next: /commit" (if no critical) | ✅ Per plan |
 | `/create-rules` | Phase 4: next steps chain to `/validate` and `/commit` | ✅ Per Round 11 plan |
@@ -150,8 +152,8 @@ SIDEWAYS LOOPS (invoked on failure or special condition):
 | `/implement → /commit` | "Run `/commit`" | "Next: /commit" | ✅ |
 | `/validate → /rca` (on failure) | "Failure unclear? `/rca '<symptom>'`" | Not present | ❌ Missing |
 | `/review-pr → /security-review` (on security cue) | "Security-sensitive files detected: run `/security-review`" | Not present | ❌ Missing |
-| `/commit → /create-pr` | "Run `/create-pr` to open a pull request" | "Next: git push origin {branch}" | ❌ **Wrong — critical** |
-| `/create-pr → Human review` | "PIV Loop complete. PR open for human review." | Not present (file missing) | ❌ Missing (file doesn't exist) |
+| `/commit → /create-pr` | "Run `/create-pr` to open a pull request" | "Next: Run /create-pr to open a pull request for this branch." | ✅ Fixed (Round 5) |
+| `/create-pr → Human review` | "PIV Loop complete. PR open for human review." | "PIV Loop complete. This PR is now open for human review." | ✅ Present (Round 8) |
 
 ---
 
@@ -376,13 +378,13 @@ For each adjacent pair, verify: upstream's Output fields → downstream's Input 
 
 ## Action Plan
 
-### Priority 1 — Land the Broken `/commit → /create-pr` Link (BLOCKER)
+### Priority 1 — Land the Broken `/commit → /create-pr` Link ✅ DONE
 
-| # | Action | Files to Change | Round Dependency |
-|---|--------|-----------------|-----------------|
-| 1.1 | Execute Round 8 prompt — create `.claude/commands/create-pr.md` | New file | None |
-| 1.2 | Execute Round 5 prompt — change `/commit` Output "Next: git push" → "Next: /create-pr" | `commit.md` line 102 | Round 8 must exist first |
-| 1.3 | Verify end-to-end: `/implement → /commit → /create-pr` produces a PR without manual steps | Manual test | Both 1.1 and 1.2 |
+| # | Action | Status |
+|---|--------|--------|
+| 1.1 | `.claude/commands/create-pr.md` created | ✅ Round 8 executed |
+| 1.2 | `/commit` Output "Next:" → "Run /create-pr…" | ✅ Round 5 executed |
+| 1.3 | Verify end-to-end | Pending manual test |
 
 ### Priority 2 — Wire Sideways Loops
 
@@ -410,41 +412,20 @@ For each adjacent pair, verify: upstream's Output fields → downstream's Input 
 
 ---
 
-## Execution Prompt (orchestration across Rounds)
+## Execution Prompt (orchestration — remaining gaps only)
 
 ````
-This Round does not have a single rewrite — it orchestrates fixes across Rounds 3–8, 14, and CLAUDE.md.
-The changes are ordered by dependency: a downstream command cannot reference an upstream that doesn't exist yet.
+Rounds 1–23 have already been applied to this project. All files exist and the PIV forward chain is functional.
 
-**Execute in this exact order:**
+**Already done — do NOT redo:**
+- `/create-pr.md` exists (Round 8 ✅)
+- `/commit` Output "Next:" already reads "Run /create-pr to open a pull request" (Round 5 ✅)
 
----
-
-### Step 1 — Create `/create-pr.md` (Round 8 — no dependencies)
-
-Read and execute the Execution Prompt from:
-`docs/Gold-Standard-Plan/phases/phase-3-additional-commands/round-8-audit-create-pr.md`
-
-This creates `.claude/commands/create-pr.md` as a new file. No other command depends on this existing BEFORE this step.
+**Remaining work — execute in this order:**
 
 ---
 
-### Step 2 — Fix `/commit`'s "Next:" line (Round 5 — depends on Step 1)
-
-Open `.claude/commands/commit.md`. Find the `## Output` section. Find the line:
-```
-Next: git push origin {branch}
-```
-Replace with:
-```
-Next: Run /create-pr to open a pull request for this branch.
-```
-
-This is the critical Link 1 fix. The `/create-pr.md` file must exist (Step 1) before this makes semantic sense.
-
----
-
-### Step 3 — Wire `/validate` failure → `/rca` (Round 6 addendum)
+### Step 1 — Wire `/validate` failure → `/rca` (Round 6 addendum)
 
 Open `.claude/commands/validate.md`. Find the failure-output section in `<output>` or the terminal summary.
 
@@ -458,7 +439,7 @@ The /rca command will identify the root cause using the 5-Whys method and recomm
 
 ---
 
-### Step 4 — Wire `/implement` → optional `/review-pr` (Round 4 addendum)
+### Step 2 — Wire `/implement` → optional `/review-pr` (Round 4 addendum)
 
 Open `.claude/commands/implement.md`. Find the terminal Output section — the part that says "Next: /commit".
 
@@ -476,7 +457,7 @@ Next steps:
 
 ---
 
-### Step 5 — Wire `/review-pr` → `/security-review` (Round 7 addendum)
+### Step 3 — Wire `/review-pr` → `/security-review` (Round 7 addendum)
 
 Open `.claude/commands/review-pr.md`. Find the report template in `<output>` — specifically the section after the verdict (APPROVE/NEEDS WORK/CRITICAL ISSUES).
 
@@ -493,7 +474,7 @@ If any changed file touches: auth, SQL queries, user-input handling, secrets, or
 
 ---
 
-### Step 6 — Fix `/create-stories` → `/plan` fragment syntax (Round 14 fix)
+### Step 4 — Fix `/create-stories` → `/plan` fragment syntax (Round 14 fix)
 
 Open `.claude/commands/create-stories.md`. Find the terminal `<output>` block — specifically the "Next steps" section that was added by Round 14.
 
@@ -512,7 +493,7 @@ Plan it:
 
 ---
 
-### Step 7 — Add explicit chain hints to `/prime` and `/plan`
+### Step 5 — Add explicit chain hints to `/prime` and `/plan`
 
 **`/prime`**: Open `.claude/commands/prime.md`. Find the terminal Output section. Append:
 
@@ -536,7 +517,7 @@ Plan saved: `.agents/plans/{name}.plan.md`
 
 ---
 
-### Step 8 — Add `## Workflow / PIV Loop` to CLAUDE.md
+### Step 6 — Add `## Workflow / PIV Loop` to CLAUDE.md
 
 Open `CLAUDE.md`. Find a suitable location (after §Architecture, before §Code Style & Patterns).
 
@@ -601,8 +582,8 @@ After all 8 steps above are executed, verify the chain end-to-end:
 
 ## Success Criteria
 
-- [ ] `.claude/commands/create-pr.md` created (Round 8 landed) — chain can now close (concept #6 terminal step)
-- [ ] `/commit`'s `## Output` "Next:" line changed from `git push origin {branch}` to `Run /create-pr to open a pull request` (concept #29 — Link 1 fixed, **CRITICAL**)
+- [x] `.claude/commands/create-pr.md` created (Round 8 ✅) — chain can close
+- [x] `/commit`'s Output "Next:" changed to "Run /create-pr…" (Round 5 ✅ — Link 1 fixed)
 - [ ] `/validate` failure output includes: "Failure unclear? Run `/rca '<symptom>'`" (concept #29 — sideways loop wired)
 - [ ] `/implement` Output "Next:" changed to offer optional `/review-pr` before `/commit` (concept #29)
 - [ ] `/review-pr` report template includes conditional "Security Escalation" block when security-sensitive files detected (concept #29)

@@ -1,8 +1,11 @@
 # Phase 4 — Agents: Round 21 — Audit `comment-analyzer` Agent
 
 **Target file**: `nextjs-feature-flag-exercise/.claude/agents/comment-analyzer.md`
+
 **Gold Standard concepts**: #25 (Input → Process → Output)
+
 **Agent-specific quality checks**: proactive `description` trigger, minimum-viable `tools`, identity, numbered process, structured output, role boundary
+
 **Reference**: `docs/Gold-Standard-Plan/my-gold-standard.md`
 
 ---
