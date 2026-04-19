@@ -19,11 +19,14 @@ export function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsPr
   useEffect(() => { setLocalOwner(filters.owner ?? '') }, [filters.owner])
   useEffect(() => { setLocalName(filters.name ?? '') }, [filters.name])
 
+  const latestFilters = useRef(filters)
+  latestFilters.current = filters
+
   const latestOwner = useRef(localOwner)
   latestOwner.current = localOwner
   useEffect(() => {
     const id = setTimeout(() => {
-      onChange({ ...filters, owner: latestOwner.current || undefined })
+      onChange({ ...latestFilters.current, owner: latestOwner.current || undefined })
     }, 300)
     return () => clearTimeout(id)
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,7 +36,7 @@ export function FlagsFilterControls({ filters, onChange }: FlagsFilterControlsPr
   latestName.current = localName
   useEffect(() => {
     const id = setTimeout(() => {
-      onChange({ ...filters, name: latestName.current || undefined })
+      onChange({ ...latestFilters.current, name: latestName.current || undefined })
     }, 300)
     return () => clearTimeout(id)
   // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import initSqlJs, { Database } from 'sql.js'
+import type { Request, Response, NextFunction } from 'express'
 import { createTables } from '../db/schema.js'
 import { _resetDbForTesting } from '../db/client.js'
 import {
@@ -10,6 +11,7 @@ import {
   updateFlag,
   deleteFlag,
 } from '../services/flags.js'
+import { validateFlagFilters } from '../middleware/validation.js'
 import type { CreateFlagInput } from '../../../shared/types.js'
 
 let db: Database
@@ -122,6 +124,24 @@ describe('Flag Service', () => {
       const flags = await getAllFlags({ name: 'MY-FEATURE' })
       expect(flags).toHaveLength(1)
       expect(flags[0].name).toBe('my-feature-flag')
+    })
+
+    it('name filter treats LIKE special characters as literals', async () => {
+      await createFlag({ ...validFlagInput, name: 'test-flag' })
+
+      // Without escaping, '_' would be a wildcard matching 'test-flag' (- matches _)
+      // With correct escaping, 'test_flag' should not match 'test-flag'
+      const flags = await getAllFlags({ name: 'test_flag' })
+      expect(flags).toHaveLength(0)
+    })
+
+    it('name filter treats % as a literal character', async () => {
+      await createFlag({ ...validFlagInput, name: 'test-flag' })
+
+      // Without escaping, '%' would match everything
+      // With correct escaping, searching for '%' returns only flags whose name contains a literal '%'
+      const flags = await getAllFlags({ name: '%' })
+      expect(flags).toHaveLength(0)
     })
 
     it('applies multiple filters simultaneously', async () => {
@@ -375,5 +395,69 @@ describe('Flag Service', () => {
       await expect(deleteFlag('non-existent-id'))
         .rejects.toThrow('not found')
     })
+  })
+})
+
+describe('validateFlagFilters middleware', () => {
+  function makeReqRes(query: Record<string, string>) {
+    const req = { query } as unknown as Request
+    const res = { locals: {} } as unknown as Response
+    return { req, res }
+  }
+
+  it('passes valid filters and stores them in res.locals', () => {
+    const { req, res } = makeReqRes({ environment: 'production', status: 'enabled' })
+    let nextCalled = false
+    let nextError: unknown
+    const next: NextFunction = (err?: unknown) => {
+      nextError = err
+      nextCalled = true
+    }
+
+    validateFlagFilters(req, res, next)
+
+    expect(nextCalled).toBe(true)
+    expect(nextError).toBeUndefined()
+    expect((res.locals as Record<string, unknown>).filters).toEqual({ environment: 'production', status: 'enabled' })
+  })
+
+  it('calls next(error) for invalid environment value', () => {
+    const { req, res } = makeReqRes({ environment: 'invalid-env' })
+    let capturedError: unknown
+    const next: NextFunction = (err?: unknown) => { capturedError = err }
+
+    validateFlagFilters(req, res, next)
+
+    expect(capturedError).toBeDefined()
+  })
+
+  it('calls next(error) for invalid status value', () => {
+    const { req, res } = makeReqRes({ status: 'unknown' })
+    let capturedError: unknown
+    const next: NextFunction = (err?: unknown) => { capturedError = err }
+
+    validateFlagFilters(req, res, next)
+
+    expect(capturedError).toBeDefined()
+  })
+
+  it('calls next(error) for invalid type value', () => {
+    const { req, res } = makeReqRes({ type: 'not-a-type' })
+    let capturedError: unknown
+    const next: NextFunction = (err?: unknown) => { capturedError = err }
+
+    validateFlagFilters(req, res, next)
+
+    expect(capturedError).toBeDefined()
+  })
+
+  it('passes with empty query (no filters)', () => {
+    const { req, res } = makeReqRes({})
+    let nextCalled = false
+    const next: NextFunction = (err?: unknown) => { nextCalled = !err }
+
+    validateFlagFilters(req, res, next)
+
+    expect(nextCalled).toBe(true)
   })
 })

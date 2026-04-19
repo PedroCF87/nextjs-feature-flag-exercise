@@ -22,8 +22,8 @@ export const flagFilterQuerySchema = z.object({
   environment: z.enum(environmentValues).optional(),
   status: z.enum(['enabled', 'disabled']).optional(),
   type: z.enum(flagTypeValues).optional(),
-  owner: z.string().optional(),
-  name: z.string().optional(),
+  owner: z.string().max(255).optional(),
+  name: z.string().max(255).optional(),
 })
 
 export function validateFlagFilters(req: Request, res: Response, next: NextFunction): void {
