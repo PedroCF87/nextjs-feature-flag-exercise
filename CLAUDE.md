@@ -2,13 +2,11 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Workshop Context
-
-This is an exercise for the Agentic Engineering Workshop. The task is to implement feature flag filtering (see `TASK.md`).
+## Constraints
 
 ### Branch Rules
 
-- **Base branch**: `exercise-1`
+- **Base commit**: `04ea0ba24f64f50e6e0cda0238e10be2a02d1ca0`
 - You may create new branches from these
 - **Never** commit or push to `main`
 
@@ -43,30 +41,6 @@ This is an exercise for the Agentic Engineering Workshop. The task is to impleme
 
 - **`shared/types.ts`** - Single source of truth for data contracts
 - Path aliases: `@shared/*` maps to `shared/*`
-
----
-
-## Commands
-
-### Server (from `server/` directory)
-
-```bash
-pnpm install          # Install dependencies
-pnpm dev              # Start dev server (port 3001)
-pnpm run build        # Type check (tsc)
-pnpm run lint         # Run ESLint
-pnpm test             # Run tests (vitest)
-pnpm test -- --watch  # Run tests in watch mode
-```
-
-### Client (from `client/` directory)
-
-```bash
-pnpm install          # Install dependencies
-pnpm dev              # Start dev server (port 3000)
-pnpm run build        # Type check and build (tsc + vite)
-pnpm run lint         # Run ESLint
-```
 
 ---
 
@@ -115,6 +89,31 @@ client/                 # React frontend (port 3000)
 
 ---
 
+## Workflow / PIV Loop
+
+The AI layer follows the PIV Loop: Planning → Implementing → Validating.
+
+```
+/prime → /plan → /implement → /commit → /create-pr → Human review
+            ↑                     ↑
+     /prd-interactive       /validate (optional)
+     /create-stories        /review-pr (optional)
+```
+
+**Planning phase**: `/prime` (orient) → `/prd-interactive` (define feature, optional) → `/create-stories` (decompose, optional) → `/plan` (task plan)
+
+**Implementing phase**: `/implement <plan-file>`
+
+**Validating phase**: `/validate` → `/review-pr` (optional) → `/commit` → `/create-pr`
+
+**Sideways loops** (invoked on failure or special condition):
+- `/rca <symptom>` — root cause analysis when a failure is non-obvious
+- `/security-review` — OWASP security review when sensitive surfaces change
+- `/check-ignores` — audit suppression comments (on-demand)
+- `/create-rules` — regenerate CLAUDE.md from codebase analysis (on-demand)
+
+---
+
 ## Code Style & Patterns
 
 ### TypeScript
@@ -151,31 +150,36 @@ client/                 # React frontend (port 3000)
 - **Pattern**: `describe` blocks by feature, `it` blocks for specific cases
 - **Assertions**: `expect().toBe()`, `expect().toThrow()`, `expect().toEqual()`
 
-### Validation Checks
-
-Run these before committing:
-
-```bash
-# Server
-cd server && pnpm run build && pnpm run lint && pnpm test
-
-# Client
-cd client && pnpm run build && pnpm run lint
-```
-
 **All checks must pass with zero errors.**
+
+---
+
+## AI Gotchas
+
+Project-specific patterns where AI assistants commonly make mistakes:
+
+- **Express v5 error propagation**: In route handlers, ALWAYS use `next(error)` in catch blocks. NEVER call `res.status().json()` inside a catch — it bypasses the centralized error middleware silently.
+- **SQL.js resource leak**: ALWAYS call `stmt.free()` in a `finally` block after every prepared statement. NEVER skip it — WASM does not garbage-collect statements.
+- **Validation order**: ALWAYS parse request data with Zod BEFORE passing to service layer. NEVER call a service method with unvalidated input.
+- **Type imports**: ALWAYS use `import type { Foo }` for type-only imports. Never `import { Foo }` when Foo is only used as a type.
+- **Custom errors only**: NEVER `throw new Error(...)`. Use `NotFoundError`, `ConflictError`, or `ValidationError` so the error middleware formats the response correctly.
 
 ---
 
 ## On-Demand Context
 
-For deeper context on specific areas, read these files:
+Reference guides for deeper context on specific areas. Load only what your task needs.
 
-| Topic | File |
-|-------|------|
-| Project requirements | `.agents/PRDs/feature-flag-manager.prd.md` |
-| Frontend patterns | `.agents/reference/frontend.md` |
-| Backend patterns | `.agents/reference/backend.md` |
+| Topic | File | Load when |
+|-------|------|-----------|
+| Project requirements | `.agents/PRDs/feature-flag-manager.prd.md` | Planning a new feature; starting a new PR |
+| Backend narrative | `.agents/reference/backend.md` | Starting in an unfamiliar backend area |
+| Backend patterns (rules) | `.agents/reference/backend-patterns.md` | Reviewing, implementing, or simplifying backend code |
+| Frontend narrative | `.agents/reference/frontend.md` | Starting in an unfamiliar frontend area |
+| Frontend patterns (rules) | `.agents/reference/frontend-patterns.md` | Reviewing, implementing, or simplifying frontend code |
+| SQL.js constraints | `.agents/reference/sql-js-constraints.md` | Any database operation; security review |
+
+See `.agents/reference/README.md` for the full producer/consumer map and loading conventions.
 
 ---
 
@@ -192,16 +196,6 @@ throw new ConflictError(`Flag with name '${name}' already exists`)
 
 // 400 - Validation error
 throw new ValidationError('Invalid input')
-```
-
-### Error Response Format
-
-```json
-{
-  "error": "NOT_FOUND",
-  "message": "Flag with id 'abc' not found",
-  "statusCode": 404
-}
 ```
 
 ---

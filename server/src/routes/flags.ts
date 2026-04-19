@@ -1,16 +1,16 @@
 import { Router } from 'express'
 import { getAllFlags, getFlagById, createFlag, updateFlag, deleteFlag } from '../services/flags.js'
-import { createFlagSchema, updateFlagSchema } from '../middleware/validation.js'
+import { createFlagSchema, updateFlagSchema, validateFlagFilters } from '../middleware/validation.js'
 import { NotFoundError } from '../middleware/error.js'
+import type { FlagFilterParams } from '../../../shared/types.js'
 
 export const flagsRouter = Router()
 
 // GET /api/flags - List all flags
-// TODO (Workshop): Add query params for filtering
-// e.g., ?environment=production&enabled=true&type=release
-flagsRouter.get('/', async (_req, res, next) => {
+flagsRouter.get('/', validateFlagFilters, async (_req, res, next) => {
   try {
-    const flags = await getAllFlags()
+    const filters = res.locals.filters as FlagFilterParams
+    const flags = await getAllFlags(filters)
     res.json(flags)
   } catch (error) {
     next(error)
